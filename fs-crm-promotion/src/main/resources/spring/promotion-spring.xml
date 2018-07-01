@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="promotionAccessLog" class="com.facishare.crm.promotion.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="PromotionAccess"/>
+        <constructor-arg type="java.lang.String" value=""/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect id="promotionLogMonitor" ref="promotionAccessLog" order="1">
+            <aop:pointcut id="promotionLogAround"
+                          expression="(execution(* com.facishare.crm.promotion.action.*.*(..))
+                        or execution(* com.facishare.crm.promotion.predefine.manager.*.*(..))
+                        or execution(* com.facishare.crm.promotion.predefine.*.*.*(..)))"/>
+            <aop:around pointcut-ref="promotionLogAround" method="around"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

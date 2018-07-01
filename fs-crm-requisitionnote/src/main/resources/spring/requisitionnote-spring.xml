@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="requisitionNoteAccessLog" class="com.facishare.crm.requisitionnote.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="requisitionNoteAccess"/>
+        <constructor-arg type="java.lang.String" value=""/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect id="logMonitor" ref="requisitionNoteAccessLog" order="1">
+            <aop:pointcut id="requisitionNoteLogAround"
+                          expression="(execution(* com.facishare.crm.requisitionnote.predefine.*.*.*(..)))"/>
+            <aop:around pointcut-ref="requisitionNoteLogAround" method="around"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

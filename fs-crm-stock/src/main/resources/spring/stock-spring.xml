@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="stockAccessLog" class="com.facishare.crm.stock.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="stockAccess"/>
+        <constructor-arg type="java.lang.String" value=""/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect id="logMonitor" ref="stockAccessLog" order="1">
+            <aop:pointcut id="stockLogAround"
+                          expression="(execution(* com.facishare.crm.stock.predefine.*.*.*(..)))"/>
+            <aop:around pointcut-ref="stockLogAround" method="around"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="stockDataStore" class="com.github.mongo.support.MongoDataStoreFactoryBean"
+          p:configName="fs-crm-stock-mongo"/>
+</beans>

@@ -1,0 +1,59 @@
+{
+  "id": 0,
+  "title": "Root",
+  "children": [
+    {
+      "id": 1,
+      "title": "A",
+      "properties": {
+        "color": "red",
+        "options": [
+          {
+            "text": "A",
+            "value": "A"
+          },
+          {
+            "text": "B",
+            "value": "B"
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 3,
+          "title": "A1",
+          "properties": {
+            "color": "blue",
+            "options": [
+              {
+                "text": "A",
+                "value": "A"
+              },
+              {
+                "text": "B",
+                "value": "B"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "B",
+      "properties": {
+        "color": "green",
+        "options": [
+          {
+            "text": "A",
+            "value": "A"
+          },
+          {
+            "text": "B",
+            "value": "B"
+          }
+        ]
+      }
+    }
+  ]
+}

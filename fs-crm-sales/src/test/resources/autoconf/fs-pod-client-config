@@ -1,0 +1,2 @@
+#findResourceUrl=http://172.31.101.63:8006/metadata/pod/route/findResourceByQuery
+findResourceUrl=http://oss.firstshare.cn/db-pod/route/findByQuery

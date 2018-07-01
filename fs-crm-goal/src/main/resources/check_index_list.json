@@ -1,0 +1,159 @@
+{
+  "SalesOrderObj":{
+    "check_object_api_name":"SalesOrderObj",
+    "check_object_label":"销售订单",
+    "items":[{
+      "check_field_api_name":"order_amount",
+      "check_field_label":"订单金额",
+      "count_time_api_name":"order_time",
+      "count_time_label":"下单时间",
+      "index_paraphrase":"统计满足限制条件的所有订单的【销售订单金额】之和",
+      "check_field_aggregate_type":"sum",
+      "wheres": [
+        {
+          "connector": "OR",
+          "filters": [
+            {
+              "field_name": "order_status",
+              "operator": "IN",
+              "field_values": [
+                "7",
+                "10",
+                "11"
+              ],
+              "value_type": 0
+            }
+          ]
+        }
+      ]
+    },{
+      "check_field_api_name":"order_quantity",
+      "check_field_label":"订单数",
+      "count_time_api_name":"order_time",
+      "count_time_label":"下单时间",
+      "index_paraphrase":"统计满足限制条件的所有订单的订单数量之和",
+      "check_field_aggregate_type":"count",
+      "wheres": [
+        {
+          "connector": "OR",
+          "filters": [
+            {
+              "field_name": "order_status",
+              "operator": "IN",
+              "field_values": [
+                "7",
+                "10",
+                "11"
+              ],
+              "value_type": 0
+            }
+          ]
+        }
+      ]
+    }]},
+  "SalesOrderProductObj":{
+    "check_object_api_name":"SalesOrderProductObj",
+    "check_object_label":"订单产品",
+    "items":[{
+      "check_field_api_name":"quantity",
+      "check_field_label":"产品销量",
+      "count_time_api_name":"SalesOrderObj.order_time",
+      "count_time_label":"下单时间",
+      "index_paraphrase":"统计满足限制条件的订单产品的【数量】之和",
+      "check_field_aggregate_type":"sum",
+      "wheres": [
+        {
+          "connector": "OR",
+          "filters": [
+            {
+              "field_name": "SalesOrderObj.order_status",
+              "operator": "IN",
+              "field_values": [
+                "7",
+                "10",
+                "11"
+              ],
+              "value_type": 0
+            }
+          ]
+        }
+      ]
+    },{
+      "check_field_api_name":"subtotal",
+      "check_field_label":"产品金额",
+      "count_time_api_name":"SalesOrderObj.order_time",
+      "count_time_label":"下单时间",
+      "index_paraphrase":"统计满足限制条件的所有订单中的订单产品【小计】金额之和",
+      "check_field_aggregate_type":"sum",
+      "wheres": [
+        {
+          "connector": "OR",
+          "filters": [
+            {
+              "field_name": "SalesOrderObj.order_status",
+              "operator": "IN",
+              "field_values": [
+                "7",
+                "10",
+                "11"
+              ],
+              "value_type": 0
+            }
+          ]
+        }
+      ]
+    }]},
+  "OpportunityObj": {
+  "check_object_api_name":"OpportunityObj",
+  "check_object_label":"商机",
+  "items":[{
+    "check_field_api_name":"expected_deal_amount",
+    "check_field_label":"商机金额",
+    "count_time_api_name":"create_time",
+    "count_time_label":"创建时间",
+    "index_paraphrase":"统计满足限制条件的所有商机中的【商机金额】之和",
+    "check_field_aggregate_type":"sum",
+    "wheres": [
+      {
+        "connector": "OR",
+        "filters": [
+          {
+            "field_name": "status",
+            "operator": "IN",
+            "field_values": [
+              "1",
+              "2"
+            ],
+            "value_type": 0
+          }
+        ]
+      }
+    ]
+  }]},
+  "OrderPaymentObj": {
+    "check_object_api_name":"OrderPaymentObj",
+    "check_object_label":"回款明细",
+    "items":[{
+      "check_field_api_name":"payment_amount",
+      "check_field_label":"回款金额",
+      "count_time_api_name":"payment_time",
+      "count_time_label":"回款日期",
+      "index_paraphrase":"统计满足限制条件的所有回款明细的【本次回款金额】之和",
+      "check_field_aggregate_type":"sum",
+      "wheres": [
+        {
+          "connector": "OR",
+          "filters": [
+            {
+              "field_name": "PaymentObj.life_status",
+              "operator": "EQ",
+              "field_values": [
+                "normal"
+              ],
+              "value_type": 0
+            }
+          ]
+        }
+      ]
+    }]}
+}

@@ -1,0 +1,1913 @@
+{
+  "fields": {
+    "name": {
+      "default_is_expression": false,
+      "is_index": true,
+      "is_active": true,
+      "pattern": "",
+      "description": "name",
+      "is_unique": true,
+      "default_value": "",
+      "label": "合作伙伴名称",
+      "type": "text",
+      "default_to_zero": false,
+      "is_required": true,
+      "api_name": "name",
+      "define_type": "system",
+      "help_text": "",
+      "max_length": 100,
+      "status": "released",
+      "is_extend": false
+    },
+    "uniform_social_credit_code": {
+      "type": "text",
+      "define_type": "package",
+      "max_length": 2000,
+      "pattern": "",
+      "api_name": "uniform_social_credit_code",
+      "is_need_convert": false,
+      "is_index": true,
+      "is_required": false,
+      "is_unique": false,
+      "status": "released",
+      "label": "统一社会信用代码",
+      "description": "统一社会信用代码",
+      "config": {
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "partner_category": {
+      "type": "select_one",
+      "define_type": "package",
+      "is_need_convert": false,
+      "options": [
+        {
+          "label": "代理商",
+          "value": "01",
+          "resource_bundle_key": "",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "label": "实施商",
+          "value": "02",
+          "resource_bundle_key": "",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "label": "服务商",
+          "value": "03",
+          "resource_bundle_key": "",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "label": "物流商",
+          "value": "04",
+          "resource_bundle_key": "",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        }
+      ],
+      "api_name": "partner_category",
+      "is_required": false,
+      "is_index": true,
+      "is_unique": false,
+      "status": "released",
+      "label": "类型",
+      "description": "类型",
+      "config": {
+        "add": 1,
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "options": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "credit_rating": {
+      "type": "select_one",
+      "define_type": "package",
+      "is_need_convert": false,
+      "options": [
+        {
+          "label": "一级",
+          "value": "01",
+          "resource_bundle_key": "",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "label": "二级",
+          "value": "02",
+          "resource_bundle_key": "",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "label": "三级",
+          "value": "03",
+          "resource_bundle_key": "",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        }
+      ],
+      "api_name": "credit_rating",
+      "is_required": false,
+      "is_index": true,
+      "is_unique": false,
+      "status": "released",
+      "label": "级别",
+      "description": "级别",
+      "config": {
+        "add": 1,
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "options": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "industry_level1": {
+      "is_index": true,
+      "is_active": true,
+      "create_time": 1517562844799,
+      "is_unique": false,
+      "label": "1级行业",
+      "type": "select_one",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "industry_level1",
+      "options": [
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "1d11105f433e407b97900c4e6a0dd9c9",
+                "fdfba38e3fa14d39a2d5d1ff1b3e0e33",
+                "b5c685719a324d2487d42c3a67d3e5e7",
+                "6ae20dd9386044f7bbe3042c30f4dc31",
+                "486b949b7a49426095dc48be4ea67175",
+                "a424edc1af0f498a9f6145307b5ecda1",
+                "195f6031fc934c8abae7e85eeb709c03",
+                "7f3b526992e9477083638dad7282ca47",
+                "fa2382b4471a47d48613dcfb5d759bd9",
+                "b7bbfdcfe9a5452c882c4a270be94139"
+              ]
+            }
+          ],
+          "label": "生产/加工/制造",
+          "value": "7d18b41f71474604ac11f53997ca3263",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "9de436e20bf546b89cb496107f083475",
+                "460f342d5f4a458da192fd6853487f82",
+                "947d7889271941fa93a722575f5d4299"
+              ]
+            }
+          ],
+          "label": "房地产/建筑业",
+          "value": "2a77fd525e3c4921aed6d4f957b03f2f",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "c83a94fde3d74e23b79224223c18d865",
+                "237762d2dc6342a2abe627c46381c7fa",
+                "a30e239747ee49ff92f063443bcbb2e0",
+                "a2ab2114890f4c888039afc9127bdfed",
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "35c83bdf8583428a9e4f803aa4689d44",
+                "a6afbcd66333471cbd77d61c17806dc9",
+                "07103cad35b943219690fd71c4c76b19",
+                "687f41b6b10242c19d48a7f06749afe7"
+              ]
+            }
+          ],
+          "label": "IT/通信/电子/互联网",
+          "value": "6e2286ca487d424cb802be035c880184",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "af94c68bed6442f8a970318efd62adbe",
+                "8474935931a54e54a3b205882890a6dd",
+                "e9387e02dc174ad19fc9bee00851749c",
+                "37e52874e44b40f89f09a201f64d31d5",
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "fd75f40c00c44c838a8eae7194958830",
+                "58b171e6e7d94a798e51c19ee29b0c93",
+                "c5235233d98c41a8966fec161610be6e"
+              ]
+            }
+          ],
+          "label": "商业服务",
+          "value": "c3e04661a4e745e3a45e8bddd54ce07b",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "c00e9f369df14899b0251d05124f96b3",
+                "46a5d69516164caa8233d59a0ed3a29b",
+                "f7d77bcadb43463eb1eea74de00e2308",
+                "9d36398273fa4280b0e6717d96de2247"
+              ]
+            }
+          ],
+          "label": "农/林/牧/渔/其他",
+          "value": "9242b0633f484501a4242d79763a9ee5",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "5a60776c867c46b7b48874523a37721d",
+                "37341248386d41c497c44b5b74d4f2eb",
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "24df2475061e49589095ddd341d4b5f6",
+                "28c1a49a2b80452a94b0e895ebe05e46"
+              ]
+            }
+          ],
+          "label": "金融业",
+          "value": "13cb944990de42a085a4b4896cc4c3a6",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "a063f24c563746e6881d44b56cd7d9f3",
+                "d0ff3c76dd0e454c99344250bc9ac7b1",
+                "01805a27e003452fb7ac2062a414ff09",
+                "cb0d2a7f6fdb49b19b39720ffc6995de",
+                "cd083089cd3a44eab83a63236a5386cd",
+                "9d557d574ccf46f7b5021ebee03454df",
+                "a3675318512c4fe29cf8ed5729c887f8",
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "8276dae2b21642f3b6d1d7b79d138553",
+                "7264727d64d14031bf0517faa4341794",
+                "f49b10851d2d4e2290496eda95551499",
+                "c10ef8a943bd4ffb82c5b686bc42ffcd"
+              ]
+            }
+          ],
+          "label": "贸易/批发/零售/租赁业",
+          "value": "b5cf016ea3ad4df1bf226c47606a71e7",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "ecd59e52f67149ca8142b5a168e5ac87",
+                "50cb331c6041484997a83ae8e63aae30",
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "981f3bc0e9164bcd9c0098b2c518d6fa"
+              ]
+            }
+          ],
+          "label": "服务业",
+          "value": "2981dbf62f2a4d74b49990312aff2935",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "0b2a26a653ab436bb9894e381ba118b2",
+                "63d646c2d75c4ce39b76f79fb59c11db"
+              ]
+            }
+          ],
+          "label": "政府/非盈利机构",
+          "value": "a83f96e093f3496d87ce878d2e2fa4f9",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "26e6237646f747bd8ab8722c9befe637",
+                "a3e0f1a5b94e4402a27e4a340dd1bff6"
+              ]
+            }
+          ],
+          "label": "交通/运输/物流/仓储",
+          "value": "f5d57cb355e34ed2ad534c71d85411c1",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "6145a96bf8844b58a848090669bb68c5"
+              ]
+            }
+          ],
+          "label": "跨领域经营",
+          "value": "3209b7d6d08243638aca6272f966dbdb",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "a0beb19262af42b68213e40b10594ad3",
+                "c7716683b4164f9180be991401a6e3a9",
+                "61c21e06ef2e4f9890d89ea86fdeb46f"
+              ]
+            }
+          ],
+          "label": "文化/传媒/娱乐/体育",
+          "value": "b4ae642bbf6741489ca72df119f3274f",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "child_options": [
+            {
+              "industry_level2": [
+                "80156d090c6f4f36a79b5fde4c7bf866",
+                "f544c749085c4819a763f733fb1f5175",
+                "64741287732646fcb079f050b22dee38",
+                "b7bbfdcfe9a5452c882c4a270be94139",
+                "b3f2b893eeb34d45bbe4b20e70f84ad6"
+              ]
+            }
+          ],
+          "label": "能源/矿产/环保",
+          "value": "3d3938a283274285a22de2b1fd54bc0c",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        }
+      ],
+      "define_type": "package",
+      "option_id": "5a921782402b1e6b991349b7561e4199",
+      "_id": "5a742bdcbab09c4c1b95ba7d",
+      "is_index_field": false,
+      "is_single": false,
+      "config": {
+        "add": 1,
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "options": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      },
+      "status": "released"
+    },
+    "industry_level2": {
+      "is_index": true,
+      "is_active": true,
+      "create_time": 1517562844799,
+      "is_unique": false,
+      "label": "2级行业",
+      "type": "select_one",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "industry_level2",
+      "options": [
+        {
+          "resource_bundle_key": "",
+          "label": "加工制造（模具）",
+          "value": "1d11105f433e407b97900c4e6a0dd9c9",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "加工制造（原料加工）",
+          "value": "fdfba38e3fa14d39a2d5d1ff1b3e0e33",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "医药/生物工程",
+          "value": "b5c685719a324d2487d42c3a67d3e5e7",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "医疗设备/器械",
+          "value": "6ae20dd9386044f7bbe3042c30f4dc31",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "仪器仪表及工业自动化",
+          "value": "486b949b7a49426095dc48be4ea67175",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "航空/航天研究与制造",
+          "value": "a424edc1af0f498a9f6145307b5ecda1",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "礼品/玩具/工艺美术/收藏品/奢侈品",
+          "value": "195f6031fc934c8abae7e85eeb709c03",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "汽车/摩托车",
+          "value": "7f3b526992e9477083638dad7282ca47",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "大型设备/机电设备/重工业",
+          "value": "fa2382b4471a47d48613dcfb5d759bd9",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "其他",
+          "value": "b7bbfdcfe9a5452c882c4a270be94139",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "家居/室内设计/装饰装潢",
+          "value": "9de436e20bf546b89cb496107f083475",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "物业管理/商业中心",
+          "value": "460f342d5f4a458da192fd6853487f82",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "房地产/建筑/建筑建材/建材/工程",
+          "value": "947d7889271941fa93a722575f5d4299",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "电信运营/增值服务",
+          "value": "c83a94fde3d74e23b79224223c18d865",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "IT服务（系统/数据/维护）",
+          "value": "237762d2dc6342a2abe627c46381c7fa",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "计算机硬件",
+          "value": "a30e239747ee49ff92f063443bcbb2e0",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "计算机软件",
+          "value": "a2ab2114890f4c888039afc9127bdfed",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "电子技术/半导体/集成电路",
+          "value": "35c83bdf8583428a9e4f803aa4689d44",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "网络游戏",
+          "value": "a6afbcd66333471cbd77d61c17806dc9",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "通信/电信/网络设备",
+          "value": "07103cad35b943219690fd71c4c76b19",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "互联网/电子商务",
+          "value": "687f41b6b10242c19d48a7f06749afe7",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "广告",
+          "value": "af94c68bed6442f8a970318efd62adbe",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "公关",
+          "value": "8474935931a54e54a3b205882890a6dd",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "专业服务/咨询（财会/法律人力资源等",
+          "value": "e9387e02dc174ad19fc9bee00851749c",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "展会",
+          "value": "37e52874e44b40f89f09a201f64d31d5",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "中介服务",
+          "value": "fd75f40c00c44c838a8eae7194958830",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "检验/检测/认证",
+          "value": "58b171e6e7d94a798e51c19ee29b0c93",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "外包服务",
+          "value": "c5235233d98c41a8966fec161610be6e",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "牧",
+          "value": "c00e9f369df14899b0251d05124f96b3",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "渔",
+          "value": "46a5d69516164caa8233d59a0ed3a29b",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "农",
+          "value": "f7d77bcadb43463eb1eea74de00e2308",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "林",
+          "value": "9d36398273fa4280b0e6717d96de2247",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "基金/证券/期货/投资",
+          "value": "5a60776c867c46b7b48874523a37721d",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "银行",
+          "value": "37341248386d41c497c44b5b74d4f2eb",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "信托/担保/拍卖/典当",
+          "value": "24df2475061e49589095ddd341d4b5f6",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "保险",
+          "value": "28c1a49a2b80452a94b0e895ebe05e46",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "服饰",
+          "value": "a063f24c563746e6881d44b56cd7d9f3",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "租赁服务",
+          "value": "d0ff3c76dd0e454c99344250bc9ac7b1",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "食品",
+          "value": "01805a27e003452fb7ac2062a414ff09",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "日化",
+          "value": "cb0d2a7f6fdb49b19b39720ffc6995de",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "快速消费品（饮料/烟酒）",
+          "value": "cd083089cd3a44eab83a63236a5386cd",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "皮革",
+          "value": "9d557d574ccf46f7b5021ebee03454df",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "贸易/进出口",
+          "value": "a3675318512c4fe29cf8ed5729c887f8",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "纺织",
+          "value": "8276dae2b21642f3b6d1d7b79d138553",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "家电",
+          "value": "7264727d64d14031bf0517faa4341794",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "家具",
+          "value": "f49b10851d2d4e2290496eda95551499",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "零售/批发",
+          "value": "c10ef8a943bd4ffb82c5b686bc42ffcd",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "旅游/度假",
+          "value": "ecd59e52f67149ca8142b5a168e5ac87",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "酒店/餐饮",
+          "value": "50cb331c6041484997a83ae8e63aae30",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "医疗/医疗服务护理/美容/保健卫生服务",
+          "value": "981f3bc0e9164bcd9c0098b2c518d6fa",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "政府/公共事业/非盈利机构",
+          "value": "0b2a26a653ab436bb9894e381ba118b2",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "学术/科研",
+          "value": "63d646c2d75c4ce39b76f79fb59c11db",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "交通/运输",
+          "value": "26e6237646f747bd8ab8722c9befe637",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "物流/仓储",
+          "value": "a3e0f1a5b94e4402a27e4a340dd1bff6",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "无",
+          "value": "6145a96bf8844b58a848090669bb68c5",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "媒体/出版/影视/文化传播",
+          "value": "a0beb19262af42b68213e40b10594ad3",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "娱乐/体育/休闲",
+          "value": "c7716683b4164f9180be991401a6e3a9",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "教育/培训/院校",
+          "value": "61c21e06ef2e4f9890d89ea86fdeb46f",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "石油/石化/化工",
+          "value": "80156d090c6f4f36a79b5fde4c7bf866",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "能源/矿产/采掘/冶炼",
+          "value": "f544c749085c4819a763f733fb1f5175",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "电气/电力/水利",
+          "value": "64741287732646fcb079f050b22dee38",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        },
+        {
+          "resource_bundle_key": "",
+          "label": "环保",
+          "value": "b3f2b893eeb34d45bbe4b20e70f84ad6",
+          "config": {
+            "edit": 1,
+            "enable": 1,
+            "remove": 1
+          }
+        }
+      ],
+      "define_type": "package",
+      "option_id": "500beb64e121218b7b078128ce763128",
+      "_id": "5a742bdcbab09c4c1b95ba7c",
+      "cascade_parent_api_name": "industry_level1",
+      "is_index_field": false,
+      "is_single": false,
+      "config": {
+        "add": 1,
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "options": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      },
+      "status": "released"
+    },
+    "country": {
+      "type": "country",
+      "define_type": "package",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "api_name": "country",
+      "status": "released",
+      "label": "国家",
+      "used_in": "component",
+      "config": {
+        "edit": 1,
+        "enable": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "help_text": 1,
+          "is_unique": 1,
+          "label": 1
+        }
+      }
+    },
+    "province": {
+      "type": "province",
+      "define_type": "package",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "api_name": "province",
+      "cascade_parent_api_name": "country",
+      "status": "released",
+      "label": "省",
+      "used_in": "component",
+      "config": {
+        "edit": 1,
+        "enable": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "help_text": 1,
+          "is_unique": 1,
+          "label": 1
+        }
+      }
+    },
+    "city": {
+      "type": "city",
+      "define_type": "package",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "api_name": "city",
+      "cascade_parent_api_name": "province",
+      "status": "released",
+      "label": "市",
+      "used_in": "component",
+      "config": {
+        "edit": 1,
+        "enable": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "help_text": 1,
+          "is_unique": 1,
+          "label": 1
+        }
+      }
+    },
+    "district": {
+      "type": "district",
+      "define_type": "package",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "api_name": "district",
+      "cascade_parent_api_name": "city",
+      "status": "released",
+      "label": "区",
+      "used_in": "component",
+      "config": {
+        "edit": 1,
+        "enable": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "help_text": 1,
+          "is_unique": 1,
+          "label": 1
+        }
+      }
+    },
+    "address": {
+      "type": "text",
+      "define_type": "package",
+      "is_index": true,
+      "is_need_convert": false,
+      "max_length": 1000,
+      "pattern": "",
+      "api_name": "address",
+      "is_required": false,
+      "status": "released",
+      "label": "详细地址",
+      "is_unique": false,
+      "description": "详细地址",
+      "used_in": "component",
+      "config": {
+        "edit": 1,
+        "enable": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "help_text": 1,
+          "is_unique": 1,
+          "label": 1
+        }
+      }
+    },
+    "location": {
+      "type": "location",
+      "define_type": "package",
+      "is_index": false,
+      "is_need_convert": false,
+      "api_name": "location",
+      "is_required": false,
+      "status": "released",
+      "label": "定位",
+      "is_unique": false,
+      "description": "定位",
+      "used_in": "component",
+      "config": {
+        "edit": 1,
+        "enable": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "help_text": 1,
+          "is_unique": 1,
+          "label": 1
+        }
+      }
+    },
+    "area_location": {
+      "is_index": false,
+      "is_active": true,
+      "is_unique": false,
+      "group_type": "area",
+      "label": "地区定位",
+      "type": "group",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "area_location",
+      "define_type": "package",
+      "fields": {
+        "area_country": "country",
+        "area_location": "location",
+        "area_detail_address": "address",
+        "area_city": "city",
+        "area_province": "province",
+        "area_district": "district"
+      },
+      "is_index_field": false,
+      "is_single": false,
+      "status": "released",
+      "config": {
+        "add": 1,
+        "edit": 1,
+        "enable": 1,
+        "attrs": {
+          "api_name": 1,
+          "header": 1
+        }
+      }
+    },
+    "tel": {
+      "type": "phone_number",
+      "define_type": "package",
+      "is_index": true,
+      "is_need_convert": false,
+      "max_length": 256,
+      "pattern": "",
+      "api_name": "tel",
+      "is_required": false,
+      "status": "released",
+      "label": "电话",
+      "is_unique": false,
+      "description": "电话",
+      "config": {
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "fax": {
+      "type": "phone_number",
+      "define_type": "package",
+      "is_index": true,
+      "is_need_convert": false,
+      "max_length": 256,
+      "pattern": "",
+      "api_name": "fax",
+      "is_required": false,
+      "status": "released",
+      "label": "传真",
+      "is_unique": false,
+      "description": "传真",
+      "config": {
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "email": {
+      "type": "email",
+      "define_type": "package",
+      "is_index": true,
+      "is_need_convert": false,
+      "api_name": "email",
+      "is_required": false,
+      "status": "released",
+      "label": "邮件",
+      "is_unique": false,
+      "description": "邮件",
+      "config": {
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "url": {
+      "type": "url",
+      "define_type": "package",
+      "is_index": true,
+      "is_need_convert": false,
+      "max_length": 1000,
+      "pattern": "",
+      "api_name": "url",
+      "is_required": false,
+      "status": "released",
+      "label": "网址",
+      "is_unique": false,
+      "description": "网址",
+      "config": {
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "remark": {
+      "type": "long_text",
+      "define_type": "package",
+      "is_index": true,
+      "is_need_convert": false,
+      "max_length": 1000,
+      "pattern": "",
+      "api_name": "remark",
+      "is_required": false,
+      "status": "released",
+      "label": "备注",
+      "is_unique": false,
+      "description": "备注",
+      "config": {
+        "enable": 1,
+        "edit": 1,
+        "attrs": {
+          "api_name": 1,
+          "default_value": 1,
+          "label": 1,
+          "help_text": 1
+        }
+      }
+    },
+    "owner": {
+      "is_index": true,
+      "is_active": true,
+      "is_unique": false,
+      "label": "负责人",
+      "type": "employee",
+      "is_need_convert": false,
+      "is_required": true,
+      "api_name": "owner",
+      "define_type": "package",
+      "is_single": true,
+      "help_text": "",
+      "status": "released",
+      "is_extend": false
+    },
+    "lock_status": {
+      "is_index": true,
+      "is_active": true,
+      "description": "锁定状态",
+      "is_unique": false,
+      "default_value": "0",
+      "label": "锁定状态",
+      "type": "select_one",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "lock_status",
+      "options": [
+        {
+          "label": "未锁定",
+          "value": "0"
+        },
+        {
+          "label": "锁定",
+          "value": "1"
+        }
+      ],
+      "define_type": "package",
+      "help_text": "锁定状态",
+      "status": "released",
+      "is_extend": false
+    },
+    "lock_rule": {
+      "is_index": false,
+      "is_active": true,
+      "description": "锁定规则",
+      "is_unique": false,
+      "default_value": "default_lock_rule",
+      "rules": [],
+      "label": "锁定规则",
+      "type": "lock_rule",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "lock_rule",
+      "define_type": "package",
+      "help_text": "锁定规则",
+      "is_extend": false
+    },
+    "lock_user": {
+      "is_index": false,
+      "is_active": true,
+      "description": "加锁人",
+      "is_unique": false,
+      "label": "加锁人",
+      "type": "employee",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "lock_user",
+      "define_type": "package",
+      "is_single": true,
+      "help_text": "加锁人",
+      "is_extend": false
+    },
+    "life_status": {
+      "is_index": true,
+      "is_active": true,
+      "description": "生命状态",
+      "is_unique": false,
+      "default_value": "normal",
+      "label": "生命状态",
+      "type": "select_one",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "life_status",
+      "options": [
+        {
+          "label": "未生效",
+          "value": "ineffective"
+        },
+        {
+          "label": "审核中",
+          "value": "under_review"
+        },
+        {
+          "label": "正常",
+          "value": "normal"
+        },
+        {
+          "label": "变更中",
+          "value": "in_change"
+        },
+        {
+          "label": "作废",
+          "value": "invalid"
+        }
+      ],
+      "define_type": "package",
+      "help_text": "生命状态",
+      "status": "released",
+      "is_extend": false
+    },
+    "life_status_before_invalid": {
+      "is_index": false,
+      "is_active": true,
+      "pattern": "",
+      "description": "作废前生命状态",
+      "is_unique": false,
+      "label": "作废前生命状态",
+      "type": "text",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "life_status_before_invalid",
+      "define_type": "package",
+      "help_text": "作废前生命状态",
+      "max_length": 256,
+      "is_extend": false
+    },
+    "owner_department": {
+      "default_is_expression": false,
+      "is_index": true,
+      "is_active": true,
+      "pattern": "",
+      "is_unique": false,
+      "default_value": "",
+      "label": "负责人所在部门",
+      "type": "text",
+      "default_to_zero": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "owner_department",
+      "define_type": "package",
+      "is_single": true,
+      "help_text": "",
+      "max_length": 100,
+      "status": "released",
+      "is_extend": false
+    },
+    "relevant_team": {
+      "embedded_fields": {
+        "teamMemberEmployee": {
+          "is_index": true,
+          "is_need_convert": true,
+          "is_required": false,
+          "api_name": "teamMemberEmployee",
+          "is_unique": false,
+          "define_type": "package",
+          "description": "成员员工",
+          "label": "成员员工",
+          "type": "employee",
+          "is_single": true,
+          "help_text": "成员员工"
+        },
+        "teamMemberRole": {
+          "is_index": true,
+          "is_need_convert": false,
+          "is_required": false,
+          "api_name": "teamMemberRole",
+          "options": [
+            {
+              "label": "负责人",
+              "value": "1"
+            },
+            {
+              "label": "普通成员",
+              "value": "4"
+            }
+          ],
+          "is_unique": false,
+          "define_type": "package",
+          "description": "成员角色",
+          "label": "成员角色",
+          "type": "select_one",
+          "help_text": "成员角色"
+        },
+        "teamMemberPermissionType": {
+          "is_index": true,
+          "is_need_convert": false,
+          "is_required": false,
+          "api_name": "teamMemberPermissionType",
+          "options": [
+            {
+              "label": "只读",
+              "value": "1"
+            },
+            {
+              "label": "读写",
+              "value": "2"
+            }
+          ],
+          "is_unique": false,
+          "define_type": "package",
+          "description": "成员权限类型",
+          "label": "成员权限类型",
+          "type": "select_one",
+          "help_text": "成员权限类型"
+        }
+      },
+      "is_index": true,
+      "is_active": true,
+      "is_unique": false,
+      "label": "相关团队",
+      "type": "embedded_object_list",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "relevant_team",
+      "define_type": "package",
+      "help_text": "相关团队",
+      "is_extend": false
+    },
+    "record_type": {
+      "is_index": true,
+      "is_active": true,
+      "description": "record_type",
+      "is_unique": false,
+      "label": "业务类型",
+      "type": "record_type",
+      "is_need_convert": false,
+      "is_required": false,
+      "api_name": "record_type",
+      "options": [
+        {
+          "is_active": true,
+          "api_name": "default__c",
+          "description": "预设业务类型",
+          "label": "预设业务类型"
+        }
+      ],
+      "define_type": "package",
+      "index_name": "record_type",
+      "help_text": "",
+      "status": "released",
+      "is_extend": false
+    },
+    "_id": {
+      "type": "text",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "max_length": 200,
+      "pattern": "",
+      "label": "_id",
+      "api_name": "_id",
+      "description": "_id",
+      "resource_bundle_key": "PartnerObj._id",
+      "status": "released",
+      "is_extend": false
+    },
+    "created_by": {
+      "type": "text",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "max_length": 200,
+      "pattern": "",
+      "label": "创建人",
+      "api_name": "created_by",
+      "description": "created_by",
+      "resource_bundle_key": "PartnerObj.created_by",
+      "status": "released",
+      "is_extend": false
+    },
+    "last_modified_by": {
+      "type": "text",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "max_length": 200,
+      "pattern": "",
+      "label": "最后修改人",
+      "api_name": "last_modified_by",
+      "description": "last_modified_by",
+      "resource_bundle_key": "PartnerObj.last_modified_by",
+      "status": "released",
+      "is_extend": false
+    },
+    "package": {
+      "type": "text",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "max_length": 200,
+      "pattern": "",
+      "label": "package",
+      "api_name": "package",
+      "description": "package",
+      "resource_bundle_key": "PartnerObj.package",
+      "status": "released",
+      "is_extend": false
+    },
+    "tenant_id": {
+      "type": "text",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": true,
+      "is_unique": false,
+      "max_length": 200,
+      "pattern": "",
+      "label": "tenant_id",
+      "api_name": "tenant_id",
+      "description": "tenant_id",
+      "resource_bundle_key": "PartnerObj.tenant_id",
+      "status": "released",
+      "is_extend": false
+    },
+    "object_describe_id": {
+      "type": "text",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": true,
+      "is_unique": false,
+      "max_length": 200,
+      "pattern": "",
+      "label": "object_describe_id",
+      "api_name": "object_describe_id",
+      "description": "object_describe_id",
+      "resource_bundle_key": "PartnerObj.object_describe_id",
+      "status": "released",
+      "is_extend": false
+    },
+    "object_describe_api_name": {
+      "type": "text",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": true,
+      "is_unique": false,
+      "max_length": 200,
+      "pattern": "",
+      "label": "object_describe_api_name",
+      "api_name": "object_describe_api_name",
+      "description": "object_describe_api_name",
+      "resource_bundle_key": "PartnerObj.object_describe_api_name",
+      "status": "released",
+      "is_extend": false
+    },
+    "version": {
+      "type": "number",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "round_mode": 4,
+      "length": 8,
+      "decimal_places": 0,
+      "label": "version",
+      "api_name": "version",
+      "description": "version",
+      "resource_bundle_key": "PartnerObj.version",
+      "status": "released",
+      "is_extend": false
+    },
+    "create_time": {
+      "type": "date_time",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "time_zone": "",
+      "date_format": "yyyy-MM-dd HH:mm:ss",
+      "label": "创建时间",
+      "api_name": "create_time",
+      "description": "create_time",
+      "resource_bundle_key": "PartnerObj.create_time",
+      "status": "released",
+      "is_extend": false
+    },
+    "last_modified_time": {
+      "type": "date_time",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "time_zone": "",
+      "date_format": "yyyy-MM-dd HH:mm:ss",
+      "label": "最后修改时间",
+      "api_name": "last_modified_time",
+      "description": "last_modified_time",
+      "resource_bundle_key": "PartnerObj.last_modified_time",
+      "status": "released",
+      "is_extend": false
+    },
+    "is_deleted": {
+      "type": "true_or_false",
+      "define_type": "system",
+      "is_index": false,
+      "is_need_convert": false,
+      "is_required": false,
+      "is_unique": false,
+      "label": "is_deleted",
+      "api_name": "is_deleted",
+      "description": "is_deleted",
+      "default_value": false,
+      "resource_bundle_key": "PartnerObj.is_deleted",
+      "status": "released",
+      "is_extend": false
+    },
+    "extend_obj_data_id": {
+      "default_is_expression": false,
+      "is_index": false,
+      "is_active": true,
+      "pattern": "",
+      "description": "extend_obj_data_id",
+      "default_value": "",
+      "type": "text",
+      "label": "extend_obj_data_id",
+      "default_to_zero": false,
+      "is_required": false,
+      "api_name": "extend_obj_data_id",
+      "define_type": "system",
+      "help_text": "",
+      "max_length": 100,
+      "status": "released",
+      "is_extend": false
+    }
+  },
+  "validate_rules": {},
+  "triggers": {},
+  "actions": {
+    "Lock": {
+      "action_class": "LockCustomAction",
+      "action_code": "Lock",
+      "source_type": "java_spring",
+      "label": "锁定"
+    },
+    "ChangeOwner": {
+      "action_class": "ChangeOwnerCustomAction",
+      "action_code": "ChangeOwner",
+      "source_type": "java_spring",
+      "label": "更换负责人"
+    },
+    "EditTeamMember": {
+      "action_class": "EditTeamMemberCustomAction",
+      "action_code": "EditTeamMember",
+      "source_type": "java_spring",
+      "label": "编辑团队成员"
+    },
+    "Unlock": {
+      "action_class": "UnlockCustomAction",
+      "action_code": "Unlock",
+      "source_type": "java_spring",
+      "label": "解锁"
+    },
+    "DeleteTeamMember": {
+      "action_class": "DeleteTeamMemberCustomAction",
+      "action_code": "DeleteTeamMember",
+      "source_type": "java_spring",
+      "label": "删除团队成员"
+    },
+    "AddTeamMember": {
+      "action_class": "AddTeamMemberCustomAction",
+      "action_code": "AddTeamMember",
+      "source_type": "java_spring",
+      "label": "添加团队成员"
+    }
+  },
+  "index_version": 1,
+  "api_name": "PartnerObj",
+  "display_name": "合作伙伴",
+  "package": "CRM",
+  "define_type": "package",
+  "is_active": true,
+  "icon_index": 12,
+  "store_table_name": "partner",
+  "is_deleted": false
+}

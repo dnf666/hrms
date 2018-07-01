@@ -1,0 +1,13 @@
+redis.servers=10.113.7.1:30001,10.113.7.2:30001,10.113.7.3:30001
+redis.sentinel=true
+redis.masterName=test
+redis.dbIndex=0
+
+startup=true
+
+pool.maxActive=100
+pool.minIdle=5
+pool.maxWaitMillis=3000
+pool.testOnBorrow=false
+pool.testOnReturn=false
+pool.testWhileIdle=true

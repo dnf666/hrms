@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="erpStockAccessLog" class="com.facishare.crm.erpstock.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="erpStockAccess"/>
+        <constructor-arg type="java.lang.String" value=""/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect id="logMonitor" ref="erpStockAccessLog" order="1">
+            <aop:pointcut id="erpStockLogAround"
+                          expression="(execution(* com.facishare.crm.erpstock.predefine.*.*.*(..)))"/>
+            <aop:around pointcut-ref="erpStockLogAround" method="around"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

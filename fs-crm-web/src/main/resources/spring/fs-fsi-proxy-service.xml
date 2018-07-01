@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="fsiServiceProxyFactory" class="com.facishare.fsi.proxy.FsiServiceProxyFactory" init-method="init">
+        <property name="configKey" value="fs-qixin-fsi-proxy"/>
+    </bean>
+
+    <bean id="fsiWarehouseProxyFactory" class="com.facishare.fsi.proxy.FsiWarehouseProxyFactory" init-method="init">
+        <property name="configKey" value="fs-qixin-fsi-proxy"/>
+        <property name="globalConfigService" ref="globalConfigService"/>
+    </bean>
+
+    <bean id="globalConfigService" class="com.facishare.fsi.proxy.FsiServiceProxyFactoryBean">
+        <property name="factory" ref="fsiServiceProxyFactory"/>
+        <property name="type" value="com.facishare.fsi.proxy.service.GlobalConfigService"/>
+    </bean>
+
+    <bean id="aFileStorageService" class="com.facishare.fsi.proxy.FsiServiceProxyFactoryBean">
+        <property name="factory" ref="fsiWarehouseProxyFactory"/>
+        <property name="type" value="com.facishare.fsi.proxy.service.AFileStorageService"/>
+    </bean>
+
+    <bean id="nFileStorageService" class="com.facishare.fsi.proxy.FsiServiceProxyFactoryBean">
+        <property name="factory" ref="fsiWarehouseProxyFactory"/>
+        <property name="type" value="com.facishare.fsi.proxy.service.NFileStorageService"/>
+    </bean>
+
+    <bean id="avatarFileStorageService" class="com.facishare.fsi.proxy.FsiServiceProxyFactoryBean">
+        <property name="factory" ref="fsiWarehouseProxyFactory"/>
+        <property name="type" value="com.facishare.fsi.proxy.service.AvatarFileStorageService"/>
+    </bean>
+
+</beans>

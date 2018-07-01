@@ -1,0 +1,40 @@
+{
+  "agent_type": "agent_type_mobile",
+  "components": [
+    {
+      "api_name": "table_component",
+      "ref_object_api_name": "PartnerObj",
+      "include_fields": [
+        {
+          "api_name": "name",
+          "label": "合作伙伴名称",
+          "render_type": "text"
+        },
+        {
+          "api_name": "partner_category",
+          "label": "类型",
+          "render_type": "select_one"
+        },
+        {
+          "api_name": "tel",
+          "label": "电话",
+          "render_type": "phone_number"
+        },
+        {
+          "api_name": "owner",
+          "label": "负责人",
+          "render_type": "employee"
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "package": "CRM",
+  "api_name": "layout_PartnerObj_mobile",
+  "ref_object_api_name": "PartnerObj",
+  "layout_type": "list",
+  "is_default": false,
+  "display_name": "合伙伙伴列表布局",
+  "version": "1",
+  "is_show_fieldname": true
+}

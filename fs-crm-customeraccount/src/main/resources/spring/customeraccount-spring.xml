@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="customerAccountdataSource" class="com.github.mybatis.spring.DynamicDataSource">
+        <property name="configName" value="fs-crm-customeraccount"/>
+    </bean>
+    <bean id="customerAccountSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="customerAccountdataSource"/>
+        <property name="typeAliasesPackage" value="com.facishare.crm.customeraccount.entity"/>
+        <property name="configLocation" value="classpath:mybatis/customeraccount-mybatis.xml"/>
+    </bean>
+    <bean id="customerAccountScannerConfigurer" class="com.github.mybatis.spring.ScannerConfigurer">
+        <property name="basePackage" value="com.facishare.crm.customeraccount.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="customerAccountSqlSessionFactory"/>
+    </bean>
+    <bean id="customerAccountAccessLog" class="com.facishare.crm.customeraccount.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="CustomerAccountAccess"/>
+        <constructor-arg type="java.lang.String" value=""/>
+    </bean>
+    <aop:config>
+        <aop:aspect id="customerAccountAccessLogMonitor" ref="customerAccountAccessLog" order="1">
+            <aop:pointcut id="customerAccountAccessLogAround"
+                          expression="(execution(* com.facishare.crm.customeraccount.dao.*.*(..))
+                        or execution(* com.facishare.crm.customeraccount.predefine.*.*.*(..)))"/>
+            <aop:around pointcut-ref="customerAccountAccessLogAround" method="around"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="changeCustomerOwnerListener" class="com.facishare.crm.customeraccount.mq.ChangeCustomerOwnerEventListener"/>
+    <bean id="caRocketMessageProcessor" class="com.facishare.paas.appframework.common.mq.RocketMQMessageProcessor" p:configName="fs-crm-customeraccount-mq" p:rocketMQMessageListener-ref="changeCustomerOwnerListener"/>
+
+</beans>

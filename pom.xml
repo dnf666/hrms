@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--<parent>-->
+        <!--<groupId>com.fxiaoke.common</groupId>-->
+        <!--<artifactId>fxiaoke-parent-pom</artifactId>-->
+        <!--<version>1.0.0-SNAPSHOT</version>-->
+    <!--</parent>-->
+
+    <groupId>com.</groupId>
+    <artifactId>fs-crm</artifactId>
+    <version>1.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>fs-crm-customeraccount</module>
+        <module>fs-crm-sales</module>
+        <module>fs-crm-web</module>
+        <module>fs-crm-sfainterceptor</module>
+        <module>fs-crm-payment</module>
+        <module>fs-crm-stock</module>
+        <module>fs-crm-deliverynote</module>
+        <module>fs-crm-promotion</module>
+        <module>fs-crm-common</module>
+        <module>fs-crm-requisitionnote</module>
+        <module>fs-crm-outbounddeliverynote</module>
+        <module>fs-crm-goal</module>
+        <module>fs-crm-checkins</module>
+        <module>fs-crm-electronicsign</module>
+        <module>fs-crm-erpstock</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <jdk.version>1.8</jdk.version>
+        <war.name>fs</war.name>
+        <appframework.version>1.6.3.1-SNAPSHOT</appframework.version>
+        <fs-fcp.version>1.1.7-SNAPSHOT</fs-fcp.version>
+        <webApp.contextPath/>
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-app-core</artifactId>
+                <version>${appframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-app-web</artifactId>
+                <version>${appframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-app-metadata-restdriver</artifactId>
+                <version>${appframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-app-privilege</artifactId>
+                <version>${appframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-app-privilege-temp</artifactId>
+                <version>${appframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-app-fcp</artifactId>
+                <version>${appframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-app-config</artifactId>
+                <version>${appframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-expression</artifactId>
+                <version>1.6.3-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fxiaoke</groupId>
+                <artifactId>logconfig-core</artifactId>
+                <version>2.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <!--租户级配置-->
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-paas-bizconf-api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare.open</groupId>
+                <artifactId>rocketmq-spring-support</artifactId>
+                <version>1.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare.open</groupId>
+                <artifactId>fs-open-app-center-common-utils</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-uc-api</artifactId>
+                <version>1.0.2-SNAPSHOT</version>
+            </dependency>
+
+            <!-- 文件系统后台接口代理 -->
+            <dependency>
+                <groupId>com.facishare</groupId>
+                <artifactId>fs-fsi-proxy</artifactId>
+                <version>1.4.9-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lowagie</groupId>
+                <artifactId>itext</artifactId>
+                <version>2.1.7</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- compiler插件, 设定JDK版本 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.0</version>
+                    <configuration>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                        <showWarnings>false</showWarnings>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.4</version>
+                </plugin>
+                <!-- enforcer插件, 设定环境与依赖的规则 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4.1</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-banned-dependencies</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <bannedDependencies>
+                                        <searchTransitive>true</searchTransitive>
+                                        <!-- 避免引入过期的jar包 -->
+                                        <excludes>
+                                            <exclude>aspectj:aspectj*</exclude>
+                                            <exclude>org.springframework:2.*</exclude>
+                                            <exclude>org.springframework:3.0.*</exclude>
+                                        </excludes>
+                                    </bannedDependencies>
+                                </rules>
+                                <fail>true</fail>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- resource插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+
+                <!-- install插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+
+                <!-- clean插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.6.1</version>
+                </plugin>
+
+                <!-- dependency插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.8</version>
+                    <executions>
+                        <execution>
+                            <id>JaCoCo Agent</id>
+                            <phase>test-compile</phase>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>JaCoCo Report</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <warName>${war.name}</warName>
+                    </configuration>
+                </plugin>
+                <!-- jetty插件, 设定context path与spring profile -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty.version}</version>
+                    <configuration>
+                        <scanIntervalSeconds>5</scanIntervalSeconds>
+                        <useTestClasspath>true</useTestClasspath>
+                        <webAppConfig>
+                            <contextPath>/${webApp.contextPath}</contextPath>
+                        </webAppConfig>
+                    </configuration>
+                </plugin>
+                <!-- tomcat 插件 -->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <port>8080</port>
+                        <path>/${webApp.contextPath}</path>
+                        <server>tomcat-development-server</server>
+                        <useTestClasspath>true</useTestClasspath>
+                    </configuration>
+                </plugin>
+                <!-- Mandatory plugins for using Spock -->
+                <plugin>
+                    <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin, visit https://github.com/groovy/GMavenPlus/wiki -->
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>1.5</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>addTestSources</goal>
+                                <goal>compile</goal>
+                                <goal>testCompile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Optional plugins for using Spock -->
+                <!-- Optional plugins for using Spock -->
+                <!-- Only required if names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19.1</version>
+                    <configuration>
+                        <useFile>false</useFile>
+                        <includes>
+                            <include>**/*Spec.java</include>
+                            <include>**/*Test.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <reporting>
+        <plugins>
+            <!-- checkstyle -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>fs</id>
+            <name>fs-snapshot</name>
+            <url>http://maven.firstshare.cn/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+        <repository>
+            <id>fs</id>
+            <name>fs-release</name>
+            <url>http://maven.firstshare.cn/artifactory/libs-release-local</url>
+        </repository>
+    </distributionManagement>
+</project>

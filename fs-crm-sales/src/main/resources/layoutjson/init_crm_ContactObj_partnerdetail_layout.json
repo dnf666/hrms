@@ -1,0 +1,159 @@
+{
+  "components": [
+    {
+      "buttons": [],
+      "type": "form",
+      "api_name": "form_component",
+      "field_section": [
+        {
+          "api_name": "base_field_section__c",
+          "header": "基本信息",
+          "show_header": true,
+          "form_fields": [
+            {
+              "is_required": true,
+              "is_readonly": false,
+              "field_name": "name",
+              "render_type": "text"
+            },
+            {
+              "is_required": true,
+              "is_readonly": false,
+              "field_name": "owner",
+              "render_type": "employee"
+            },
+            {
+              "is_required": false,
+              "is_readonly": false,
+              "field_name": "owned_partner_id",
+              "render_type": "object_reference"
+            },
+            {
+              "is_required": false,
+              "is_readonly": false,
+              "field_name": "owner_department",
+              "render_type": "text"
+            },
+            {
+              "is_required": true,
+              "is_readonly": false,
+              "field_name": "record_type",
+              "render_type": "record_type"
+            },
+            {
+              "is_readonly": false,
+              "is_required": false,
+              "render_type": "image",
+              "field_name": "card"
+            },
+            {
+              "is_required": false,
+              "render_type": "select_one",
+              "field_name": "gender"
+            },
+            {
+              "is_required": false,
+              "render_type": "text",
+              "field_name": "date_of_birth"
+            },
+            {
+              "is_required": false,
+              "render_type": "text",
+              "field_name": "company"
+            },
+            {
+              "is_required": false,
+              "render_type": "text",
+              "field_name": "tel"
+            },
+            {
+              "is_required": false,
+              "render_type": "text",
+              "field_name": "department"
+            },
+            {
+              "is_required": false,
+              "render_type": "text",
+              "field_name": "job_title"
+            },
+            {
+              "is_required": false,
+              "render_type": "email",
+              "field_name": "email"
+            },
+            {
+              "is_required": false,
+              "render_type": "text",
+              "field_name": "add"
+            },
+            {
+              "is_required": false,
+              "render_type": "select_one",
+              "field_name": "lock_status"
+            },
+            {
+              "is_required": false,
+              "render_type": "text",
+              "field_name": "mobile"
+            },
+            {
+              "is_required": false,
+              "render_type": "select_one",
+              "field_name": "primary_contact"
+            },
+            {
+              "is_required": false,
+              "render_type": "long_text",
+              "field_name": "remark"
+            }
+          ]
+        },
+        {
+          "header": "系统信息",
+          "is_show": true,
+          "tab_index": "ltr",
+          "column": 2,
+          "api_name": "sysinfo_section__c",
+          "form_fields": [
+            {
+              "field_name": "created_by",
+              "render_type": "employee",
+              "is_required": false,
+              "is_readonly": false
+            },
+            {
+              "field_name": "last_modified_by",
+              "render_type": "employee",
+              "is_required": false,
+              "is_readonly": false
+            },
+            {
+              "field_name": "create_time",
+              "render_type": "date_time",
+              "is_required": false,
+              "is_readonly": false
+            },
+            {
+              "field_name": "last_modified_time",
+              "render_type": "date_time",
+              "is_required": false,
+              "is_readonly": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "buttons": [],
+  "package": "CRM",
+  "api_name": "default_crm_ContactObj_partnerdetail_layout_by_UDObjectServer__c",
+  "ref_object_api_name": "ContactObj",
+  "layout_type": "detail",
+  "display_name": "合作伙伴员工的布局",
+  "layout_description": "合作伙伴员工的布局",
+  "is_default": false,
+  "config": {
+    "remove": 0
+  },
+  "api_version": 1.0
+}
