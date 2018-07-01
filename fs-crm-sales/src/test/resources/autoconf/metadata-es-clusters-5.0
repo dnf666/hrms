@@ -1,3 +1,0 @@
-clusterName=metadata-test-5.3
-servers=172.31.101.181:9300;172.31.101.180:9300;172.31.101.182:9300
-indexNameTemplate=metadata_search_2

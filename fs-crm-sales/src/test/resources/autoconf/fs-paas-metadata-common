@@ -1,3 +1,0 @@
-#switch
-elasticsearch.enable=true
-rocketMq.enable=false

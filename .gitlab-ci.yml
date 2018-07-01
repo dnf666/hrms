@@ -1,0 +1,6 @@
+build-job:
+    stage: build
+    script:
+       - pwd
+       - mvn cobertura:cobertura sonar:sonar  -Dmaven.test.skip=true
+       - mvn clean compile

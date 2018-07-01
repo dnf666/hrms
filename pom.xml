@@ -8,28 +8,21 @@
         <!--<version>1.0.0-SNAPSHOT</version>-->
     <!--</parent>-->
 
-    <groupId>com.</groupId>
-    <artifactId>fs-crm</artifactId>
+    <groupId>com.mis</groupId>
+    <artifactId>mis-hrm</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
 
     <modules>
-        <module>fs-crm-customeraccount</module>
-        <module>fs-crm-sales</module>
-        <module>fs-crm-web</module>
-        <module>fs-crm-sfainterceptor</module>
-        <module>fs-crm-payment</module>
-        <module>fs-crm-stock</module>
-        <module>fs-crm-deliverynote</module>
-        <module>fs-crm-promotion</module>
-        <module>fs-crm-common</module>
-        <module>fs-crm-requisitionnote</module>
-        <module>fs-crm-outbounddeliverynote</module>
-        <module>fs-crm-goal</module>
-        <module>fs-crm-checkins</module>
-        <module>fs-crm-electronicsign</module>
-        <module>fs-crm-erpstock</module>
+        <module>mis-hrm-web</module>
+        <module>mis-hrm-login</module>
+        <module>mis-hrm-book</module>
+        <module>mis-hrm-project</module>
+        <module>mis-hrm-member</module>
+        <module>mis-hrm-manage</module>
+        <module>mis-hrm-index</module>
+        <module>mis-hrm-work</module>
     </modules>
 
     <properties>
@@ -44,91 +37,91 @@
     <dependencyManagement>
 
         <dependencies>
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-app-core</artifactId>
-                <version>${appframework.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-app-core</artifactId>-->
+                <!--<version>${appframework.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-app-web</artifactId>
-                <version>${appframework.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-app-web</artifactId>-->
+                <!--<version>${appframework.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-app-metadata-restdriver</artifactId>
-                <version>${appframework.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-app-metadata-restdriver</artifactId>-->
+                <!--<version>${appframework.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-app-privilege</artifactId>
-                <version>${appframework.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-app-privilege</artifactId>-->
+                <!--<version>${appframework.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-app-privilege-temp</artifactId>
-                <version>${appframework.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-app-privilege-temp</artifactId>-->
+                <!--<version>${appframework.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-app-fcp</artifactId>
-                <version>${appframework.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-app-fcp</artifactId>-->
+                <!--<version>${appframework.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-app-config</artifactId>
-                <version>${appframework.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-app-config</artifactId>-->
+                <!--<version>${appframework.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-expression</artifactId>
-                <version>1.6.3-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-expression</artifactId>-->
+                <!--<version>1.6.3-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.fxiaoke</groupId>
-                <artifactId>logconfig-core</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.fxiaoke</groupId>-->
+                <!--<artifactId>logconfig-core</artifactId>-->
+                <!--<version>2.0.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
-            <!--租户级配置-->
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-paas-bizconf-api</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
+            <!--&lt;!&ndash;租户级配置&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-paas-bizconf-api</artifactId>-->
+                <!--<version>1.0.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare.open</groupId>
-                <artifactId>rocketmq-spring-support</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare.open</groupId>-->
+                <!--<artifactId>rocketmq-spring-support</artifactId>-->
+                <!--<version>1.0.1-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare.open</groupId>
-                <artifactId>fs-open-app-center-common-utils</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare.open</groupId>-->
+                <!--<artifactId>fs-open-app-center-common-utils</artifactId>-->
+                <!--<version>1.0.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-uc-api</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-uc-api</artifactId>-->
+                <!--<version>1.0.2-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
-            <!-- 文件系统后台接口代理 -->
-            <dependency>
-                <groupId>com.facishare</groupId>
-                <artifactId>fs-fsi-proxy</artifactId>
-                <version>1.4.9-SNAPSHOT</version>
-            </dependency>
+            <!--&lt;!&ndash; 文件系统后台接口代理 &ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>com.facishare</groupId>-->
+                <!--<artifactId>fs-fsi-proxy</artifactId>-->
+                <!--<version>1.4.9-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>com.lowagie</groupId>
@@ -332,16 +325,16 @@
         </plugins>
     </reporting>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>fs</id>
-            <name>fs-snapshot</name>
-            <url>http://maven.firstshare.cn/artifactory/libs-snapshot-local</url>
-        </snapshotRepository>
-        <repository>
-            <id>fs</id>
-            <name>fs-release</name>
-            <url>http://maven.firstshare.cn/artifactory/libs-release-local</url>
-        </repository>
-    </distributionManagement>
+    <!--<distributionManagement>-->
+        <!--<snapshotRepository>-->
+            <!--<id>fs</id>-->
+            <!--<name>fs-snapshot</name>-->
+            <!--<url>http://maven.firstshare.cn/artifactory/libs-snapshot-local</url>-->
+        <!--</snapshotRepository>-->
+        <!--<repository>-->
+            <!--<id>fs</id>-->
+            <!--<name>fs-release</name>-->
+            <!--<url>http://maven.firstshare.cn/artifactory/libs-release-local</url>-->
+        <!--</repository>-->
+    <!--</distributionManagement>-->
 </project>

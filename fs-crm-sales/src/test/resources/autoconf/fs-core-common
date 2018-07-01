@@ -1,3 +1,0 @@
-NAMESRV_ADDR=172.31.101.12:9876;172.31.101.13:9876
-cmdb.url=http://cmdb.foneshare.cn/index.php?r=biz-oss/get-all
-report-pv-limit=0
