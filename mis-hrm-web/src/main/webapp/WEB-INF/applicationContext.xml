@@ -1,0 +1,139 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath:spring/metadata.xml"/>
+    <import resource="classpath:spring/common.xml"/>
+    <import resource="classpath:spring/dubbo.xml"/>
+    <import resource="classpath:spring/log.xml"/>
+    <import resource="classpath:spring/flow.xml"/>
+    <import resource="classpath:spring/privilege.xml"/>
+    <import resource="classpath:spring/restdriver.xml"/>
+    <import resource="classpath:spring/licence.xml"/>
+    <import resource="classpath:spring/fsi.xml"/>
+    <import resource="classpath:spring/payment.xml"/>
+    <import resource="classpath:spring/goal.xml"/>
+    <import resource="classpath:spring/config.xml"/>
+    <import resource="classpath:spring/customeraccount-spring.xml"/>
+    <import resource="classpath:spring/promotion-spring.xml"/>
+    <import resource="classpath:spring/stock-spring.xml"/>
+    <import resource="classpath:spring/fs-crm-sales.xml"/>
+    <import resource="classpath:spring/requisitionnote-spring.xml"/>
+    <import resource="classpath:spring/deliverynote-spring.xml"/>
+    <import resource="classpath:spring/sfainterceptor-spring.xml"/>
+    <import resource="classpath:spring/outbounddeliverynote-spring.xml"/>
+    <import resource="classpath:spring/electronicsign-spring.xml"/>
+    <import resource="classpath:/META-INF/transfer-context.xml"/>
+    <import resource="classpath:spring/common.xml"/>
+    <import resource="classpath:spring/checkins-spring.xml"/>
+    <import resource="classpath:spring/payment_customer.xml"/>
+    <import resource="classpath:spring/fs-fsi-proxy-service.xml"/>
+    <import resource="classpath:spring/function-service.xml"/>
+    <import resource="classpath:spring/core-dubbo.xml"/>
+    <import resource="classpath:spring/erp-stock-spring.xml"/>
+
+    <context:component-scan base-package="com.facishare.paas.appframework,com.facishare.crm"/>
+    <context:annotation-config/>
+
+    <bean id="autoConf"
+          class="com.github.autoconf.spring.reloadable.ReloadablePropertySourcesPlaceholderConfigurer"
+          p:fileEncoding="UTF-8"
+          p:ignoreResourceNotFound="true"
+          p:ignoreUnresolvablePlaceholders="false"
+          p:location="classpath:application.properties"
+          p:configName="dubbo-common,fs-paas-metadata-mongo,fs-paas-appframework-rest,fs-crm-java-config
+            ,fs-crm-printconfig,fs-metadata,fs-crm-icon-path,fs-crm-java-detailpage-layout-setting"/>
+
+    <bean class="com.github.autoconf.spring.reloadable.ReloadablePropertyPostProcessor"
+          c:placeholderConfigurer-ref="autoConf"/>
+
+    <!--临时-->
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.sfa.utilities.proxy.TestProxy">
+        <property name="factory" ref="restServiceProxyFactory"></property>
+    </bean>
+
+    <bean class="com.facishare.fcp.service.FcpServiceBeanPostProcessor"
+          id="fcpServiceBeanPostProcessor"/>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.rest.CrmRestApi">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.rest.ApprovalInitProxy">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.rest.TemplateApi">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.rest.SendCrmMessageProxy">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean id="productProxy" class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.sfa.utilities.proxy.ProductProxy">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.sfa.utilities.proxy.GetHomePermissionsProxy">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.payment.transfer.DataTransferProxy">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.rest.FunctionProxy">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+
+    <bean class="com.facishare.rest.proxy.RestServiceProxyFactoryBean"
+          p:type="com.facishare.crm.sfa.utilities.proxy.LeadsObjTransferProxy">
+        <property name="factory" ref="restServiceProxyFactory"/>
+    </bean>
+    <!--
+
+        &lt;!&ndash;蜂眼监控&ndash;&gt;
+        <bean id="serviceProfiler" class="com.facishare.crm.aop.CrmServiceProfiler"/>
+        <aop:config>
+            <aop:aspect ref="serviceProfiler" order="1">
+                <aop:around method="profile" pointcut="
+                execution(* com.facishare.paas.appframework.resource.*(..) )"/>
+            </aop:aspect>
+        </aop:config>
+    -->
+    <!--privilege temp-->
+    <import resource="classpath:privilege-temp.xml"/>
+
+    <bean id="approvalPayment" class="com.facishare.crm.payment.mq.PaymentApprovalEventListener"/>
+    <bean class="com.facishare.paas.appframework.common.mq.RocketMQMessageProcessor"
+          p:configName="fs-crm-mq-approval-payment"
+          p:rocketMQMessageListener-ref="approvalPayment"/>
+
+    <bean id="connectionService" class="com.fxiaoke.transfer.service.ConnectionService">
+        <property name="biz" value="metadata-transfer"/>
+    </bean>
+
+    <!-- rocketMQ -->
+    <bean class="com.facishare.open.utils.AutoConfRocketMQProcessor" name="updateSalesOrderStatusCompleteMQProcessor">
+        <constructor-arg index="0" value="fs-crm-deliverynote-mq"/>
+        <constructor-arg index="1" value="NAMESERVER"/>
+        <constructor-arg index="2" value="DELIVERY_NOTE_UPDATE_SALES_ORDER_STATUS_COMPLETE_GROUP"/>
+        <constructor-arg index="3" value="DELIVERY_NOTE_UPDATE_SALES_ORDER_STATUS_COMPLETE_TOPICS"/>
+        <constructor-arg index="4" ref="updateSalesOrderStatusCompleteListener"/>
+    </bean>
+</beans>
