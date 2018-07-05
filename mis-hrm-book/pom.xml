@@ -9,6 +9,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>mis-hrm-book</artifactId>
+	<packaging>jar</packaging>
 	<name>mis-hrm-book</name>
 	<properties>
 		<skip_maven_deploy>true</skip_maven_deploy>

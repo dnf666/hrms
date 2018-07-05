@@ -15,6 +15,11 @@
 		<resteasy.version>3.1.4.Final</resteasy.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.mis</groupId>
+			<artifactId>mis-hrm-book</artifactId>
+			<version>1.1-SNAPSHOT</version>
+		</dependency>
 		<!--&lt;!&ndash;定时任务&ndash;&gt;-->
 		<!--<dependency>-->
 			<!--<groupId>com.fxiaoke.common</groupId>-->

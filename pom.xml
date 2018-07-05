@@ -23,105 +23,46 @@
         <module>mis-hrm-manage</module>
         <module>mis-hrm-index</module>
         <module>mis-hrm-work</module>
+        <module>mis-hrm-util</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
         <jdk.version>1.8</jdk.version>
-        <war.name>fs</war.name>
+        <war.name>mis</war.name>
         <appframework.version>1.6.3.1-SNAPSHOT</appframework.version>
         <fs-fcp.version>1.1.7-SNAPSHOT</fs-fcp.version>
         <webApp.contextPath/>
     </properties>
 
-    <dependencyManagement>
 
         <dependencies>
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-app-core</artifactId>-->
-                <!--<version>${appframework.version}</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>5.0.5.RELEASE</version>
+            </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-app-web</artifactId>-->
-                <!--<version>${appframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-app-metadata-restdriver</artifactId>-->
-                <!--<version>${appframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-app-privilege</artifactId>-->
-                <!--<version>${appframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-app-privilege-temp</artifactId>-->
-                <!--<version>${appframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-app-fcp</artifactId>-->
-                <!--<version>${appframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-app-config</artifactId>-->
-                <!--<version>${appframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-expression</artifactId>-->
-                <!--<version>1.6.3-SNAPSHOT</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.fxiaoke</groupId>-->
-                <!--<artifactId>logconfig-core</artifactId>-->
-                <!--<version>2.0.0-SNAPSHOT</version>-->
-            <!--</dependency>-->
-
-            <!--&lt;!&ndash;租户级配置&ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-paas-bizconf-api</artifactId>-->
-                <!--<version>1.0.0-SNAPSHOT</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare.open</groupId>-->
-                <!--<artifactId>rocketmq-spring-support</artifactId>-->
-                <!--<version>1.0.1-SNAPSHOT</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare.open</groupId>-->
-                <!--<artifactId>fs-open-app-center-common-utils</artifactId>-->
-                <!--<version>1.0.0-SNAPSHOT</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-uc-api</artifactId>-->
-                <!--<version>1.0.2-SNAPSHOT</version>-->
-            <!--</dependency>-->
-
-            <!--&lt;!&ndash; 文件系统后台接口代理 &ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>com.facishare</groupId>-->
-                <!--<artifactId>fs-fsi-proxy</artifactId>-->
-                <!--<version>1.4.9-SNAPSHOT</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils-core</artifactId>
+                <version>1.8.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>5.0.5.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.20</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.lowagie</groupId>
@@ -129,7 +70,6 @@
                 <version>2.1.7</version>
             </dependency>
         </dependencies>
-    </dependencyManagement>
 
     <build>
         <pluginManagement>
