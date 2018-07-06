@@ -21,7 +21,7 @@
     <import resource="classpath:spring/licence.xml"/>
     <import resource="classpath:spring/fsi.xml"/>
     <import resource="classpath:spring/payment.xml"/>
-    <import resource="classpath:spring/requisitionnote-spring.xml"/>
+    <import resource="classpath:spring/spring-work.xml"/>
 
 
     <context:component-scan base-package="com.facishare.paas.appframework com.facishare.crm"/>

@@ -19,7 +19,7 @@
     <import resource="classpath:spring/payment.xml"/>
     <import resource="classpath:spring/config.xml"/>
     <import resource="classpath:spring/stock-spring.xml"/>
-    <import resource="classpath:spring/deliverynote-spring.xml"/>
+    <import resource="classpath:spring/spring-login.xml"/>
     <import resource="classpath:/META-INF/transfer-context.xml"/>
     <import resource="classpath:spring/common.xml"/>
     <import resource="classpath:spring/function-service.xml"/>

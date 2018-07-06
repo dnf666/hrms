@@ -2,12 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--<parent>-->
-        <!--<groupId>com.fxiaoke.common</groupId>-->
-        <!--<artifactId>fxiaoke-parent-pom</artifactId>-->
-        <!--<version>1.0.0-SNAPSHOT</version>-->
-    <!--</parent>-->
-
     <groupId>com.mis</groupId>
     <artifactId>mis-hrm</artifactId>
     <version>1.1-SNAPSHOT</version>
@@ -31,45 +25,91 @@
         <jdk.version>1.8</jdk.version>
         <war.name>mis</war.name>
         <appframework.version>1.6.3.1-SNAPSHOT</appframework.version>
-        <fs-fcp.version>1.1.7-SNAPSHOT</fs-fcp.version>
-        <webApp.contextPath/>
+        <javax-servlet.version>3.1.0</javax-servlet.version>
+        <mybatis.version>3.4.1</mybatis.version>
+        <mysql.version>5.1.38</mysql.version>
+        <mybatis-spring.version>1.3.0</mybatis-spring.version>
     </properties>
 
 
-        <dependencies>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>5.0.5.RELEASE</version>
-            </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.0.5.RELEASE</version>
+        </dependency>
 
-            <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils-core</artifactId>
-                <version>1.8.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>5.0.5.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.16.20</version>
-            </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils-core</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.0.5.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.0.5.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-beans</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.46</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
 
-            <dependency>
-                <groupId>com.lowagie</groupId>
-                <artifactId>itext</artifactId>
-                <version>2.1.7</version>
-            </dependency>
-        </dependencies>
+    </dependencies>
 
     <build>
         <pluginManagement>
@@ -203,7 +243,7 @@
                         <scanIntervalSeconds>5</scanIntervalSeconds>
                         <useTestClasspath>true</useTestClasspath>
                         <webAppConfig>
-                            <contextPath>/${webApp.contextPath}</contextPath>
+                            <contextPath>/</contextPath>
                         </webAppConfig>
                     </configuration>
                 </plugin>
@@ -214,7 +254,7 @@
                     <version>2.2</version>
                     <configuration>
                         <port>8080</port>
-                        <path>/${webApp.contextPath}</path>
+                        <path>/</path>
                         <server>tomcat-development-server</server>
                         <useTestClasspath>true</useTestClasspath>
                     </configuration>
@@ -266,15 +306,15 @@
     </reporting>
 
     <!--<distributionManagement>-->
-        <!--<snapshotRepository>-->
-            <!--<id>fs</id>-->
-            <!--<name>fs-snapshot</name>-->
-            <!--<url>http://maven.firstshare.cn/artifactory/libs-snapshot-local</url>-->
-        <!--</snapshotRepository>-->
-        <!--<repository>-->
-            <!--<id>fs</id>-->
-            <!--<name>fs-release</name>-->
-            <!--<url>http://maven.firstshare.cn/artifactory/libs-release-local</url>-->
-        <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>fs</id>-->
+    <!--<name>fs-snapshot</name>-->
+    <!--<url>http://maven.firstshare.cn/artifactory/libs-snapshot-local</url>-->
+    <!--</snapshotRepository>-->
+    <!--<repository>-->
+    <!--<id>fs</id>-->
+    <!--<name>fs-release</name>-->
+    <!--<url>http://maven.firstshare.cn/artifactory/libs-release-local</url>-->
+    <!--</repository>-->
     <!--</distributionManagement>-->
 </project>

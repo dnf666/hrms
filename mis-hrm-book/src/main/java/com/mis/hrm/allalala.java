@@ -1,4 +1,4 @@
-package com;
+package com.mis.hrm;
 
 import org.springframework.stereotype.Controller;
 

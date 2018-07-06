@@ -4,55 +4,8 @@
          version="3.1"
          metadata-complete="false">
 
-    <display-name>fs-crm-web</display-name>
+    <display-name>mis-hrm-web</display-name>
 
-    <!--fcp服务端口配置-->
-    <context-param>
-        <param-name>fcpServerPort</param-name>
-        <param-value>12014</param-value>
-    </context-param>
-    <!--文件上传下载配置-->
-    <context-param>
-        <param-name>enableFcpFile</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-
-
-    <!--<listener>-->
-        <!--<listener-class>-->
-            <!--org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap-->
-        <!--</listener-class>-->
-    <!--</listener>-->
-
-    <!--<listener>-->
-        <!--<listener-class>-->
-            <!--com.facishare.paas.appframework.fcp.model.FcpRestServerContextListener-->
-        <!--</listener-class>-->
-    <!--</listener>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>Resteasy</servlet-name>-->
-        <!--<servlet-class>-->
-            <!--org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher-->
-        <!--</servlet-class>-->
-    <!--</servlet>-->
-
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Resteasy</servlet-name>-->
-        <!--<url-pattern>/API/*</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--&lt;!&ndash;druid console view  &ndash;&gt;-->
-    <!--<servlet>-->
-        <!--<servlet-name>DruidStatView</servlet-name>-->
-        <!--<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>-->
-    <!--</servlet>-->
-
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>DruidStatView</servlet-name>-->
-        <!--<url-pattern>/druid/*</url-pattern>-->
-    <!--</servlet-mapping>-->
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>

@@ -18,7 +18,7 @@
     <import resource="classpath:spring/licence.xml"/>
     <import resource="classpath:spring/fsi.xml"/>
     <import resource="classpath:spring/payment.xml"/>
-    <import resource="classpath:spring/erp-stock-spring.xml"/>
+    <import resource="classpath:spring/spring-index.xml"/>
 
 
 
