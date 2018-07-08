@@ -1,5 +1,7 @@
 package com.mis.hrm.controller;
 
+import com.mis.hrm.dao.DemoMapper;
+import com.mis.hrm.model.Demo;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -10,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
 import java.beans.Beans;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,5 +31,12 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Slf4j
 public class DemoControllerTest {
+    @Resource
+    private DemoMapper demoMapper;
+    @Test
+    public void addDemo(){
+        Demo demo = Demo.builder().name("12222122").password("123").build();
+            demoMapper.saveDemo(demo);
+    }
 
 }

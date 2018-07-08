@@ -1,5 +1,6 @@
 package com.mis.hrm.dao;
 
+import com.mis.hrm.model.Demo;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DemoMapper {
-    int saveDemo();
+    int saveDemo(Demo demo);
 }
