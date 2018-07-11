@@ -1,4 +1,4 @@
-package com.mis.hrm.model;
+package com.mis.hrm.book.model;
 
 import lombok.*;
 
@@ -8,6 +8,10 @@ import lombok.*;
  * @author dailf
  */
 @Builder
+@ToString
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Demo {
     private String name;
     private String password;

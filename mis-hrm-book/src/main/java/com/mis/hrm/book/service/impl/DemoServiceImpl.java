@@ -1,8 +1,7 @@
-package com.mis.hrm.service.impl;
+package com.mis.hrm.book.service.impl;
 
-import com.mis.hrm.dao.DemoMapper;
-import com.mis.hrm.model.Demo;
-import com.mis.hrm.service.DemoService;
+import com.mis.hrm.book.dao.DemoMapper;
+import com.mis.hrm.book.service.DemoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

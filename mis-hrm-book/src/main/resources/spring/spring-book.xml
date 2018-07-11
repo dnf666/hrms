@@ -15,10 +15,11 @@
          http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--可以扫描基于类的注解，通常使用了这个就不使用<context:annotation-config/>-->
-    <context:component-scan base-package="com.mis.hrm.*"/>
+    <context:component-scan base-package="com.mis.hrm.book.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
     <context:annotation-config/>
     <cache:annotation-driven />
+    <context:property-placeholder location="classpath:spring/jdbc.properties" ignore-unresolvable="true"/>
     <bean name="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hrms?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true"/>
         <property name="user" value="root"/>
@@ -49,7 +50,7 @@
         <!--这项在这个项目中其实可以不写，因为MapperScannerConfigurer将会自动创建MapperFactoryBean之后自动装配，但是你
         如果使用了一个以上的DateSource就会装配失败， 就要以下面的方式指定sqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="com.mis.hrm.dao"/>
+        <property name="basePackage" value="com.mis.hrm.book.dao"/>
     </bean>
     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
         <property name="caches">

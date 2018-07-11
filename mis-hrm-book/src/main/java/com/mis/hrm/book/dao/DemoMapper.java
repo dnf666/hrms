@@ -1,8 +1,7 @@
-package com.mis.hrm.dao;
+package com.mis.hrm.book.dao;
 
-import com.mis.hrm.model.Demo;
 import org.springframework.stereotype.Repository;
-
+import com.mis.hrm.book.model.Demo;
 /**
  * created by dailf on 2018/7/7
  *
@@ -11,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DemoMapper {
     int saveDemo(Demo demo);
+    Demo findDemoByPrimaryKey(String username);
 }

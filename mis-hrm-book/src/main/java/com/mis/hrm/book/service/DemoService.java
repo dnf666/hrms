@@ -1,4 +1,4 @@
-package com.mis.hrm.service;
+package com.mis.hrm.book.service;
 
 /**
  * created by dailf on 2018/7/7
