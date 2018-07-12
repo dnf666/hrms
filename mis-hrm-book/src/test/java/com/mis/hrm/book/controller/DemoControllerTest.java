@@ -9,6 +9,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Date;
+import java.util.Properties;
 
 /**
  * created by dailf on 2018/7/7
@@ -27,10 +34,13 @@ public class DemoControllerTest {
         Demo demo = Demo.builder().name("12131").password("123").build();
         System.out.println(demoMapper.saveDemo(demo));
     }
+
     @Test
-    public void findDemo(){
+    public void findDemo() {
+        log.info("111111111111");
         Demo demo = demoMapper.findDemoByPrimaryKey("12131");
         System.out.println(demo);
     }
+
 
 }
