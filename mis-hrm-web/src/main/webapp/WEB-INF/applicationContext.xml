@@ -8,7 +8,10 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <import resource="classpath:spring/spring-*.xml"/>
 
-
+    <import resource="classpath:spring/spring-book.xml"/>
+    <import resource="classpath:spring/spring-index.xml"/>
+    <context:component-scan base-package="com.mis.hrm.*"/>
+    <!--仅会查找在同一个Application中的bean注解-->
+    <context:annotation-config/>
 </beans>

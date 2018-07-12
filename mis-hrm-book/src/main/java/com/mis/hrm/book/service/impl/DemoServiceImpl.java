@@ -18,7 +18,7 @@ public class DemoServiceImpl implements DemoService {
     private DemoMapper demoMapper;
     @Override
     public int saveDemo() {
-
+        System.out.println("saveDemo");
         return 0;
     }
 }

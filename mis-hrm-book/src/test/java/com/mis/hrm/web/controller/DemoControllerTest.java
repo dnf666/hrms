@@ -1,4 +1,4 @@
-package com.mis.hrm.book.controller;
+package com.mis.hrm.web.controller;
 
 import com.mis.hrm.book.dao.DemoMapper;
 import com.mis.hrm.book.model.Demo;
@@ -9,13 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.Date;
-import java.util.Properties;
 
 /**
  * created by dailf on 2018/7/7
