@@ -2,16 +2,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-
-    <import resource="classpath:spring/spring-book.xml"/>
-    <import resource="classpath:spring/spring-index.xml"/>
-    <context:component-scan base-package="com.mis.hrm.*"/>
-    <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-config/>
+    <import resource="classpath:spring/spring-web.xml"/>
 </beans>

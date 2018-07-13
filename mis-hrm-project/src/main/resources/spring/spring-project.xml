@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/aop/spring-aop.xsd
          http://www.springframework.org/schema/beans
-         http://www.springframework.org/schema/beans/spring-beans.xsd">
+         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="com.mis.hrm.project.*"/>
+    <!--仅会查找在同一个Application中的bean注解-->
+    <context:annotation-config/>
 
+    <bean id="projectLog" class="com.mis.hrm.project.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="project"/>
+        <constructor-arg type="java.lang.String" value=""/>
+    </bean>
 
-
+    <aop:config>
+        <aop:aspect id="logMonitor" ref="projectLog" order="1">
+            <aop:pointcut id="projectLogAround"
+                          expression="(execution(* com.mis.hrm.project.*.*.*(..)))"/>
+            <aop:around pointcut-ref="projectLogAround" method="around"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
