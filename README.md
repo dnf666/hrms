@@ -28,3 +28,4 @@ mis-hrm
 spring+springmvc+mybatis
 
 
+注意：后端copy项目马上切换分支到dev分支。禁止向master提交代码
