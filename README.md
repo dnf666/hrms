@@ -23,5 +23,8 @@ mis-hrm
 - mis-hrm-manage 管理员设置
 - mis-hrm-work  人员去向
 
+所有的工具类都写在mis-hrm-util。最好做成通用类
+所有开发都在dev分支上开发
+spring+springmvc+mybatis
 
 
