@@ -2,17 +2,16 @@ package com.mis.hrm.util;
 
 
 import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.*;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 发送请求，并返回请求的状态（返回的状态码）
@@ -38,21 +37,14 @@ public class HttpClientUtil {
         } catch (StringIsNullException e) {
             return ERROR_URL;
         }
-        int statusCode = 404;
-        try {
-//        1.创建一个默认的 client　实例。
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-//        2.创建一个httpGet请求
-        HttpGet httpGet = new HttpGet(url.trim());
-            System.out.println("发送的ｕｒｌ : " + url);
-        httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 SE 2.X MetaSr 1.0");
-//        3.执行get请求
-        CloseableHttpResponse httpResponse;
 
-            httpResponse = httpClient.execute(httpGet);
-            System.out.println("我想要的状态码：　" + httpResponse.getStatusLine().getStatusCode());
-            System.out.println("我想要的状态行：　" + httpResponse.getStatusLine());
-            statusCode = httpResponse.getStatusLine().getStatusCode();
+        int statusCode;
+//        1.创建一个默认的 client　实例。
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()){
+//        2.创建一个httpGet请求
+        HttpGet httpGet = new HttpGet(url);
+//        3.执行get请求,同时返回状态码
+        statusCode = httpClient.execute(httpGet, new StatusCodeResponseHandler());
         } catch (IOException e) {
             return ERROR_SEND;
         }
@@ -62,23 +54,75 @@ public class HttpClientUtil {
     /**
      * 发送一个ｐｏｓｔ请求，同时带有传递参数
      * @param url　接口地址
-     * @param jsonParams　请求参数
-     * @return　状态码
+     * @param jsonParams　请求参数,json格式
+     * @return　int
      */
     public static int sendPost(String url, String jsonParams){
-        int statusCode = 404;
+        int statusCode;
         try {
             url = getUsableUrl(url);
         } catch (StringIsNullException e) {
             return ERROR_URL;
         }
-//       １．创建一个　client
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-//       ２．创建一个ｐｏｓｔ
-            HttpPost post = new HttpPost(url);
+//        1.创建一个默认的 client　实例。
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()){
+//        2.创建一个httpGet请求
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setEntity(new StringEntity(jsonParams));
+            httpPost.setHeader("Content-Type","application/json");
+//        3.执行post请求,同时返回状态码
+            statusCode = httpClient.execute(httpPost, new StatusCodeResponseHandler());
+        } catch (IOException e) {
+            return ERROR_SEND;
+        }
+        return statusCode;
+    }
 
+    /**
+     * 发送一个put请求，并返回地址
+     * @param url　请求地址
+     * @param jsonParams　请求参数
+     * @return
+     */
+    public static int sendPut(String url, String jsonParams){
+        try {
+            url = getUsableUrl(url);
+        } catch (StringIsNullException e) {
+            return ERROR_URL;
+        }
+        int statusCode;
+//        1.创建一个默认的 client　实例。
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()){
+//        2.创建一个httpGet请求
+            HttpPut httpPut = new HttpPut(url);
+            httpPut.setEntity(new StringEntity(jsonParams));
+            httpPut.setHeader("Content-Type","application/json");
+//        3.执行post请求,同时返回状态码
+            statusCode = httpClient.execute(httpPut, new StatusCodeResponseHandler());
+        } catch (IOException e) {
+            return ERROR_SEND;
+        }
+        return statusCode;
+    }
 
-        return 404;
+    public static int sendDelete(String url){
+        try {
+            url = getUsableUrl(url);
+        } catch (StringIsNullException e) {
+            return ERROR_URL;
+        }
+        int statusCode;
+//        1.创建一个默认的 client　实例。
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()){
+//        2.创建一个httpGet请求
+            HttpDelete httpDelete = new HttpDelete(url);
+            httpDelete.setHeader("Content-Type","application/json");
+//        3.执行post请求,同时返回状态码
+            statusCode = httpClient.execute(httpDelete, new StatusCodeResponseHandler());
+        } catch (IOException e) {
+            return ERROR_SEND;
+        }
+        return statusCode;
     }
 
     /**
@@ -133,5 +177,13 @@ class StringIsNullException extends Exception{
 
     public String getMsg() {
         return msg;
+    }
+}
+
+class StatusCodeResponseHandler implements ResponseHandler<Integer>{
+
+    @Override
+    public Integer handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
+        return response == null ? 404 : response.getStatusLine().getStatusCode();
     }
 }

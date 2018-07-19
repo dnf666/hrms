@@ -38,4 +38,29 @@ public class HttpCLientUtilTest {
         //测试任意字符
         Assert.assertEquals(404,HttpClientUtil.sendGet("ff"));
     }
+
+    @Test
+    public void sendPostTest(){
+//        验证一个正常的操作
+        Assert.assertEquals(200, HttpClientUtil.sendPost("123.207.5.56:8080/bonetest/usersession","{\"code\":0,\"message\":\"密码错误，请重试！\",\"object\":null}"));
+//　　　　　验证一个ｕｒｌ不正常的
+        Assert.assertEquals(404, HttpClientUtil.sendPost("123.207.fdgshjhgfdfnsdession","dfdsfs"));
+//    　　　不想写测试代码了
+    }
+
+    @Test
+    public void sendPutTest(){
+        //请求一个ｐｕｔ类型的参数
+        Assert.assertEquals(200,HttpClientUtil.sendPut("http://httpbin.org/put","HELLO WORLD"));
+
+        //请求一个ｇｅｔ类型的参数
+        Assert.assertEquals(302, HttpClientUtil.sendPut("www.baidu.com","123"));
+    }
+
+    @Test
+    public void sendDeleteTest(){
+        Assert.assertEquals(200, HttpClientUtil.sendDelete("http://httpbin.org/delete"));
+
+        Assert.assertEquals(302,HttpClientUtil.sendDelete("www.baidu.com"));
+    }
 }
