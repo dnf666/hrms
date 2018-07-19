@@ -5,6 +5,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -12,6 +13,7 @@ import org.apache.http.impl.client.HttpClients;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.function.Function;
 
 /**
  * 发送请求，并返回请求的状态（返回的状态码）
@@ -19,13 +21,21 @@ import java.io.IOException;
 @Resource
 public class HttpClientUtil {
 
-
 // 　  传入的ｕｒｌ　为空　或者　不符合条件
     private static final int ERROR_URL = -1;
-
 //    发送请求失败。
     private static final int ERROR_SEND = 404;
+//    全角字符的空格
+    private static final char FULL_WIDTH_SPACE = '　';
+//    半角字符的空格
+    private static final char HALF_WIDTH_SPACE = ' ';
+//　　　设置三秒的等待时间
+    private static final int THREE_SECONDS = 3000;
 
+//    对所有请求限定相同的规则。
+    private static final RequestConfig requestConfig = RequestConfig.custom()
+                                            .setSocketTimeout(THREE_SECONDS)
+                                            .setConnectionRequestTimeout(THREE_SECONDS).build();
     /**
      * 发送一个ｇｅｔ请求，并返回状态码
      * @param url　接口地址
@@ -43,6 +53,7 @@ public class HttpClientUtil {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()){
 //        2.创建一个httpGet请求
         HttpGet httpGet = new HttpGet(url);
+        httpGet.setConfig(requestConfig);
 //        3.执行get请求,同时返回状态码
         statusCode = httpClient.execute(httpGet, new StatusCodeResponseHandler());
         } catch (IOException e) {
@@ -70,6 +81,7 @@ public class HttpClientUtil {
             HttpPost httpPost = new HttpPost(url);
             httpPost.setEntity(new StringEntity(jsonParams));
             httpPost.setHeader("Content-Type","application/json");
+            httpPost.setConfig(requestConfig);
 //        3.执行post请求,同时返回状态码
             statusCode = httpClient.execute(httpPost, new StatusCodeResponseHandler());
         } catch (IOException e) {
@@ -97,6 +109,7 @@ public class HttpClientUtil {
             HttpPut httpPut = new HttpPut(url);
             httpPut.setEntity(new StringEntity(jsonParams));
             httpPut.setHeader("Content-Type","application/json");
+            httpPut.setConfig(requestConfig);
 //        3.执行post请求,同时返回状态码
             statusCode = httpClient.execute(httpPut, new StatusCodeResponseHandler());
         } catch (IOException e) {
@@ -117,6 +130,7 @@ public class HttpClientUtil {
 //        2.创建一个httpGet请求
             HttpDelete httpDelete = new HttpDelete(url);
             httpDelete.setHeader("Content-Type","application/json");
+            httpDelete.setConfig(requestConfig);
 //        3.执行post请求,同时返回状态码
             statusCode = httpClient.execute(httpDelete, new StatusCodeResponseHandler());
         } catch (IOException e) {
@@ -137,29 +151,35 @@ public class HttpClientUtil {
         }
         //去掉以全角空格开头或者结尾空格的字符。
         url = removeSpace(url);
-//        检查是否是以 http://　开头
-        if (url.length() >= 6 && !url.substring(0,7).equals("http://")){
-            url = "http://" + url;
-        }
-        if (url.trim().equals("")){
+        if (url.equals("")
+                || (url.length() == 7 && url.equals("http://"))
+                || url.length() == 8 || url.equals("https://")){
             throw new StringIsNullException("传入的全是空格");
         }
+        boolean httpIsExist = url.length() >= 7 && url.substring(0,7).equals("http://");
+        boolean httpsIsExist = url.length() >= 8 && url.substring(0,8).equals("https://");
+//        检查是否是以 http://  or https://　开头
+        if ( !(httpIsExist || httpsIsExist)){
+            url = "http://" + url;
+        }
+
         return url;
     }
 
     /**
      * 工具类
-     * 去掉开始或者结束的全角空格字符
+     * 去掉开始或者结束的全角空格字符和半角字符
      * @param s
      * @return
      */
     private static String removeSpace(String s){
         StringBuilder result = new StringBuilder(s);
-        while (result.length() > 0 && result.charAt(0) == '　'){
-            result.delete(0,1);
-        }
-        while (result.length() > 1 && result.charAt( result.length()-1 ) == '　'){
-            result.delete(result.length() - 1, result.length());
+
+        for (int i = 0; i < result.length(); i++) {
+            if ((result.charAt(i) == FULL_WIDTH_SPACE || result.charAt(i) == HALF_WIDTH_SPACE)){
+                result.delete(i, i+1);
+                i--;
+            }
         }
         return result.toString();
     }

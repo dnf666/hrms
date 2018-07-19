@@ -37,6 +37,12 @@ public class HttpCLientUtilTest {
 
         //测试任意字符
         Assert.assertEquals(404,HttpClientUtil.sendGet("ff"));
+
+        Assert.assertEquals(404, HttpClientUtil.sendGet("12221"));
+
+        Assert.assertEquals(-1, HttpClientUtil.sendGet("http://"));
+
+        Assert.assertEquals(200, HttpClientUtil.sendGet("www.ba i du.com"));
     }
 
     @Test
