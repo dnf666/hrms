@@ -34,6 +34,24 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.1-jre</version>
+        </dependency>
+
+        <!--POI-->
+        <dependency><groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.5-FINAL</version>
+        </dependency>
+
+        <!--Commons IO-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
     </dependencies>
 
     <build>
