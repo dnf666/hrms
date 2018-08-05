@@ -31,7 +31,7 @@
     <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="datasource"/>
         <!--迭代查找指定路径下的mapper文件，-->
-        <property name="mapperLocations" value="classpath*:mapper/BookMapper.xml"/>
+        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
         <property name="configurationProperties">
             <props>
                 <!--缓存机制-->

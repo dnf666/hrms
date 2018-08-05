@@ -16,7 +16,12 @@ import java.util.function.Function;
 /**
  * @author May
  */
-public class Encryption {
+public class EncryptionUtil {
+    /**
+     * MD5加密
+     * @param str 被加密的字符串
+     * @return 加密过后的字符串
+     */
     public static String md5(String str) {
         Objects.requireNonNull(str);
         MessageDigest md;
@@ -29,6 +34,11 @@ public class Encryption {
         }
     }
 
+    /**
+     * sha1加密
+     * @param str 被加密的字符串
+     * @return 加密过后的字符串
+     */
     public static String sha1(String str) {
         Objects.requireNonNull(str);
         MessageDigest md;
@@ -41,6 +51,12 @@ public class Encryption {
         }
     }
 
+    /**
+     * MAC加密
+     * @param str 被加密字符串
+     * @param key 密钥
+     * @return 加密过后的字符串
+     */
     public static String mac(String str, String key) {
         Objects.requireNonNull(str);
         Objects.requireNonNull(key);
@@ -60,15 +76,31 @@ public class Encryption {
         }
     }
 
+    /**
+     * 便于自定义加密函数
+     * @param value 被加密字符串
+     * @param func 加密函数
+     * @return 加密过后的字符串
+     */
     public static String encode(String value, Function<String, String> func){
         Objects.requireNonNull(func);
         return func.apply(value);
     }
 
+    /**
+     * 便于自定义加密函数
+     * @param value 被加密字符串
+     * @param key 密钥
+     * @param func 加密函数
+     * @return 加密过后的字符串
+     */
     public static String encode(String value, String key, BiFunction<String, String, String> func){
         Objects.requireNonNull(func);
         return func.apply(value, key);
     }
 
+    /**
+     * 加密错误的非受检异常
+     */
     private static class EncryptionException extends RuntimeException{}
 }

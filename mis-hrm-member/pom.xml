@@ -11,7 +11,9 @@
 	<artifactId>mis-hrm-member</artifactId>
 	<name>mis-hrm-member</name>
 	<properties>
+		<h2.version>1.4.196</h2.version>
 		<skip_maven_deploy>true</skip_maven_deploy>
+		<druid.version>1.0.31</druid.version>
 	</properties>
 	<packaging>jar</packaging>
 	<dependencies>
@@ -19,6 +21,18 @@
 			<groupId>com.mis</groupId>
 			<artifactId>mis-hrm-util</artifactId>
 			<version>1.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>

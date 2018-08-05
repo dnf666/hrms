@@ -1,0 +1,2 @@
+INSERT INTO `whereabout` (`company_id`, `num`, `name`, `phone_number`, `email`, `grade`, `sex`, `profession`, `department`, `work_place`) VALUES ('2345314', '321421', 'gerwaf', '65431431', 'hrg4e13', '2111', 'a', 'gwrfqerr', 'grwerfrqw', 'bretrvw');
+INSERT INTO `whereabout` (`company_id`, `num`, `name`, `phone_number`, `email`, `grade`, `sex`, `profession`, `department`, `work_place`) VALUES ('78923', '6783168', 'fjkh', '768293', 'kfasncl', '2000', 'b', 'feawafwe', 'hoafhwe', 'fawewq');
