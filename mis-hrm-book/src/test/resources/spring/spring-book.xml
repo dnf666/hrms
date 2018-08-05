@@ -4,22 +4,29 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context-4.0.xsd
          http://www.springframework.org/schema/tx
-         http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+         http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
     <context:component-scan base-package="com.mis.hrm.book.*"/>
     <!--静态配置替换-->
     <context:property-placeholder location="classpath:spring/jdbc.properties" ignore-unresolvable="true"/>
+
+    <!-- 初始化数据表结构 -->
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:h2/schema.sql" encoding="UTF-8"/>
+        <jdbc:script location="classpath:h2/data-*.sql" encoding="UTF-8"/>
+    </jdbc:initialize-database>
+
     <!--配置数据源-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClass}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
+        <property name="url" value="${h2.url}"/>
+        <property name="username" value="${h2.username}"/>
+        <property name="password" value="${h2.password}"/>
         <!-- 连接池初始连接数 -->
         <property name="initialSize" value="3"/>
         <!-- 允许的最大同时使用中(在被业务线程持有，还没有归还给druid) 的连接数 -->
@@ -62,9 +69,8 @@
     <!--映射xml文件的位置-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
-        <!--导入mybatis的配置文件-->
-        <!--<property name="configLocation" value="classpath:mybatis/MapperConfig.xml"/>-->
+        <!--<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>-->
+        <property name="configLocation" value="classpath:mybatis/MapperConfig.xml"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

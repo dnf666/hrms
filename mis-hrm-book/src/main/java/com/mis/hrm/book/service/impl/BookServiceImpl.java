@@ -1,8 +1,8 @@
 package com.mis.hrm.book.service.impl;
 
 import com.mis.hrm.book.dao.BookMapper;
+import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
-import com.mis.hrm.util.model.Demo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,23 +18,24 @@ public class BookServiceImpl implements BookService {
     @Resource
     private BookMapper bookMapper;
 
+
     @Override
-    public int deleteByPrimaryKey(Demo key) {
+    public int deleteByPrimaryKey(Book key) {
         return 0;
     }
 
     @Override
-    public int insert(Demo record) {
-       return bookMapper.insert(record);
+    public int insert(Book record) {
+        return 0;
     }
 
     @Override
-    public Demo selectByPrimaryKey(Demo key) {
-        return bookMapper.selectByPrimaryKey(key);
+    public Book selectByPrimaryKey(Book key) {
+        return null;
     }
 
     @Override
-    public int updateByPrimaryKey(Demo record) {
+    public int updateByPrimaryKey(Book record) {
         return 0;
     }
 }

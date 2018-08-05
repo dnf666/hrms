@@ -1,7 +1,7 @@
 package com.mis.hrm.book.dao;
 
+import com.mis.hrm.book.po.Book;
 import com.mis.hrm.util.BaseMapper;
-import com.mis.hrm.util.model.Demo;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,6 +10,5 @@ import org.springframework.stereotype.Repository;
  * @author dailf
  */
 @Repository
-public interface BookMapper extends BaseMapper<Demo> {
-
+public interface BookMapper extends BaseMapper<Book> {
 }
