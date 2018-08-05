@@ -1,0 +1,2 @@
+INSERT INTO `member` (`company_id`, `num`, `name`, `phone_number`, `email`, `grade`, `sex`, `profession`, `department`) VALUES ('82318', '2794179', 'yuan', '158158158', '74901hudh', '2017', 'a', 'wefqaw', 'qeefqef');
+INSERT INTO `member` (`company_id`, `num`, `name`, `phone_number`, `email`, `grade`, `sex`, `profession`, `department`) VALUES ('713975120', '3425', 'er', '3425135423', '35451', '64313', 'a', 'gewrre', 'geafwea');

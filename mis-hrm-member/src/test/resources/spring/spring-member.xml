@@ -3,26 +3,33 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/aop/spring-aop.xsd
          http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context
-         http://www.springframework.org/schema/context/spring-context.xsd">
+         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-    <context:component-scan base-package="com.mis.hrm.work.*"/>
+    <context:component-scan base-package="com.mis.hrm.member.*"/>
+
     <!--仅会查找在同一个Application中的bean注解-->
     <context:annotation-config/>
-    <bean id="workLog" class="com.mis.hrm.work.interceptor.LogInterceptor">
-        <constructor-arg type="java.lang.String" value="work"/>
+    <bean id="memberLog" class="com.mis.hrm.member.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="member"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
+
+    <!-- 初始化数据表结构 -->
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:h2/schema.sql" encoding="UTF-8"/>
+        <jdbc:script location="classpath:h2/data-prepare-*.sql" encoding="UTF-8"/>
+    </jdbc:initialize-database>
 
     <!--静态配置替换-->
     <context:property-placeholder location="classpath:spring/jdbc.properties" ignore-unresolvable="true"/>
     <!--配置数据源-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClass}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
@@ -72,16 +79,16 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.mis.hrm.work.dao"/>
+        <property name="basePackage" value="com.mis.hrm.member.dao"/>
         <!--指定使用哪一个selsessionfactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
     <aop:config>
-        <aop:aspect id="logMonitor" ref="workLog" order="1">
-            <aop:pointcut id="workLogAround"
-                          expression="(execution(* com.mis.hrm.work.*.*.*(..)))"/>
-            <aop:around pointcut-ref="workLogAround" method="around"/>
+        <aop:aspect id="logMonitor" ref="memberLog" order="1">
+            <aop:pointcut id="memberLogAround"
+                          expression="(execution(* com.mis.hrm.member.*.*.*(..)))"/>
+            <aop:around pointcut-ref="memberLogAround" method="around"/>
         </aop:aspect>
     </aop:config>
 </beans>

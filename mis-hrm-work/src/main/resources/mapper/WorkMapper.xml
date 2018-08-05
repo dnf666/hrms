@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mis.hrm.work.dao.WorkMapper" >
+    <resultMap id="BaseResultMap" type="com.mis.hrm.work.pojos.Whereabout">
+        <id column="company_id" property="companyId" jdbcType="VARCHAR"/>
+        <id column="num" property="num" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="profession" property="profession" jdbcType="VARCHAR"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
+        <result column="work_place" property="workPlace" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.mis.hrm.work.pojos.Whereabout">
+        insert into whereabout(company_id, num, name, phone_number, email, grade, sex, profession, department, work_place)
+        values (#{companyId},#{num},#{name},#{phoneNumber},#{email},#{grade},#{sex},#{profession},#{department},#{workPlace});
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="com.mis.hrm.work.pojos.Whereabout">
+        delete from whereabout where company_id = #{companyId} and num = #{num};
+    </delete>
+
+    <update id="updateByPrimaryKey" parameterType="com.mis.hrm.work.pojos.Whereabout">
+        update whereabout
+        <set>
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="num != null">num = #{num},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="phoneNumber != null">phone_number = #{phoneNumber},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="grade != null">grade = #{grade},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="profession != null">profession = #{profession},</if>
+            <if test="department != null">department = #{department},</if>
+            <if test="workPlace != null">work_place = #{workPlace},</if>
+        </set>
+        where company_id = #{companyId} and num = #{num};
+    </update>
+
+    <select id="selectByPrimaryKey" resultType="com.mis.hrm.work.pojos.Whereabout" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place from whereabout where company_id = #{companyId} and num = #{num};
+    </select>
+
+</mapper>
