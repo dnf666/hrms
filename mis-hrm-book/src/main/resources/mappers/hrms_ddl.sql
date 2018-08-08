@@ -1,7 +1,7 @@
 create table booklend
 (
   company_id  varchar(30)                         not null,
-  book_id     varchar(50)                         not null,
+  book_record     varchar(50)                         not null,
   book_name   varchar(50)                         not null,
   lend_time   timestamp default CURRENT_TIMESTAMP not null
   on update CURRENT_TIMESTAMP,

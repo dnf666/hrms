@@ -1,19 +1,19 @@
 package com.mis.hrm.book.po;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Data
 @ToString
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookLendInfo {
+public class BookLendInfo implements Serializable {
     private String companyId;
-    private String bookId;
+    private String bookRecord;
     private String bookName;
-    private String lentTime;
+    private String lendTime;
     private String returnTime;
     private String borrower;
 }

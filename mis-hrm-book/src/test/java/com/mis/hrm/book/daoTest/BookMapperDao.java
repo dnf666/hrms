@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-book.xml")
+@ContextConfiguration("classpath:spring/spring-book-test.xml")
 public class BookMapperDao {
 
     @Autowired
@@ -32,7 +34,8 @@ public class BookMapperDao {
 
     @Test
     public void deleteByPrimaryKey() {
-        int rightResult = 0;
+        int rightResult = 1;
+        book.setBookId("11111");
         int result = bookMapper.deleteByPrimaryKey(book);
         Assert.assertEquals(rightResult, result);
     }
@@ -46,9 +49,43 @@ public class BookMapperDao {
 
     @Test
     public void selectByPrimaryKey() {
+        String expectedCompanyId = "xinguan";
+        book.setBookId("11111");
+        String acture = bookMapper.selectByPrimaryKey(book).getCompanyId();
+        Assert.assertEquals(expectedCompanyId, acture);
     }
 
     @Test
     public void updateByPrimaryKey() {
+        book.setBookId("11111");
+        book.setBookName("lalalalala");
+        int rowNum = bookMapper.updateByPrimaryKey(book);
+        Assert.assertEquals(1, rowNum);
+    }
+
+    @Test
+    public void selectBooksByCompanyId(){
+        int expectSize = 5;
+        book.setCompanyId("jike");
+        List<Book> list = bookMapper.selectBooksByCompanyId(book);
+        Assert.assertEquals(expectSize, list.size());
+    }
+
+    @Test
+    public void selectBooksByComapnyIdAndCategory(){
+        int expectSize = 4;
+        book.setCompanyId("jike");
+        book.setCategory("siwei");
+        List<Book> list = bookMapper.selectBooksByComapnyIdAndCategory(book);
+        Assert.assertEquals(expectSize, list.size());
+    }
+
+    @Test
+    public void selectBooksByCompanyIdAndBookName(){
+        int expectSize = 2;
+        book.setCompanyId("jike");
+        book.setBookName("your light is shining");
+        List<Book> list = bookMapper.selectBooksByCompanyIdAndBookName(book);
+        Assert.assertEquals(expectSize, list.size());
     }
 }

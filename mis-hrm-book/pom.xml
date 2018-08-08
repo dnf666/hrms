@@ -13,7 +13,7 @@
 	<properties>
 		<skip_maven_deploy>true</skip_maven_deploy>
 		<druid.version>1.1.9</druid.version>
-		<h2.version>1.4.197</h2.version>
+		<h2.version>1.4.196</h2.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,10 +36,17 @@
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
 		</dependency>
+		<!--用于序列化普通对象，生成json格式-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.9</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
-        <resources>
+        <!--<resources>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -53,6 +60,41 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
-        </resources>
-    </build>
+
+        </resources>-->
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>add-resource</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/main/java</directory>
+									<includes>
+										<include>**/*.xml</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>src/main/resources</directory>
+									<includes>
+										<include>**/*.xml</include>
+									</includes>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
