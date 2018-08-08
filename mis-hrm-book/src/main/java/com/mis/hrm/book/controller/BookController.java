@@ -12,7 +12,7 @@ public class BookController {
     /**
      *   @api {GET} book-list-1 通过公司id
      *   @apiDescription 通过公司id得到书录
-     *   @apiGroup QUERY
+     *   @apiGroup BOOK-QUERY
      *   @apiParam  {String} companyId 公司id
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
@@ -43,7 +43,7 @@ public class BookController {
     /**
      *   @api {GET} book-list-2 通过公司id和类别
      *   @apiDescription 通过公司id和分类得到书录
-     *   @apiGroup QUERY
+     *   @apiGroup BOOK-QUERY
      *   @apiParam  {String} companyId 公司id
      *   @apiParam  {String} category 分类
      *   @apiSuccessExample {json} Success-Response:
@@ -75,7 +75,7 @@ public class BookController {
     /**
      *   @api {GET} book-list-3 通过公司id和书名
      *   @apiDescription 通过公司id和书名得到书录
-     *   @apiGroup QUERY
+     *   @apiGroup BOOK-QUERY
      *   @apiParam  {String} companyId 公司id
      *   @apiParam  {String} bookName 书的名称
      *   @apiSuccessExample {json} Success-Response:
@@ -107,7 +107,7 @@ public class BookController {
     /**
      *   @api {GET} book-list-4 通过书的id
      *   @apiDescription 通过书的id得到书的信息
-     *   @apiGroup QUERY
+     *   @apiGroup BOOK-QUERY
      *   @apiParam  {String} bookId 书的id
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
@@ -131,7 +131,7 @@ public class BookController {
     /**
      *   @api {PUT} book 通过书的id更新书的信息
      *   @apiDescription 通过书的id更新书的信息，同时返回更新后的信息
-     *   @apiGroup UPDATE
+     *   @apiGroup BOOK-UPDATE
      *   @apiParam  {String} bookId 书的id
      *   @apiParam  {String} companyId 公司id
      *   @apiParam  {String} bookName 书名
@@ -160,7 +160,7 @@ public class BookController {
     /**
      *   @api {POST} book 插入一书本的信息
      *   @apiDescription 插入一本书的信息
-     *   @apiGroup ADD
+     *   @apiGroup BOOK-ADD
      *   @apiParam  {String} companyId 公司id
      *   @apiParam  {String} bookName 书名
      *   @apiParam  {String} category 类别
@@ -181,7 +181,7 @@ public class BookController {
     /**
      *   @api {DELETE} book 通过bookId
      *   @apiDescription 通过bookId删除一本书的信息
-     *   @apiGroup DELETE
+     *   @apiGroup BOOK-DELETE
      *   @apiParam  {String} bookId 书的id
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
