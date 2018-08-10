@@ -15,7 +15,7 @@
     <import resource="classpath:spring/spring-project.xml"/>
     <import resource="classpath:spring/spring-work.xml"/>
     <import resource="classpath:spring/spring-member.xml"/>
-    <!--可以扫描基于类的注解，通常使用了这个就不使用<context:annotation-config/>-->
+    <!--可以扫描基于类的注解，通常使用了这个就不使用<context:annotation-com.mis.hrm.member.config/>-->
     <bean name="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hrms?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true"/>
         <property name="user" value="root"/>

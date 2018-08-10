@@ -7,18 +7,18 @@
          http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="com.mis.hrm.project.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-config/>
+    <context:annotation-com.mis.hrm.member.config/>
 
     <bean id="projectLog" class="com.mis.hrm.project.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="project"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
-    <aop:config>
+    <aop:com.mis.hrm.member.config>
         <aop:aspect id="logMonitor" ref="projectLog" order="1">
             <aop:pointcut id="projectLogAround"
                           expression="(execution(* com.mis.hrm.project.*.*.*(..)))"/>
             <aop:around pointcut-ref="projectLogAround" method="around"/>
         </aop:aspect>
-    </aop:config>
+    </aop:com.mis.hrm.member.config>
 </beans>

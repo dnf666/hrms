@@ -10,19 +10,19 @@
 
     <context:component-scan base-package="com.mis.hrm.index.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-config/>
+    <context:annotation-com.mis.hrm.member.config/>
     <bean id="indexLog" class="com.mis.hrm.index.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="index"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
-    <aop:config>
+    <aop:com.mis.hrm.member.config>
         <aop:aspect id="logMonitor" ref="indexLog" order="1">
             <aop:pointcut id="indexLogAround"
                           expression="(execution(* com.mis.hrm.index.*.*.*(..)))"/>
             <aop:around pointcut-ref="indexLogAround" method="around"/>
         </aop:aspect>
-    </aop:config>
+    </aop:com.mis.hrm.member.config>
 
 
 </beans>

@@ -13,7 +13,7 @@
 
     <context:component-scan base-package="com.mis.hrm.book.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-config/>
+    <context:annotation-com.mis.hrm.member.config/>
 
 
     <bean id="bookLog" class="com.mis.hrm.book.interceptor.LogInterceptor">
@@ -21,11 +21,11 @@
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
-    <aop:config>
+    <aop:com.mis.hrm.member.config>
         <aop:aspect id="logMonitor" ref="bookLog" order="1">
             <aop:pointcut id="bookLogAround"
                           expression="(execution(* com.mis.hrm.book.*.*.*(..)))"/>
             <aop:around pointcut-ref="bookLogAround" method="around"/>
         </aop:aspect>
-    </aop:config>
+    </aop:com.mis.hrm.member.config>
 </beans>

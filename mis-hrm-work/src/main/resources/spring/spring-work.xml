@@ -8,19 +8,19 @@
 
     <context:component-scan base-package="com.mis.hrm.work.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-config/>
+    <context:annotation-com.mis.hrm.member.config/>
     <bean id="workLog" class="com.mis.hrm.work.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="work"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
-    <aop:config>
+    <aop:com.mis.hrm.member.config>
         <aop:aspect id="logMonitor" ref="workLog" order="1">
             <aop:pointcut id="workLogAround"
                           expression="(execution(* com.mis.hrm.work.*.*.*(..)))"/>
             <aop:around pointcut-ref="workLogAround" method="around"/>
         </aop:aspect>
-    </aop:config>
+    </aop:com.mis.hrm.member.config>
 
 
 

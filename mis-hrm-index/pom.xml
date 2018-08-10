@@ -172,7 +172,7 @@
 				<!--</exclusion>-->
 				<!--<exclusion>-->
 					<!--<groupId>com.github.colin-lee</groupId>-->
-					<!--<artifactId>config-core</artifactId>-->
+					<!--<artifactId>com.mis.hrm.member.config-core</artifactId>-->
 				<!--</exclusion>-->
 				<!--<exclusion>-->
 					<!--<groupId>org.springframework</groupId>-->

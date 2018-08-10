@@ -1,5 +1,6 @@
 package com.mis.hrm.util;
 
+import com.google.common.base.Strings;
 import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.KeyGenerator;
@@ -17,13 +18,19 @@ import java.util.function.Function;
  * @author May
  */
 public class EncryptionUtil {
+
+    private static String KEY_EXCEPTION = "键不能为空";
+    private static String VALUE_EXCEPTION = "被加密的字符串不能为空或者NULL";
+
     /**
      * MD5加密
      * @param str 被加密的字符串
      * @return 加密过后的字符串
      */
     public static String md5(String str) {
-        Objects.requireNonNull(str);
+        if (Strings.isNullOrEmpty(str)){
+            throw new EncryptionException(VALUE_EXCEPTION);
+        }
         MessageDigest md;
         try {
             md = MessageDigest.getInstance("MD5");
@@ -40,7 +47,9 @@ public class EncryptionUtil {
      * @return 加密过后的字符串
      */
     public static String sha1(String str) {
-        Objects.requireNonNull(str);
+        if (Strings.isNullOrEmpty(str)){
+            throw new EncryptionException(VALUE_EXCEPTION);
+        }
         MessageDigest md;
         try {
             md = MessageDigest.getInstance("SHA");
@@ -58,8 +67,12 @@ public class EncryptionUtil {
      * @return 加密过后的字符串
      */
     public static String mac(String str, String key) {
-        Objects.requireNonNull(str);
-        Objects.requireNonNull(key);
+        if (Strings.isNullOrEmpty(str)){
+            throw new EncryptionException(VALUE_EXCEPTION);
+        }
+        if (Strings.isNullOrEmpty(key)){
+            throw new EncryptionException(KEY_EXCEPTION);
+        }
         try{
             //初始化密钥生成器
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacMD5");
@@ -102,5 +115,12 @@ public class EncryptionUtil {
     /**
      * 加密错误的非受检异常
      */
-    private static class EncryptionException extends RuntimeException{}
+    private static class EncryptionException extends RuntimeException{
+        EncryptionException() {
+        }
+
+        EncryptionException(String msg) {
+            super(msg);
+        }
+    }
 }

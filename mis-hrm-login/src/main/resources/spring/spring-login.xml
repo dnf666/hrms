@@ -8,17 +8,17 @@
 
     <context:component-scan base-package="com.mis.hrm.login.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-config/>
+    <context:annotation-com.mis.hrm.member.config/>
     <bean id="loginLog" class="com.mis.hrm.login.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="login"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
-    <aop:config>
+    <aop:com.mis.hrm.member.config>
         <aop:aspect id="logMonitor" ref="loginLog" order="1">
             <aop:pointcut id="loginLogAround"
                           expression="(execution(* com.mis.hrm.login.*.*.*(..)))"/>
             <aop:around pointcut-ref="loginLogAround" method="around"/>
         </aop:aspect>
-    </aop:config>
+    </aop:com.mis.hrm.member.config>
 </beans>
