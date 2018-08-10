@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mis.hrm.project.dao.ProjectMapper">
+    <resultMap id="projectMapper" type="project">
+        <result property="companyId" column="company_id"/>
+        <result property="projectId" column="project_id"/>
+        <result property="projectName" column="project_name"/>
+        <result property="projectUrl" column="project_url"/>
+        <result property="onlineTime" column="online_time"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="project">
+        delete from project where project_id = #{projectId} and company_id = #{companyId}
+    </delete>
+
+    <insert id="insert" parameterType="project">
+        insert into project (company_id, project_name, project_url, online_time,project_id)
+        values (#{companyId},#{projectName},#{projectUrl},#{onlineTime},#{projectId})
+    </insert>
+
+    <select id="selectByPrimaryKey" parameterType="project" resultMap="projectMapper">
+        select company_id, project_id, project_name, project_url, online_time
+          from project where company_id = #{companyId} and project_id = #{projectId}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="project">
+        update project
+        <set>
+            <if test="projectName != null">
+                project_name = #{projectName},
+            </if>
+            <if test="projectUrl != null">
+                project_url = #{projectUrl},
+            </if>
+            <if test="onlineTime != null">
+                online_time = #{onlineTime}
+            </if>
+        </set>
+        where company_id = #{companyId} and project_id = #{projectId}
+    </update>
+</mapper>

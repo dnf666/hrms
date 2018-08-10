@@ -1,5 +1,6 @@
 package com.mis.hrm.book.service;
 
+import com.mis.hrm.book.po.Book;
 import com.mis.hrm.util.BaseService;
 import com.mis.hrm.util.model.Demo;
 
@@ -8,5 +9,5 @@ import com.mis.hrm.util.model.Demo;
  *
  * @author dailf
  */
-public interface BookService extends BaseService<Demo> {
+public interface BookService extends BaseService<Book> {
 }
