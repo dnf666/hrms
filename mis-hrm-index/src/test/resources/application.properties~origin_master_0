@@ -1,6 +1,0 @@
-#com.mis.hrm.member.config center
-dubbo.zookeeper.server=10.112.29.1:2181
-dubbo.zookeeper.address=10.112.29.1:2181
-process.name=fs-crm-web
-#datbase
-dbName=metadata-engine-mongodb

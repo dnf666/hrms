@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mis.hrm.project.dao.ProjectMapper">
-    <resultMap id="projectMapper" type="project">
+    <resultMap id="projectMapper" type="com.mis.hrm.project.po.Project">
         <result property="companyId" column="company_id"/>
         <result property="projectId" column="project_id"/>
         <result property="projectName" column="project_name"/>

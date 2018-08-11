@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
-<<<<<<< HEAD
-       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/aop
-         http://www.springframework.org/schema/aop/spring-aop.xsd
-         http://www.springframework.org/schema/beans
-         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-=======
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/aop
@@ -17,12 +9,10 @@
          http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context.xsd">
->>>>>>> ed37bc3a67e18a068b38065a303a8b7490b0a34b
 
     <context:component-scan base-package="com.mis.hrm.member.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
     <context:annotation-config/>
-    <mvc:annotation-driven/>
     <bean id="memberLog" class="com.mis.hrm.member.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="member"/>
         <constructor-arg type="java.lang.String" value=""/>

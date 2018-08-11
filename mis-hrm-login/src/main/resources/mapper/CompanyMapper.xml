@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mis.hrm.book.dao.BookMapper">
+<mapper namespace="com.mis.hrm.login.dao.CompanyMapper">
     <resultMap id="company" type="com.mis.hrm.login.entity.Company">
         <id column="email" property="email"/>
         <result column="name" property="name"/>
@@ -16,8 +16,8 @@
     </sql>
 
     <insert id="insert" parameterType="com.mis.hrm.login.entity.Company">
-        insert into company values (#{email},#{name},#{applicant_name},#{organization_size},#{main_category},
-                                 #{vice_category},#{password});
+        insert into company values (#{email},#{name},#{applicantName},#{organizationSize},#{mainCategory},
+                                 #{viceCategory},#{password});
     </insert>
 
     <select id="selectByPrimaryKey" parameterType="com.mis.hrm.login.entity.Company" resultMap="company">
@@ -34,22 +34,22 @@
     <update id="updateByPrimaryKey" parameterType="com.mis.hrm.login.entity.Company">
         update company
         <set>
-            <if test="#{name}!=null">
+            <if test="name != null">
                 name = #{name},
             </if>
-            <if test="#{applicantName}!=null">
-                application_name = #{applicant_name},
+            <if test="applicantName !=null">
+                applicant_name = #{applicantName},
             </if>
-            <if test="#{organizationSize}!=null">
+            <if test="organizationSize != null">
                 organization_size =#{organizationSize},
             </if>
-            <if test="#{mainCategory}!=null">
+            <if test="mainCategory != null">
                 main_category = #{mainCategory},
             </if>
-            <if test="#{viceCategory}!=null">
+            <if test="viceCategory != null">
                 vice_category=#{viceCategory},
             </if>
-            <if test="#{password}!=null">
+            <if test="password != null">
                 password = #{password},
             </if>
         </set>

@@ -10,10 +10,6 @@
          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="com.mis.hrm.book.*"/>
-<<<<<<< HEAD
-    <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-com.mis.hrm.member.config/>
-=======
     <!--静态配置替换-->
     <context:property-placeholder location="classpath:spring/jdbc.properties" ignore-unresolvable="true"/>
     <!--配置数据源-->
@@ -75,19 +71,17 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
->>>>>>> ed37bc3a67e18a068b38065a303a8b7490b0a34b
-
 
     <bean id="bookLog" class="com.mis.hrm.book.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="book"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
-    <aop:com.mis.hrm.member.config>
+    <aop:config>
         <aop:aspect id="logMonitor" ref="bookLog" order="1">
             <aop:pointcut id="bookLogAround"
                           expression="(execution(* com.mis.hrm.book.*.*.*(..)))"/>
             <aop:around pointcut-ref="bookLogAround" method="around"/>
         </aop:aspect>
-    </aop:com.mis.hrm.member.config>
+    </aop:config>
 </beans>

@@ -8,17 +8,61 @@
 
     <context:component-scan base-package="com.mis.hrm.login.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-com.mis.hrm.member.config/>
+    <context:annotation-config/>
+
+    <bean name="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hrms?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;serverTimezone=UTC"/>
+        <property name="user" value="root"/>
+        <property name="password" value="..box123456"/>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <!--初始化连接池大小-->
+        <property name="initialPoolSize" value="5"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="minPoolSize" value="1"/>
+        <property name="maxPoolSize" value="20"/>
+    </bean>
+
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <!--迭代查找指定路径下的mapper文件，-->
+        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+        <property name="configurationProperties">
+            <props>
+                <!--缓存机制-->
+                <prop key="cacheEnable">true</prop>
+                <!--在变量为null的时候也调用setter方法-->
+                <prop key="callSetterOnNulls">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean name="daoManager" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--这项在这个项目中其实可以不写，因为MapperScannerConfigurer将会自动创建MapperFactoryBean之后自动装配，但是你
+        如果使用了一个以上的DateSource就会装配失败， 就要以下面的方式指定sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.path.dao"/>
+    </bean>
+
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="datasource"/>
+    </bean>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="10485760000"/>
+        <property name="maxInMemorySize" value="40960000"/>
+    </bean>
+    
     <bean id="loginLog" class="com.mis.hrm.login.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="login"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
-    <aop:com.mis.hrm.member.config>
+    <aop:config>
         <aop:aspect id="logMonitor" ref="loginLog" order="1">
             <aop:pointcut id="loginLogAround"
                           expression="(execution(* com.mis.hrm.login.*.*.*(..)))"/>
             <aop:around pointcut-ref="loginLogAround" method="around"/>
         </aop:aspect>
-    </aop:com.mis.hrm.member.config>
+    </aop:config>
 </beans>

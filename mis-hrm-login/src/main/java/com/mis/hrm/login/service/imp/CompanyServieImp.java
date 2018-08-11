@@ -4,14 +4,15 @@ import com.mis.hrm.login.dao.CompanyMapper;
 import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import static com.mis.hrm.util.ServiceUtil.*;
 import static com.mis.hrm.util.EncryptionUtil.mac;
+import static com.mis.hrm.util.ServiceUtil.checkSqlExecution;
 
 /**
  * @author May
  */
+@Service
 public class CompanyServieImp implements CompanyService {
     private static String KEY = "may";
 
@@ -35,7 +36,7 @@ public class CompanyServieImp implements CompanyService {
     }
 
     @Override
-    public List<Company> selectByPrimaryKey(Company key) {
+    public Company selectByPrimaryKey(Company key) {
         return companyMapper.selectByPrimaryKey(key);
     }
 
