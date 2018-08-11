@@ -1,14 +1,13 @@
 package com.mis.hrm.util.demo.excel;
 
-import java.util.List;
 
 public interface DemoExcel {
     /**
      * 将数据从数据库导入到Excel
      * @param filePath
-     * @param head
+     * @param tableTitle
      */
-    void importExcel(String filePath,List<String> head);
+    void importExcel(String filePath,String tableTitle);
 
     /**
      * 将数据从Excel导出到数据库

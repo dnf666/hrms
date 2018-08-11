@@ -16,18 +16,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DemoExcelImpl implements DemoExcel {
-    //在这里统一设置一下sql语句，便于修改
-    final private String INSERT_INTO_MEMBERS = "insert into members (name,sex,age) values (?,?,?);";
-    final private String INSERT_INTO_BOOKS = "insert into books (id,name,user) values (?,?,?);";
-    final private String SELECT_FORM_MEMBERS = "select * from members; ";
-    final private String SELECT_FROM_BOOKS = "select * from books";
+    //表格title
+    final private List<String> MEMBER_ENG = Arrays.asList("company_id","num","name","phone_number","email","grade","sex","profession","department");
+    final private List<String> MEMBER_CHI = Arrays.asList("公司id","学号","成员名","电话","邮箱","年级","性别","专业","部门");
+    final private List<String> WHEREABOUT_ENG = Arrays.asList("company_id","num","name","phone_number","email","grade","sex","profession","department","work_place");
+    final private List<String> WHEREABOUT_CHI = Arrays.asList("公司id","学号","成员名","电话","邮箱","年级","性别","专业","部门","工作地点");
+    //SQL语句
+    final private String INSERT_INTO_MEMBER = "insert into member (company_id,num,name,phone_number,email,grade,sex,profession,department) values (?,?,?,?,?,?,?,?,?);";
+    final private String INSERT_INTO_WHEREABOUT = "insert into whereabout (company_id,num,name,phone_number,email,grade,sex,profession,department,work_place) values (?,?,?,?,?,?,?,?,?,?);";
+    final private String SELECT_FORM_MEMBER = "select * from member; ";
+    final private String SELECT_FROM_WHEREABOUT = "select * from whereabout";
 
     /**
      * 创将数据从数据库导入到Excel
      * @param filePath 文件路径
-     * @param head 表头
+     * @param tableTile 表格title(如member)
      */
-    public void importExcel(String filePath,List<String> head){
+    public void importExcel(String filePath,String tableTile){
         //创建工作簿
         XSSFWorkbook workbook = new XSSFWorkbook();
         //创建工作表
@@ -36,17 +41,23 @@ public class DemoExcelImpl implements DemoExcel {
         Row headRow = sheet.createRow(0);
         //为表头单元格填入数据
         Cell headCell;
+
+        //设置中文表头并根据表头调整sql
+        List<String> head = null;
+        String sql = null;
+        if(tableTile.equals("member")){
+            head = MEMBER_CHI;
+            sql = SELECT_FORM_MEMBER;
+        } else if(tableTile.equals("WHEREABOUT")){
+            head = WHEREABOUT_CHI;
+            sql = SELECT_FROM_WHEREABOUT;
+
+        }
+
+        //将表头放入Excel
         for(int i = 0; i < head.size(); i++){
             headCell = headRow.createCell(i);
             headCell.setCellValue(head.get(i));
-        }
-
-        //根据表头调整sql语句
-        String sql = null;
-        if(head.get(0).equals("姓名")){
-            sql = SELECT_FORM_MEMBERS;
-        }else if(head.get(0).equals("编号")){
-            sql = SELECT_FROM_BOOKS;
         }
 
         //将查询结果放进数组
@@ -57,7 +68,7 @@ public class DemoExcelImpl implements DemoExcel {
             //每行创建head.size个单元格
             for (int j = 0; j < head.size(); j++) {
                 Cell cell = row.createCell(j);
-                //得到对应单元格的内容（没错这是个数学题）
+                //得到对应单元格的内容
                 cell.setCellValue(list.get( ((i-1)*head.size() + (j+1)) -1 ));
             }
         }
@@ -97,8 +108,6 @@ public class DemoExcelImpl implements DemoExcel {
             //获取第一个sheet表
             Sheet sheet = workbook.getSheetAt(0);
 
-            //flag ：获取表头第一个非空字段
-            boolean flag = true;
             //sql ：根据表头调整sql语句
             String sql = null;
             //遍历每行(getLastRowNum()的返回值为最后一行的索引，会比总行数少一行)
@@ -108,6 +117,14 @@ public class DemoExcelImpl implements DemoExcel {
                 if (row != null) {
                     //在每行开始时初始化head
                     head = new ArrayList<>();
+
+                    //根据每行的单元格数确定sql语句
+                    if((row.getLastCellNum()+1) == MEMBER_ENG.size()){
+                        sql = INSERT_INTO_MEMBER;
+                    } else if((row.getLastCellNum()+1) == WHEREABOUT_ENG.size()){
+                        sql = INSERT_INTO_WHEREABOUT;
+                    }
+
                     //遍历每个单元格(getLastCellNum()的返回值值即为该行总列数)
                     for(int j = 0; j < row.getLastCellNum(); j++){
                         Cell cell = row.getCell(j);
@@ -119,22 +136,8 @@ public class DemoExcelImpl implements DemoExcel {
                             String value = cell.getStringCellValue();
                             //若单元格内容不为空（过滤空白单元格）
                             if (value != null) {
-
-                                //得到第一个非空单元格的内容（即表头第一个字段）
-                                if(flag){
-                                    //根据表头处理sql语句
-                                    if(value.equals("姓名")){
-                                        sql = INSERT_INTO_MEMBERS;
-                                    } else if(value.equals("编号")){
-                                        sql = INSERT_INTO_BOOKS;
-                                    }
-                                }
-                                //flag置为假
-                                flag = false;
-
                                 //添加该单元格的值
                                 head.add(value);
-
                             }else{
                                 //若该单元格为空，置为""
                                 head.add("");
@@ -166,7 +169,7 @@ public class DemoExcelImpl implements DemoExcel {
 
     /**
      * 连接数据库
-     * @param head 传入表头
+     * @param head 中文表头
      * @param sql 查询语句
      */
     public List<String> connMysql(List<String> head, String sql, String sqlType){
@@ -204,10 +207,10 @@ public class DemoExcelImpl implements DemoExcel {
 
                 //将表头转化为数据库中对应的存储字段
                 List<String> title = null;
-                if(head.get(0).equals("姓名")){
-                    title = Arrays.asList("name","sex","age");
-                }else if(head.get(0).equals("编号")){
-                    title = Arrays.asList("id","name","user");
+                if(head.size() == MEMBER_ENG.size()){
+                    title = MEMBER_ENG;
+                }else if(head.size() == WHEREABOUT_ENG.size()){
+                    title = WHEREABOUT_ENG;
                 }
 
                 //将数据集转化为数组

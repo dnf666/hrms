@@ -26,14 +26,14 @@ public class BookControllerTest {
     private BookService bookService;
     @Test
     public void insert(){
-        Demo demo = Demo.builder().name("111111").password("1111").build();
-        int i = bookService.insert(demo);
-        log.info(""+i);
+//        Demo demo = Demo.builder().name("111111").password("1111").build();
+//        int i = bookService.insert(demo);
+//        log.info(""+i);
     }
     @Test
     public void select(){
-        Demo demo = Demo.builder().name("111111").password("1111").build();
-        Demo demo1 = bookService.selectByPrimaryKey(demo);
-        log.info(demo1.toString());
+//        Demo demo = Demo.builder().name("111111").password("1111").build();
+//        Demo demo1 = bookService.selectByPrimaryKey(demo);
+//        log.info(demo1.toString());
     }
 }

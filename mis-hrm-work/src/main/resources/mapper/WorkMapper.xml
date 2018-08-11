@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mis.hrm.work.dao.WorkMapper" >
-    <resultMap id="BaseResultMap" type="com.mis.hrm.work.pojos.Whereabout">
+    <resultMap id="BaseResultMap" type="com.mis.hrm.work.model.Whereabout">
         <id column="company_id" property="companyId" jdbcType="VARCHAR"/>
         <id column="num" property="num" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
@@ -16,16 +16,16 @@
         <result column="work_place" property="workPlace" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.mis.hrm.work.pojos.Whereabout">
+    <insert id="insert" parameterType="com.mis.hrm.work.model.Whereabout">
         insert into whereabout(company_id, num, name, phone_number, email, grade, sex, profession, department, work_place)
         values (#{companyId},#{num},#{name},#{phoneNumber},#{email},#{grade},#{sex},#{profession},#{department},#{workPlace});
     </insert>
 
-    <delete id="deleteByPrimaryKey" parameterType="com.mis.hrm.work.pojos.Whereabout">
+    <delete id="deleteByPrimaryKey" parameterType="com.mis.hrm.work.model.Whereabout">
         delete from whereabout where company_id = #{companyId} and num = #{num};
     </delete>
 
-    <update id="updateByPrimaryKey" parameterType="com.mis.hrm.work.pojos.Whereabout">
+    <update id="updateByPrimaryKey" parameterType="com.mis.hrm.work.model.Whereabout">
         update whereabout
         <set>
             <if test="companyId != null">company_id = #{companyId},</if>
@@ -42,8 +42,42 @@
         where company_id = #{companyId} and num = #{num};
     </update>
 
-    <select id="selectByPrimaryKey" resultType="com.mis.hrm.work.pojos.Whereabout" resultMap="BaseResultMap">
-        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place from whereabout where company_id = #{companyId} and num = #{num};
+    <select id="selectByPrimaryKey" resultType="com.mis.hrm.work.model.Whereabout" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
+        from whereabout
+        where company_id = #{companyId} and num = #{num};
+    </select>
+
+    <select id="countWorkers" resultType="java.lang.Long">
+        select count(*) from whereabout;
+    </select>
+
+    <select id="findByGrade" resultType="List" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
+        from whereabout
+        where grade = #{grade}
+        <if test="pager.offset!=null and pager.limit!=null">
+            limit #{pager.offset},#{pager.limit}
+        </if>
+    </select>
+
+    <select id="findByName" resultType="List" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
+        from whereabout
+        <if test="name!=null">
+            where name like '%${name}%'
+        </if>
+        <if test="pager.offset!=null and pager.limit!=null">
+            limit #{pager.offset},#{pager.limit}
+        </if>
+    </select>
+
+    <select id="getAllGraduates" resultType="List" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
+        from whereabout
+        <if test="offset!=null and limit!=null">
+            limit #{offset},#{limit}
+        </if>
     </select>
 
 </mapper>
