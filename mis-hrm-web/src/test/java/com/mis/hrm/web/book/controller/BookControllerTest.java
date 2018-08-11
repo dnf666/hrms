@@ -1,5 +1,6 @@
 package com.mis.hrm.web.book.controller;
 
+import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 import com.mis.hrm.util.model.Demo;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +27,13 @@ public class BookControllerTest {
     private BookService bookService;
     @Test
     public void insert(){
-        Demo demo = Demo.builder().name("111111").password("1111").build();
+        Book demo = Book.builder().build();
         int i = bookService.insert(demo);
         log.info(""+i);
     }
     @Test
     public void select(){
-        Demo demo = Demo.builder().name("111111").password("1111").build();
-        Demo demo1 = bookService.selectByPrimaryKey(demo);
-        log.info(demo1.toString());
+        Book demo = Book.builder().build();
+        log.info(demo.toString());
     }
 }

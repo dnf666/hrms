@@ -5,7 +5,7 @@
 <configuration>
     <!--别名配置-->
     <typeAliases>
-        <typeAlias type="com.mis.hrm.project.po.Project" alias="project"/>
+        <typeAlias alias="project" type="com.mis.hrm.project.po.Project"/>
     </typeAliases>
 
     <!--把对应的xml文件加载进来-->
