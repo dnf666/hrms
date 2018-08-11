@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <!--别名配置-->
-    <typeAliases>
-        <typeAlias alias="project" type="com.mis.hrm.project.po.Project"/>
-    </typeAliases>
+    <!--<typeAliases>-->
+        <!--<typeAlias type="com.mis.hrm.project.po.Project" alias="project"/>-->
+    <!--</typeAliases>-->
 
     <!--把对应的xml文件加载进来-->
     <mappers>
@@ -25,6 +25,5 @@
 
         <!--resource方式　（classpath 相对路径）-->
         <mapper resource="mapper/ProjectMapper.xml"/>
-
     </mappers>
 </configuration>
