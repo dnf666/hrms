@@ -1,11 +1,15 @@
-package com.mis.hrm.member.pojos;
+package com.mis.hrm.work.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+@Builder
+public class Whereabout {
     private String companyId;
     private String num;
     private String name;
@@ -13,8 +17,7 @@ public class Member {
     private String email;
     private String grade;
     private String sex;
-    //专业
     private String profession;
-    //部门
-    public String department;
+    private String department;
+    private String workPlace;
 }
