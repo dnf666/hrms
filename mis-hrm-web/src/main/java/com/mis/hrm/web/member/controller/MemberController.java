@@ -34,10 +34,10 @@ public class MemberController {
         return memberService.selectByPrimaryKey(member);
     }
 
-//    @GetMapping("/say")
-//    public String hello(){
-//        return "hello world";
-//    }
+    @GetMapping("/say")
+    public String hello(){
+        return "hello world";
+    }
 
 
 

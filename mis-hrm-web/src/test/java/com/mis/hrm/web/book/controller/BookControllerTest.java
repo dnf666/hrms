@@ -27,17 +27,6 @@ public class BookControllerTest {
     private BookService bookService;
     @Test
     public void insert(){
-<<<<<<< HEAD
-//        Demo demo = Demo.builder().name("111111").password("1111").build();
-//        int i = bookService.insert(demo);
-//        log.info(""+i);
-    }
-    @Test
-    public void select(){
-//        Demo demo = Demo.builder().name("111111").password("1111").build();
-//        Demo demo1 = bookService.selectByPrimaryKey(demo);
-//        log.info(demo1.toString());
-=======
         Book demo = Book.builder().build();
         int i = bookService.insert(demo);
         log.info(""+i);
@@ -46,6 +35,5 @@ public class BookControllerTest {
     public void select(){
         Book demo = Book.builder().build();
         log.info(demo.toString());
->>>>>>> c3bd0083bd7b62dbe87bb898c64d41dcdfdf5b7c
     }
 }
