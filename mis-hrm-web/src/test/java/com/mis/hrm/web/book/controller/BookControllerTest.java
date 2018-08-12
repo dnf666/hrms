@@ -23,17 +23,5 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath:spring/spring-web.xml")
 @Slf4j
 public class BookControllerTest {
-    @Resource
-    private BookService bookService;
-    @Test
-    public void insert(){
-        Book demo = Book.builder().build();
-        int i = bookService.insert(demo);
-        log.info(""+i);
-    }
-    @Test
-    public void select(){
-        Book demo = Book.builder().build();
-        log.info(demo.toString());
-    }
+
 }
