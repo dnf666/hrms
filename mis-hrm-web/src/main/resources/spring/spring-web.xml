@@ -1,8 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:c="http://www.springframework.org/schema/c" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
@@ -12,14 +11,17 @@
     <import resource="classpath:spring/spring-manage.xml"/>
     <import resource="classpath:spring/spring-index.xml"/>
     <import resource="classpath:spring/spring-login.xml"/>
-    <import resource="classpath:spring/spring-project.xml"/>
+    <import resource="classpath*:spring/spring-project.xml"/>
     <import resource="classpath:spring/spring-work.xml"/>
     <import resource="classpath:spring/spring-member.xml"/>
     <!--可以扫描基于类的注解，通常使用了这个就不使用<context:annotation-com.mis.hrm.member.config/>-->
+    <context:component-scan base-package="com.mis.hrm.*.*"/>
+    <context:annotation-config/>
+
     <bean name="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hrms?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true"/>
         <property name="user" value="root"/>
-        <property name="password" value=""/>
+        <property name="password" value="root"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <!--初始化连接池大小-->
         <property name="initialPoolSize" value="5"/>

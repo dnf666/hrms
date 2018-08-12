@@ -1,4 +1,4 @@
-package com.mis.hrm.login.config;
+package com.mis.hrm.web.book.controller.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.mis.hrm.login.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.mis.hrm.*.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -31,7 +31,7 @@ public class SwaggerConfig {
         Contact contact = new Contact("May", "https://segmentfault.com/u/weilaishi",
                 "may.yjie@gmail.com");
         return new ApiInfoBuilder()
-                .title("HRMS Login板块接口文档")
+                .title("HRMS 接口文档")
                 .termsOfServiceUrl("https://github.com/dnf666/hrms")
                 .contact(contact)
                 .version("1.0.0")

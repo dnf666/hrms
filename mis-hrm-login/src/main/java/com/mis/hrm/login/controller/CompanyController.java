@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import static com.mis.hrm.util.validation.ValidationUtil.checkBindingResult;
 
@@ -63,5 +64,10 @@ public class CompanyController {
     public ResponseEntity getCompany(Company company){
         Company getCompany = companyService.selectByPrimaryKey(company);
         return new ResponseEntity<>(200, null, getCompany);
+    }
+
+    @GetMapping("test")
+    public ResponseEntity test(){
+        return new ResponseEntity<>(200, null, null);
     }
 }
