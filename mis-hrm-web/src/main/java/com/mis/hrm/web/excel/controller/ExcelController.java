@@ -1,4 +1,4 @@
-package com.mis.hrm.web.excel;
+package com.mis.hrm.web.excel.controller;
 
 import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
@@ -18,7 +18,7 @@ public class ExcelController {
      * @param filePath
      * @param tableTitle
      */
-    @GetMapping("/{tableTitle}/excel/import")
+    @GetMapping("/{tableTitle}/toExcel")
     public Map importExcel(@PathVariable String tableTitle,
                            String filePath){
         demoExcel.importExcel(filePath,tableTitle);
@@ -29,7 +29,7 @@ public class ExcelController {
      * 将数据从Excel导出到数据库
      * @param filePath
      */
-    @GetMapping("/{tableTitle}/excel/export")
+    @GetMapping("/{tableTitle}/fromExcel")
     public Map exportExcel(@PathVariable String tableTitle,
                            String filePath){
         demoExcel.exportExcel(filePath);
