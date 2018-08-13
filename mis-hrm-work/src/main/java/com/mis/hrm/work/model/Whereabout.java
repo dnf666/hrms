@@ -20,4 +20,9 @@ public class Whereabout {
     private String profession;
     private String department;
     private String workPlace;
+
+    public Whereabout(String companyId,String num){
+        this.companyId = companyId;
+        this.num = num;
+    }
 }
