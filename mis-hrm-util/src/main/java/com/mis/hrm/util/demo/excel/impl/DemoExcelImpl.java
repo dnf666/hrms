@@ -48,10 +48,9 @@ public class DemoExcelImpl implements DemoExcel {
         if(tableTile.equals("member")){
             head = MEMBER_CHI;
             sql = SELECT_FORM_MEMBER;
-        } else if(tableTile.equals("WHEREABOUT")){
+        } else if(tableTile.equals("whereabout")){
             head = WHEREABOUT_CHI;
             sql = SELECT_FROM_WHEREABOUT;
-
         }
 
         //将表头放入Excel
@@ -87,7 +86,9 @@ public class DemoExcelImpl implements DemoExcel {
         } finally {
             //关闭流
             try {
-                stream.close();
+                if (stream != null) {
+                    stream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -119,9 +120,9 @@ public class DemoExcelImpl implements DemoExcel {
                     head = new ArrayList<>();
 
                     //根据每行的单元格数确定sql语句
-                    if((row.getLastCellNum()+1) == MEMBER_ENG.size()){
+                    if((row.getLastCellNum()) == MEMBER_ENG.size()){
                         sql = INSERT_INTO_MEMBER;
-                    } else if((row.getLastCellNum()+1) == WHEREABOUT_ENG.size()){
+                    } else if((row.getLastCellNum()) == WHEREABOUT_ENG.size()){
                         sql = INSERT_INTO_WHEREABOUT;
                     }
 

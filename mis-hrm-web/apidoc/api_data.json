@@ -643,6 +643,509 @@
     "name": "PutBook"
   },
   {
+    "type": "GET",
+    "url": "hrms/{tableTitle}/fromExcel",
+    "title": "将数据从Excel导出到数据库",
+    "description": "<p>其实这个tableTitle可以瞎填，有它只是为了保持格式一致，但最好还是写member或whereabout啦</p>",
+    "group": "EXCEL",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "filePath",
+            "description": "<p>Excel文件的具体路径</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "groupTitle": "EXCEL",
+    "name": "GetHrmsTabletitleFromexcel"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/{tableTitle}/toExcel",
+    "title": "将数据从数据库导入到Excel",
+    "description": "<p>目前可填的tableTitle只有member和whereabout啦</p>",
+    "group": "EXCEL",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tableTitle",
+            "description": "<p>数据库表名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "filePath",
+            "description": "<p>Excel文件的具体路径</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "groupTitle": "EXCEL",
+    "name": "GetHrmsTabletitleToexcel"
+  },
+  {
+    "type": "POST",
+    "url": "hrms/member",
+    "title": "添加单个成员信息",
+    "group": "MEMBER_ADD",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>姓名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>电话</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>年级（如2017级）</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sex",
+            "description": "<p>性别</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "profession",
+            "description": "<p>专业</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "department",
+            "description": "<p>部门</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_ADD",
+    "name": "PostHrmsMember"
+  },
+  {
+    "type": "DELETE",
+    "url": "hrms/member",
+    "title": "删除单个成员信息",
+    "description": "<p>根据companyId和num删除成员信息</p>",
+    "group": "MEMBER_DELETE",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_DELETE",
+    "name": "DeleteHrmsMember"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/member",
+    "title": "查找单个成员信息",
+    "description": "<p>根据companyId和num查找成员信息</p>",
+    "group": "MEMBER_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_QUERY",
+    "name": "GetHrmsMember"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/member/all/{page}",
+    "title": "获取成员列表",
+    "description": "<p>分页获取全部成员信息</p>",
+    "group": "MEMBER_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_QUERY",
+    "name": "GetHrmsMemberAllPage"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/member/byEmail/{page}",
+    "title": "根据邮箱获取成员",
+    "description": "<p>根据邮箱的模糊分页查询</p>",
+    "group": "MEMBER_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_QUERY",
+    "name": "GetHrmsMemberByemailPage"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/member/byName/{page}",
+    "title": "根据姓名获取成员",
+    "description": "<p>根据姓名的模糊分页查询</p>",
+    "group": "MEMBER_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>姓名</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_QUERY",
+    "name": "GetHrmsMemberBynamePage"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/member/byPhone/{page}",
+    "title": "根据电话获取成员",
+    "description": "<p>根据电话的模糊分页查询</p>",
+    "group": "MEMBER_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>电话</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_QUERY",
+    "name": "GetHrmsMemberByphonePage"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/member/count",
+    "title": "获取成员总数",
+    "description": "<p>直接返回成员总数</p>",
+    "group": "MEMBER_QUERY",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": 12\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_QUERY",
+    "name": "GetHrmsMemberCount"
+  },
+  {
+    "type": "PUT",
+    "url": "hrms/member",
+    "title": "更新单个成员信息",
+    "description": "<p>根据companyId和num更新成员信息</p>",
+    "group": "MEMBER_UPDATE",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>姓名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>电话</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>年级（如2017级）</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sex",
+            "description": "<p>性别</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "profession",
+            "description": "<p>专业</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "department",
+            "description": "<p>部门</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_UPDATE",
+    "name": "PutHrmsMember"
+  },
+  {
     "type": "POST",
     "url": "project",
     "title": "插入一项目的信息",
@@ -850,5 +1353,409 @@
     "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_UPDATE",
     "name": "PutProject"
+  },
+  {
+    "type": "POST",
+    "url": "hrms/work",
+    "title": "添加单个成员信息",
+    "group": "WORK_ADD",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>姓名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>电话</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>年级（如2017级）</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sex",
+            "description": "<p>性别</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "profession",
+            "description": "<p>专业</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "department",
+            "description": "<p>部门</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "workPlace",
+            "description": "<p>工作地点</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_ADD",
+    "name": "PostHrmsWork"
+  },
+  {
+    "type": "DELETE",
+    "url": "hrms/work",
+    "title": "删除单个成员信息",
+    "description": "<p>根据companyId和num删除成员信息</p>",
+    "group": "WORK_DELETE",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_DELETE",
+    "name": "DeleteHrmsWork"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/work",
+    "title": "查找单个成员信息",
+    "description": "<p>根据companyId和num查找成员信息</p>",
+    "group": "WORK_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_QUERY",
+    "name": "GetHrmsWork"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/work/all/{page}",
+    "title": "获取成员列表",
+    "description": "<p>分页获取全部成员信息</p>",
+    "group": "WORK_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_QUERY",
+    "name": "GetHrmsWorkAllPage"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/work/byGrade/{page}",
+    "title": "根据年级获取成员",
+    "description": "<p>根据年级的分页查询（注意这里没有模糊查询）</p>",
+    "group": "WORK_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>年级（如2017级）</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_QUERY",
+    "name": "GetHrmsWorkBygradePage"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/work/byName/{page}",
+    "title": "根据姓名获取成员",
+    "description": "<p>根据姓名的模糊分页查询</p>",
+    "group": "WORK_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>姓名</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_QUERY",
+    "name": "GetHrmsWorkBynamePage"
+  },
+  {
+    "type": "GET",
+    "url": "hrms/work/count",
+    "title": "获取成员总数",
+    "description": "<p>直接返回成员总数</p>",
+    "group": "WORK_QUERY",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": 12\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_QUERY",
+    "name": "GetHrmsWorkCount"
+  },
+  {
+    "type": "PUT",
+    "url": "hrms/work",
+    "title": "更新单个成员信息",
+    "description": "<p>根据companyId和num更新成员信息</p>",
+    "group": "WORK_UPDATE",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "num",
+            "description": "<p>学号</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>姓名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>电话</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>年级（如2017级）</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sex",
+            "description": "<p>性别</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "profession",
+            "description": "<p>专业</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "department",
+            "description": "<p>部门</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "workPlace",
+            "description": "<p>工作地点</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_UPDATE",
+    "name": "PutHrmsWork"
   }
 ]
