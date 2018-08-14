@@ -1,6 +1,5 @@
 package com.mis.hrm.book.service.impl;
 
-import com.mis.hrm.book.dao.BookMapper;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 import org.junit.Assert;
@@ -11,11 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * created by dailf on 2018/7/13
- *
- * @author dailf
- */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-book-test.xml")
 public class BookServiceImplTest {
@@ -85,6 +80,9 @@ public class BookServiceImplTest {
 //        bookid为空的时候
         book.setBookId(null);
         Assert.assertEquals(0, bookService.updateByPrimaryKey(book));
+        book.setBookId(" ");
+        Assert.assertEquals(0, bookService.updateByPrimaryKey(book));
+//        bookid为“　”的时候
 //        book为空的时候
         book = null;
         Assert.assertEquals(0, bookService.updateByPrimaryKey(book));
@@ -95,8 +93,11 @@ public class BookServiceImplTest {
 //　　　　　一切正常的情况下
         book.setCompanyId("jike");
         Assert.assertEquals(5, bookService.selectBooksByCompanyId(book).size());
-//        //bookcompanyid为空的情况下
+//        bookcompanyid为空的情况下
         book.setCompanyId(null);
+        Assert.assertEquals(null, bookService.selectBooksByCompanyId(book));
+//        bookcompanyid为" "的情况下
+        book.setCompanyId("    ");
         Assert.assertEquals(null, bookService.selectBooksByCompanyId(book));
 //        book为空的情况下
         book = null;
@@ -109,8 +110,15 @@ public class BookServiceImplTest {
         book.setCompanyId("jike");
         book.setCategory("siwei");
         Assert.assertEquals(4, bookService.selectBooksByComapnyIdAndCategory(book).size());
-//        //bookcompanyid为空的情况下
+//        bookcompanyid为空的情况下
         book.setCompanyId(null);
+        Assert.assertEquals(null, bookService.selectBooksByComapnyIdAndCategory(book));
+//        bookcompanyid为" "的情况下
+        book.setCompanyId(" ");
+        Assert.assertEquals(null, bookService.selectBooksByComapnyIdAndCategory(book));
+//        category为" "的情况下
+        book.setCompanyId("jike");
+        book.setCategory("  ");
         Assert.assertEquals(null, bookService.selectBooksByComapnyIdAndCategory(book));
 //        book为空的情况下
         book = null;
@@ -125,6 +133,17 @@ public class BookServiceImplTest {
         Assert.assertEquals(2, bookService.selectBooksByCompanyIdAndBookName(book).size());
 //        //bookcompanyid为空的情况下
         book.setCompanyId(null);
+        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+
+        book.setCompanyId("jike");
+        book.setBookName(null);
+        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+
+        book.setCompanyId(" ");
+        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+
+        book.setCompanyId("jike");
+        book.setBookName(" ");
         Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
 //        book为空的情况下
         book = null;

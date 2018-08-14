@@ -3,6 +3,7 @@ package com.mis.hrm.book.service.impl;
 import com.mis.hrm.book.dao.BookMapper;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
+import com.mis.hrm.util.StringUtil;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,6 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * created by dailf on 2018/7/7
- *
- * @author dailf
- */
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -91,7 +87,9 @@ public class BookServiceImpl implements BookService {
             return 0;
         }
 //        要求bookid不为空，否则更新失败
-        boolean isOk = bookOptional.filter(t -> t.getBookId() != null).isPresent();
+        boolean isOk = bookOptional
+                .filter(t -> StringUtil.notEmpty(t.getBookId()))
+                .isPresent();
         return isOk ? bookMapper.updateByPrimaryKey(record) : 0;
     }
 
@@ -104,7 +102,9 @@ public class BookServiceImpl implements BookService {
             //传入的对象为空,直接返回，不用再去数据库
             return null;
         }
-        boolean isOk = bookOptional.filter(t -> t.getCompanyId() != null).isPresent();
+        boolean isOk = bookOptional
+                .filter(t -> StringUtil.notEmpty(t.getCompanyId()))
+                .isPresent();
         return isOk ? bookMapper.selectBooksByCompanyId(book) : null;
     }
 
@@ -118,7 +118,7 @@ public class BookServiceImpl implements BookService {
             return null;
         }
         boolean isOk = bookOptional
-                .filter(t -> t.getCompanyId() != null && t.getCategory() != null)
+                .filter(t -> StringUtil.notEmpty(t.getCompanyId(),t.getCategory()))
                 .isPresent();
         return isOk ? bookMapper.selectBooksByComapnyIdAndCategory(book) : null;
     }
@@ -133,7 +133,7 @@ public class BookServiceImpl implements BookService {
             return null;
         }
         boolean isOk = bookOptional
-                .filter(t -> t.getCompanyId() != null && t.getBookName() != null)
+                .filter(t -> StringUtil.notEmpty(book.getCompanyId(),book.getBookName()))
                 .isPresent();
         return isOk ? bookMapper.selectBooksByCompanyIdAndBookName(book) : null;
     }
