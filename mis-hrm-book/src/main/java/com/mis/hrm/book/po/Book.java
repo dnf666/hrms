@@ -16,4 +16,11 @@ public class Book implements Serializable {
     private String category;
     private int quantity;
     private String version;
+
+    public boolean baseRequied() {
+        return companyId != null &&
+                bookName != null &&
+                category != null &&
+                version != null;
+    }
 }
