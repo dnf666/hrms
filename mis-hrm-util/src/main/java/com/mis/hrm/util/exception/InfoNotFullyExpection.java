@@ -1,11 +1,11 @@
-package com.mis.hrm.book.execptions;
+package com.mis.hrm.util.exception;
 
 public class InfoNotFullyExpection extends Exception{
     private String message;
 
-    public InfoNotFullyExpection(String message, String message1) {
+    public InfoNotFullyExpection(String message) {
         super(message);
-        this.message = message1;
+        this.message = message;
     }
 
     @Override

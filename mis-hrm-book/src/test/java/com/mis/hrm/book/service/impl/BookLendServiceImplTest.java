@@ -3,6 +3,7 @@ package com.mis.hrm.book.service.impl;
 
 import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.book.service.BookLendService;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -81,7 +82,7 @@ public class BookLendServiceImplTest {
     }
 
     @Test
-    public void deleteByPrimaryKey(){
+    public void deleteByPrimaryKey() throws InfoNotFullyExpection {
         bookLendInfo.setCompanyId("123");
         bookLendInfo.setBookRecord("223");
         //先把要删的保存下来，以便后续的单元测试
@@ -103,7 +104,7 @@ public class BookLendServiceImplTest {
     }
 
     @Test
-    public void insert(){
+    public void insert() throws InfoNotFullyExpection {
         bookLendInfo.setCompanyId("12321");
         bookLendInfo.setBookRecord("22322");
         Assert.assertEquals(1, bookLendService.insert(bookLendInfo));
@@ -115,7 +116,7 @@ public class BookLendServiceImplTest {
     }
 
     @Test
-    public void selectByPrimaryKey(){
+    public void selectByPrimaryKey() throws InfoNotFullyExpection {
         bookLendInfo.setCompanyId("123");
         bookLendInfo.setBookRecord("223");
         Assert.assertEquals("2018-08-05 08:24:23.0", bookLendService.selectByPrimaryKey(bookLendInfo).getLendTime());
@@ -130,7 +131,7 @@ public class BookLendServiceImplTest {
     }
 
     @Test
-    public void updateByPrimaryKey(){
+    public void updateByPrimaryKey() throws InfoNotFullyExpection {
         bookLendInfo.setCompanyId("123");
         bookLendInfo.setBookRecord("223");
         bookLendInfo.setBookName("大主宰");

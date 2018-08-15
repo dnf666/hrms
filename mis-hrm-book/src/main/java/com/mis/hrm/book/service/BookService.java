@@ -2,6 +2,7 @@ package com.mis.hrm.book.service;
 
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.util.BaseService;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import com.mis.hrm.util.model.Demo;
 
 import java.util.List;
@@ -13,9 +14,9 @@ import java.util.List;
  */
 public interface BookService extends BaseService<Book> {
 
-    List<Book> selectBooksByCompanyId(Book book);
+    List<Book> selectBooksByCompanyId(Book book) throws InfoNotFullyExpection;
 
-    List<Book> selectBooksByComapnyIdAndCategory(Book book);
+    List<Book> selectBooksByComapnyIdAndCategory(Book book) throws InfoNotFullyExpection;
 
-    List<Book> selectBooksByCompanyIdAndBookName(Book book);
+    List<Book> selectBooksByCompanyIdAndBookName(Book book) throws InfoNotFullyExpection;
 }

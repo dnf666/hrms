@@ -2,6 +2,7 @@ package com.mis.hrm.book.service.impl;
 
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,95 +35,217 @@ public class BookServiceImplTest {
     public void deleteByPrimaryKey(){
         //一切正常的情况下
         book.setBookId("11112");
-        Assert.assertEquals(1,bookService.deleteByPrimaryKey(book));
+        try {
+            Assert.assertEquals(1,bookService.deleteByPrimaryKey(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
+
         //bookid为空的情况
         book.setBookId(null);
-        Assert.assertEquals(0,bookService.deleteByPrimaryKey(book));
+        String message = "";
+        try {
+            bookService.deleteByPrimaryKey(book);
+        }catch (InfoNotFullyExpection e){
+            message = e.getMessage();
+        }
+        Assert.assertEquals("bookId未设置",message);
         //book为空的情况
         book = null;
-        Assert.assertEquals(0,bookService.deleteByPrimaryKey(book));
+        try {
+            bookService.deleteByPrimaryKey(book);
+        }catch (NullPointerException e){
+            message = e.getMessage();
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
+        Assert.assertEquals("传入对象为空",message);
     }
 
     @Test
-    public void insert(){
+    public void insert() {
         //一切正常的情况
-        Assert.assertEquals(1, bookService.insert(book));
+        try {
+            Assert.assertEquals(1, bookService.insert(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
         //有一个不满足基本条件的情况
         book.setCompanyId(null);
-        Assert.assertEquals(0, bookService.insert(book));
+        String message = "";
+        try {
+            bookService.insert(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            message = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("插入book的基本信息未满足", message);
         //book为空的情况
         book = null;
-        Assert.assertEquals(0, bookService.insert(book));
+        try {
+            bookService.insert(book);
+        } catch (NullPointerException n) {
+            message = n.getMessage();
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
+        Assert.assertEquals("传入对象为空", message);
     }
 
     @Test
     public void selectByPrimaryKey(){
 //        一切正常的情况
         book.setBookId("22222226");
-        Assert.assertEquals("your light is shining3", bookService.selectByPrimaryKey(book).getBookName());
+        try {
+            Assert.assertEquals("your light is shining3", bookService.selectByPrimaryKey(book).getBookName());
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
 //        bookid不存在的时候
         book.setBookId(null);
-        Assert.assertEquals(null, bookService.selectByPrimaryKey(book));
+        String message = "";
+        try {
+            bookService.selectByPrimaryKey(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            message = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("bookId未设置", message);
 //        boo不存在的时候
         book = null;
-        Assert.assertEquals(null, bookService.selectByPrimaryKey(book));
+        try {
+            bookService.selectByPrimaryKey(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }catch (NullPointerException n){
+            message = n.getMessage();
+        }
+        Assert.assertEquals("传入对象为空", message);
     }
 
     @Test
-    public void updateByPrimaryKey(){
+    public void updateByPrimaryKey() {
 //        一切正常的情况
         book.setBookId("11111");
         book.setCategory("mathdd");
         book.setCompanyId(null);
         book.setQuantity(22);
         book.setVersion("1.0.0.1");
-        Assert.assertEquals(1, bookService.updateByPrimaryKey(book));
+        try {
+            Assert.assertEquals(1, bookService.updateByPrimaryKey(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
 //        bookid为空的时候
         book.setBookId(null);
-        Assert.assertEquals(0, bookService.updateByPrimaryKey(book));
+        String msg = "";
+        try {
+            bookService.updateByPrimaryKey(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("bookId为空", msg);
         book.setBookId(" ");
-        Assert.assertEquals(0, bookService.updateByPrimaryKey(book));
-//        bookid为“　”的时候
+        try {
+            bookService.updateByPrimaryKey(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("bookId为空", msg);
 //        book为空的时候
         book = null;
-        Assert.assertEquals(0, bookService.updateByPrimaryKey(book));
+        try {
+            bookService.updateByPrimaryKey(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        } catch (NullPointerException n){
+            msg = n.getMessage();
+        }
+        Assert.assertEquals("传入对象为空", msg);
     }
 
     @Test
-    public void selectBooksByCompanyId(){
+    public void selectBooksByCompanyId() {
 //　　　　　一切正常的情况下
         book.setCompanyId("jike");
-        Assert.assertEquals(5, bookService.selectBooksByCompanyId(book).size());
+        try {
+            Assert.assertEquals(5, bookService.selectBooksByCompanyId(book).size());
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
 //        bookcompanyid为空的情况下
         book.setCompanyId(null);
-        Assert.assertEquals(null, bookService.selectBooksByCompanyId(book));
+        String msg = "";
+        try {
+            bookService.selectBooksByCompanyId(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId为空", msg);
 //        bookcompanyid为" "的情况下
         book.setCompanyId("    ");
-        Assert.assertEquals(null, bookService.selectBooksByCompanyId(book));
+        try {
+            bookService.selectBooksByCompanyId(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId为空", msg);
 //        book为空的情况下
         book = null;
-        Assert.assertEquals(null, bookService.selectBooksByCompanyId(book));
+        try {
+            bookService.selectBooksByCompanyId(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        } catch (NullPointerException n){
+            msg = n.getMessage();
+        }
+        Assert.assertEquals("传入对象为空", msg);
     }
 
     @Test
-    public void selectBooksByComapnyIdAndCategory(){
+    public void selectBooksByComapnyIdAndCategory() {
         //　　　　　一切正常的情况下
         book.setCompanyId("jike");
         book.setCategory("siwei");
-        Assert.assertEquals(4, bookService.selectBooksByComapnyIdAndCategory(book).size());
+        try {
+            Assert.assertEquals(4, bookService.selectBooksByComapnyIdAndCategory(book).size());
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
+        String msg = "";
 //        bookcompanyid为空的情况下
         book.setCompanyId(null);
-        Assert.assertEquals(null, bookService.selectBooksByComapnyIdAndCategory(book));
+        try {
+            bookService.selectBooksByComapnyIdAndCategory(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId or category is null", msg);
 //        bookcompanyid为" "的情况下
         book.setCompanyId(" ");
-        Assert.assertEquals(null, bookService.selectBooksByComapnyIdAndCategory(book));
+        try {
+            bookService.selectBooksByComapnyIdAndCategory(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId or category is null", msg);
 //        category为" "的情况下
         book.setCompanyId("jike");
         book.setCategory("  ");
-        Assert.assertEquals(null, bookService.selectBooksByComapnyIdAndCategory(book));
+        try {
+            bookService.selectBooksByComapnyIdAndCategory(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId or category is null", msg);
 //        book为空的情况下
         book = null;
-        Assert.assertEquals(null, bookService.selectBooksByComapnyIdAndCategory(book));
+        try {
+            bookService.selectBooksByComapnyIdAndCategory(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        } catch (NullPointerException n){
+            msg = n.getMessage();
+        }
+        Assert.assertEquals("传入对象为空", msg);
     }
 
     @Test
@@ -130,24 +253,60 @@ public class BookServiceImplTest {
         //　　　　　一切正常的情况下
         book.setCompanyId("jike");
         book.setBookName("your light is shining3");
-        Assert.assertEquals(2, bookService.selectBooksByCompanyIdAndBookName(book).size());
+        try {
+            Assert.assertEquals(2, bookService.selectBooksByCompanyIdAndBookName(book).size());
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            infoNotFullyExpection.printStackTrace();
+        }
+        String msg = "";
 //        //bookcompanyid为空的情况下
         book.setCompanyId(null);
-        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+        try {
+            bookService.selectBooksByCompanyIdAndBookName(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId or bookname is null", msg);
 
         book.setCompanyId("jike");
         book.setBookName(null);
-        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+        try {
+            bookService.selectBooksByCompanyIdAndBookName(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId or bookname is null", msg);
+
 
         book.setCompanyId(" ");
-        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+        try {
+            bookService.selectBooksByCompanyIdAndBookName(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId or bookname is null", msg);
+
 
         book.setCompanyId("jike");
         book.setBookName(" ");
-        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+        try {
+            bookService.selectBooksByCompanyIdAndBookName(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        }
+        Assert.assertEquals("companyId or bookname is null", msg);
+
 //        book为空的情况下
         book = null;
-        Assert.assertEquals(null, bookService.selectBooksByCompanyIdAndBookName(book));
+        try {
+            bookService.selectBooksByCompanyIdAndBookName(book);
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            msg = infoNotFullyExpection.getMessage();
+        } catch (NullPointerException n){
+            msg = n.getMessage();
+        }
+        Assert.assertEquals("传入对象为空", msg);
+
     }
 
 }
