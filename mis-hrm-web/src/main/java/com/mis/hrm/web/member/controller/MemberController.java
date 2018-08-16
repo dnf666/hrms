@@ -5,6 +5,7 @@ import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("/member")
-    public Map insertOneMember(@RequestBody Member member){
+    public Map insertOneMember(@RequestBody Member member) throws InfoNotFullyExpection {
         if (memberService.insert(member) > 0) {
             return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
         } else {
@@ -26,7 +27,7 @@ public class MemberController {
     }
 
     @DeleteMapping("/member")
-    public Map deleteOneMember(@RequestBody Member member){
+    public Map deleteOneMember(@RequestBody Member member) throws InfoNotFullyExpection {
         if(memberService.deleteByPrimaryKey(member) > 0){
             return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
         } else {
@@ -35,7 +36,7 @@ public class MemberController {
     }
 
     @PutMapping("/member")
-    public Map updateOneMember(@RequestBody Member member){
+    public Map updateOneMember(@RequestBody Member member) throws InfoNotFullyExpection {
         if (memberService.updateByPrimaryKey(member) > 0) {
             return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
         } else {
@@ -45,7 +46,7 @@ public class MemberController {
 
     @GetMapping("/member")
     public Map selectOneMember(@RequestParam String companyId,
-                                  @RequestParam String num){
+                                  @RequestParam String num) throws InfoNotFullyExpection {
         Member member = new Member(companyId,num);
         member.setNum(num);
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,memberService.selectByPrimaryKey(member));

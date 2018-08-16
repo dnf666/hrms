@@ -3,6 +3,7 @@ package com.mis.hrm.web.work.controller;
 import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class WorkController {
     private WorkService workService;
 
     @PostMapping("/work")
-    public Map insertOneWorker(@RequestBody Whereabout whereabout){
+    public Map insertOneWorker(@RequestBody Whereabout whereabout) throws InfoNotFullyExpection {
         if (workService.insert(whereabout) > 0) {
             return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
         } else {
@@ -26,7 +27,7 @@ public class WorkController {
     }
 
     @DeleteMapping("/work")
-    public Map deleteOneWorker(@RequestBody Whereabout whereabout){
+    public Map deleteOneWorker(@RequestBody Whereabout whereabout) throws InfoNotFullyExpection {
         if(workService.deleteByPrimaryKey(whereabout) > 0){
             return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
         } else {
@@ -35,7 +36,7 @@ public class WorkController {
     }
 
     @PutMapping("/work")
-    public Map updateOneWorker(@RequestBody Whereabout whereabout){
+    public Map updateOneWorker(@RequestBody Whereabout whereabout) throws InfoNotFullyExpection {
         if (workService.updateByPrimaryKey(whereabout) > 0) {
             return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
         } else {
@@ -45,7 +46,7 @@ public class WorkController {
 
     @GetMapping("/work")
     public Map selectOneWorker(@RequestParam String companyId,
-                               @RequestParam String num){
+                               @RequestParam String num) throws InfoNotFullyExpection {
         Whereabout whereabout = new Whereabout(companyId,num);
         whereabout.setNum(num);
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,workService.selectByPrimaryKey(whereabout));

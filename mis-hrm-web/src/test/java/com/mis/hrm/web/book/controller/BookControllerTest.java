@@ -2,6 +2,7 @@ package com.mis.hrm.web.book.controller;
 
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import com.mis.hrm.util.model.Demo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class BookControllerTest {
     @Resource
     private BookService bookService;
     @Test
-    public void insert(){
+    public void insert() throws InfoNotFullyExpection {
         Book demo = Book.builder().build();
         int i = bookService.insert(demo);
         log.info(""+i);

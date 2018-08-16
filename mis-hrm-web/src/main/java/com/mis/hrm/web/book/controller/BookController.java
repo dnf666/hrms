@@ -2,13 +2,20 @@ package com.mis.hrm.web.book.controller;
 
 
 import com.mis.hrm.book.po.Book;
-import com.mis.hrm.book.util.ConstantValue;
+import com.mis.hrm.book.service.BookService;
+import com.mis.hrm.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.Map;
 
+@RestController
 public class BookController {
+    @Autowired
+    private BookService bookService;
     /**
      *   @api {GET} book-list-1 通过公司id
      *   @apiDescription 通过公司id得到书录
@@ -36,8 +43,17 @@ public class BookController {
      *              }]
      *              }
      */
+    @GetMapping("book-list-1")
     public Map getBooksByCompanyId(Book book){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,new LinkedList<Book>());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookService.selectBooksByCompanyId(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }
+        return result;
     }
 
     /**
@@ -68,8 +84,17 @@ public class BookController {
      *              }]
      *              }
      */
+    @GetMapping("book-list-2")
     public Map getBooksByCompanyAndCateGory(Book book){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,new LinkedList<Book>());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookService.selectBooksByComapnyIdAndCategory(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }
+        return result;
     }
 
     /**
@@ -100,8 +125,17 @@ public class BookController {
      *              }]
      *              }
      */
+    @GetMapping("book-list-3")
     public Map getBooksByCompanyAndBookName(Book book){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,new LinkedList<Book>());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookService.selectBooksByCompanyIdAndBookName(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }
+        return result;
     }
 
     /**
@@ -124,8 +158,17 @@ public class BookController {
      *              }
      *       }
      */
+    @GetMapping("book-list-4")
     public Map getBookByBookId(Book book){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,Book.builder().build());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookService.selectByPrimaryKey(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }
+        return result;
     }
 
     /**
@@ -153,8 +196,17 @@ public class BookController {
      *              }
      *       }
      */
+    @PutMapping("book")
     public Map updateBookByBookId(Book book){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,Book.builder().build());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookService.updateByPrimaryKey(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }
+        return result;
     }
 
     /**
@@ -174,8 +226,17 @@ public class BookController {
      *         "object": null
      *       }
      */
+    @PostMapping("book")
     public Map addBookInfo(Book book){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,null);
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookService.insert(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }
+        return result;
     }
 
     /**
@@ -191,7 +252,16 @@ public class BookController {
      *         "object": null
      *       }
      */
+    @DeleteMapping("book")
     public Map deleteBookInfoByBookId(Book book){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,null);
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookService.deleteByPrimaryKey(book));
+        } catch (InfoNotFullyExpection infoNotFullyExpection) {
+            result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }
+        return result;
     }
 }
