@@ -4,6 +4,7 @@ package com.mis.hrm.member.service.impl;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.util.Pager;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -46,7 +47,7 @@ public class MemberServiceImplTest {
 
     @Test
 //    @Ignore
-    public void testDeleteByPrimaryKey() {
+    public void testDeleteByPrimaryKey() throws InfoNotFullyExpection {
         member.setNum("2017210001");
         Assert.assertEquals(1,memberService.deleteByPrimaryKey(member));
 
@@ -58,14 +59,14 @@ public class MemberServiceImplTest {
 
     @Test
 //    @Ignore
-    public void testInsert() {
+    public void testInsert() throws InfoNotFullyExpection {
         Assert.assertEquals(1,memberService.insert(member));
 
         Assert.assertEquals(0,memberService.insert(blankMember));
     }
 
     @Test
-    public void testSelectByPrimaryKey() {
+    public void testSelectByPrimaryKey() throws InfoNotFullyExpection {
         member.setNum("2017210003");
         Member selectedMember = memberService.selectByPrimaryKey(member);
         Assert.assertEquals("王二",selectedMember.getName());
@@ -79,7 +80,7 @@ public class MemberServiceImplTest {
 
     @Test
 //    @Ignore
-    public void testUpdateByPrimaryKey() {
+    public void testUpdateByPrimaryKey() throws InfoNotFullyExpection {
         member.setNum("2017210002");
         Assert.assertEquals(1,memberService.updateByPrimaryKey(member));
 
