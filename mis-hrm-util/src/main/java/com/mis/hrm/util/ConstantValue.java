@@ -1,4 +1,4 @@
-package com.mis.hrm.book.util;
+package com.mis.hrm.util;
 
 
 public class   ConstantValue {

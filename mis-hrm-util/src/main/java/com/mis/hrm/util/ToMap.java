@@ -12,4 +12,16 @@ public  class ToMap {
         result.put("object", object);
         return result;
     }
+
+    public static Map<String, Object> toSuccessMap(Object o){
+        return toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, o);
+    }
+
+    public static Map<String, Object> toFalseMap(Object o){
+        return toMap(ConstantValue.FALSE_CODE, ConstantValue.FALSE, o);
+    }
+
+    public static Map<String, Object> toFalseMap(String msg){
+        return toMap(ConstantValue.FALSE_CODE, msg, null);
+    }
 }

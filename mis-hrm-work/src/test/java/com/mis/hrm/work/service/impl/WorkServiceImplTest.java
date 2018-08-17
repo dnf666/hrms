@@ -1,6 +1,7 @@
 package com.mis.hrm.work.service.impl;
 
 import com.mis.hrm.util.Pager;
+import com.mis.hrm.util.exception.InfoNotFullyExpection;
 import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
 import org.junit.Assert;
@@ -48,7 +49,7 @@ public class WorkServiceImplTest {
 
     @Test
 //    @Ignore
-    public void deleteByPrimaryKey() {
+    public void deleteByPrimaryKey() throws InfoNotFullyExpection {
         whereabout.setNum("2017210002");
         Assert.assertEquals(1,workService.deleteByPrimaryKey(whereabout));
 
@@ -60,14 +61,14 @@ public class WorkServiceImplTest {
 
     @Test
     @Ignore
-    public void insert() {
+    public void insert() throws InfoNotFullyExpection {
         Assert.assertEquals(1,workService.insert(whereabout));
 
         Assert.assertEquals(0,workService.insert(blankWhereabout));
     }
 
     @Test
-    public void selectByPrimaryKey() {
+    public void selectByPrimaryKey() throws InfoNotFullyExpection {
         whereabout.setNum("2017210003");
         Whereabout selectedOne = workService.selectByPrimaryKey(whereabout);
         Assert.assertEquals("王二",selectedOne.getName());
@@ -81,7 +82,7 @@ public class WorkServiceImplTest {
 
     @Test
     @Ignore
-    public void updateByPrimaryKey() {
+    public void updateByPrimaryKey() throws InfoNotFullyExpection {
         whereabout.setNum("2017210001");
         Assert.assertEquals(1,workService.updateByPrimaryKey(whereabout));
 
