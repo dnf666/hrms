@@ -11,7 +11,7 @@ import java.util.Map;
 public class MemberApiDoc {
 
     /**
-     *   @api {POST} hrms/member 添加单个成员信息
+     *   @api {POST} member 添加单个成员信息
      *   @apiGroup MEMBER-ADD
      *   @apiParam  {String} companyId 公司id
      *   @apiParam  {String} num 学号
@@ -35,7 +35,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {DELETE} hrms/member 删除单个成员信息
+     *   @api {DELETE} member 删除单个成员信息
      *   @apiDescription 根据companyId和num删除成员信息
      *   @apiGroup MEMBER-DELETE
      *   @apiParam  {String} companyId 公司id
@@ -53,7 +53,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {PUT} hrms/member 更新单个成员信息
+     *   @api {PUT} member 更新单个成员信息
      *   @apiDescription 根据companyId和num更新成员信息
      *   @apiGroup MEMBER-UPDATE
      *   @apiParam  {String} companyId 公司id
@@ -78,7 +78,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/member 查找单个成员信息
+     *   @api {GET} member 查找单个成员信息
      *   @apiDescription 根据companyId和num查找成员信息
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {String} companyId 公司id
@@ -106,7 +106,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/member/count 获取成员总数
+     *   @api {GET} member/count 获取成员总数
      *   @apiDescription 直接返回成员总数
      *   @apiGroup MEMBER-QUERY
      *   @apiSuccessExample {json} Success-Response:
@@ -122,7 +122,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/member/all/{page} 获取成员列表
+     *   @api {GET} member/all/{page} 获取成员列表
      *   @apiDescription 分页获取全部成员信息
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
@@ -160,7 +160,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/member/byPhone/{page} 根据电话获取成员
+     *   @api {GET} member/byPhone/{page} 根据电话获取成员
      *   @apiDescription 根据电话的模糊分页查询
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
@@ -199,7 +199,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/member/byEmail/{page} 根据邮箱获取成员
+     *   @api {GET} member/byEmail/{page} 根据邮箱获取成员
      *   @apiDescription 根据邮箱的模糊分页查询
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
@@ -238,7 +238,7 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/member/byName/{page} 根据姓名获取成员
+     *   @api {GET} member/byName/{page} 根据姓名获取成员
      *   @apiDescription 根据姓名的模糊分页查询
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码

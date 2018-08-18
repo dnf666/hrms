@@ -2,7 +2,7 @@ package com.project.serviceTest;
 
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
-import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,24 +34,24 @@ public class ProjectServiceTest {
         project.setCompanyId("xinguan");
         try {
             Assert.assertEquals(1, projectService.deleteByPrimaryKey(project));
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
         String message = "";
 
         project.setCompanyId(" ");
         try {
             projectService.deleteByPrimaryKey(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            message = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            message = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("公司id为空", message);
 
         project = null;
         try {
             projectService.deleteByPrimaryKey(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            message = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            message = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             message = n.getMessage();
         }
@@ -62,24 +62,24 @@ public class ProjectServiceTest {
     public void insert(){
         try {
             Assert.assertEquals(1, projectService.insert(project));
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
 
         String msg = "";
         project.setProjectName(" ");
         try {
             projectService.insert(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("插入的数据项条件缺失", msg);
 
         project = null;
         try {
             projectService.insert(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             msg = n.getMessage();
         }
@@ -92,8 +92,8 @@ public class ProjectServiceTest {
         project.setCompanyId("xinguan");
         try {
             Assert.assertEquals(1, projectService.deleteByPrimaryKey(project));
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
 
         String message = "";
@@ -101,16 +101,16 @@ public class ProjectServiceTest {
         project.setCompanyId(" ");
         try {
             projectService.selectByPrimaryKey(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            message = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            message = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("公司id为空", message);
 
         project = null;
         try {
             projectService.selectByPrimaryKey(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            message = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            message = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             message = n.getMessage();
         }
@@ -124,24 +124,24 @@ public class ProjectServiceTest {
         project.setProjectName("dddd");
         try {
             Assert.assertEquals(1, projectService.updateByPrimaryKey(project));
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
         String message = "";
 
         project.setCompanyId(" ");
         try {
             projectService.updateByPrimaryKey(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            message = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            message = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("公司id为空", message);
 
         project = null;
         try {
             projectService.updateByPrimaryKey(project);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            message = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            message = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             message = n.getMessage();
         }

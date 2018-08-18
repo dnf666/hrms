@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/hrms")
+@RequestMapping
 public class ExcelController {
     private DemoExcel demoExcel = new DemoExcelImpl();
 

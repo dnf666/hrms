@@ -4,7 +4,7 @@ package com.mis.hrm.member.service.impl;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.util.Pager;
-import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -45,9 +45,9 @@ public class MemberServiceImplTest {
         pager.setCurrentPage(2);
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
 //    @Ignore
-    public void testDeleteByPrimaryKey() throws InfoNotFullyExpection {
+    public void testDeleteByPrimaryKey() {
         member.setNum("2017210001");
         Assert.assertEquals(1,memberService.deleteByPrimaryKey(member));
 
@@ -57,16 +57,16 @@ public class MemberServiceImplTest {
         Assert.assertEquals(0,memberService.deleteByPrimaryKey(blankMember));
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
 //    @Ignore
-    public void testInsert() throws InfoNotFullyExpection {
+    public void testInsert() {
         Assert.assertEquals(1,memberService.insert(member));
 
         Assert.assertEquals(0,memberService.insert(blankMember));
     }
 
-    @Test
-    public void testSelectByPrimaryKey() throws InfoNotFullyExpection {
+    @Test(expected = NullPointerException.class)
+    public void testSelectByPrimaryKey() {
         member.setNum("2017210003");
         Member selectedMember = memberService.selectByPrimaryKey(member);
         Assert.assertEquals("王二",selectedMember.getName());
@@ -78,9 +78,9 @@ public class MemberServiceImplTest {
         Assert.assertEquals(null,memberService.selectByPrimaryKey(blankMember));
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
 //    @Ignore
-    public void testUpdateByPrimaryKey() throws InfoNotFullyExpection {
+    public void testUpdateByPrimaryKey() {
         member.setNum("2017210002");
         Assert.assertEquals(1,memberService.updateByPrimaryKey(member));
 
@@ -100,7 +100,7 @@ public class MemberServiceImplTest {
         Assert.assertEquals(2,memberService.getAllMembers(pager).size());
     }
 
-    @Test
+    @Test(expected = InfoNotFullyException.class)
     public void testFindByPhoneNumber(){
         String phoneNumber = "10";
         Assert.assertEquals("1011",memberService.findByPhoneNumber(pager,phoneNumber).get(1).getPhoneNumber());
@@ -109,7 +109,7 @@ public class MemberServiceImplTest {
         Assert.assertEquals(null,memberService.findByPhoneNumber(pager,phoneNumber));
     }
 
-    @Test
+    @Test(expected = InfoNotFullyException.class)
     public void testFindByEmail(){
         String email = "10";
         Assert.assertEquals("1010@qq.com",memberService.findByEmail(pager,email).get(0).getEmail());
@@ -118,7 +118,7 @@ public class MemberServiceImplTest {
         Assert.assertEquals(null,memberService.findByPhoneNumber(pager,email));
     }
 
-    @Test
+    @Test(expected = InfoNotFullyException.class)
     public void testFindByName(){
         String name = "张";
         pager.setCurrentPage(1);

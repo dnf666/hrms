@@ -1,9 +1,9 @@
 package com.mis.hrm.util.exception;
 
-public class InfoNotFullyExpection extends Exception{
+public class InfoNotFullyException extends RuntimeException{
     private String message;
 
-    public InfoNotFullyExpection(String message) {
+    public InfoNotFullyException(String message) {
         super(message);
         this.message = message;
     }

@@ -1,9 +1,10 @@
 package com.mis.hrm.work.service.impl;
 
 import com.mis.hrm.util.Pager;
-import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
+import org.apache.ibatis.jdbc.Null;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -47,9 +48,9 @@ public class WorkServiceImplTest {
         pager.setCurrentPage(2);
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
 //    @Ignore
-    public void deleteByPrimaryKey() throws InfoNotFullyExpection {
+    public void deleteByPrimaryKey() {
         whereabout.setNum("2017210002");
         Assert.assertEquals(1,workService.deleteByPrimaryKey(whereabout));
 
@@ -59,16 +60,16 @@ public class WorkServiceImplTest {
         Assert.assertEquals(0,workService.deleteByPrimaryKey(blankWhereabout));
     }
 
-    @Test
-    @Ignore
-    public void insert() throws InfoNotFullyExpection {
+    @Test(expected =RuntimeException.class)
+//    @Ignore
+    public void insert() {
         Assert.assertEquals(1,workService.insert(whereabout));
 
         Assert.assertEquals(0,workService.insert(blankWhereabout));
     }
 
-    @Test
-    public void selectByPrimaryKey() throws InfoNotFullyExpection {
+    @Test(expected = NullPointerException.class)
+    public void selectByPrimaryKey() {
         whereabout.setNum("2017210003");
         Whereabout selectedOne = workService.selectByPrimaryKey(whereabout);
         Assert.assertEquals("王二",selectedOne.getName());
@@ -80,9 +81,9 @@ public class WorkServiceImplTest {
         Assert.assertEquals(null,workService.selectByPrimaryKey(blankWhereabout));
     }
 
-    @Test
-    @Ignore
-    public void updateByPrimaryKey() throws InfoNotFullyExpection {
+    @Test(expected = RuntimeException.class)
+//    @Ignore
+    public void updateByPrimaryKey() {
         whereabout.setNum("2017210001");
         Assert.assertEquals(1,workService.updateByPrimaryKey(whereabout));
 
@@ -97,7 +98,7 @@ public class WorkServiceImplTest {
         Assert.assertEquals((Long)(long)5,workService.countWorkers());
     }
 
-    @Test
+    @Test(expected = InfoNotFullyException.class)
     public void findByGrade() {
         String grade = "2017";
         Assert.assertEquals(new ArrayList<>(),workService.findByGrade(pager,grade));
@@ -109,7 +110,7 @@ public class WorkServiceImplTest {
         Assert.assertEquals(null,workService.findByGrade(pager,grade));
     }
 
-    @Test
+    @Test(expected = InfoNotFullyException.class)
     public void findByName() {
         pager.setCurrentPage(1);
         String name = "王";

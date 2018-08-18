@@ -2,90 +2,124 @@ package com.mis.hrm.web.member.controller;
 
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
-import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
-import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/hrms")
+@RequestMapping("/member")
 public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @PostMapping("/member")
-    public Map insertOneMember(@RequestBody Member member) throws InfoNotFullyExpection {
-        if (memberService.insert(member) > 0) {
-            return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
-        } else {
-            return ToMap.toMap(ConstantValue.FALSE_CODE,ConstantValue.FALSE,null);
+    @PostMapping
+    public Map insertOneMember(@RequestBody Member member) {
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(memberService.insert(member));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        } catch (RuntimeException e){
+            map = ToMap.toFalseMap(e.getMessage());
         }
+        return map;
     }
 
-    @DeleteMapping("/member")
-    public Map deleteOneMember(@RequestBody Member member) throws InfoNotFullyExpection {
-        if(memberService.deleteByPrimaryKey(member) > 0){
-            return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
-        } else {
-            return ToMap.toMap(ConstantValue.FALSE_CODE,ConstantValue.FALSE,null);
+    @DeleteMapping
+    public Map deleteOneMember(@RequestBody Member member) {
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(memberService.deleteByPrimaryKey(member));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        } catch (RuntimeException e){
+            map = ToMap.toFalseMap(e.getMessage());
         }
+        return map;
     }
 
-    @PutMapping("/member")
-    public Map updateOneMember(@RequestBody Member member) throws InfoNotFullyExpection {
-        if (memberService.updateByPrimaryKey(member) > 0) {
-            return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
-        } else {
-            return ToMap.toMap(ConstantValue.FALSE_CODE,ConstantValue.FALSE,null);
+    @PutMapping
+    public Map updateOneMember(@RequestBody Member member) {
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(memberService.updateByPrimaryKey(member));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        } catch (RuntimeException e){
+            map = ToMap.toFalseMap(e.getMessage());
         }
+        return map;
     }
 
-    @GetMapping("/member")
+    @GetMapping
     public Map selectOneMember(@RequestParam String companyId,
-                                  @RequestParam String num) throws InfoNotFullyExpection {
+                                  @RequestParam String num) {
         Member member = new Member(companyId,num);
         member.setNum(num);
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,memberService.selectByPrimaryKey(member));
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(memberService.selectByPrimaryKey(member));
+        } catch (NullPointerException e){
+            map = ToMap.toFalseMap(e.getMessage());
+        }
+        return map;
     }
 
-    @GetMapping("/member/count")
+    @GetMapping("/count")
     public Map countMembers(){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,memberService.countMembers());
+        return ToMap.toSuccessMap(memberService.countMembers());
     }
 
-    @GetMapping("/member/all/{page}")
+    @GetMapping("/all/{page}")
     public Map getAllMembers(@PathVariable Integer page,
                              Pager<Member> pager){
         pager.setCurrentPage(page);
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,memberService.getAllMembers(pager));
+        return ToMap.toSuccessMap(memberService.getAllMembers(pager));
     }
 
-    @GetMapping("/member/byPhone/{page}")
+    @GetMapping("/byPhone/{page}")
     public Map findByPhoneNumber(@RequestParam String phoneNumber,
                                  @PathVariable Integer page,
                                  Pager<Member> pager){
         pager.setCurrentPage(page);
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,memberService.findByPhoneNumber(pager,phoneNumber));
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(memberService.findByPhoneNumber(pager, phoneNumber));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        }
+        return map;
     }
 
-    @GetMapping("/member/byEmail/{page}")
+    @GetMapping("/byEmail/{page}")
     public Map findByEmail(@RequestParam String email,
                                  @PathVariable Integer page,
                                  Pager<Member> pager){
         pager.setCurrentPage(page);
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,memberService.findByEmail(pager,email));
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(memberService.findByEmail(pager, email));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        }
+        return map;
     }
 
-    @GetMapping("/member/byName/{page}")
+    @GetMapping("/byName/{page}")
     public Map findByName(@RequestParam String name,
                                  @PathVariable Integer page,
                                  Pager<Member> pager){
         pager.setCurrentPage(page);
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,memberService.findByName(pager,name));
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(memberService.findByName(pager, name));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        }
+        return map;
     }
-
 }
