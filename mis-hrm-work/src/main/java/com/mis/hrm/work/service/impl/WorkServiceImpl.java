@@ -1,6 +1,8 @@
 package com.mis.hrm.work.service.impl;
 
 import com.mis.hrm.util.Pager;
+import com.mis.hrm.util.StringUtil;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.work.dao.WorkMapper;
 import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
@@ -13,8 +15,6 @@ import java.util.List;
 
 @Service
 public class WorkServiceImpl implements WorkService {
-    //字符常量替换
-    private static final String BLANK = "";
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -23,36 +23,36 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public int deleteByPrimaryKey(Whereabout key) {
-        if(key.getCompanyId() != null && key.getNum() != null
-                && !key.getCompanyId().equals(BLANK) && !key.getNum().equals(BLANK)){
+        if(StringUtil.notEmpty(key.getCompanyId()) && StringUtil.notEmpty(key.getNum())){
             int stateNum = workMapper.deleteByPrimaryKey(key);
             if(stateNum > 0){
                 logger.info("去向信息删除成功");
                 return stateNum;
             } else {
                 logger.info("去向信息删除失败");
+                throw new RuntimeException("去向信息删除失败");
             }
         } else {
             logger.info("主键信息为空");
+            throw new InfoNotFullyException("主键信息为空");
         }
-        return 0;
     }
 
     @Override
     public int insert(Whereabout record) {
-        if(record.getCompanyId() != null && record.getNum() != null
-                && !record.getCompanyId().equals(BLANK) && !record.getNum().equals(BLANK)){
+        if(StringUtil.notEmpty(record.getCompanyId()) && StringUtil.notEmpty(record.getNum())){
             int stateNum = workMapper.insert(record);
             if(stateNum > 0){
                 logger.info("去向信息添加成功");
                 return stateNum;
             } else {
                 logger.info("去向信息添加失败");
+                throw new RuntimeException("去向信息添加失败");
             }
         } else {
             logger.info("主键信息为空");
+            throw new InfoNotFullyException("主键信息为空");
         }
-        return 0;
     }
 
     @Override
@@ -62,26 +62,26 @@ public class WorkServiceImpl implements WorkService {
             logger.info("成员信息查找成功");
             return selectOne;
         } else {
-            logger.info("成员不存在");
+            logger.info("该成员不存在");
+            throw new NullPointerException("该成员不存在");
         }
-        return null;
     }
 
     @Override
     public int updateByPrimaryKey(Whereabout record) {
-        if(record.getCompanyId() != null && record.getNum() != null
-                && !record.getCompanyId().equals(BLANK) && !record.getNum().equals(BLANK)){
+        if(StringUtil.notEmpty(record.getCompanyId()) && StringUtil.notEmpty(record.getNum())){
             int stateNum = workMapper.updateByPrimaryKey(record);
             if(stateNum > 0){
                 logger.info("去向信息更新成功");
                 return stateNum;
             } else {
                 logger.info("去向信息更新失败");
+                throw new RuntimeException("去向信息更新失败");
             }
         } else {
             logger.info("主键信息为空");
+            throw new InfoNotFullyException("主键信息为空");
         }
-        return 0;
     }
 
     @Override
@@ -91,21 +91,21 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public List<Whereabout> findByGrade(Pager<Whereabout> pager, String grade) {
-        if(grade != null && !grade.equals(BLANK)){
+        if(StringUtil.notEmpty(grade)){
             return workMapper.findByGrade(pager,grade);
         } else {
             logger.info("年级信息为空");
-            return null;
+            throw new InfoNotFullyException("年级信息为空");
         }
     }
 
     @Override
     public List<Whereabout> findByName(Pager<Whereabout> pager, String name) {
-        if (name != null && !name.equals(BLANK)) {
+        if (StringUtil.notEmpty(name)) {
             return workMapper.findByName(pager,name);
         } else {
             logger.info("昵称信息为空");
-            return null;
+            throw new InfoNotFullyException("昵称信息为空");
         }
     }
 

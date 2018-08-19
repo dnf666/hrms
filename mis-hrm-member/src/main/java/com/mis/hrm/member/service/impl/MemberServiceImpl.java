@@ -4,6 +4,8 @@ import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.util.Pager;
+import com.mis.hrm.util.StringUtil;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,6 @@ import java.util.List;
 @Service
 @Transactional
 public class MemberServiceImpl implements MemberService {
-    //字符常量替换
-    private static final String BLANK = "";
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -25,66 +25,66 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
 
     @Override
-    public int deleteByPrimaryKey(Member key) {
-        if(key.getCompanyId() != null && key.getNum() != null
-                && !key.getCompanyId().equals(BLANK) && !key.getNum().equals(BLANK)){
+    public int deleteByPrimaryKey(Member key) throws RuntimeException{
+        if(StringUtil.notEmpty(key.getCompanyId()) && StringUtil.notEmpty(key.getNum())){
             int stateNum = memberMapper.deleteByPrimaryKey(key);
             if(stateNum > 0){
                 logger.info("成员信息删除成功");
                 return stateNum;
             } else {
                 logger.info("成员信息删除失败");
+                throw new RuntimeException("成员信息删除失败");
             }
         } else {
             logger.info("主键信息为空");
+            throw new InfoNotFullyException("主键信息为空");
         }
-        return 0;
     }
 
     @Override
-    public int insert(Member record) {
-        if(record.getCompanyId() != null && record.getNum() != null
-                && !record.getCompanyId().equals(BLANK) && !record.getNum().equals(BLANK)){
+    public int insert(Member record) throws RuntimeException{
+        if(StringUtil.notEmpty(record.getCompanyId()) && StringUtil.notEmpty(record.getNum())){
             int stateNum = memberMapper.insert(record);
             if(stateNum > 0){
                 logger.info("成员信息添加成功");
                 return stateNum;
             } else {
                 logger.info("成员信息添加失败");
+                throw new RuntimeException("成员信息添加失败");
             }
         } else {
             logger.info("主键信息为空");
+            throw new InfoNotFullyException("主键信息为空");
         }
-        return 0;
     }
 
     @Override
-    public Member selectByPrimaryKey(Member key) {
+    public Member selectByPrimaryKey(Member key) throws RuntimeException{
         Member member = memberMapper.selectByPrimaryKey(key);
         if(member != null){
             logger.info("成员信息查找成功");
             return member;
         } else {
             logger.info("成员不存在");
+            throw new NullPointerException("成员不存在");
         }
-        return null;
     }
 
     @Override
-    public int updateByPrimaryKey(Member record) {
-        if(record.getCompanyId() != null && record.getNum() != null
-                && !record.getCompanyId().equals(BLANK) && !record.getNum().equals(BLANK)){
+    public int updateByPrimaryKey(Member record) throws RuntimeException{
+        if(StringUtil.notEmpty(record.getCompanyId()) && StringUtil.notEmpty(record.getNum())){
             int stateNum = memberMapper.updateByPrimaryKey(record);
             if(stateNum > 0){
                 logger.info("成员信息更新成功");
                 return stateNum;
             } else {
                 logger.info("成员信息更新失败");
+                throw new RuntimeException("成员信息更新失败");
             }
         } else {
             logger.info("主键信息为空");
+            throw new InfoNotFullyException("主键信息为空");
         }
-        return 0;
     }
 
     @Override
@@ -98,33 +98,32 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<Member> findByPhoneNumber(Pager<Member> pager, String phoneNumber) {
-        if (phoneNumber != null && !phoneNumber.equals(BLANK)) {
+    public List<Member> findByPhoneNumber(Pager<Member> pager, String phoneNumber) throws RuntimeException{
+        if (StringUtil.notEmpty(phoneNumber)) {
             return memberMapper.findByPhoneNumber(pager,phoneNumber);
         } else {
             logger.info("电话信息为空");
+            throw new InfoNotFullyException("电话信息为空");
         }
-        return null;
     }
 
     @Override
-    public List<Member> findByEmail(Pager<Member> pager, String email) {
-        if (email != null && !email.equals(BLANK)) {
+    public List<Member> findByEmail(Pager<Member> pager, String email) throws RuntimeException{
+        if (StringUtil.notEmpty(email)) {
             return memberMapper.findByEmail(pager,email);
         } else {
             logger.info("邮箱信息为空");
+            throw new InfoNotFullyException("邮箱信息为空");
         }
-        return null;
     }
 
     @Override
-    public List<Member> findByName(Pager<Member> pager, String name) {
-        if (name != null && !name.equals(BLANK)) {
+    public List<Member> findByName(Pager<Member> pager, String name) throws RuntimeException{
+        if (StringUtil.notEmpty(name)) {
             return memberMapper.findByName(pager,name);
         } else {
             logger.info("昵称信息为空");
+            throw new InfoNotFullyException("昵称信息为空");
         }
-        return null;
     }
-
 }

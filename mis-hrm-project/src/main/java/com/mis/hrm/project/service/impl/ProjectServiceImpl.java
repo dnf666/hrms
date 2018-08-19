@@ -4,7 +4,7 @@ import com.mis.hrm.project.dao.ProjectMapper;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
 import com.mis.hrm.util.StringUtil;
-import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectMapper projectMapper;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
-    public int deleteByPrimaryKey(Project key) throws InfoNotFullyExpection {
+    public int deleteByPrimaryKey(Project key) throws InfoNotFullyException {
         try {
             Optional<Project> projectOptional = Optional.of(key);
         } catch (NullPointerException n){
@@ -27,13 +27,13 @@ public class ProjectServiceImpl implements ProjectService {
         }
         if (!StringUtil.notEmpty(key.getCompanyId())){
             logger.error("公司id不存在，删除失败");
-            throw new InfoNotFullyExpection("公司id为空");
+            throw new InfoNotFullyException("公司id为空");
         }
         return projectMapper.deleteByPrimaryKey(key);
     }
 
     @Override
-    public int insert(Project record) throws InfoNotFullyExpection {
+    public int insert(Project record) throws InfoNotFullyException {
         Optional<Project> projectOptional;
         try {
             projectOptional = Optional.of(record);
@@ -46,13 +46,13 @@ public class ProjectServiceImpl implements ProjectService {
                 .isPresent();
         if (!isOk){
             logger.error("无法满足插入的基本条件");
-            throw new InfoNotFullyExpection("插入的数据项条件缺失");
+            throw new InfoNotFullyException("插入的数据项条件缺失");
         }
         return projectMapper.insert(record);
     }
 
     @Override
-    public Project selectByPrimaryKey(Project key) throws InfoNotFullyExpection {
+    public Project selectByPrimaryKey(Project key) throws InfoNotFullyException {
         try {
             Optional<Project> projectOptional = Optional.of(key);
         } catch (NullPointerException n){
@@ -61,13 +61,13 @@ public class ProjectServiceImpl implements ProjectService {
         }
         if (!StringUtil.notEmpty(key.getCompanyId())){
             logger.error("公司id不存在，查询失败");
-            throw new InfoNotFullyExpection("公司id为空");
+            throw new InfoNotFullyException("公司id为空");
         }
         return projectMapper.selectByPrimaryKey(key);
     }
 
     @Override
-    public int updateByPrimaryKey(Project record) throws InfoNotFullyExpection {
+    public int updateByPrimaryKey(Project record) throws InfoNotFullyException {
         try {
             Optional<Project> projectOptional = Optional.of(record);
         } catch (NullPointerException n){
@@ -76,7 +76,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
         if (!StringUtil.notEmpty(record.getCompanyId())){
             logger.error("公司id不存在，更新失败");
-            throw new InfoNotFullyExpection("公司id为空");
+            throw new InfoNotFullyException("公司id为空");
         }
         return projectMapper.updateByPrimaryKey(record);
     }

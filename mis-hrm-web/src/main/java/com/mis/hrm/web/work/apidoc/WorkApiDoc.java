@@ -11,7 +11,7 @@ import java.util.Map;
 public class WorkApiDoc {
 
     /**
-     *   @api {POST} hrms/work 添加单个成员信息
+     *   @api {POST} work 添加单个成员信息
      *   @apiGroup WORK-ADD
      *   @apiParam  {String} companyId 公司id
      *   @apiParam  {String} num 学号
@@ -36,7 +36,7 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {DELETE} hrms/work 删除单个成员信息
+     *   @api {DELETE} work 删除单个成员信息
      *   @apiDescription 根据companyId和num删除成员信息
      *   @apiGroup WORK-DELETE
      *   @apiParam  {String} companyId 公司id
@@ -55,7 +55,7 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {PUT} hrms/work 更新单个成员信息
+     *   @api {PUT} work 更新单个成员信息
      *   @apiDescription 根据companyId和num更新成员信息
      *   @apiGroup WORK-UPDATE
      *   @apiParam  {String} companyId 公司id
@@ -82,7 +82,7 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/work 查找单个成员信息
+     *   @api {GET} work 查找单个成员信息
      *   @apiDescription 根据companyId和num查找成员信息
      *   @apiGroup WORK-QUERY
      *   @apiParam  {String} companyId 公司id
@@ -111,7 +111,7 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/work/count 获取成员总数
+     *   @api {GET} work/count 获取成员总数
      *   @apiDescription 直接返回成员总数
      *   @apiGroup WORK-QUERY
      *   @apiSuccessExample {json} Success-Response:
@@ -127,7 +127,7 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/work/byGrade/{page} 根据年级获取成员
+     *   @api {GET} work/byGrade/{page} 根据年级获取成员
      *   @apiDescription 根据年级的分页查询（注意这里没有模糊查询）
      *   @apiGroup WORK-QUERY
      *   @apiParam  {Integer} page 当前页码
@@ -168,7 +168,7 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/work/byName/{page} 根据姓名获取成员
+     *   @api {GET} work/byName/{page} 根据姓名获取成员
      *   @apiDescription 根据姓名的模糊分页查询
      *   @apiGroup WORK-QUERY
      *   @apiParam  {Integer} page 当前页码
@@ -210,7 +210,7 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} hrms/work/all/{page} 获取成员列表
+     *   @api {GET} work/all/{page} 获取成员列表
      *   @apiDescription 分页获取全部成员信息
      *   @apiGroup WORK-QUERY
      *   @apiParam  {Integer} page 当前页码

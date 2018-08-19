@@ -1,7 +1,7 @@
 package com.mis.hrm.web.book.controller;
 
 import com.mis.hrm.book.po.BookLendInfo;
-import com.mis.hrm.util.ConstantValue;
+import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -644,7 +644,7 @@
   },
   {
     "type": "GET",
-    "url": "hrms/{tableTitle}/fromExcel",
+    "url": "{tableTitle}/fromExcel",
     "title": "将数据从Excel导出到数据库",
     "description": "<p>其实这个tableTitle可以瞎填，有它只是为了保持格式一致，但最好还是写member或whereabout啦</p>",
     "group": "EXCEL",
@@ -673,11 +673,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
     "groupTitle": "EXCEL",
-    "name": "GetHrmsTabletitleFromexcel"
+    "name": "GetTabletitleFromexcel"
   },
   {
     "type": "GET",
-    "url": "hrms/{tableTitle}/toExcel",
+    "url": "{tableTitle}/toExcel",
     "title": "将数据从数据库导入到Excel",
     "description": "<p>目前可填的tableTitle只有member和whereabout啦</p>",
     "group": "EXCEL",
@@ -713,11 +713,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
     "groupTitle": "EXCEL",
-    "name": "GetHrmsTabletitleToexcel"
+    "name": "GetTabletitleToexcel"
   },
   {
     "type": "POST",
-    "url": "hrms/member",
+    "url": "member",
     "title": "添加单个成员信息",
     "group": "MEMBER_ADD",
     "parameter": {
@@ -801,11 +801,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_ADD",
-    "name": "PostHrmsMember"
+    "name": "PostMember"
   },
   {
     "type": "DELETE",
-    "url": "hrms/member",
+    "url": "member",
     "title": "删除单个成员信息",
     "description": "<p>根据companyId和num删除成员信息</p>",
     "group": "MEMBER_DELETE",
@@ -841,11 +841,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_DELETE",
-    "name": "DeleteHrmsMember"
+    "name": "DeleteMember"
   },
   {
     "type": "GET",
-    "url": "hrms/member",
+    "url": "member",
     "title": "查找单个成员信息",
     "description": "<p>根据companyId和num查找成员信息</p>",
     "group": "MEMBER_QUERY",
@@ -881,11 +881,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetHrmsMember"
+    "name": "GetMember"
   },
   {
     "type": "GET",
-    "url": "hrms/member/all/{page}",
+    "url": "member/all/{page}",
     "title": "获取成员列表",
     "description": "<p>分页获取全部成员信息</p>",
     "group": "MEMBER_QUERY",
@@ -914,11 +914,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetHrmsMemberAllPage"
+    "name": "GetMemberAllPage"
   },
   {
     "type": "GET",
-    "url": "hrms/member/byEmail/{page}",
+    "url": "member/byEmail/{page}",
     "title": "根据邮箱获取成员",
     "description": "<p>根据邮箱的模糊分页查询</p>",
     "group": "MEMBER_QUERY",
@@ -954,11 +954,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetHrmsMemberByemailPage"
+    "name": "GetMemberByemailPage"
   },
   {
     "type": "GET",
-    "url": "hrms/member/byName/{page}",
+    "url": "member/byName/{page}",
     "title": "根据姓名获取成员",
     "description": "<p>根据姓名的模糊分页查询</p>",
     "group": "MEMBER_QUERY",
@@ -994,11 +994,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetHrmsMemberBynamePage"
+    "name": "GetMemberBynamePage"
   },
   {
     "type": "GET",
-    "url": "hrms/member/byPhone/{page}",
+    "url": "member/byPhone/{page}",
     "title": "根据电话获取成员",
     "description": "<p>根据电话的模糊分页查询</p>",
     "group": "MEMBER_QUERY",
@@ -1034,11 +1034,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetHrmsMemberByphonePage"
+    "name": "GetMemberByphonePage"
   },
   {
     "type": "GET",
-    "url": "hrms/member/count",
+    "url": "member/count",
     "title": "获取成员总数",
     "description": "<p>直接返回成员总数</p>",
     "group": "MEMBER_QUERY",
@@ -1054,11 +1054,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetHrmsMemberCount"
+    "name": "GetMemberCount"
   },
   {
     "type": "PUT",
-    "url": "hrms/member",
+    "url": "member",
     "title": "更新单个成员信息",
     "description": "<p>根据companyId和num更新成员信息</p>",
     "group": "MEMBER_UPDATE",
@@ -1143,7 +1143,7 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_UPDATE",
-    "name": "PutHrmsMember"
+    "name": "PutMember"
   },
   {
     "type": "POST",
@@ -1356,7 +1356,7 @@
   },
   {
     "type": "POST",
-    "url": "hrms/work",
+    "url": "work",
     "title": "添加单个成员信息",
     "group": "WORK_ADD",
     "parameter": {
@@ -1447,11 +1447,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_ADD",
-    "name": "PostHrmsWork"
+    "name": "PostWork"
   },
   {
     "type": "DELETE",
-    "url": "hrms/work",
+    "url": "work",
     "title": "删除单个成员信息",
     "description": "<p>根据companyId和num删除成员信息</p>",
     "group": "WORK_DELETE",
@@ -1487,11 +1487,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_DELETE",
-    "name": "DeleteHrmsWork"
+    "name": "DeleteWork"
   },
   {
     "type": "GET",
-    "url": "hrms/work",
+    "url": "work",
     "title": "查找单个成员信息",
     "description": "<p>根据companyId和num查找成员信息</p>",
     "group": "WORK_QUERY",
@@ -1527,11 +1527,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetHrmsWork"
+    "name": "GetWork"
   },
   {
     "type": "GET",
-    "url": "hrms/work/all/{page}",
+    "url": "work/all/{page}",
     "title": "获取成员列表",
     "description": "<p>分页获取全部成员信息</p>",
     "group": "WORK_QUERY",
@@ -1560,11 +1560,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetHrmsWorkAllPage"
+    "name": "GetWorkAllPage"
   },
   {
     "type": "GET",
-    "url": "hrms/work/byGrade/{page}",
+    "url": "work/byGrade/{page}",
     "title": "根据年级获取成员",
     "description": "<p>根据年级的分页查询（注意这里没有模糊查询）</p>",
     "group": "WORK_QUERY",
@@ -1600,11 +1600,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetHrmsWorkBygradePage"
+    "name": "GetWorkBygradePage"
   },
   {
     "type": "GET",
-    "url": "hrms/work/byName/{page}",
+    "url": "work/byName/{page}",
     "title": "根据姓名获取成员",
     "description": "<p>根据姓名的模糊分页查询</p>",
     "group": "WORK_QUERY",
@@ -1640,11 +1640,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetHrmsWorkBynamePage"
+    "name": "GetWorkBynamePage"
   },
   {
     "type": "GET",
-    "url": "hrms/work/count",
+    "url": "work/count",
     "title": "获取成员总数",
     "description": "<p>直接返回成员总数</p>",
     "group": "WORK_QUERY",
@@ -1660,11 +1660,11 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetHrmsWorkCount"
+    "name": "GetWorkCount"
   },
   {
     "type": "PUT",
-    "url": "hrms/work",
+    "url": "work",
     "title": "更新单个成员信息",
     "description": "<p>根据companyId和num更新成员信息</p>",
     "group": "WORK_UPDATE",
@@ -1756,6 +1756,6 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_UPDATE",
-    "name": "PutHrmsWork"
+    "name": "PutWork"
   }
 ]

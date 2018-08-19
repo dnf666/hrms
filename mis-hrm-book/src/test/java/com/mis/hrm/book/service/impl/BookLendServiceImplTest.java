@@ -3,7 +3,7 @@ package com.mis.hrm.book.service.impl;
 
 import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.book.service.BookLendService;
-import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,24 +36,24 @@ public class BookLendServiceImplTest {
         String borrower = "liudong";
         try {
             Assert.assertEquals(6, bookLendService.selectBookLendInfosByBorrower(borrower).size());
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
 
         borrower = null;
         String msg = "";
         try {
             bookLendService.selectBookLendInfosByBorrower(borrower);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("借书者信息不全", msg);
 
         borrower = " ";
         try {
             bookLendService.selectBookLendInfosByBorrower(borrower);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("借书者信息不全", msg);
     }
@@ -63,23 +63,23 @@ public class BookLendServiceImplTest {
         String companyId = "111";
         try {
             Assert.assertEquals(3, bookLendService.selectBookLendInfosByCompanyId(companyId).size());
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
         companyId = null;
         String msg = "";
         try {
             bookLendService.selectBookLendInfosByCompanyId(companyId);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId信息不全", msg);
 
         companyId = " ";
         try {
             bookLendService.selectBookLendInfosByCompanyId(companyId);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId信息不全", msg);
     }
@@ -90,24 +90,24 @@ public class BookLendServiceImplTest {
         String companyId = "123";
         try {
             Assert.assertEquals(1,bookLendService.selectBookLendInfosByCompanyIdAndBookName(companyId,bookName).size());
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
         String msg = "";
         bookName = "abcd";
         companyId = " ";
         try {
             bookLendService.selectBookLendInfosByCompanyIdAndBookName(companyId,bookName);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId or bookname is null", msg);
         bookName = "abcd";
         companyId = " ";
         try {
             bookLendService.selectBookLendInfosByCompanyIdAndBookName(companyId,bookName);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId or bookname is null", msg);
 
@@ -115,8 +115,8 @@ public class BookLendServiceImplTest {
         companyId = "123";
         try {
             bookLendService.selectBookLendInfosByCompanyIdAndBookName(companyId,bookName);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId or bookname is null", msg);
 
@@ -124,8 +124,8 @@ public class BookLendServiceImplTest {
         companyId = " ";
         try {
             bookLendService.selectBookLendInfosByCompanyIdAndBookName(companyId,bookName);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId or bookname is null", msg);
 
@@ -133,8 +133,8 @@ public class BookLendServiceImplTest {
         companyId = null;
         try {
             bookLendService.selectBookLendInfosByCompanyIdAndBookName(companyId,bookName);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId or bookname is null", msg);
     }
@@ -152,18 +152,18 @@ public class BookLendServiceImplTest {
         BookLendInfo saveBundle = null;
         try {
             saveBundle = bookLendService.selectByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
         try {
             Assert.assertEquals(1, bookLendService.deleteByPrimaryKey(bookLendInfo));
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
         try {
             bookLendService.insert(saveBundle);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
 
         String msg = "";
@@ -171,8 +171,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord("223");
         try {
             bookLendService.deleteByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("bookrecord or companyid is null", msg);
 
@@ -180,8 +180,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord(" ");
         try {
             bookLendService.deleteByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("bookrecord or companyid is null", msg);
 
@@ -189,8 +189,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord(null);
         try {
             bookLendService.deleteByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             msg = n.getMessage();
         }
@@ -199,8 +199,8 @@ public class BookLendServiceImplTest {
         bookLendInfo = null;
         try {
             bookLendService.deleteByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             msg = n.getMessage();
         }
@@ -213,8 +213,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord("22322");
         try {
             Assert.assertEquals(1, bookLendService.insert(bookLendInfo));
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
 
         bookLendInfo.setCompanyId("12021");
@@ -223,16 +223,16 @@ public class BookLendServiceImplTest {
         String msg = "";
         try {
             bookLendService.insert(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("传入的基本信息不全", msg);
 
         bookLendInfo = null;
         try {
             bookLendService.insert(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             msg = n.getMessage();
         }
@@ -245,8 +245,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord("223");
         try {
             Assert.assertEquals("2018-08-05 08:24:23.0", bookLendService.selectByPrimaryKey(bookLendInfo).getLendTime());
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
 
         String msg = "";
@@ -254,8 +254,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord(" ");
         try {
             bookLendService.selectByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyid or bookrecord is null", msg);
 
@@ -263,15 +263,15 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord(null);
         try {
             bookLendService.selectByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyid or bookrecord is null", msg);
         bookLendInfo = null;
         try {
             bookLendService.selectByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             msg = n.getMessage();
         }
@@ -285,8 +285,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookName("大主宰");
         try {
             Assert.assertEquals(1, bookLendService.updateByPrimaryKey(bookLendInfo));
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            infoNotFullyExpection.printStackTrace();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            infoNotFullyException.printStackTrace();
         }
 
         String msg = "";
@@ -294,8 +294,8 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord("223");
         try {
             bookLendService.updateByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId or bookrecorder is null", msg);
 
@@ -303,15 +303,15 @@ public class BookLendServiceImplTest {
         bookLendInfo.setBookRecord("223");
         try {
             bookLendService.updateByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         }
         Assert.assertEquals("companyId or bookrecorder is null", msg);
         bookLendInfo = null;
         try {
             bookLendService.updateByPrimaryKey(bookLendInfo);
-        } catch (InfoNotFullyExpection infoNotFullyExpection) {
-            msg = infoNotFullyExpection.getMessage();
+        } catch (InfoNotFullyException infoNotFullyException) {
+            msg = infoNotFullyException.getMessage();
         } catch (NullPointerException n){
             msg = n.getMessage();
         }
