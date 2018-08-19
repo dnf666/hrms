@@ -6,6 +6,7 @@ import com.mis.hrm.book.service.BookService;
 import com.mis.hrm.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.exception.InfoNotFullyExpection;
+import org.apache.ibatis.binding.BindingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +53,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
+        } catch (BindingException b){
+            result = ToMap.toFalseMapByServerError();
         }
         return result;
     }
@@ -93,6 +96,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
+        } catch (BindingException b){
+            result = ToMap.toFalseMapByServerError();
         }
         return result;
     }
@@ -134,6 +139,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
+        } catch (BindingException b){
+            result = ToMap.toFalseMapByServerError();
         }
         return result;
     }
@@ -167,6 +174,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
+        } catch (BindingException b){
+            result = ToMap.toFalseMapByServerError();
         }
         return result;
     }
@@ -205,6 +214,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
+        } catch (BindingException b){
+            result = ToMap.toFalseMapByServerError();
         }
         return result;
     }
@@ -235,6 +246,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
+        } catch (BindingException b){
+            result = ToMap.toFalseMapByServerError();
         }
         return result;
     }
@@ -261,6 +274,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyExpection.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
+        } catch (BindingException b){
+            result = ToMap.toFalseMapByServerError();
         }
         return result;
     }

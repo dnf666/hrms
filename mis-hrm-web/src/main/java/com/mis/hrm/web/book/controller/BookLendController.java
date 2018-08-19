@@ -3,10 +3,11 @@ package com.mis.hrm.web.book.controller;
 import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedList;
 import java.util.Map;
-
+@RestController
 public class BookLendController {
     /**
      *   @api {GET} booklend-list-1 通过借书者

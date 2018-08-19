@@ -24,4 +24,8 @@ public  class ToMap {
     public static Map<String, Object> toFalseMap(String msg){
         return toMap(ConstantValue.FALSE_CODE, msg, null);
     }
+
+    public static Map<String, Object> toFalseMapByServerError(){
+        return toMap(ConstantValue.SEVER_ERROR_CODE, ConstantValue.BIND_EXCEPTION, null);
+    }
 }

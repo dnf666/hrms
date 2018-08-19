@@ -25,8 +25,8 @@
         <!--<mapper class="com.mis.hrm.book.dao.BookMapper"/>-->
 
         <!--resource方式　（classpath 相对路径）-->
-        <!--<mapper resource="mappers/BookMapper.xml"/>-->
-        <!--<mapper resource="mappers/BookLendInfoMapper.xml"/>-->
+        <mapper resource="mappers/BookMapper.xml"/>
+        <mapper resource="mappers/BookLendInfoMapper.xml"/>
 
     </mappers>
 </configuration>
