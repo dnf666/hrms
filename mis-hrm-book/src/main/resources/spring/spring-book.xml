@@ -71,6 +71,7 @@
     </bean>
 
 
+
     <bean id="bookLog" class="com.mis.hrm.book.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="book"/>
         <constructor-arg type="java.lang.String" value=""/>
