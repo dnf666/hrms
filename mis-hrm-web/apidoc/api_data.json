@@ -397,7 +397,7 @@
   },
   {
     "type": "DELETE",
-    "url": "book",
+    "url": "book/{bookId}",
     "title": "通过bookId",
     "description": "<p>通过bookId删除一本书的信息</p>",
     "group": "BOOK_DELETE",
@@ -426,7 +426,7 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_DELETE",
-    "name": "DeleteBook"
+    "name": "DeleteBookBookid"
   },
   {
     "type": "GET",

@@ -5,7 +5,7 @@ import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.exception.InfoNotFullyException;
-import org.apache.ibatis.binding.BindingException;
+import java.lang.Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +51,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
-        } catch (BindingException b){
+        } catch (Exception b){
+            b.printStackTrace();
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -94,7 +95,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
-        } catch (BindingException b){
+        } catch (Exception b){
+            b.printStackTrace();
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -137,7 +139,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
-        } catch (BindingException b){
+        } catch (Exception b){
+            b.printStackTrace();
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -172,7 +175,8 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
-        } catch (BindingException b){
+        } catch (Exception b){
+            b.printStackTrace();
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -207,12 +211,13 @@ public class BookController {
     public Map updateBookByBookId(Book book){
         Map<String, Object> result;
         try {
-            result = ToMap.toSuccessMap(bookService.updateByPrimaryKey(book));
+            result = ToMap.toSuccessMap("更新的数量为：　" + bookService.updateByPrimaryKey(book));
         } catch (InfoNotFullyException infoNotFullyException) {
             result = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
-        } catch (BindingException b){
+        } catch (Exception b){
+            b.printStackTrace();
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -244,14 +249,15 @@ public class BookController {
             result = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
-        } catch (BindingException b){
+        } catch (Exception b){
+            b.printStackTrace();
             result = ToMap.toFalseMapByServerError();
         }
         return result;
     }
 
     /**
-     *   @api {DELETE} book 通过bookId
+     *   @api {DELETE} book/{bookId} 通过bookId
      *   @apiDescription 通过bookId删除一本书的信息
      *   @apiGroup BOOK-DELETE
      *   @apiParam  {String} bookId 书的id
@@ -263,16 +269,18 @@ public class BookController {
      *         "object": null
      *       }
      */
-    @DeleteMapping("book")
-    public Map deleteBookInfoByBookId(Book book){
+    @DeleteMapping("book/{bookId}")
+    public Map deleteBookInfoByBookId(@PathVariable("bookId") String bookId){
         Map<String, Object> result;
+        Book book = Book.builder().bookId(bookId).build();
         try {
             result = ToMap.toSuccessMap(bookService.deleteByPrimaryKey(book));
         } catch (InfoNotFullyException infoNotFullyException) {
             result = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (NullPointerException n) {
             result = ToMap.toFalseMap(n.getMessage());
-        } catch (BindingException b){
+        } catch (Exception b){
+            b.printStackTrace();
             result = ToMap.toFalseMapByServerError();
         }
         return result;

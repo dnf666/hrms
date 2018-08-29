@@ -1,14 +1,21 @@
 package com.mis.hrm.web.book.controller;
 
 import com.mis.hrm.book.po.BookLendInfo;
+import com.mis.hrm.book.service.BookLendService;
 import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
-import org.springframework.web.bind.annotation.RestController;
+import com.mis.hrm.util.exception.InfoNotFullyException;
+import org.apache.ibatis.binding.BindingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.Map;
 @RestController
 public class BookLendController {
+    @Autowired
+    private BookLendService bookLendService;
     /**
      *   @api {GET} booklend-list-1 通过借书者
      *   @apiDescription 通过借书者查询借书信息
@@ -37,8 +44,11 @@ public class BookLendController {
      *
      *       }
      */
+    @GetMapping("booklend-list-1")
     public Map getBookLendInfosByBorrower(String borrower){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, new LinkedList<BookLendInfo>());
+        Map<String, Object> result;
+        result = ToMap.toSuccessMap(bookLendService.selectBookLendInfosByBorrower(borrower));
+        return result;
     }
 
     /**
@@ -69,6 +79,7 @@ public class BookLendController {
      *
      *       }
      */
+    @GetMapping("booklend-list-2")
     public Map getBookLendInfosByCompanyId(String companyId){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, new LinkedList<BookLendInfo>());
     }
@@ -102,6 +113,7 @@ public class BookLendController {
      *
      *       }
      */
+    @GetMapping("booklend-list-3")
     public Map getBookLendInfosByCompanyIdAndBookName(String companyId, String bookName){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, new LinkedList<BookLendInfo>());
     }
@@ -127,6 +139,7 @@ public class BookLendController {
      *          }
      *       }
      */
+    @GetMapping("booklend-list-4")
     public Map getBookLendInfosByCompanyIdAndBookRecord(BookLendInfo bookLendInfo){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, BookLendInfo.builder().build());
     }
@@ -158,6 +171,7 @@ public class BookLendController {
      *
      *       }
      */
+    @GetMapping("booklend-list-5")
     public Map getBookLendInfos(){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, new LinkedList<BookLendInfo>());
     }
@@ -180,6 +194,7 @@ public class BookLendController {
      *         "object": null
      *       }
      */
+    @PostMapping("bookLendInfo")
     public Map insertBookLendInfo(BookLendInfo bookLendInfo){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
     }
@@ -199,6 +214,7 @@ public class BookLendController {
      *         "object": null
      *       }
      */
+    @DeleteMapping("bookLendInfo")
     public Map deleteBookLendInfo(BookLendInfo bookLendInfo){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
     }
@@ -228,6 +244,7 @@ public class BookLendController {
      *               }
      *       }
      */
+    @PutMapping("bookLendInfo")
     public Map updateBookLendInfo(BookLendInfo bookLendInfo){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
     }

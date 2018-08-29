@@ -40,6 +40,16 @@
         <filter-name>filterEncoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--关于解析put请求参数的设置　by 刘岽　begin-->
+    <filter>
+        <filter-name>httpPutFormContentFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>httpPutFormContentFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--关于解析put请求参数的设置　by 刘岽　over-->
 
     <servlet>
         <servlet-name>DispatcherServlet</servlet-name>
