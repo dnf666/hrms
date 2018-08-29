@@ -206,8 +206,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "borrower",
-            "description": "<p>借书者</p>"
+            "field": "bookName",
+            "description": "<p>书名</p>"
           }
         ]
       }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -94,6 +95,7 @@ public class BookLendServiceImpl implements BookLendService {
             logger.error("传入的基本信息不全，插入失败");
             throw new InfoNotFullyException("传入的基本信息不全");
         }
+        record.setBookRecord(UUID.randomUUID().toString());
         return bookLendInfoMapper.insert(record);
     }
 

@@ -7,6 +7,7 @@ import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.apache.ibatis.binding.BindingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.server.reactive.TomcatHttpHandlerAdapter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +48,16 @@ public class BookLendController {
     @GetMapping("booklend-list-1")
     public Map getBookLendInfosByBorrower(String borrower){
         Map<String, Object> result;
-        result = ToMap.toSuccessMap(bookLendService.selectBookLendInfosByBorrower(borrower));
+        try {
+            result = ToMap.toSuccessMap(bookLendService.selectBookLendInfosByBorrower(borrower));
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }  catch (InfoNotFullyException inf){
+            result = ToMap.toFalseMap(inf.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
+            result = ToMap.toFalseMapByServerError();
+        }
         return result;
     }
 
@@ -81,7 +91,18 @@ public class BookLendController {
      */
     @GetMapping("booklend-list-2")
     public Map getBookLendInfosByCompanyId(String companyId){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, new LinkedList<BookLendInfo>());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookLendService.selectBookLendInfosByCompanyId(companyId));
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }  catch (InfoNotFullyException inf){
+            result = ToMap.toFalseMap(inf.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
+            result = ToMap.toFalseMapByServerError();
+        }
+        return result;
     }
 
     /**
@@ -89,7 +110,7 @@ public class BookLendController {
      *   @apiDescription 通过公司和书名查询借书信息
      *   @apiGroup BOOKLEND-QUERY
      *   @apiParam  {String} companyId 公司id
-     *   @apiParam  {String} borrower 借书者
+     *   @apiParam  {String} bookName 书名
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
@@ -115,7 +136,18 @@ public class BookLendController {
      */
     @GetMapping("booklend-list-3")
     public Map getBookLendInfosByCompanyIdAndBookName(String companyId, String bookName){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, new LinkedList<BookLendInfo>());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookLendService.selectBookLendInfosByCompanyIdAndBookName(companyId, bookName));
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }  catch (InfoNotFullyException inf){
+            result = ToMap.toFalseMap(inf.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
+            result = ToMap.toFalseMapByServerError();
+        }
+        return result;
     }
 
     /**
@@ -141,7 +173,18 @@ public class BookLendController {
      */
     @GetMapping("booklend-list-4")
     public Map getBookLendInfosByCompanyIdAndBookRecord(BookLendInfo bookLendInfo){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, BookLendInfo.builder().build());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookLendService.selectByPrimaryKey(bookLendInfo));
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }  catch (InfoNotFullyException inf){
+            result = ToMap.toFalseMap(inf.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
+            result = ToMap.toFalseMapByServerError();
+        }
+        return result;
     }
 
     /**
@@ -173,7 +216,18 @@ public class BookLendController {
      */
     @GetMapping("booklend-list-5")
     public Map getBookLendInfos(){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, new LinkedList<BookLendInfo>());
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(bookLendService.selectAll());
+        } catch (NullPointerException n) {
+            result = ToMap.toFalseMap(n.getMessage());
+        }  catch (InfoNotFullyException inf){
+            result = ToMap.toFalseMap(inf.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
+            result = ToMap.toFalseMapByServerError();
+        }
+        return result;
     }
 
 
@@ -196,12 +250,14 @@ public class BookLendController {
      */
     @PostMapping("bookLendInfo")
     public Map insertBookLendInfo(BookLendInfo bookLendInfo){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
+        Map<String, Object> result;
+        result = BookLendControllerUtil.getResult(bookLendService::insert, bookLendInfo);
+        return result;
     }
 
 
     /**
-     *   @api {DELETE} bookLendInfo 通过companyId & bookRecord 删除借书信息
+     *   @api {DELETE} bookLendInfo/{companyId}/{bookRecord} 通过companyId & bookRecord 删除借书信息
      *   @apiDescription 通过companyId & bookRecord 删除借书信息
      *   @apiGroup BOOKLEND-DELETE
      *   @apiParam  {String} companyId 公司的id
@@ -214,9 +270,13 @@ public class BookLendController {
      *         "object": null
      *       }
      */
-    @DeleteMapping("bookLendInfo")
-    public Map deleteBookLendInfo(BookLendInfo bookLendInfo){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
+    @DeleteMapping("bookLendInfo/{companyId}/{bookRecord}")
+    public Map deleteBookLendInfo(@PathVariable("companyId")String companyId,
+                                  @PathVariable("bookRecord")String bookRecord){
+        BookLendInfo bookLendInfo = BookLendInfo.builder().companyId(companyId).bookRecord(bookRecord).build();
+        Map<String, Object> result;
+        result = BookLendControllerUtil.getResult(bookLendService::deleteByPrimaryKey, bookLendInfo);
+        return result;
     }
 
     /**
@@ -246,6 +306,34 @@ public class BookLendController {
      */
     @PutMapping("bookLendInfo")
     public Map updateBookLendInfo(BookLendInfo bookLendInfo){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
+        Map<String, Object> result;
+        result = BookLendControllerUtil.getResult(bookLendService::updateByPrimaryKey, bookLendInfo);
+        return result;
     }
 }
+
+@FunctionalInterface
+interface UpdateMethod{
+    int getEffectCount(BookLendInfo o);
+}
+
+/**
+ * 使用工具类得到结果
+ */
+class BookLendControllerUtil{
+    public static Map<String, Object> getResult(UpdateMethod updateMethod, BookLendInfo bookLendInfo){
+        Map<String, Object> result;
+        try {
+            result = ToMap.toSuccessMap(updateMethod.getEffectCount(bookLendInfo));
+        } catch (NullPointerException n){
+            result = ToMap.toFalseMap(n.getMessage());
+        } catch (InfoNotFullyException inf){
+            result = ToMap.toFalseMap(inf.getMessage());
+        } catch (Exception e){
+            result = ToMap.toFalseMapByServerError();
+        }
+        return result;
+    }
+}
+
+
