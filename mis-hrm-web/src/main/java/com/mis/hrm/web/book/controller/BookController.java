@@ -4,7 +4,7 @@ package com.mis.hrm.web.book.controller;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 
-import com.mis.hrm.web.book.util.BookModelControllerUtil;
+import com.mis.hrm.web.util.ControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +44,7 @@ public class BookController {
     @GetMapping("book-list-1")
     public Map getBooksByCompanyId(Book book){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookService::selectBooksByCompanyId, book);
+        result = ControllerUtil.getResult(bookService::selectBooksByCompanyId, book);
         return result;
     }
 
@@ -79,7 +79,7 @@ public class BookController {
     @GetMapping("book-list-2")
     public Map getBooksByCompanyAndCateGory(Book book){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookService::selectBooksByComapnyIdAndCategory, book);
+        result = ControllerUtil.getResult(bookService::selectBooksByComapnyIdAndCategory, book);
         return result;
     }
 
@@ -114,7 +114,7 @@ public class BookController {
     @GetMapping("book-list-3")
     public Map getBooksByCompanyAndBookName(Book book){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookService::selectBooksByCompanyIdAndBookName, book);
+        result = ControllerUtil.getResult(bookService::selectBooksByCompanyIdAndBookName, book);
         return result;
     }
 
@@ -141,7 +141,7 @@ public class BookController {
     @GetMapping("book-list-4")
     public Map getBookByBookId(Book book){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookService::selectByPrimaryKey, book);
+        result = ControllerUtil.getResult(bookService::selectByPrimaryKey, book);
         return result;
     }
 
@@ -173,7 +173,7 @@ public class BookController {
     @PutMapping("book")
     public Map updateBookByBookId(Book book){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookService::updateByPrimaryKey, book);
+        result = ControllerUtil.getResult(bookService::updateByPrimaryKey, book);
         return result;
     }
 
@@ -197,7 +197,7 @@ public class BookController {
     @PostMapping("book")
     public Map addBookInfo(Book book){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookService::insert, book);
+        result = ControllerUtil.getResult(bookService::insert, book);
         return result;
     }
 
@@ -218,7 +218,7 @@ public class BookController {
     public Map deleteBookInfoByBookId(@PathVariable("bookId") String bookId){
         Map<String, Object> result;
         Book book = Book.builder().bookId(bookId).build();
-        result = BookModelControllerUtil.getResult(bookService::deleteByPrimaryKey, book);
+        result = ControllerUtil.getResult(bookService::deleteByPrimaryKey, book);
         return result;
     }
 }

@@ -4,7 +4,7 @@ import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.book.service.BookLendService;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.exception.InfoNotFullyException;
-import com.mis.hrm.web.book.util.BookModelControllerUtil;
+import com.mis.hrm.web.util.ControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -170,7 +170,7 @@ public class BookLendController {
     @GetMapping("booklend-list-4")
     public Map getBookLendInfosByCompanyIdAndBookRecord(BookLendInfo bookLendInfo){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookLendService::selectByPrimaryKey, bookLendInfo);
+        result = ControllerUtil.getResult(bookLendService::selectByPrimaryKey, bookLendInfo);
         return result;
     }
 
@@ -238,7 +238,7 @@ public class BookLendController {
     @PostMapping("bookLendInfo")
     public Map insertBookLendInfo(BookLendInfo bookLendInfo){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookLendService::insert, bookLendInfo);
+        result = ControllerUtil.getResult(bookLendService::insert, bookLendInfo);
         return result;
     }
 
@@ -262,7 +262,7 @@ public class BookLendController {
                                   @PathVariable("bookRecord")String bookRecord){
         BookLendInfo bookLendInfo = BookLendInfo.builder().companyId(companyId).bookRecord(bookRecord).build();
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookLendService::deleteByPrimaryKey, bookLendInfo);
+        result = ControllerUtil.getResult(bookLendService::deleteByPrimaryKey, bookLendInfo);
         return result;
     }
 
@@ -294,7 +294,7 @@ public class BookLendController {
     @PutMapping("bookLendInfo")
     public Map updateBookLendInfo(BookLendInfo bookLendInfo){
         Map<String, Object> result;
-        result = BookModelControllerUtil.getResult(bookLendService::updateByPrimaryKey, bookLendInfo);
+        result = ControllerUtil.getResult(bookLendService::updateByPrimaryKey, bookLendInfo);
         return result;
     }
 }

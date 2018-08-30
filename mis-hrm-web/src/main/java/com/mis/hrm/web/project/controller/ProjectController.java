@@ -1,16 +1,19 @@
 package com.mis.hrm.web.project.controller;
 
 import com.mis.hrm.project.po.Project;
+import com.mis.hrm.project.service.ProjectService;
 import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import com.mis.hrm.web.util.ControllerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@RestController
 public class ProjectController {
+    @Autowired
+    private ProjectService projectService;
 
     /**
      *   @api {POST} project 插入一项目的信息
@@ -31,12 +34,13 @@ public class ProjectController {
      */
     @PostMapping("project")
     public Map insertProject(Project project){
-
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
+        Map<String, Object> result;
+        result = ControllerUtil.getResult(projectService::insert, project);
+        return result;
     }
 
     /**
-     *   @api {DELETE} project 通过companyId & projectId
+     *   @api {DELETE} project/{companyId}/{projectId} 通过companyId & projectId
      *   @apiDescription 通过companyId & projectId删除一个项目的信息
      *   @apiGroup PROJECT-DELETE
      *   @apiParam  {String} companyId 公司id
@@ -49,13 +53,17 @@ public class ProjectController {
      *         "object": null
      *       }
      */
-    @DeleteMapping("project")
-    public Map deleteProjectByCompanyIdAndProjectId(Project project){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,null);
+    @DeleteMapping("project/{companyId}/{projectId}")
+    public Map deleteProjectByCompanyIdAndProjectId(@PathVariable("companyId")String companyId,
+                                                    @PathVariable("projectId") int projectId){
+        Project project = Project.builder().companyId(companyId).projectId(projectId).build();
+        Map<String, Object> result;
+        result = ControllerUtil.getResult(projectService::deleteByPrimaryKey, project);
+        return result;
     }
 
     /**
-     *   @api {PUT} project 通过companyId & projectId更新项目的信息
+     *   @api {PUT} project 通过companyId & projectI更新项目的信息
      *   @apiDescription 通过companyId & projectId更新项目的信息，同时返回更新后的信息
      *   @apiGroup PROJECT-UPDATE
      *   @apiParam  {String} companyId 公司id
@@ -78,7 +86,9 @@ public class ProjectController {
      */
     @PutMapping("project")
     public Map updateProjectBycompanyIdAndProjectId(Project project){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,Project.builder().build());
+        Map<String, Object> result;
+        result = ControllerUtil.getResult(projectService::updateByPrimaryKey, project);
+        return result;
     }
 
     /**
@@ -109,9 +119,8 @@ public class ProjectController {
      */
     @GetMapping("project")
     public Map getProjectBycompanyIdAndProjectId(Project project){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,Project.builder().build());
+        Map<String, Object> result;
+        result = ControllerUtil.getResult(projectService::selectByPrimaryKey, project);
+        return result;
     }
-
-
-
 }

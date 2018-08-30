@@ -1,4 +1,4 @@
-package com.mis.hrm.web.book.util;
+package com.mis.hrm.web.util;
 
 import com.mis.hrm.book.po.Book;
 

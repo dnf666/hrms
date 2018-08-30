@@ -62,7 +62,7 @@
   },
   {
     "type": "DELETE",
-    "url": "bookLendInfo",
+    "url": "bookLendInfo/{companyId}/{bookRecord}",
     "title": "通过companyId & bookRecord 删除借书信息",
     "description": "<p>通过companyId &amp; bookRecord 删除借书信息</p>",
     "group": "BOOKLEND_DELETE",
@@ -98,7 +98,7 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_DELETE",
-    "name": "DeleteBooklendinfo"
+    "name": "DeleteBooklendinfoCompanyidBookrecord"
   },
   {
     "type": "GET",
@@ -1208,7 +1208,7 @@
   },
   {
     "type": "DELETE",
-    "url": "project",
+    "url": "project/{companyId}/{projectId}",
     "title": "通过companyId & projectId",
     "description": "<p>通过companyId &amp; projectId删除一个项目的信息</p>",
     "group": "PROJECT_DELETE",
@@ -1244,7 +1244,7 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_DELETE",
-    "name": "DeleteProject"
+    "name": "DeleteProjectCompanyidProjectid"
   },
   {
     "type": "GET",
@@ -1296,7 +1296,7 @@
   {
     "type": "PUT",
     "url": "project",
-    "title": "通过companyId & projectId更新项目的信息",
+    "title": "通过companyId & projectI更新项目的信息",
     "description": "<p>通过companyId &amp; projectId更新项目的信息，同时返回更新后的信息</p>",
     "group": "PROJECT_UPDATE",
     "parameter": {
