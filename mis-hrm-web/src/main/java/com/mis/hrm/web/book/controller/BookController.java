@@ -3,9 +3,8 @@ package com.mis.hrm.web.book.controller;
 
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
-import com.mis.hrm.util.ToMap;
-import com.mis.hrm.util.exception.InfoNotFullyException;
-import java.lang.Exception;
+
+import com.mis.hrm.web.book.util.BookModelControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,16 +44,7 @@ public class BookController {
     @GetMapping("book-list-1")
     public Map getBooksByCompanyId(Book book){
         Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap(bookService.selectBooksByCompanyId(book));
-        } catch (InfoNotFullyException infoNotFullyException) {
-            result = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (Exception b){
-            b.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookService::selectBooksByCompanyId, book);
         return result;
     }
 
@@ -89,16 +79,7 @@ public class BookController {
     @GetMapping("book-list-2")
     public Map getBooksByCompanyAndCateGory(Book book){
         Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap(bookService.selectBooksByComapnyIdAndCategory(book));
-        } catch (InfoNotFullyException infoNotFullyException) {
-            result = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (Exception b){
-            b.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookService::selectBooksByComapnyIdAndCategory, book);
         return result;
     }
 
@@ -133,16 +114,7 @@ public class BookController {
     @GetMapping("book-list-3")
     public Map getBooksByCompanyAndBookName(Book book){
         Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap(bookService.selectBooksByCompanyIdAndBookName(book));
-        } catch (InfoNotFullyException infoNotFullyException) {
-            result = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (Exception b){
-            b.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookService::selectBooksByCompanyIdAndBookName, book);
         return result;
     }
 
@@ -169,16 +141,7 @@ public class BookController {
     @GetMapping("book-list-4")
     public Map getBookByBookId(Book book){
         Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap(bookService.selectByPrimaryKey(book));
-        } catch (InfoNotFullyException infoNotFullyException) {
-            result = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (Exception b){
-            b.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookService::selectByPrimaryKey, book);
         return result;
     }
 
@@ -210,16 +173,7 @@ public class BookController {
     @PutMapping("book")
     public Map updateBookByBookId(Book book){
         Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap("更新的数量为：　" + bookService.updateByPrimaryKey(book));
-        } catch (InfoNotFullyException infoNotFullyException) {
-            result = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (Exception b){
-            b.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookService::updateByPrimaryKey, book);
         return result;
     }
 
@@ -243,16 +197,7 @@ public class BookController {
     @PostMapping("book")
     public Map addBookInfo(Book book){
         Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap(bookService.insert(book));
-        } catch (InfoNotFullyException infoNotFullyException) {
-            result = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (Exception b){
-            b.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookService::insert, book);
         return result;
     }
 
@@ -273,16 +218,7 @@ public class BookController {
     public Map deleteBookInfoByBookId(@PathVariable("bookId") String bookId){
         Map<String, Object> result;
         Book book = Book.builder().bookId(bookId).build();
-        try {
-            result = ToMap.toSuccessMap(bookService.deleteByPrimaryKey(book));
-        } catch (InfoNotFullyException infoNotFullyException) {
-            result = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (Exception b){
-            b.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookService::deleteByPrimaryKey, book);
         return result;
     }
 }

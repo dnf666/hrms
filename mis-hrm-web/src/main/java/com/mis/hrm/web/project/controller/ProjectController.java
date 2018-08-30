@@ -3,6 +3,10 @@ package com.mis.hrm.web.project.controller;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.Map;
 
@@ -25,7 +29,9 @@ public class ProjectController {
      *         "object": null
      *       }
      */
+    @PostMapping("project")
     public Map insertProject(Project project){
+
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS, null);
     }
 
@@ -43,6 +49,7 @@ public class ProjectController {
      *         "object": null
      *       }
      */
+    @DeleteMapping("project")
     public Map deleteProjectByCompanyIdAndProjectId(Project project){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,null);
     }
@@ -69,6 +76,7 @@ public class ProjectController {
      *                  }
      *       }
      */
+    @PutMapping("project")
     public Map updateProjectBycompanyIdAndProjectId(Project project){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,Project.builder().build());
     }
@@ -99,6 +107,7 @@ public class ProjectController {
      *          }
      *       ]
      */
+    @GetMapping("project")
     public Map getProjectBycompanyIdAndProjectId(Project project){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE, ConstantValue.SUCCESS,Project.builder().build());
     }

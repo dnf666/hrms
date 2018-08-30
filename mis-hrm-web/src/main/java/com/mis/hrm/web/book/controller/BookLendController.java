@@ -2,16 +2,12 @@ package com.mis.hrm.web.book.controller;
 
 import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.book.service.BookLendService;
-import com.mis.hrm.project.util.ConstantValue;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.exception.InfoNotFullyException;
-import org.apache.ibatis.binding.BindingException;
+import com.mis.hrm.web.book.util.BookModelControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.server.reactive.TomcatHttpHandlerAdapter;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
 import java.util.Map;
 @RestController
 public class BookLendController {
@@ -174,16 +170,7 @@ public class BookLendController {
     @GetMapping("booklend-list-4")
     public Map getBookLendInfosByCompanyIdAndBookRecord(BookLendInfo bookLendInfo){
         Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap(bookLendService.selectByPrimaryKey(bookLendInfo));
-        } catch (NullPointerException n) {
-            result = ToMap.toFalseMap(n.getMessage());
-        }  catch (InfoNotFullyException inf){
-            result = ToMap.toFalseMap(inf.getMessage());
-        } catch (Exception e){
-            e.printStackTrace();
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookLendService::selectByPrimaryKey, bookLendInfo);
         return result;
     }
 
@@ -251,7 +238,7 @@ public class BookLendController {
     @PostMapping("bookLendInfo")
     public Map insertBookLendInfo(BookLendInfo bookLendInfo){
         Map<String, Object> result;
-        result = BookLendControllerUtil.getResult(bookLendService::insert, bookLendInfo);
+        result = BookModelControllerUtil.getResult(bookLendService::insert, bookLendInfo);
         return result;
     }
 
@@ -275,7 +262,7 @@ public class BookLendController {
                                   @PathVariable("bookRecord")String bookRecord){
         BookLendInfo bookLendInfo = BookLendInfo.builder().companyId(companyId).bookRecord(bookRecord).build();
         Map<String, Object> result;
-        result = BookLendControllerUtil.getResult(bookLendService::deleteByPrimaryKey, bookLendInfo);
+        result = BookModelControllerUtil.getResult(bookLendService::deleteByPrimaryKey, bookLendInfo);
         return result;
     }
 
@@ -307,31 +294,7 @@ public class BookLendController {
     @PutMapping("bookLendInfo")
     public Map updateBookLendInfo(BookLendInfo bookLendInfo){
         Map<String, Object> result;
-        result = BookLendControllerUtil.getResult(bookLendService::updateByPrimaryKey, bookLendInfo);
-        return result;
-    }
-}
-
-@FunctionalInterface
-interface UpdateMethod{
-    int getEffectCount(BookLendInfo o);
-}
-
-/**
- * 使用工具类得到结果
- */
-class BookLendControllerUtil{
-    public static Map<String, Object> getResult(UpdateMethod updateMethod, BookLendInfo bookLendInfo){
-        Map<String, Object> result;
-        try {
-            result = ToMap.toSuccessMap(updateMethod.getEffectCount(bookLendInfo));
-        } catch (NullPointerException n){
-            result = ToMap.toFalseMap(n.getMessage());
-        } catch (InfoNotFullyException inf){
-            result = ToMap.toFalseMap(inf.getMessage());
-        } catch (Exception e){
-            result = ToMap.toFalseMapByServerError();
-        }
+        result = BookModelControllerUtil.getResult(bookLendService::updateByPrimaryKey, bookLendInfo);
         return result;
     }
 }
