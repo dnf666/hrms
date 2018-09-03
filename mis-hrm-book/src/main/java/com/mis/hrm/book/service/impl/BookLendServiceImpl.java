@@ -3,6 +3,7 @@ package com.mis.hrm.book.service.impl;
 import com.mis.hrm.book.dao.BookLendInfoMapper;
 import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.book.service.BookLendService;
+import com.mis.hrm.util.ConstantValue;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class BookLendServiceImpl implements BookLendService {
      * @return
      */
     @Override
-    public List<BookLendInfo> selectBookLendInfosByBorrower(String borrower) throws InfoNotFullyException {
+    public List<BookLendInfo> selectBookLendInfosByBorrower(String borrower) {
         if (!StringUtil.notEmpty(borrower)){
             logger.info("borrower为空");
             throw new InfoNotFullyException("借书者信息不全");
@@ -36,7 +37,7 @@ public class BookLendServiceImpl implements BookLendService {
     }
 
     @Override
-    public List<BookLendInfo> selectBookLendInfosByCompanyId(String companyId) throws InfoNotFullyException {
+    public List<BookLendInfo> selectBookLendInfosByCompanyId(String companyId) {
         if (!StringUtil.notEmpty(companyId)){
             logger.error("companyId信息不全，查询停止");
             throw new InfoNotFullyException("companyId信息不全");
@@ -46,7 +47,7 @@ public class BookLendServiceImpl implements BookLendService {
     }
 
     @Override
-    public List<BookLendInfo> selectBookLendInfosByCompanyIdAndBookName(String companyId, String bookName) throws InfoNotFullyException {
+    public List<BookLendInfo> selectBookLendInfosByCompanyIdAndBookName(String companyId, String bookName) {
         boolean isOk = StringUtil.notEmpty(companyId,bookName);
         if (!isOk){
             logger.error("companyId or bookname is null,查询停止");
@@ -61,13 +62,13 @@ public class BookLendServiceImpl implements BookLendService {
     }
 
     @Override
-    public int deleteByPrimaryKey(BookLendInfo key) throws InfoNotFullyException {
+    public int deleteByPrimaryKey(BookLendInfo key) {
         Optional<BookLendInfo> bookLendInfoOptional;
         try {
             bookLendInfoOptional = Optional.of(key);
         }catch (NullPointerException e){
-            logger.error("传入对象为空，删除失败");
-            throw new NullPointerException("传入对象为空");
+            logger.error(ConstantValue.GET_NULL_DEL_FLAUT);
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookLendInfoOptional
                 .filter(t -> StringUtil.notEmpty(t.getBookRecord(), t.getCompanyId()))
@@ -80,16 +81,16 @@ public class BookLendServiceImpl implements BookLendService {
     }
 
     @Override
-    public int insert(BookLendInfo record) throws InfoNotFullyException {
+    public int insert(BookLendInfo record) {
         Optional<BookLendInfo> bookLendInfoOptional;
         try {
             bookLendInfoOptional = Optional.of(record);
         }catch (NullPointerException e){
-            logger.error("传入对象为空，删除失败");
-            throw new NullPointerException("传入对象为空");
+            logger.error(ConstantValue.GET_NULL_OBJECT + "，插入不成功");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookLendInfoOptional
-                .filter(t -> t.baseRequired())
+                .filter(BookLendInfo::baseRequired)
                 .isPresent();
         if (!isOk){
             logger.error("传入的基本信息不全，插入失败");
@@ -100,13 +101,13 @@ public class BookLendServiceImpl implements BookLendService {
     }
 
     @Override
-    public BookLendInfo selectByPrimaryKey(BookLendInfo key) throws InfoNotFullyException {
+    public BookLendInfo selectByPrimaryKey(BookLendInfo key) {
         Optional<BookLendInfo> bookLendInfoOptional;
         try {
             bookLendInfoOptional = Optional.of(key);
         }catch (NullPointerException e){
-            logger.error("传入对象为空，删除失败");
-            throw new NullPointerException("传入对象为空");
+            logger.error(ConstantValue.GET_NULL_OBJECT);
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookLendInfoOptional
                 .filter(t -> StringUtil.notEmpty(key.getCompanyId(), key.getBookRecord()))
@@ -119,13 +120,13 @@ public class BookLendServiceImpl implements BookLendService {
     }
 
     @Override
-    public int updateByPrimaryKey(BookLendInfo record) throws InfoNotFullyException {
+    public int updateByPrimaryKey(BookLendInfo record) {
         Optional<BookLendInfo> bookLendInfoOptional;
         try {
             bookLendInfoOptional = Optional.of(record);
         }catch (NullPointerException e){
-            logger.error("传入对象为空，删除失败");
-            throw new NullPointerException("传入对象为空");
+            logger.error(ConstantValue.GET_NULL_OBJECT + "，更新失败");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookLendInfoOptional
                 .filter(t -> StringUtil.notEmpty(record.getCompanyId(), record.getBookRecord()))

@@ -3,6 +3,7 @@ package com.mis.hrm.book.service.impl;
 import com.mis.hrm.book.dao.BookMapper;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
+import com.mis.hrm.util.ConstantValue;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.slf4j.Logger;
@@ -28,14 +29,14 @@ public class BookServiceImpl implements BookService {
      * @return 失败？０：１
      */
     @Override
-    public int deleteByPrimaryKey(Book key) throws InfoNotFullyException {
+    public int deleteByPrimaryKey(Book key) {
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(key);
         }catch (NullPointerException e){
             //传入的对象为空,直接返回，不用再去数据库
             logger.error("deleteByPrimaryKey:key为空");
-            throw new NullPointerException("传入对象为空");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookOptional.map(Book::getBookId).isPresent();
         //如果bookId为空，抛出异常
@@ -53,17 +54,16 @@ public class BookServiceImpl implements BookService {
      * @return 失败？０：１+
      */
     @Override
-    public int insert(Book record) throws InfoNotFullyException {
+    public int insert(Book record) {
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(record);
         }catch (NullPointerException e){
             logger.error("insert:record为空，插入失败");
-            throw new NullPointerException("传入对象为空");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         //如果满足插入的基本条件，那么尝试向数据库中插入数据，否则直接失败
-        bookOptional = bookOptional.filter(Book::baseRequied);
-        if (!bookOptional.isPresent()){
+        if (!bookOptional.filter(Book::baseRequied).isPresent()){
             throw new InfoNotFullyException("插入book的基本信息未满足");
         }
         return bookMapper.insert(record);
@@ -75,13 +75,13 @@ public class BookServiceImpl implements BookService {
      * @return success? book : null;
      */
     @Override
-    public Book selectByPrimaryKey(Book key) throws InfoNotFullyException {
+    public Book selectByPrimaryKey(Book key) {
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(key);
         }catch (NullPointerException e){
             logger.error("selectByPrimaryKey:key");
-            throw new NullPointerException("传入对象为空");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookOptional
                 .filter(t -> StringUtil.notEmpty(t.getBookId()))
@@ -94,13 +94,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public int updateByPrimaryKey(Book record) throws InfoNotFullyException {
+    public int updateByPrimaryKey(Book record) {
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(record);
         }catch (NullPointerException e){
             logger.error("insert:record为空");
-            throw new NullPointerException("传入对象为空");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
 //        要求bookid不为空，否则更新失败
         boolean isOk = bookOptional
@@ -114,13 +114,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> selectBooksByCompanyId(Book book) throws InfoNotFullyException {
+    public List<Book> selectBooksByCompanyId(Book book) {
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(book);
         }catch (NullPointerException e){
             logger.error("selectBooksByCompanyId:book为空");
-            throw new NullPointerException("传入对象为空");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookOptional
                 .filter(t -> StringUtil.notEmpty(t.getCompanyId()))
@@ -133,13 +133,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> selectBooksByComapnyIdAndCategory(Book book) throws InfoNotFullyException {
+    public List<Book> selectBooksByComapnyIdAndCategory(Book book) {
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(book);
         }catch (NullPointerException e){
-            logger.error("selectBooksByCompanyId:book为空");
-            throw new NullPointerException("传入对象为空");
+            logger.error("selectBooksByComapnyIdAndCategory:book为空");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookOptional
                 .filter(t -> StringUtil.notEmpty(t.getCompanyId(),t.getCategory()))
@@ -152,13 +152,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> selectBooksByCompanyIdAndBookName(Book book) throws InfoNotFullyException {
+    public List<Book> selectBooksByCompanyIdAndBookName(Book book) {
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(book);
         }catch (NullPointerException e){
-            logger.error("selectBooksByCompanyId:book为空");
-            throw new NullPointerException("传入对象为空");
+            logger.error("selectBooksByCompanyIdAndBookName:book为空");
+            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
         }
         boolean isOk = bookOptional
                 .filter(t -> StringUtil.notEmpty(book.getCompanyId(),book.getBookName()))

@@ -5,12 +5,15 @@ import com.mis.hrm.book.service.BookLendService;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.web.util.ControllerUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 @RestController
 public class BookLendController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private BookLendService bookLendService;
     /**
@@ -51,7 +54,7 @@ public class BookLendController {
         }  catch (InfoNotFullyException inf){
             result = ToMap.toFalseMap(inf.getMessage());
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error(e.toString());
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -95,7 +98,7 @@ public class BookLendController {
         }  catch (InfoNotFullyException inf){
             result = ToMap.toFalseMap(inf.getMessage());
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error(e.toString());
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -140,7 +143,7 @@ public class BookLendController {
         }  catch (InfoNotFullyException inf){
             result = ToMap.toFalseMap(inf.getMessage());
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error(e.toString());
             result = ToMap.toFalseMapByServerError();
         }
         return result;
@@ -211,7 +214,7 @@ public class BookLendController {
         }  catch (InfoNotFullyException inf){
             result = ToMap.toFalseMap(inf.getMessage());
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error(e.toString());
             result = ToMap.toFalseMapByServerError();
         }
         return result;
