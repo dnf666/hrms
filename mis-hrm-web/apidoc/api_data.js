@@ -885,7 +885,7 @@ define({ "api": [
   },
   {
     "type": "GET",
-    "url": "member/all/{page}",
+    "url": "member/all",
     "title": "获取成员列表",
     "description": "<p>分页获取全部成员信息</p>",
     "group": "MEMBER_QUERY",
@@ -898,6 +898,13 @@ define({ "api": [
             "optional": false,
             "field": "page",
             "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
           }
         ]
       }
@@ -914,11 +921,11 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetMemberAllPage"
+    "name": "GetMemberAll"
   },
   {
     "type": "GET",
-    "url": "member/byEmail/{page}",
+    "url": "member/byEmail",
     "title": "根据邮箱获取成员",
     "description": "<p>根据邮箱的模糊分页查询</p>",
     "group": "MEMBER_QUERY",
@@ -931,6 +938,13 @@ define({ "api": [
             "optional": false,
             "field": "page",
             "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
           },
           {
             "group": "Parameter",
@@ -954,11 +968,11 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetMemberByemailPage"
+    "name": "GetMemberByemail"
   },
   {
     "type": "GET",
-    "url": "member/byName/{page}",
+    "url": "member/byName",
     "title": "根据姓名获取成员",
     "description": "<p>根据姓名的模糊分页查询</p>",
     "group": "MEMBER_QUERY",
@@ -971,6 +985,13 @@ define({ "api": [
             "optional": false,
             "field": "page",
             "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
           },
           {
             "group": "Parameter",
@@ -994,11 +1015,11 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetMemberBynamePage"
+    "name": "GetMemberByname"
   },
   {
     "type": "GET",
-    "url": "member/byPhone/{page}",
+    "url": "member/byPhone",
     "title": "根据电话获取成员",
     "description": "<p>根据电话的模糊分页查询</p>",
     "group": "MEMBER_QUERY",
@@ -1011,6 +1032,13 @@ define({ "api": [
             "optional": false,
             "field": "page",
             "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
           },
           {
             "group": "Parameter",
@@ -1034,7 +1062,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
-    "name": "GetMemberByphonePage"
+    "name": "GetMemberByphone"
   },
   {
     "type": "GET",
@@ -1531,7 +1559,7 @@ define({ "api": [
   },
   {
     "type": "GET",
-    "url": "work/all/{page}",
+    "url": "work/all",
     "title": "获取成员列表",
     "description": "<p>分页获取全部成员信息</p>",
     "group": "WORK_QUERY",
@@ -1544,6 +1572,13 @@ define({ "api": [
             "optional": false,
             "field": "page",
             "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
           }
         ]
       }
@@ -1560,11 +1595,11 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetWorkAllPage"
+    "name": "GetWorkAll"
   },
   {
     "type": "GET",
-    "url": "work/byGrade/{page}",
+    "url": "work/byGrade",
     "title": "根据年级获取成员",
     "description": "<p>根据年级的分页查询（注意这里没有模糊查询）</p>",
     "group": "WORK_QUERY",
@@ -1577,6 +1612,13 @@ define({ "api": [
             "optional": false,
             "field": "page",
             "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
           },
           {
             "group": "Parameter",
@@ -1600,11 +1642,11 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetWorkBygradePage"
+    "name": "GetWorkBygrade"
   },
   {
     "type": "GET",
-    "url": "work/byName/{page}",
+    "url": "work/byName",
     "title": "根据姓名获取成员",
     "description": "<p>根据姓名的模糊分页查询</p>",
     "group": "WORK_QUERY",
@@ -1617,6 +1659,13 @@ define({ "api": [
             "optional": false,
             "field": "page",
             "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
           },
           {
             "group": "Parameter",
@@ -1640,7 +1689,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
-    "name": "GetWorkBynamePage"
+    "name": "GetWorkByname"
   },
   {
     "type": "GET",

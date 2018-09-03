@@ -127,10 +127,11 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} work/byGrade/{page} 根据年级获取成员
+     *   @api {GET} work/byGrade 根据年级获取成员
      *   @apiDescription 根据年级的分页查询（注意这里没有模糊查询）
      *   @apiGroup WORK-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiParam  {String} grade 年级（如2017级）
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
@@ -168,10 +169,11 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} work/byName/{page} 根据姓名获取成员
+     *   @api {GET} work/byName 根据姓名获取成员
      *   @apiDescription 根据姓名的模糊分页查询
      *   @apiGroup WORK-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiParam  {String} name 姓名
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
@@ -210,10 +212,11 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} work/all/{page} 获取成员列表
+     *   @api {GET} work/all 获取成员列表
      *   @apiDescription 分页获取全部成员信息
      *   @apiGroup WORK-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {

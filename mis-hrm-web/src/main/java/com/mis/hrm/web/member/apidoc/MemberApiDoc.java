@@ -122,10 +122,11 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} member/all/{page} 获取成员列表
+     *   @api {GET} member/all 获取成员列表
      *   @apiDescription 分页获取全部成员信息
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
@@ -160,10 +161,11 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} member/byPhone/{page} 根据电话获取成员
+     *   @api {GET} member/byPhone 根据电话获取成员
      *   @apiDescription 根据电话的模糊分页查询
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiParam  {String} phoneNumber 电话
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
@@ -199,10 +201,11 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} member/byEmail/{page} 根据邮箱获取成员
+     *   @api {GET} member/byEmail 根据邮箱获取成员
      *   @apiDescription 根据邮箱的模糊分页查询
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiParam  {String} email 邮箱
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
@@ -238,10 +241,11 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} member/byName/{page} 根据姓名获取成员
+     *   @api {GET} member/byName 根据姓名获取成员
      *   @apiDescription 根据姓名的模糊分页查询
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiParam  {String} name 姓名
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
