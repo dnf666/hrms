@@ -11,10 +11,11 @@ public interface WorkService extends BaseService<Whereabout> {
     //统计人员总数
     Long countWorkers();
 
-    //Excel导入成员
+    //分页获取已毕业成员的信息
+    List<Whereabout> getAllGraduates(Pager<Whereabout> pager);
 
-
-    //Excel导出成员
+    //过滤
+    List<Whereabout> filter(@Param("pager") Pager<Whereabout> pager,@Param("whereabout") Whereabout whereabout);
 
 
     //根据年级的分页查找
@@ -22,7 +23,4 @@ public interface WorkService extends BaseService<Whereabout> {
 
     //根据姓名的模糊分页查找
     List<Whereabout> findByName(@Param("pager") Pager<Whereabout> pager,@Param("name") String name);
-
-    //分页获取已毕业成员的信息
-    List<Whereabout> getAllGraduates(Pager<Whereabout> pager);
 }

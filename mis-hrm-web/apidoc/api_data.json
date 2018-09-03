@@ -845,46 +845,6 @@
   },
   {
     "type": "GET",
-    "url": "member",
-    "title": "查找单个成员信息",
-    "description": "<p>根据companyId和num查找成员信息</p>",
-    "group": "MEMBER_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "companyId",
-            "description": "<p>公司id</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "num",
-            "description": "<p>学号</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
-    "groupTitle": "MEMBER_QUERY",
-    "name": "GetMember"
-  },
-  {
-    "type": "GET",
     "url": "member/all",
     "title": "获取成员列表",
     "description": "<p>分页获取全部成员信息</p>",
@@ -925,147 +885,6 @@
   },
   {
     "type": "GET",
-    "url": "member/byEmail",
-    "title": "根据邮箱获取成员",
-    "description": "<p>根据邮箱的模糊分页查询</p>",
-    "group": "MEMBER_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "page",
-            "description": "<p>当前页码</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "size",
-            "description": "<p>每页数量</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "email",
-            "description": "<p>邮箱</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
-    "groupTitle": "MEMBER_QUERY",
-    "name": "GetMemberByemail"
-  },
-  {
-    "type": "GET",
-    "url": "member/byName",
-    "title": "根据姓名获取成员",
-    "description": "<p>根据姓名的模糊分页查询</p>",
-    "group": "MEMBER_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "page",
-            "description": "<p>当前页码</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "size",
-            "description": "<p>每页数量</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>姓名</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
-    "groupTitle": "MEMBER_QUERY",
-    "name": "GetMemberByname"
-  },
-  {
-    "type": "GET",
-    "url": "member/byPhone",
-    "title": "根据电话获取成员",
-    "description": "<p>根据电话的模糊分页查询</p>",
-    "group": "MEMBER_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "page",
-            "description": "<p>当前页码</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "size",
-            "description": "<p>每页数量</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "phoneNumber",
-            "description": "<p>电话</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
-    "groupTitle": "MEMBER_QUERY",
-    "name": "GetMemberByphone"
-  },
-  {
-    "type": "GET",
     "url": "member/count",
     "title": "获取成员总数",
     "description": "<p>直接返回成员总数</p>",
@@ -1083,6 +902,53 @@
     "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
     "name": "GetMemberCount"
+  },
+  {
+    "type": "POST",
+    "url": "member/filter",
+    "title": "筛选成员信息",
+    "description": "<p>根据表单数据筛选成员信息</p>",
+    "group": "MEMBER_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Member",
+            "optional": false,
+            "field": "member",
+            "description": "<p>表单获取到的成员信息</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "groupTitle": "MEMBER_QUERY",
+    "name": "PostMemberFilter"
   },
   {
     "type": "PUT",
@@ -1519,46 +1385,6 @@
   },
   {
     "type": "GET",
-    "url": "work",
-    "title": "查找单个成员信息",
-    "description": "<p>根据companyId和num查找成员信息</p>",
-    "group": "WORK_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "companyId",
-            "description": "<p>公司id</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "num",
-            "description": "<p>学号</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
-    "groupTitle": "WORK_QUERY",
-    "name": "GetWork"
-  },
-  {
-    "type": "GET",
     "url": "work/all",
     "title": "获取成员列表",
     "description": "<p>分页获取全部成员信息</p>",
@@ -1599,100 +1425,6 @@
   },
   {
     "type": "GET",
-    "url": "work/byGrade",
-    "title": "根据年级获取成员",
-    "description": "<p>根据年级的分页查询（注意这里没有模糊查询）</p>",
-    "group": "WORK_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "page",
-            "description": "<p>当前页码</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "size",
-            "description": "<p>每页数量</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "grade",
-            "description": "<p>年级（如2017级）</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
-    "groupTitle": "WORK_QUERY",
-    "name": "GetWorkBygrade"
-  },
-  {
-    "type": "GET",
-    "url": "work/byName",
-    "title": "根据姓名获取成员",
-    "description": "<p>根据姓名的模糊分页查询</p>",
-    "group": "WORK_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "page",
-            "description": "<p>当前页码</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "size",
-            "description": "<p>每页数量</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>姓名</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
-    "groupTitle": "WORK_QUERY",
-    "name": "GetWorkByname"
-  },
-  {
-    "type": "GET",
     "url": "work/count",
     "title": "获取成员总数",
     "description": "<p>直接返回成员总数</p>",
@@ -1710,6 +1442,53 @@
     "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
     "name": "GetWorkCount"
+  },
+  {
+    "type": "POST",
+    "url": "work/filter",
+    "title": "筛选成员信息",
+    "description": "<p>根据表单数据筛选成员信息</p>",
+    "group": "WORK_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Whereabout",
+            "optional": false,
+            "field": "whereabout",
+            "description": "<p>表单获取到的成员信息</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\":[{\n      \"companyId\": \"信管工作室\",\n      \"num\": \"001\",\n      \"name\": \"大红\",\n      \"phoneNumber\": \"21212222222\",\n      \"email\": \"211@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  },\n  {\n      \"companyId\": \"信管工作室\",\n      \"num\": \"002\",\n      \"name\": \"大白\",\n      \"phoneNumber\": \"21212333333\",\n      \"email\": \"222@222.com\",\n      \"grade\": \"2017级\",\n      \"sex\": \"女\",\n      \"profession\": \"信管\",\n      \"department\": \"后台\",\n      \"workPlace\": \"小米\"\n  }]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "groupTitle": "WORK_QUERY",
+    "name": "PostWorkFilter"
   },
   {
     "type": "PUT",

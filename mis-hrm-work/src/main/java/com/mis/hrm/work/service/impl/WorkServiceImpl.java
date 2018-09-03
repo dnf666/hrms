@@ -1,5 +1,6 @@
 package com.mis.hrm.work.service.impl;
 
+import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
@@ -112,5 +113,15 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public List<Whereabout> getAllGraduates(Pager<Whereabout> pager) {
         return workMapper.getAllGraduates(pager);
+    }
+
+    @Override
+    public List<Whereabout> filter(Pager<Whereabout> pager, Whereabout whereabout) throws RuntimeException{
+        if (ObjectNotEmpty.notEmpty(whereabout)) {
+            return workMapper.filter(pager,whereabout);
+        } else {
+            logger.info("未填写过滤条件");
+            throw new InfoNotFullyException("未填写过滤条件");
+        }
     }
 }

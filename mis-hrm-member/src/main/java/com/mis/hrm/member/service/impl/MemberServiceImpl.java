@@ -3,6 +3,7 @@ package com.mis.hrm.member.service.impl;
 import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
+import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
@@ -98,32 +99,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<Member> findByPhoneNumber(Pager<Member> pager, String phoneNumber) throws RuntimeException{
-        if (StringUtil.notEmpty(phoneNumber)) {
-            return memberMapper.findByPhoneNumber(pager,phoneNumber);
+    public List<Member> filter(Pager<Member> pager, Member member) throws RuntimeException{
+        if (ObjectNotEmpty.notEmpty(member)) {
+            return memberMapper.filter(pager,member);
         } else {
-            logger.info("电话信息为空");
-            throw new InfoNotFullyException("电话信息为空");
-        }
-    }
-
-    @Override
-    public List<Member> findByEmail(Pager<Member> pager, String email) throws RuntimeException{
-        if (StringUtil.notEmpty(email)) {
-            return memberMapper.findByEmail(pager,email);
-        } else {
-            logger.info("邮箱信息为空");
-            throw new InfoNotFullyException("邮箱信息为空");
-        }
-    }
-
-    @Override
-    public List<Member> findByName(Pager<Member> pager, String name) throws RuntimeException{
-        if (StringUtil.notEmpty(name)) {
-            return memberMapper.findByName(pager,name);
-        } else {
-            logger.info("昵称信息为空");
-            throw new InfoNotFullyException("昵称信息为空");
+            logger.info("未填写过滤条件");
+            throw new InfoNotFullyException("未填写过滤条件");
         }
     }
 }

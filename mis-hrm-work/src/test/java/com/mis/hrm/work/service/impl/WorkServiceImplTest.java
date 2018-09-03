@@ -98,33 +98,27 @@ public class WorkServiceImplTest {
         Assert.assertEquals((Long)(long)5,workService.countWorkers());
     }
 
-    @Test(expected = InfoNotFullyException.class)
-    public void findByGrade() {
-        String grade = "2017";
-        Assert.assertEquals(new ArrayList<>(),workService.findByGrade(pager,grade));
-
-        grade = "2017级";
-        Assert.assertEquals("麻子",workService.findByGrade(pager,grade).get(1).getName());
-
-        grade = "";
-        Assert.assertEquals(null,workService.findByGrade(pager,grade));
-    }
-
-    @Test(expected = InfoNotFullyException.class)
-    public void findByName() {
-        pager.setCurrentPage(1);
-        String name = "王";
-        Assert.assertEquals("王二",workService.findByName(pager,name).get(0).getName());
-
-        name = "";
-        Assert.assertEquals(null,workService.findByName(pager,name));
-    }
-
     @Test
     public void getAllGraduates() {
         Assert.assertEquals(2,workService.getAllGraduates(pager).size());
 
         pager.setCurrentPage(3);
         Assert.assertEquals(1,workService.getAllGraduates(pager).size());
+    }
+
+    @Test
+    public void testFilter() {
+        blankWhereabout.setName("王");
+        blankWhereabout.setPhoneNumber("101");
+        pager.setCurrentPage(1);
+        Assert.assertEquals("王二", workService.filter(pager, blankWhereabout).get(0).getName());
+
+        blankWhereabout.setCompanyId("极客工作室");
+        Assert.assertEquals(new ArrayList<>(), workService.filter(pager, blankWhereabout));
+    }
+
+    @Test(expected = InfoNotFullyException.class)
+    public void testNullFilter() {
+        workService.filter(pager, blankWhereabout);
     }
 }

@@ -82,35 +82,6 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {GET} work 查找单个成员信息
-     *   @apiDescription 根据companyId和num查找成员信息
-     *   @apiGroup WORK-QUERY
-     *   @apiParam  {String} companyId 公司id
-     *   @apiParam  {String} num 学号
-     *   @apiSuccessExample {json} Success-Response:
-     *       HTTP/1.1 200 OK
-     *       {
-     *         "code": "1",
-     *         "msg": "success"
-     *         "object":{
-     *             "companyId": "信管工作室",
-     *             "num": "001",
-     *             "name": "大红",
-     *             "phoneNumber": "21212222222",
-     *             "email": "211@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台",
-     *             "workPlace": "小米"
-     *         }
-     *       }
-     */
-    public Map selectOneWorker(String companyId, String num){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new Whereabout());
-    }
-
-    /**
      *   @api {GET} work/count 获取成员总数
      *   @apiDescription 直接返回成员总数
      *   @apiGroup WORK-QUERY
@@ -124,91 +95,6 @@ public class WorkApiDoc {
      */
     public Map countWorkers(){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,0);
-    }
-
-    /**
-     *   @api {GET} work/byGrade 根据年级获取成员
-     *   @apiDescription 根据年级的分页查询（注意这里没有模糊查询）
-     *   @apiGroup WORK-QUERY
-     *   @apiParam  {Integer} page 当前页码
-     *   @apiParam  {Integer} size 每页数量
-     *   @apiParam  {String} grade 年级（如2017级）
-     *   @apiSuccessExample {json} Success-Response:
-     *       HTTP/1.1 200 OK
-     *       {
-     *         "code": "1",
-     *         "msg": "success"
-     *         "object":[{
-     *             "companyId": "信管工作室",
-     *             "num": "001",
-     *             "name": "大红",
-     *             "phoneNumber": "21212222222",
-     *             "email": "211@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台",
-     *             "workPlace": "小米"
-     *         },
-     *         {
-     *             "companyId": "信管工作室",
-     *             "num": "002",
-     *             "name": "大白",
-     *             "phoneNumber": "21212333333",
-     *             "email": "222@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台",
-     *             "workPlace": "小米"
-     *         }]
-     *       }
-     */
-    public Map findByGrade(String grade, Integer page, Pager<Whereabout> pager){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<>());
-    }
-
-    /**
-     *   @api {GET} work/byName 根据姓名获取成员
-     *   @apiDescription 根据姓名的模糊分页查询
-     *   @apiGroup WORK-QUERY
-     *   @apiParam  {Integer} page 当前页码
-     *   @apiParam  {Integer} size 每页数量
-     *   @apiParam  {String} name 姓名
-     *   @apiSuccessExample {json} Success-Response:
-     *       HTTP/1.1 200 OK
-     *       {
-     *         "code": "1",
-     *         "msg": "success"
-     *         "object":[{
-     *             "companyId": "信管工作室",
-     *             "num": "001",
-     *             "name": "大红",
-     *             "phoneNumber": "21212222222",
-     *             "email": "211@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台",
-     *             "workPlace": "小米"
-     *         },
-     *         {
-     *             "companyId": "信管工作室",
-     *             "num": "002",
-     *             "name": "大白",
-     *             "phoneNumber": "21212333333",
-     *             "email": "222@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台",
-     *             "workPlace": "小米"
-     *         }]
-     *       }
-     */
-    public Map findByName( String name, Integer page, Pager<Whereabout> pager){
-        pager.setCurrentPage(page);
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<>());
     }
 
     /**
@@ -248,7 +134,49 @@ public class WorkApiDoc {
      *         }]
      *       }
      */
-    public Map getAllWorkers(Integer page, Pager<Whereabout> pager){
+    public Map getAllWorkers(Integer page, Integer size, Pager<Whereabout> pager){
+        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<>());
+    }
+
+    /**
+     *   @api {POST} work/filter 筛选成员信息
+     *   @apiDescription 根据表单数据筛选成员信息
+     *   @apiGroup WORK-QUERY
+     *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
+     *   @apiParam  {Whereabout} whereabout 表单获取到的成员信息
+     *   @apiSuccessExample {json} Success-Response:
+     *       HTTP/1.1 200 OK
+     *       {
+     *         "code": "1",
+     *         "msg": "success"
+     *         "object":[{
+     *             "companyId": "信管工作室",
+     *             "num": "001",
+     *             "name": "大红",
+     *             "phoneNumber": "21212222222",
+     *             "email": "211@222.com",
+     *             "grade": "2017级",
+     *             "sex": "女",
+     *             "profession": "信管",
+     *             "department": "后台",
+     *             "workPlace": "小米"
+     *         },
+     *         {
+     *             "companyId": "信管工作室",
+     *             "num": "002",
+     *             "name": "大白",
+     *             "phoneNumber": "21212333333",
+     *             "email": "222@222.com",
+     *             "grade": "2017级",
+     *             "sex": "女",
+     *             "profession": "信管",
+     *             "department": "后台",
+     *             "workPlace": "小米"
+     *         }]
+     *       }
+     */
+    public Map workFilter(String grade, Integer page, Pager<Whereabout> pager){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<>());
     }
 }

@@ -1,15 +1,15 @@
 define({
-  "name": "book模块",
+  "name": "hrms接口文档",
   "version": "1.1.0",
-  "description": "生成Ｂｏｏｋ模块对应api的工具",
-  "title": "BOOK模块的接口",
+  "description": "生成各模块对应api的工具",
+  "title": "hrms接口文档",
   "url": "http://localhost:8080/hrms/",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2018-09-03T09:02:32.518Z",
+    "time": "2018-09-03T12:37:18.994Z",
     "url": "http://apidocjs.com",
     "version": "0.17.6"
   }

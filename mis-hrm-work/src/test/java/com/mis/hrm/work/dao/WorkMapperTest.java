@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/spring-work.xml")
@@ -18,6 +20,7 @@ public class WorkMapperTest {
     private WorkMapper workMapper;
 
     private Whereabout whereabout;
+    private Whereabout blankWhereabout;
 
     private Pager<Whereabout> pager;
 
@@ -34,6 +37,8 @@ public class WorkMapperTest {
                 .profession("信息管理与信息系统")
                 .department("后台")
                 .workPlace("头条").build();
+
+        blankWhereabout = Whereabout.builder().build();
 
         pager = new Pager<>();
         pager.setPageSize(2);
@@ -75,21 +80,19 @@ public class WorkMapperTest {
     }
 
     @Test
-    public void findByGrade() {
-        String grade = "2017级";
-        Assert.assertEquals("麻子",workMapper.findByGrade(pager,grade).get(1).getName());
-    }
-
-    @Test
-    public void findByName() {
-        pager.setCurrentPage(1);
-        String name = "王";
-        Assert.assertEquals("王二",workMapper.findByName(pager,name).get(0).getName());
-    }
-
-    @Test
     public void getAllGraduates() {
         pager.setCurrentPage(3);
         Assert.assertEquals("小五",workMapper.getAllGraduates(pager).get(0).getName());
+    }
+
+    @Test
+    public void testFilter() {
+        blankWhereabout.setName("王");
+        blankWhereabout.setPhoneNumber("10");
+        pager.setCurrentPage(1);
+        Assert.assertEquals("王二",workMapper.filter(pager,blankWhereabout).get(0).getName());
+
+        blankWhereabout.setCompanyId("极客工作室");
+        Assert.assertEquals(new ArrayList<>(),workMapper.filter(pager,blankWhereabout));
     }
 }

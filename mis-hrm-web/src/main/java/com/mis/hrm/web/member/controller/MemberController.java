@@ -55,20 +55,6 @@ public class MemberController {
         return map;
     }
 
-    @GetMapping
-    public Map selectOneMember(@RequestParam String companyId,
-                                  @RequestParam String num) {
-        Member member = new Member(companyId,num);
-        member.setNum(num);
-        Map<String,Object> map;
-        try {
-            map = ToMap.toSuccessMap(memberService.selectByPrimaryKey(member));
-        } catch (NullPointerException e){
-            map = ToMap.toFalseMap(e.getMessage());
-        }
-        return map;
-    }
-
     @GetMapping("/count")
     public Map countMembers(){
         return ToMap.toSuccessMap(memberService.countMembers());
@@ -83,48 +69,16 @@ public class MemberController {
         return ToMap.toSuccessMap(memberService.getAllMembers(pager));
     }
 
-    @GetMapping("/byPhone")
-    public Map findByPhoneNumber(@RequestParam String phoneNumber,
-                                 @RequestParam Integer page,
-                                 @RequestParam Integer size,
-                                 Pager<Member> pager){
+    @PostMapping("/filter")
+    public Map memberFilter(@RequestBody Member member,
+                      @RequestParam Integer page,
+                      @RequestParam Integer size,
+                      Pager<Member> pager){
         pager.setCurrentPage(page);
         pager.setPageSize(size);
         Map<String,Object> map;
         try {
-            map = ToMap.toSuccessMap(memberService.findByPhoneNumber(pager, phoneNumber));
-        } catch (InfoNotFullyException infoNotFullyException){
-            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        }
-        return map;
-    }
-
-    @GetMapping("/byEmail")
-    public Map findByEmail(@RequestParam String email,
-                           @RequestParam Integer page,
-                           @RequestParam Integer size,
-                           Pager<Member> pager){
-        pager.setCurrentPage(page);
-        pager.setPageSize(size);
-        Map<String,Object> map;
-        try {
-            map = ToMap.toSuccessMap(memberService.findByEmail(pager, email));
-        } catch (InfoNotFullyException infoNotFullyException){
-            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        }
-        return map;
-    }
-
-    @GetMapping("/byName")
-    public Map findByName(@RequestParam String name,
-                          @RequestParam Integer page,
-                          @RequestParam Integer size,
-                          Pager<Member> pager){
-        pager.setCurrentPage(page);
-        pager.setPageSize(size);
-        Map<String,Object> map;
-        try {
-            map = ToMap.toSuccessMap(memberService.findByName(pager, name));
+            map = ToMap.toSuccessMap(memberService.filter(pager, member));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         }

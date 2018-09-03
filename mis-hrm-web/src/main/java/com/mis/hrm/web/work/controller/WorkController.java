@@ -55,55 +55,9 @@ public class WorkController {
         return map;
     }
 
-    @GetMapping
-    public Map selectOneWorker(@RequestParam String companyId,
-                               @RequestParam String num) {
-        Whereabout whereabout = new Whereabout(companyId,num);
-        whereabout.setNum(num);
-        Map<String,Object> map;
-        try {
-            map = ToMap.toSuccessMap(workService.selectByPrimaryKey(whereabout));
-        } catch (NullPointerException e){
-            map = ToMap.toFalseMap(e.getMessage());
-        }
-        return map;
-    }
-
     @GetMapping("/count")
     public Map countWorkers(){
         return ToMap.toSuccessMap(workService.countWorkers());
-    }
-
-    @GetMapping("/byGrade")
-    public Map findByGrade(@RequestParam String grade,
-                           @RequestParam Integer page,
-                           @RequestParam Integer size,
-                           Pager<Whereabout> pager){
-        pager.setCurrentPage(page);
-        pager.setPageSize(size);
-        Map<String,Object> map;
-        try {
-            map = ToMap.toSuccessMap(workService.findByGrade(pager, grade));
-        } catch (InfoNotFullyException e){
-            map = ToMap.toFalseMap(e.getMessage());
-        }
-        return map;
-    }
-
-    @GetMapping("/byName")
-    public Map findByName(@RequestParam String name,
-                          @RequestParam Integer page,
-                          @RequestParam Integer size,
-                          Pager<Whereabout> pager){
-        pager.setPageSize(size);
-        pager.setCurrentPage(page);
-        Map<String,Object> map;
-        try {
-            map = ToMap.toSuccessMap(workService.findByName(pager, name));
-        } catch (InfoNotFullyException e){
-            map = ToMap.toFalseMap(e.getMessage());
-        }
-        return map;
     }
 
     @GetMapping("/all")
@@ -113,6 +67,22 @@ public class WorkController {
         pager.setCurrentPage(page);
         pager.setPageSize(size);
         return ToMap.toSuccessMap(workService.getAllGraduates(pager));
+    }
+
+    @PostMapping("/filter")
+    public Map workFilter(@RequestBody Whereabout whereabout,
+                            @RequestParam Integer page,
+                            @RequestParam Integer size,
+                            Pager<Whereabout> pager){
+        pager.setPageSize(size);
+        pager.setCurrentPage(page);
+        Map<String,Object> map;
+        try {
+            map = ToMap.toSuccessMap(workService.filter(pager, whereabout));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        }
+        return map;
     }
 
 }
