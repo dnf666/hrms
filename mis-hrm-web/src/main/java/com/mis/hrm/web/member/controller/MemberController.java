@@ -74,18 +74,22 @@ public class MemberController {
         return ToMap.toSuccessMap(memberService.countMembers());
     }
 
-    @GetMapping("/all/{page}")
-    public Map getAllMembers(@PathVariable Integer page,
+    @GetMapping("/all")
+    public Map getAllMembers(@RequestParam Integer page,
+                             @RequestParam Integer size,
                              Pager<Member> pager){
         pager.setCurrentPage(page);
+        pager.setPageSize(size);
         return ToMap.toSuccessMap(memberService.getAllMembers(pager));
     }
 
-    @GetMapping("/byPhone/{page}")
+    @GetMapping("/byPhone")
     public Map findByPhoneNumber(@RequestParam String phoneNumber,
-                                 @PathVariable Integer page,
+                                 @RequestParam Integer page,
+                                 @RequestParam Integer size,
                                  Pager<Member> pager){
         pager.setCurrentPage(page);
+        pager.setPageSize(size);
         Map<String,Object> map;
         try {
             map = ToMap.toSuccessMap(memberService.findByPhoneNumber(pager, phoneNumber));
@@ -95,11 +99,13 @@ public class MemberController {
         return map;
     }
 
-    @GetMapping("/byEmail/{page}")
+    @GetMapping("/byEmail")
     public Map findByEmail(@RequestParam String email,
-                                 @PathVariable Integer page,
-                                 Pager<Member> pager){
+                           @RequestParam Integer page,
+                           @RequestParam Integer size,
+                           Pager<Member> pager){
         pager.setCurrentPage(page);
+        pager.setPageSize(size);
         Map<String,Object> map;
         try {
             map = ToMap.toSuccessMap(memberService.findByEmail(pager, email));
@@ -109,11 +115,13 @@ public class MemberController {
         return map;
     }
 
-    @GetMapping("/byName/{page}")
+    @GetMapping("/byName")
     public Map findByName(@RequestParam String name,
-                                 @PathVariable Integer page,
-                                 Pager<Member> pager){
+                          @RequestParam Integer page,
+                          @RequestParam Integer size,
+                          Pager<Member> pager){
         pager.setCurrentPage(page);
+        pager.setPageSize(size);
         Map<String,Object> map;
         try {
             map = ToMap.toSuccessMap(memberService.findByName(pager, name));

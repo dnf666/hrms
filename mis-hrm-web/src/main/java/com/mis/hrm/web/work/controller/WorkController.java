@@ -74,11 +74,13 @@ public class WorkController {
         return ToMap.toSuccessMap(workService.countWorkers());
     }
 
-    @GetMapping("/byGrade/{page}")
+    @GetMapping("/byGrade")
     public Map findByGrade(@RequestParam String grade,
-                           @PathVariable Integer page,
+                           @RequestParam Integer page,
+                           @RequestParam Integer size,
                            Pager<Whereabout> pager){
         pager.setCurrentPage(page);
+        pager.setPageSize(size);
         Map<String,Object> map;
         try {
             map = ToMap.toSuccessMap(workService.findByGrade(pager, grade));
@@ -88,10 +90,12 @@ public class WorkController {
         return map;
     }
 
-    @GetMapping("/byName/{page}")
+    @GetMapping("/byName")
     public Map findByName(@RequestParam String name,
-                          @PathVariable Integer page,
+                          @RequestParam Integer page,
+                          @RequestParam Integer size,
                           Pager<Whereabout> pager){
+        pager.setPageSize(size);
         pager.setCurrentPage(page);
         Map<String,Object> map;
         try {
@@ -102,10 +106,12 @@ public class WorkController {
         return map;
     }
 
-    @GetMapping("/all/{page}")
-    public Map getAllWorkers(@PathVariable Integer page,
+    @GetMapping("/all")
+    public Map getAllWorkers(@RequestParam Integer page,
+                             @RequestParam Integer size,
                              Pager<Whereabout> pager){
         pager.setCurrentPage(page);
+        pager.setPageSize(size);
         return ToMap.toSuccessMap(workService.getAllGraduates(pager));
     }
 
