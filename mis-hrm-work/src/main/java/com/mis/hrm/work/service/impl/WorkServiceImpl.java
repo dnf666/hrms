@@ -91,26 +91,6 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public List<Whereabout> findByGrade(Pager<Whereabout> pager, String grade) {
-        if(StringUtil.notEmpty(grade)){
-            return workMapper.findByGrade(pager,grade);
-        } else {
-            logger.info("年级信息为空");
-            throw new InfoNotFullyException("年级信息为空");
-        }
-    }
-
-    @Override
-    public List<Whereabout> findByName(Pager<Whereabout> pager, String name) {
-        if (StringUtil.notEmpty(name)) {
-            return workMapper.findByName(pager,name);
-        } else {
-            logger.info("昵称信息为空");
-            throw new InfoNotFullyException("昵称信息为空");
-        }
-    }
-
-    @Override
     public List<Whereabout> getAllGraduates(Pager<Whereabout> pager) {
         return workMapper.getAllGraduates(pager);
     }

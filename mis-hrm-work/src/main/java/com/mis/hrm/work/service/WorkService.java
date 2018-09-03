@@ -16,11 +16,4 @@ public interface WorkService extends BaseService<Whereabout> {
 
     //过滤
     List<Whereabout> filter(@Param("pager") Pager<Whereabout> pager,@Param("whereabout") Whereabout whereabout);
-
-
-    //根据年级的分页查找
-    List<Whereabout> findByGrade(@Param("pager") Pager<Whereabout> pager, @Param("grade") String grade);
-
-    //根据姓名的模糊分页查找
-    List<Whereabout> findByName(@Param("pager") Pager<Whereabout> pager,@Param("name") String name);
 }

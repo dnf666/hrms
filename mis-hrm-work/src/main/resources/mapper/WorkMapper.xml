@@ -52,26 +52,6 @@
         select count(*) from whereabout;
     </select>
 
-    <!--<select id="findByGrade" resultType="List" resultMap="BaseResultMap">-->
-        <!--select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place-->
-        <!--from whereabout-->
-        <!--where grade = #{grade}-->
-        <!--<if test="pager.offset!=null and pager.limit!=null">-->
-            <!--limit #{pager.offset},#{pager.limit}-->
-        <!--</if>-->
-    <!--</select>-->
-
-    <!--<select id="findByName" resultType="List" resultMap="BaseResultMap">-->
-        <!--select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place-->
-        <!--from whereabout-->
-        <!--<if test="name!=null">-->
-            <!--where name like '%${name}%'-->
-        <!--</if>-->
-        <!--<if test="pager.offset!=null and pager.limit!=null">-->
-            <!--limit #{pager.offset},#{pager.limit}-->
-        <!--</if>-->
-    <!--</select>-->
-
     <select id="getAllGraduates" resultType="List" resultMap="BaseResultMap">
         select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
         from whereabout
