@@ -9,6 +9,7 @@ import com.mis.hrm.util.exception.InfoNotFullyException;
 import java.util.Map;
 
 public class ControllerUtil {
+    private ControllerUtil(){}
     public static Map<String, Object> getResult(BookLendInfoUpdateMethod bookLendInfoUpdateMethod, BookLendInfo bookLendInfo){
         Map<String, Object> result;
         try {

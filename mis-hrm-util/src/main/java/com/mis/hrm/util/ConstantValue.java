@@ -1,6 +1,8 @@
 package com.mis.hrm.util;
 
 
+import org.apache.poi.openxml4j.opc.PackagingURIHelper;
+
 public class   ConstantValue {
     public final static String BIND_EXCEPTION = "服务器内部错误！";
     public final static String SUCCESS = "success";
@@ -10,4 +12,6 @@ public class   ConstantValue {
     public final static int FALSE_CODE = 0;
     public final static String UPDATE_SUCCESS = "更新成功";
     public final static String UPDATE_FALSE = "更新失败";
+    public final static String GET_NULL_OBJECT = "空对象";
+    public final static String GET_NULL_DEL_FLAUT = "传入对象为空，删除失败";
 }

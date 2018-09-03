@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public  class ToMap {
-    private static Map<String, Object> result = null;
+    private ToMap(){}
     public static Map<String, Object> toMap(int code, String message, Object object){
+        Map<String, Object> result;
         result = new HashMap<>();
         result.put("code", code);
         result.put("msg", message);

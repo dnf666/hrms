@@ -21,6 +21,9 @@ import java.util.function.Function;
 @Resource
 public class HttpClientUtil {
 
+    private static final String CONTENT_TYPE = "content-Type";
+    private static final String JSON_TYPE = "application/json";
+    private static final String HTTP_REQURIED = "http://";
 // 　  传入的ｕｒｌ　为空　或者　不符合条件
     private static final int ERROR_URL = -1;
 //    发送请求失败。
@@ -80,7 +83,7 @@ public class HttpClientUtil {
 //        2.创建一个httpGet请求
             HttpPost httpPost = new HttpPost(url);
             httpPost.setEntity(new StringEntity(jsonParams));
-            httpPost.setHeader("Content-Type","application/json");
+            httpPost.setHeader(CONTENT_TYPE,JSON_TYPE);
             httpPost.setConfig(requestConfig);
 //        3.执行post请求,同时返回状态码
             statusCode = httpClient.execute(httpPost, new StatusCodeResponseHandler());
@@ -108,7 +111,7 @@ public class HttpClientUtil {
 //        2.创建一个httpGet请求
             HttpPut httpPut = new HttpPut(url);
             httpPut.setEntity(new StringEntity(jsonParams));
-            httpPut.setHeader("Content-Type","application/json");
+            httpPut.setHeader(CONTENT_TYPE,JSON_TYPE);
             httpPut.setConfig(requestConfig);
 //        3.执行post请求,同时返回状态码
             statusCode = httpClient.execute(httpPut, new StatusCodeResponseHandler());
@@ -129,7 +132,7 @@ public class HttpClientUtil {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()){
 //        2.创建一个httpGet请求
             HttpDelete httpDelete = new HttpDelete(url);
-            httpDelete.setHeader("Content-Type","application/json");
+            httpDelete.setHeader(CONTENT_TYPE,JSON_TYPE);
             httpDelete.setConfig(requestConfig);
 //        3.执行post请求,同时返回状态码
             statusCode = httpClient.execute(httpDelete, new StatusCodeResponseHandler());
@@ -152,15 +155,15 @@ public class HttpClientUtil {
         //去掉以全角空格开头或者结尾空格的字符。
         url = removeSpace(url);
         if (url.equals("")
-                || (url.length() == 7 && url.equals("http://"))
+                || (url.length() == 7 && url.equals(HTTP_REQURIED)
                 || url.length() == 8 || url.equals("https://")){
             throw new StringIsNullException("传入的全是空格");
         }
-        boolean httpIsExist = url.length() >= 7 && url.substring(0,7).equals("http://");
+        boolean httpIsExist = url.length() >= 7 && url.substring(0,7).equals(HTTP_REQURIED);
         boolean httpsIsExist = url.length() >= 8 && url.substring(0,8).equals("https://");
 //        检查是否是以 http://  or https://　开头
         if ( !(httpIsExist || httpsIsExist)){
-            url = "http://" + url;
+            url = HTTP_REQURIED + url;
         }
 
         return url;
