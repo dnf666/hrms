@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -36,7 +38,7 @@ public class WorkMapperTest {
                 .sex("男")
                 .profession("信息管理与信息系统")
                 .department("后台")
-                .workPlace("头条").build();
+                .workPlace("阿里").build();
 
         blankWhereabout = Whereabout.builder().build();
 
@@ -72,6 +74,15 @@ public class WorkMapperTest {
 
         whereabout.setNum("2017210004");
         Assert.assertEquals(0,workMapper.updateByPrimaryKey(whereabout));
+    }
+
+    @Test
+    public void testDeleteByNums() {
+        List<String> numList = Arrays.asList(
+                "2017210001","2017210002","2017210003"
+        );
+
+        Assert.assertEquals(3,workMapper.deleteByNums(numList));
     }
 
     @Test

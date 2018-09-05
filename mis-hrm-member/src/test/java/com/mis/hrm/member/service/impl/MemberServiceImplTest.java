@@ -15,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/spring-member.xml")
@@ -90,6 +92,16 @@ public class MemberServiceImplTest {
         Assert.assertEquals(0, memberService.updateByPrimaryKey(member));
 
         Assert.assertEquals(0, memberService.updateByPrimaryKey(blankMember));
+    }
+
+    @Test(expected = RuntimeException.class)
+//    @Ignore
+    public void testDeleteByNums() {
+        Assert.assertEquals(3,memberService.deleteByNums(
+                Arrays.asList("2017210001","2017210002","2017210003")
+        ));
+
+        Assert.assertEquals(0,memberService.deleteByNums(new ArrayList<>()));
     }
 
     @Test

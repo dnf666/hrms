@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface WorkService extends BaseService<Whereabout> {
+    //批量删除
+    int deleteByNums(List<String> nums);
+
     //统计人员总数
     Long countWorkers();
 

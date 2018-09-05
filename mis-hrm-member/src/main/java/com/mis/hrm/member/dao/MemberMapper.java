@@ -11,6 +11,9 @@ import java.util.List;
 
 @Repository
 public interface MemberMapper extends BaseMapper<Member> {
+    //批量删除
+    int deleteByNums(List<String> nums);
+
     //统计成员总数
     Long countMembers();
 

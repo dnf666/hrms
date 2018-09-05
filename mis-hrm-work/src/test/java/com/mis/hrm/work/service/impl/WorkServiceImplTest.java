@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/spring-work.xml")
@@ -91,6 +92,16 @@ public class WorkServiceImplTest {
         Assert.assertEquals(0,workService.updateByPrimaryKey(whereabout));
 
         Assert.assertEquals(0,workService.updateByPrimaryKey(blankWhereabout));
+    }
+
+    @Test(expected = RuntimeException.class)
+//    @Ignore
+    public void testDeleteByNums() {
+        Assert.assertEquals(3,workService.deleteByNums(
+                Arrays.asList("2017210001","2017210002","2017210003")
+        ));
+
+        Assert.assertEquals(0,workService.deleteByNums(new ArrayList<>()));
     }
 
     @Test

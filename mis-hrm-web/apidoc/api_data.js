@@ -644,6 +644,46 @@ define({ "api": [
   },
   {
     "type": "GET",
+    "url": "{tableTitle}/download",
+    "title": "模板下载",
+    "description": "<p>目前可填的tableTitle还是只有member和whereabout 嘤</p>",
+    "group": "EXCEL",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tableTitle",
+            "description": "<p>数据库表名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "filePath",
+            "description": "<p>Excel文件的具体路径</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "groupTitle": "EXCEL",
+    "name": "GetTabletitleDownload"
+  },
+  {
+    "type": "GET",
     "url": "{tableTitle}/fromExcel",
     "title": "将数据从Excel导出到数据库",
     "description": "<p>其实这个tableTitle可以瞎填，有它只是为了保持格式一致，但最好还是写member或whereabout啦</p>",
@@ -806,24 +846,17 @@ define({ "api": [
   {
     "type": "DELETE",
     "url": "member",
-    "title": "删除单个成员信息",
-    "description": "<p>根据companyId和num删除成员信息</p>",
+    "title": "(批量)删除成员信息",
+    "description": "<p>根据num组删除成员信息，返回成功删除的成员个数</p>",
     "group": "MEMBER_DELETE",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "List",
             "optional": false,
-            "field": "companyId",
-            "description": "<p>公司id</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "num",
+            "field": "nums",
             "description": "<p>学号</p>"
           }
         ]
@@ -833,7 +866,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": 3\n}",
           "type": "json"
         }
       ]
@@ -1346,24 +1379,17 @@ define({ "api": [
   {
     "type": "DELETE",
     "url": "work",
-    "title": "删除单个成员信息",
-    "description": "<p>根据companyId和num删除成员信息</p>",
+    "title": "(批量)删除成员信息",
+    "description": "<p>根据num组删除成员信息，返回成功删除的成员个数</p>",
     "group": "WORK_DELETE",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "List",
             "optional": false,
-            "field": "companyId",
-            "description": "<p>公司id</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "num",
+            "field": "nums",
             "description": "<p>学号</p>"
           }
         ]
@@ -1373,7 +1399,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": 3\n}",
           "type": "json"
         }
       ]

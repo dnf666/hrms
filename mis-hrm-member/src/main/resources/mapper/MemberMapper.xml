@@ -46,6 +46,13 @@
         where company_id = #{companyId} and num = #{num};
     </select>
 
+    <delete id="deleteByNums" parameterType="java.util.List">
+        delete from member where num in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <select id="countMembers" resultType="java.lang.Long">
         select count(num) from member;
     </select>

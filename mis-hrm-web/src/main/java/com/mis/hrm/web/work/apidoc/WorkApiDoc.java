@@ -6,6 +6,7 @@ import com.mis.hrm.util.ToMap;
 import com.mis.hrm.work.model.Whereabout;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WorkApiDoc {
@@ -36,22 +37,20 @@ public class WorkApiDoc {
     }
 
     /**
-     *   @api {DELETE} work 删除单个成员信息
-     *   @apiDescription 根据companyId和num删除成员信息
+     *   @api {DELETE} work (批量)删除成员信息
+     *   @apiDescription 根据num组删除成员信息，返回成功删除的成员个数
      *   @apiGroup WORK-DELETE
-     *   @apiParam  {String} companyId 公司id
-     *   @apiParam  {String} num 学号
+     *   @apiParam  {List} nums 学号
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
      *         "code": "1",
      *         "msg": "success"
-     *         "object": null
+     *         "object": 3
      *       }
      */
-    public Map deleteOneWorker(Whereabout whereabout){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
-
+    public Map deleteByNums(List<String> nums){
+        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,0);
     }
 
     /**

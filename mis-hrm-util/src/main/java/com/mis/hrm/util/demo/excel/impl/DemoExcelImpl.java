@@ -31,8 +31,9 @@ public class DemoExcelImpl implements DemoExcel {
      * 创将数据从数据库导入到Excel
      * @param filePath 文件路径
      * @param tableTile 表格title(如member)
+     * @param type 是否为模板下载
      */
-    public void importExcel(String filePath,String tableTile){
+    public void importExcel(String filePath,String tableTile,String type){
         //创建工作簿
         XSSFWorkbook workbook = new XSSFWorkbook();
         //创建工作表
@@ -59,17 +60,21 @@ public class DemoExcelImpl implements DemoExcel {
             headCell.setCellValue(head.get(i));
         }
 
-        //将查询结果放进数组
-        List<String> list = connMysql(head,sql,"select");
-        //从第二行开始输入数据，共list.size/head.size行
-        for(int i = 1; i <= list.size() / head.size(); i++){
-            Row row = sheet.createRow(i);
-            //每行创建head.size个单元格
-            for (int j = 0; j < head.size(); j++) {
-                Cell cell = row.createCell(j);
-                //得到对应单元格的内容
-                cell.setCellValue(list.get( ((i-1)*head.size() + (j+1)) -1 ));
+        if (type.equals("excel")) {
+            //将查询结果放进数组
+            List<String> list = connMysql(head,sql,"select");
+            //从第二行开始输入数据，共list.size/head.size行
+            for(int i = 1; i <= list.size() / head.size(); i++){
+                Row row = sheet.createRow(i);
+                //每行创建head.size个单元格
+                for (int j = 0; j < head.size(); j++) {
+                    Cell cell = row.createCell(j);
+                    //得到对应单元格的内容
+                    cell.setCellValue(list.get( ((i-1)*head.size() + (j+1)) -1 ));
+                }
             }
+        } else if (type.equals("download")) {
+            //如果为模板下载，不做操作（即只放入表头）
         }
 
         //创建文件和文件流

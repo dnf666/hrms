@@ -8,6 +8,7 @@ import com.mis.hrm.work.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -30,10 +31,10 @@ public class WorkController {
     }
 
     @DeleteMapping
-    public Map deleteOneWorker(@RequestBody Whereabout whereabout) {
+    public Map deleteByNums(@RequestBody List<String> nums) {
         Map<String,Object> map;
         try {
-            map = ToMap.toSuccessMap(workService.deleteByPrimaryKey(whereabout));
+            map = ToMap.toSuccessMap(workService.deleteByNums(nums));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e){

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -85,6 +86,23 @@ public class MemberServiceImpl implements MemberService {
         } else {
             logger.info("主键信息为空");
             throw new InfoNotFullyException("主键信息为空");
+        }
+    }
+
+    @Override
+    public int deleteByNums(List<String> nums) {
+        if(!nums.equals(new ArrayList<>())){
+            int stateNum = memberMapper.deleteByNums(nums);
+            if(stateNum > 0){
+                logger.info("成功删除" + stateNum + "名成员信息");
+                return stateNum;
+            } else {
+                logger.info("成员信息删除失败");
+                throw new RuntimeException("成员信息删除失败");
+            }
+        } else {
+            logger.info("学号为空");
+            throw new InfoNotFullyException("学号为空");
         }
     }
 

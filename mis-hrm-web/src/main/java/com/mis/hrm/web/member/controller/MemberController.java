@@ -8,6 +8,7 @@ import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -30,10 +31,10 @@ public class MemberController {
     }
 
     @DeleteMapping
-    public Map deleteOneMember(@RequestBody Member member) {
+    public Map deleteByNums(@RequestBody List<String> nums) {
         Map<String,Object> map;
         try {
-            map = ToMap.toSuccessMap(memberService.deleteByPrimaryKey(member));
+            map = ToMap.toSuccessMap(memberService.deleteByNums(nums));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e){
