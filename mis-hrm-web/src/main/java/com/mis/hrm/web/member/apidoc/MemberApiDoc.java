@@ -6,6 +6,7 @@ import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MemberApiDoc {
@@ -35,21 +36,20 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {DELETE} member 删除单个成员信息
-     *   @apiDescription 根据companyId和num删除成员信息
+     *   @api {DELETE} member (批量)删除成员信息
+     *   @apiDescription 根据num组删除成员信息，返回成功删除的成员个数
      *   @apiGroup MEMBER-DELETE
-     *   @apiParam  {String} companyId 公司id
-     *   @apiParam  {String} num 学号
+     *   @apiParam  {List} nums 学号
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
      *         "code": "1",
      *         "msg": "success"
-     *         "object": null
+     *         "object": 3
      *       }
      */
-    public Map deleteOneMember(Member member){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
+    public Map deleteByNums(List<String> nums){
+        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,0);
     }
 
     /**
@@ -75,34 +75,6 @@ public class MemberApiDoc {
      */
     public Map updateOneMember(Member member){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
-    }
-
-    /**
-     *   @api {GET} member 查找单个成员信息
-     *   @apiDescription 根据companyId和num查找成员信息
-     *   @apiGroup MEMBER-QUERY
-     *   @apiParam  {String} companyId 公司id
-     *   @apiParam  {String} num 学号
-     *   @apiSuccessExample {json} Success-Response:
-     *       HTTP/1.1 200 OK
-     *       {
-     *         "code": "1",
-     *         "msg": "success"
-     *         "object":{
-     *             "companyId": "信管工作室",
-     *             "num": "001",
-     *             "name": "大红",
-     *             "phoneNumber": "21212222222",
-     *             "email": "211@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台"
-     *         }
-     *       }
-     */
-    public Map selectOneMember(String companyId, String num){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new Member());
     }
 
     /**
@@ -161,12 +133,12 @@ public class MemberApiDoc {
     }
 
     /**
-     *   @api {GET} member/byPhone 根据电话获取成员
-     *   @apiDescription 根据电话的模糊分页查询
+     *   @api {POST} member/filter 筛选成员信息
+     *   @apiDescription 根据表单数据筛选成员信息
      *   @apiGroup MEMBER-QUERY
      *   @apiParam  {Integer} page 当前页码
      *   @apiParam  {Integer} size 每页数量
-     *   @apiParam  {String} phoneNumber 电话
+     *   @apiParam  {Member} member 表单获取到的成员信息
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
@@ -196,89 +168,7 @@ public class MemberApiDoc {
      *         }]
      *       }
      */
-    public Map findByPhoneNumber(String phoneNumber, Integer page, Pager<Member> pager){
+    public Map memberFilter(Integer page, Integer size, Pager<Member> pager, Member member){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<>());
     }
-
-    /**
-     *   @api {GET} member/byEmail 根据邮箱获取成员
-     *   @apiDescription 根据邮箱的模糊分页查询
-     *   @apiGroup MEMBER-QUERY
-     *   @apiParam  {Integer} page 当前页码
-     *   @apiParam  {Integer} size 每页数量
-     *   @apiParam  {String} email 邮箱
-     *   @apiSuccessExample {json} Success-Response:
-     *       HTTP/1.1 200 OK
-     *       {
-     *         "code": "1",
-     *         "msg": "success"
-     *         "object":[{
-     *             "companyId": "信管工作室",
-     *             "num": "001",
-     *             "name": "大红",
-     *             "phoneNumber": "21212222222",
-     *             "email": "211@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台"
-     *         },
-     *         {
-     *             "companyId": "信管工作室",
-     *             "num": "002",
-     *             "name": "大白",
-     *             "phoneNumber": "21212333333",
-     *             "email": "222@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台"
-     *         }]
-     *       }
-     */
-    public Map findByEmail(String email, Integer page, Pager<Member> pager){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<>());
-    }
-
-    /**
-     *   @api {GET} member/byName 根据姓名获取成员
-     *   @apiDescription 根据姓名的模糊分页查询
-     *   @apiGroup MEMBER-QUERY
-     *   @apiParam  {Integer} page 当前页码
-     *   @apiParam  {Integer} size 每页数量
-     *   @apiParam  {String} name 姓名
-     *   @apiSuccessExample {json} Success-Response:
-     *       HTTP/1.1 200 OK
-     *       {
-     *         "code": "1",
-     *         "msg": "success"
-     *         "object":[{
-     *             "companyId": "信管工作室",
-     *             "num": "001",
-     *             "name": "大红",
-     *             "phoneNumber": "21212222222",
-     *             "email": "211@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台"
-     *         },
-     *         {
-     *             "companyId": "信管工作室",
-     *             "num": "002",
-     *             "name": "大白",
-     *             "phoneNumber": "21212333333",
-     *             "email": "222@222.com",
-     *             "grade": "2017级",
-     *             "sex": "女",
-     *             "profession": "信管",
-     *             "department": "后台"
-     *         }]
-     *       }
-     */
-    public Map findByName(String name, Integer page, Pager<Member> pager){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<>());
-    }
-
-
 }

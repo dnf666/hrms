@@ -1,5 +1,6 @@
 package com.mis.hrm.work.service.impl;
 
+import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -85,32 +87,39 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
+    public int deleteByNums(List<String> nums) {
+        if(!nums.equals(new ArrayList<>())){
+            int stateNum = workMapper.deleteByNums(nums);
+            if(stateNum > 0){
+                logger.info("成功删除" + stateNum + "名成员信息");
+                return stateNum;
+            } else {
+                logger.info("信息删除失败");
+                throw new RuntimeException("信息删除失败");
+            }
+        } else {
+            logger.info("传入学号为空");
+            throw new InfoNotFullyException("传入学号为空");
+        }
+    }
+
+    @Override
     public Long countWorkers() {
         return workMapper.countWorkers();
     }
 
     @Override
-    public List<Whereabout> findByGrade(Pager<Whereabout> pager, String grade) {
-        if(StringUtil.notEmpty(grade)){
-            return workMapper.findByGrade(pager,grade);
-        } else {
-            logger.info("年级信息为空");
-            throw new InfoNotFullyException("年级信息为空");
-        }
-    }
-
-    @Override
-    public List<Whereabout> findByName(Pager<Whereabout> pager, String name) {
-        if (StringUtil.notEmpty(name)) {
-            return workMapper.findByName(pager,name);
-        } else {
-            logger.info("昵称信息为空");
-            throw new InfoNotFullyException("昵称信息为空");
-        }
-    }
-
-    @Override
     public List<Whereabout> getAllGraduates(Pager<Whereabout> pager) {
         return workMapper.getAllGraduates(pager);
+    }
+
+    @Override
+    public List<Whereabout> filter(Pager<Whereabout> pager, Whereabout whereabout) throws RuntimeException{
+        if (ObjectNotEmpty.notEmpty(whereabout)) {
+            return workMapper.filter(pager,whereabout);
+        } else {
+            logger.info("未填写过滤条件");
+            throw new InfoNotFullyException("未填写过滤条件");
+        }
     }
 }

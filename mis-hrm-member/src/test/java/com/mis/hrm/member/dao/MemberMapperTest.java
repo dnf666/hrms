@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/spring-member.xml")
@@ -19,6 +23,7 @@ public class MemberMapperTest {
     private MemberMapper memberMapper;
 
     private Member member;
+    private Member blankMember;
 
     private Pager<Member> pager;
 
@@ -34,6 +39,9 @@ public class MemberMapperTest {
                 .sex("男")
                 .profession("信息管理与信息系统")
                 .department("后台").build();
+
+        blankMember = Member.builder()
+                .build();
 
         pager = new Pager<>();
         pager.setPageSize(2);
@@ -57,17 +65,6 @@ public class MemberMapperTest {
     }
 
     @Test
-    public void testSelectByPrimaryKey() {
-        member.setNum("2017210003");
-        Member selectedMember = memberMapper.selectByPrimaryKey(member);
-        Assert.assertEquals("王二",selectedMember.getName());
-        Assert.assertEquals("1010",selectedMember.getPhoneNumber());
-
-        member.setNum("2017210004");
-        Assert.assertEquals(null,memberMapper.selectByPrimaryKey(member));
-    }
-
-    @Test
     @Ignore
     public void testUpdateByPrimaryKey() {
         member.setNum("2017210002");
@@ -75,6 +72,16 @@ public class MemberMapperTest {
 
         member.setNum("2017210004");
         Assert.assertEquals(0,memberMapper.updateByPrimaryKey(member));
+    }
+
+    @Test
+//    @Ignore
+    public void testDeleteByNums() {
+        List<String> numList = Arrays.asList(
+                "2017210001","2017210002","2017210003"
+        );
+
+        Assert.assertEquals(3,memberMapper.deleteByNums(numList));
     }
 
     @Test
@@ -88,21 +95,13 @@ public class MemberMapperTest {
     }
 
     @Test
-    public void testFindByPhoneNumber(){
-        String phoneNumber = "10";
-        Assert.assertEquals("1011",memberMapper.findByPhoneNumber(pager,phoneNumber).get(1).getPhoneNumber());
-    }
-
-    @Test
-    public void testFindByEmail(){
-        String email = "10";
-        Assert.assertEquals("1010@qq.com",memberMapper.findByEmail(pager,email).get(0).getEmail());
-    }
-
-    @Test
-    public void testFindByName(){
-        String name = "张";
+    public void testFilter(){
+        blankMember.setName("张");
+        blankMember.setPhoneNumber("10");
         pager.setCurrentPage(1);
-        Assert.assertEquals("张三",memberMapper.findByName(pager,name).get(0).getName());
+        Assert.assertEquals("张三",memberMapper.filter(pager,blankMember).get(0).getName());
+
+        blankMember.setCompanyId("极客工作室");
+        Assert.assertEquals(new ArrayList<>(),memberMapper.filter(pager,blankMember));
     }
 }

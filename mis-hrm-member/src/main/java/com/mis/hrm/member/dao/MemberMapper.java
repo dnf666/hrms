@@ -11,19 +11,15 @@ import java.util.List;
 
 @Repository
 public interface MemberMapper extends BaseMapper<Member> {
+    //批量删除
+    int deleteByNums(List<String> nums);
+
     //统计成员总数
     Long countMembers();
 
     //分页查看所有成员
     List<Member> getAllMembers(Pager<Member> pager);
 
-    //根据电话的模糊分页查找
-    List<Member> findByPhoneNumber(@Param("pager") Pager<Member> pager,@Param("phoneNumber") String phoneNumber);
-
-    //根据邮箱的模糊分页查找
-    List<Member> findByEmail(@Param("pager") Pager<Member> pager,@Param("email") String email);
-
-    //根据昵称的模糊分页查找
-    List<Member> findByName(@Param("pager") Pager<Member> pager,@Param("name") String name);
-
+    //过滤
+    List<Member> filter(@Param("pager") Pager<Member> pager, @Param("member") Member member);
 }

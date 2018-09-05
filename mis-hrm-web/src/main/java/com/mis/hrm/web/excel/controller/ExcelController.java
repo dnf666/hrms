@@ -21,7 +21,7 @@ public class ExcelController {
     @GetMapping("/{tableTitle}/toExcel")
     public Map importExcel(@PathVariable String tableTitle,
                            String filePath){
-        demoExcel.importExcel(filePath,tableTitle);
+        demoExcel.importExcel(filePath,tableTitle,"excel");
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
     }
 
@@ -33,6 +33,18 @@ public class ExcelController {
     public Map exportExcel(@PathVariable String tableTitle,
                            String filePath){
         demoExcel.exportExcel(filePath);
+        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
+    }
+
+    /**
+     * 模板下载
+     * @param filePath 文件下载后保存的位置
+     * @param tableTitle 表头
+     */
+    @GetMapping("/{tableTitle}/download")
+    public Map fileLoad(@PathVariable String tableTitle,
+                           String filePath){
+        demoExcel.importExcel(filePath,tableTitle,"download");
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
     }
 }

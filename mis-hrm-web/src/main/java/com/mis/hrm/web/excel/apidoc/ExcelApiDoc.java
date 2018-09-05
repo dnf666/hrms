@@ -41,4 +41,22 @@ public class ExcelApiDoc {
     public Map exportExcel(String filePath){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
     }
+
+    /**
+     *   @api {GET} {tableTitle}/download 模板下载
+     *   @apiDescription 目前可填的tableTitle还是只有member和whereabout 嘤
+     *   @apiGroup EXCEL
+     *   @apiParam  {String} tableTitle 数据库表名
+     *   @apiParam  {String} filePath Excel文件的具体路径
+     *   @apiSuccessExample {json} Success-Response:
+     *       HTTP/1.1 200 OK
+     *       {
+     *         "code": "1",
+     *         "msg": "success"
+     *         "object": null
+     *       }
+     */
+    public Map download(String tableTitle, String filePath){
+        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
+    }
 }

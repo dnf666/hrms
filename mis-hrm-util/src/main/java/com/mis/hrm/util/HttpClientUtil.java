@@ -24,21 +24,21 @@ public class HttpClientUtil {
     private static final String CONTENT_TYPE = "content-Type";
     private static final String JSON_TYPE = "application/json";
     private static final String HTTP_REQURIED = "http://";
-// 　  传入的ｕｒｌ　为空　或者　不符合条件
+    // 　  传入的ｕｒｌ　为空　或者　不符合条件
     private static final int ERROR_URL = -1;
-//    发送请求失败。
+    //    发送请求失败。
     private static final int ERROR_SEND = 404;
-//    全角字符的空格
+    //    全角字符的空格
     private static final char FULL_WIDTH_SPACE = '　';
-//    半角字符的空格
+    //    半角字符的空格
     private static final char HALF_WIDTH_SPACE = ' ';
-//　　　设置三秒的等待时间
+    //　　　设置三秒的等待时间
     private static final int THREE_SECONDS = 3000;
 
-//    对所有请求限定相同的规则。
+    //    对所有请求限定相同的规则。
     private static final RequestConfig requestConfig = RequestConfig.custom()
-                                            .setSocketTimeout(THREE_SECONDS)
-                                            .setConnectionRequestTimeout(THREE_SECONDS).build();
+            .setSocketTimeout(THREE_SECONDS)
+            .setConnectionRequestTimeout(THREE_SECONDS).build();
     /**
      * 发送一个ｇｅｔ请求，并返回状态码
      * @param url　接口地址
@@ -55,10 +55,10 @@ public class HttpClientUtil {
 //        1.创建一个默认的 client　实例。
         try (CloseableHttpClient httpClient = HttpClients.createDefault()){
 //        2.创建一个httpGet请求
-        HttpGet httpGet = new HttpGet(url);
-        httpGet.setConfig(requestConfig);
+            HttpGet httpGet = new HttpGet(url);
+            httpGet.setConfig(requestConfig);
 //        3.执行get请求,同时返回状态码
-        statusCode = httpClient.execute(httpGet, new StatusCodeResponseHandler());
+            statusCode = httpClient.execute(httpGet, new StatusCodeResponseHandler());
         } catch (IOException e) {
             return ERROR_SEND;
         }
