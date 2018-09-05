@@ -155,8 +155,8 @@ public class HttpClientUtil {
         //去掉以全角空格开头或者结尾空格的字符。
         url = removeSpace(url);
         if (url.equals("")
-                || (url.length() == 7 && url.equals(HTTP_REQURIED)
-                || url.length() == 8 || url.equals("https://")){
+                || (url.length() == 7 && url.equals(HTTP_REQURIED))
+                || url.length() == 8 || "https://".equals(url)){
             throw new StringIsNullException("传入的全是空格");
         }
         boolean httpIsExist = url.length() >= 7 && url.substring(0,7).equals(HTTP_REQURIED);

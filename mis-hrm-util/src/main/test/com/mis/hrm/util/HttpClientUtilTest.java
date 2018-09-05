@@ -1,19 +1,14 @@
 package com.mis.hrm.util;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
+import static org.junit.Assert.*;
 
-public class HttpCLientUtilTest {
+public class HttpClientUtilTest {
 
     @Test
-    public void sendGetTest() throws IOException {
+    public void sendGet() {
         //访问百度
         Assert.assertEquals(200, HttpClientUtil.sendGet("http://www.baidu.com"));
 
@@ -43,11 +38,12 @@ public class HttpCLientUtilTest {
         Assert.assertEquals(-1, HttpClientUtil.sendGet("http://"));
 
         Assert.assertEquals(200, HttpClientUtil.sendGet("www.ba i du.com"));
+
     }
 
     @Test
-    public void sendPostTest(){
-//        验证一个正常的操作
+    public void sendPost() {
+        //        验证一个正常的操作
         Assert.assertEquals(200, HttpClientUtil.sendPost("123.207.5.56:8080/bonetest/usersession","{\"code\":0,\"message\":\"密码错误，请重试！\",\"object\":null}"));
 //　　　　　验证一个ｕｒｌ不正常的
         Assert.assertEquals(404, HttpClientUtil.sendPost("123.207.fdgshjhgfdfnsdession","dfdsfs"));
@@ -55,7 +51,7 @@ public class HttpCLientUtilTest {
     }
 
     @Test
-    public void sendPutTest(){
+    public void sendPut() {
         //请求一个ｐｕｔ类型的参数
         Assert.assertEquals(200,HttpClientUtil.sendPut("http://httpbin.org/put","HELLO WORLD"));
 
@@ -64,7 +60,7 @@ public class HttpCLientUtilTest {
     }
 
     @Test
-    public void sendDeleteTest(){
+    public void sendDelete() {
         Assert.assertEquals(200, HttpClientUtil.sendDelete("http://httpbin.org/delete"));
 
         Assert.assertEquals(302,HttpClientUtil.sendDelete("www.baidu.com"));
