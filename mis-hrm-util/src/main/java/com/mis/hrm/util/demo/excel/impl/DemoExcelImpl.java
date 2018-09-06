@@ -1,14 +1,13 @@
 package com.mis.hrm.util.demo.excel.impl;
 
 import com.mis.hrm.util.demo.excel.DemoExcel;
-import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,12 +27,11 @@ public class DemoExcelImpl implements DemoExcel {
     final private String SELECT_FROM_WHEREABOUT = "select * from whereabout";
 
     /**
-     * 创将数据从数据库导入到Excel
-     * @param filePath 文件路径
+     * 将数据从数据库导入到Excel
      * @param tableTile 表格title(如member)
      * @param type 是否为模板下载
      */
-    public void importExcel(String filePath,String tableTile,String type){
+    public byte[] importExcel(String tableTile, String type){
         //创建工作簿
         XSSFWorkbook workbook = new XSSFWorkbook();
         //创建工作表
@@ -77,40 +75,41 @@ public class DemoExcelImpl implements DemoExcel {
             //如果为模板下载，不做操作（即只放入表头）
         }
 
-        //创建文件和文件流
-        File file = new File(filePath);
-        FileOutputStream stream = null;
-        try {
-            file.createNewFile();
 
-            //将创建好的工作簿写入文件流
-            stream = FileUtils.openOutputStream(file);
-            workbook.write(stream);
-        } catch (Exception e) {
-            e.printStackTrace();
+        //将工作簿写入输出流转再化成字节组
+        byte[] bytes = null;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try {
+
+            //将创建好的工作簿写入输出流
+            workbook.write(outputStream);
+            //将输出流转化为字节组
+            bytes = outputStream.toByteArray();
+
+        } catch (IOException e) {
+             e.printStackTrace();
         } finally {
             //关闭流
             try {
-                if (stream != null) {
-                    stream.close();
-                }
+                outputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        //返回字节组
+        return bytes;
     }
 
     /**
      * 将数据从Excel导出到数据库
-     * @param filePath 文件路径
+     * @param multipartFile
      */
-    public void exportExcel(String filePath){
+    public void exportExcel(MultipartFile multipartFile){
         List<String> head;
 
-        //需要解析的Excel文件
-        File file = new File(filePath);
         try {
-            XSSFWorkbook workbook = new XSSFWorkbook(FileUtils.openInputStream(file));
+            XSSFWorkbook workbook = new XSSFWorkbook(multipartFile.getInputStream());
             //获取第一个sheet表
             Sheet sheet = workbook.getSheetAt(0);
 
