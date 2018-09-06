@@ -42,7 +42,7 @@ public class ExcelController {
 
     /**
      * 将数据从Excel导出到数据库
-//     * @param filePath
+     * @param file 用户上传的文件
      */
     @PostMapping("/{tableTitle}/fromExcel")
     public Map exportExcel(@PathVariable String tableTitle,

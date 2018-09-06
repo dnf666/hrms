@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface DemoExcel {
     /**
      * 将数据从数据库导入到Excel
-//     * @param filePath Excel所在位置
      * @param tableTitle 表名
      * @param type 是否为模板下载
      */
@@ -14,7 +13,7 @@ public interface DemoExcel {
 
     /**
      * 将数据从Excel导出到数据库
-//     * @param filePath
+     * @param multipartFile 用户上传的文件
      */
     void exportExcel(MultipartFile multipartFile);
 }
