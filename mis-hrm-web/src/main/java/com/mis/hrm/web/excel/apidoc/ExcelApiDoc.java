@@ -39,7 +39,7 @@ public class ExcelApiDoc {
     }
 
     /**
-     *   @api {GET} {tableTitle}/fromExcel 将数据从Excel导出到数据库
+     *   @api {POST} {tableTitle}/fromExcel 将数据从Excel导出到数据库
      *   @apiDescription 其实这个tableTitle可以瞎填，有它只是为了保持格式一致，但最好还是写member或whereabout啦
      *   @apiGroup EXCEL
      *   @apiParam  {MultipartFile} file 用户上传的Excel文件
