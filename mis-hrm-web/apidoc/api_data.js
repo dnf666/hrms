@@ -56,7 +56,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_ADD",
     "name": "PostBooklendinfo"
   },
@@ -96,7 +96,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_DELETE",
     "name": "DeleteBooklendinfoCompanyidBookrecord"
   },
@@ -116,7 +116,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList"
   },
@@ -149,7 +149,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList1"
   },
@@ -182,7 +182,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList2"
   },
@@ -222,7 +222,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList3"
   },
@@ -262,7 +262,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList4"
   },
@@ -330,7 +330,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_UPDATE",
     "name": "PutBooklendinfo"
   },
@@ -391,7 +391,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_ADD",
     "name": "PostBook"
   },
@@ -424,7 +424,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_DELETE",
     "name": "DeleteBookBookid"
   },
@@ -457,7 +457,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList1"
   },
@@ -497,7 +497,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList2"
   },
@@ -537,7 +537,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList3"
   },
@@ -570,7 +570,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList4"
   },
@@ -638,9 +638,229 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_UPDATE",
     "name": "PutBook"
+  },
+  {
+    "type": "DELETE",
+    "url": "/company/deleteCompany.do",
+    "title": "删除公司",
+    "description": "<p>删除公司</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "DeleteCompanyDeletecompanyDo"
+  },
+  {
+    "type": "GET",
+    "url": "/company/getCompany.do",
+    "title": "通过邮箱得到指定公司信息",
+    "description": "<p>通过邮箱得到指定公司信息</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"statu\": \"200\",\n  \"msg\": \"\"\n  \"object\": {\n      \"email\":\"string\",\n      \"name\":\"公司名称\",\n      \"applicantName\":\"申请人姓名\",\n      \"organizationSize\":\"组织规模\",\n      \"mainCategory\";\"主分类\",\n      \"viceCategory\":\"副分类\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "GetCompanyGetcompanyDo"
+  },
+  {
+    "type": "GET",
+    "url": "/company/login.do",
+    "title": "登陆公司",
+    "description": "<p>登陆公司</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "GetCompanyLoginDo"
+  },
+  {
+    "type": "POST",
+    "url": "/company",
+    "title": "注册公司",
+    "description": "<p>注册公司</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>公司名称</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "applicantName",
+            "description": "<p>申请人姓名</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "organizationSize",
+            "description": "<p>组织规模</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "mainCategory",
+            "description": "<p>主分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "viceCategory",
+            "description": "<p>副分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "PostCompany"
+  },
+  {
+    "type": "PUT",
+    "url": "/company/updateCompany.do",
+    "title": "修改公司信息",
+    "description": "<p>修改公司信息</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>公司名称</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "applicantName",
+            "description": "<p>申请人姓名</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "organizationSize",
+            "description": "<p>组织规模</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "mainCategory",
+            "description": "<p>主分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "viceCategory",
+            "description": "<p>副分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "PutCompanyUpdatecompanyDo"
   },
   {
     "type": "GET",
@@ -671,42 +891,9 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
     "groupTitle": "EXCEL",
     "name": "GetTabletitleDownload"
-  },
-  {
-    "type": "GET",
-    "url": "{tableTitle}/fromExcel",
-    "title": "将数据从Excel导出到数据库",
-    "description": "<p>其实这个tableTitle可以瞎填，有它只是为了保持格式一致，但最好还是写member或whereabout啦</p>",
-    "group": "EXCEL",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "MultipartFile",
-            "optional": false,
-            "field": "file",
-            "description": "<p>用户上传的Excel文件</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
-    "groupTitle": "EXCEL",
-    "name": "GetTabletitleFromexcel"
   },
   {
     "type": "GET",
@@ -737,9 +924,130 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
     "groupTitle": "EXCEL",
     "name": "GetTabletitleToexcel"
+  },
+  {
+    "type": "POST",
+    "url": "{tableTitle}/fromExcel",
+    "title": "将数据从Excel导出到数据库",
+    "description": "<p>其实这个tableTitle可以瞎填，有它只是为了保持格式一致，但最好还是写member或whereabout啦</p>",
+    "group": "EXCEL",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "MultipartFile",
+            "optional": false,
+            "field": "file",
+            "description": "<p>用户上传的Excel文件</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "groupTitle": "EXCEL",
+    "name": "PostTabletitleFromexcel"
+  },
+  {
+    "type": "GET",
+    "url": "/index/getIndex.do",
+    "title": "获取主页信息",
+    "description": "<p>通过公司email获取其主页需要展示的内容</p>",
+    "group": "Index",
+    "parameter": {
+      "fields": {
+        "Index": [
+          {
+            "group": "Index",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司邮箱</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"statu\": \"200\",\n  \"msg\": \"\"\n  \"object\": {\n      \"companyId\":\"string\",\n      \"outline\":\"公司简介\",\n      \"photoPath\":\"公司头像地址\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/index/controller/IndexController.java",
+    "groupTitle": "Index",
+    "name": "GetIndexGetindexDo"
+  },
+  {
+    "type": "Patch",
+    "url": "/index/updateOutline.do",
+    "title": "修改公司简介",
+    "description": "<p>修改公司简介</p>",
+    "group": "Index",
+    "parameter": {
+      "fields": {
+        "Index": [
+          {
+            "group": "Index",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Index",
+            "type": "String",
+            "optional": false,
+            "field": "outline",
+            "description": "<p>公司简介</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/index/controller/IndexController.java",
+    "groupTitle": "Index",
+    "name": "PatchIndexUpdateoutlineDo"
+  },
+  {
+    "type": "PUT",
+    "url": "/company/updatePhoto.do",
+    "title": "修改公司头像",
+    "description": "<p>修改公司头像</p>",
+    "group": "Index",
+    "parameter": {
+      "fields": {
+        "Index": [
+          {
+            "group": "Index",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司邮箱</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/index/controller/IndexController.java",
+    "groupTitle": "Index",
+    "name": "PutCompanyUpdatephotoDo"
   },
   {
     "type": "POST",
@@ -825,7 +1133,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_ADD",
     "name": "PostMember"
   },
@@ -858,7 +1166,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_DELETE",
     "name": "DeleteMember"
   },
@@ -898,7 +1206,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
     "name": "GetMemberAll"
   },
@@ -918,7 +1226,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
     "name": "GetMemberCount"
   },
@@ -965,7 +1273,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
     "name": "PostMemberFilter"
   },
@@ -1054,7 +1362,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_UPDATE",
     "name": "PutMember"
   },
@@ -1115,7 +1423,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_ADD",
     "name": "PostProject"
   },
@@ -1155,7 +1463,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_DELETE",
     "name": "DeleteProjectCompanyidProjectid"
   },
@@ -1202,7 +1510,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_QUERY",
     "name": "GetProject"
   },
@@ -1263,7 +1571,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_UPDATE",
     "name": "PutProject"
   },
@@ -1358,7 +1666,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_ADD",
     "name": "PostWork"
   },
@@ -1391,7 +1699,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_DELETE",
     "name": "DeleteWork"
   },
@@ -1431,7 +1739,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
     "name": "GetWorkAll"
   },
@@ -1451,7 +1759,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
     "name": "GetWorkCount"
   },
@@ -1498,7 +1806,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
     "name": "PostWorkFilter"
   },
@@ -1594,7 +1902,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_UPDATE",
     "name": "PutWork"
   }

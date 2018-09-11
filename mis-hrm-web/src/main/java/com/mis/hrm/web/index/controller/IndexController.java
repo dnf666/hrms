@@ -1,4 +1,4 @@
-package com.mis.hrm.index.controller;
+package com.mis.hrm.web.index.controller;
 
 import com.mis.hrm.index.entity.Index;
 import com.mis.hrm.index.service.impl.IndexServiceImpl;
@@ -62,7 +62,6 @@ public class IndexController {
      * @apiDescription 修改公司头像
      * @apiGroup Index
      * @apiParam (Index) {String} companyId 公司邮箱
-     * @apiParam {Object} photo 上传头像时，表单里面的file 标签的名称 photo
      *
      */
     @PostMapping("updatePhoto")

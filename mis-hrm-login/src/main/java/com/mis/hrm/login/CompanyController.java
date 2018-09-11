@@ -1,8 +1,7 @@
-package com.mis.hrm.login.controller;
+package com.mis.hrm.web.login.controller;
 
 import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.service.imp.CompanyServiceImp;
-import com.mis.hrm.util.exception.ParameterException;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -113,11 +112,6 @@ public class CompanyController {
     public ResponseEntity getCompany(Company company) {
         Company getCompany = companyService.selectByPrimaryKey(company);
         return new ResponseEntity<>(200, "", getCompany);
-    }
-
-    @GetMapping("test")
-    public ResponseEntity test(){
-        throw new ParameterException("梅勇杰");
     }
 
 }
