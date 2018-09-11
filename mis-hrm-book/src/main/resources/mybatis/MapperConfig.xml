@@ -18,15 +18,15 @@
         <!--也可以通过下面的方式导入-->
 
         <!--url方式(全路径，不推荐)-->
-        <!--<mapper url="file:///home/liudong/code/hrms/mis-hrm-book/src/main/resources/mapper/BookMapper.xml"/>-->
+        <!--<mapper url="file:///home/liudong/code/hrms/mis-hrm-book/src/main/resources/mappers/BookMapper.xml"/>-->
 
         <!--使用mapper接口 (接口类名)-->
         <!--此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。-->
         <!--<mapper class="com.mis.hrm.book.dao.BookMapper"/>-->
 
         <!--resource方式　（classpath 相对路径）-->
-        <mapper resource="mappers/BookMapper.xml"/>
-        <mapper resource="mappers/BookLendInfoMapper.xml"/>
+        <!--<mapper resource="mappers/BookMapper.xml"/>-->
+        <!--<mapper resource="mappers/BookLendInfoMapper.xml"/>-->
 
     </mappers>
 </configuration>

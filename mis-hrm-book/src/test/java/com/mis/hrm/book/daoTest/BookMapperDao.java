@@ -35,7 +35,7 @@ public class BookMapperDao {
     @Test
     public void deleteByPrimaryKey() {
         int rightResult = 1;
-        book.setBookId("11111");
+        book.setBookId("11112");
         int result = bookMapper.deleteByPrimaryKey(book);
         Assert.assertEquals(rightResult, result);
     }

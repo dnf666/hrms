@@ -1,8 +1,10 @@
 package com.mis.hrm.work.service.impl;
 
 import com.mis.hrm.util.Pager;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
+import org.apache.ibatis.jdbc.Null;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -13,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/spring-work.xml")
@@ -46,7 +49,7 @@ public class WorkServiceImplTest {
         pager.setCurrentPage(2);
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
 //    @Ignore
     public void deleteByPrimaryKey() {
         whereabout.setNum("2017210002");
@@ -58,15 +61,15 @@ public class WorkServiceImplTest {
         Assert.assertEquals(0,workService.deleteByPrimaryKey(blankWhereabout));
     }
 
-    @Test
-    @Ignore
+    @Test(expected =RuntimeException.class)
+//    @Ignore
     public void insert() {
         Assert.assertEquals(1,workService.insert(whereabout));
 
         Assert.assertEquals(0,workService.insert(blankWhereabout));
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void selectByPrimaryKey() {
         whereabout.setNum("2017210003");
         Whereabout selectedOne = workService.selectByPrimaryKey(whereabout);
@@ -79,8 +82,8 @@ public class WorkServiceImplTest {
         Assert.assertEquals(null,workService.selectByPrimaryKey(blankWhereabout));
     }
 
-    @Test
-    @Ignore
+    @Test(expected = RuntimeException.class)
+//    @Ignore
     public void updateByPrimaryKey() {
         whereabout.setNum("2017210001");
         Assert.assertEquals(1,workService.updateByPrimaryKey(whereabout));
@@ -91,31 +94,19 @@ public class WorkServiceImplTest {
         Assert.assertEquals(0,workService.updateByPrimaryKey(blankWhereabout));
     }
 
+    @Test(expected = RuntimeException.class)
+//    @Ignore
+    public void testDeleteByNums() {
+        Assert.assertEquals(3,workService.deleteByNums(
+                Arrays.asList("2017210001","2017210002","2017210003")
+        ));
+
+        Assert.assertEquals(0,workService.deleteByNums(new ArrayList<>()));
+    }
+
     @Test
     public void countWorkers() {
         Assert.assertEquals((Long)(long)5,workService.countWorkers());
-    }
-
-    @Test
-    public void findByGrade() {
-        String grade = "2017";
-        Assert.assertEquals(new ArrayList<>(),workService.findByGrade(pager,grade));
-
-        grade = "2017级";
-        Assert.assertEquals("麻子",workService.findByGrade(pager,grade).get(1).getName());
-
-        grade = "";
-        Assert.assertEquals(null,workService.findByGrade(pager,grade));
-    }
-
-    @Test
-    public void findByName() {
-        pager.setCurrentPage(1);
-        String name = "王";
-        Assert.assertEquals("王二",workService.findByName(pager,name).get(0).getName());
-
-        name = "";
-        Assert.assertEquals(null,workService.findByName(pager,name));
     }
 
     @Test
@@ -124,5 +115,21 @@ public class WorkServiceImplTest {
 
         pager.setCurrentPage(3);
         Assert.assertEquals(1,workService.getAllGraduates(pager).size());
+    }
+
+    @Test
+    public void testFilter() {
+        blankWhereabout.setName("王");
+        blankWhereabout.setPhoneNumber("101");
+        pager.setCurrentPage(1);
+        Assert.assertEquals("王二", workService.filter(pager, blankWhereabout).get(0).getName());
+
+        blankWhereabout.setCompanyId("极客工作室");
+        Assert.assertEquals(new ArrayList<>(), workService.filter(pager, blankWhereabout));
+    }
+
+    @Test(expected = InfoNotFullyException.class)
+    public void testNullFilter() {
+        workService.filter(pager, blankWhereabout);
     }
 }

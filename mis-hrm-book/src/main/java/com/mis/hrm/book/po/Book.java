@@ -1,5 +1,6 @@
 package com.mis.hrm.book.po;
 
+import com.mis.hrm.util.StringUtil;
 import lombok.*;
 
 import java.io.Serializable;
@@ -16,4 +17,8 @@ public class Book implements Serializable {
     private String category;
     private int quantity;
     private String version;
+
+    public boolean baseRequied() {
+        return StringUtil.notEmpty(companyId, bookName, category, version);
+    }
 }

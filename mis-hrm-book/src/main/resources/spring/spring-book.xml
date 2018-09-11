@@ -60,9 +60,8 @@
     <!--映射xml文件的位置-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--<property name="mapperLocations" value="classpath:mappers/*.xml"/>-->
-        <!--导入mybatis的配置文件-->
         <property name="configLocation" value="classpath:mybatis/MapperConfig.xml"/>
+        <property name="mapperLocations" value="classpath:mappers/*Mapper.xml"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -70,6 +69,7 @@
         <!--指定使用哪一个selsessionfactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+
 
 
     <bean id="bookLog" class="com.mis.hrm.book.interceptor.LogInterceptor">

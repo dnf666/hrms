@@ -38,7 +38,14 @@
     <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="datasource"/>
         <!--迭代查找指定路径下的mapper文件，-->
-        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+        <property name="mapperLocations">
+            <array>
+                <value>classpath*:mapper/*.xml</value>
+                <value>classpath*:mappers/*.xml</value>
+            </array>
+        </property>
+        <!--mybatis的配置文件设置　by　刘岽-->
+        <property name="configLocation" value="classpath:mybatis/MapperConfig.xml"/>
         <property name="configurationProperties">
             <props>
                 <!--缓存机制-->
@@ -74,6 +81,8 @@
             <tx:method name="get*" propagation="SUPPORTS" read-only="true" />
         </tx:attributes>
     </tx:advice>
+
+    <!--文件上传-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="10485760000"/>

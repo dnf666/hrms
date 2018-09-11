@@ -48,28 +48,15 @@
         where company_id = #{companyId} and num = #{num};
     </select>
 
+    <delete id="deleteByNums" parameterType="java.util.List">
+        delete from whereabout where num in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <select id="countWorkers" resultType="java.lang.Long">
         select count(*) from whereabout;
-    </select>
-
-    <select id="findByGrade" resultType="List" resultMap="BaseResultMap">
-        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
-        from whereabout
-        where grade = #{grade}
-        <if test="pager.offset!=null and pager.limit!=null">
-            limit #{pager.offset},#{pager.limit}
-        </if>
-    </select>
-
-    <select id="findByName" resultType="List" resultMap="BaseResultMap">
-        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
-        from whereabout
-        <if test="name!=null">
-            where name like '%${name}%'
-        </if>
-        <if test="pager.offset!=null and pager.limit!=null">
-            limit #{pager.offset},#{pager.limit}
-        </if>
     </select>
 
     <select id="getAllGraduates" resultType="List" resultMap="BaseResultMap">
@@ -77,6 +64,44 @@
         from whereabout
         <if test="offset!=null and limit!=null">
             limit #{offset},#{limit}
+        </if>
+    </select>
+
+    <select id="filter" parameterType="com.mis.hrm.work.model.Whereabout" resultType="List" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department, work_place
+        from whereabout where 1 = 1
+        <if test="whereabout.companyId != null">
+            and whereabout.company_id like '%${whereabout.companyId}%'
+        </if>
+        <if test="whereabout.num != null">
+            and whereabout.num like '%${whereabout.num}%'
+        </if>
+        <if test="whereabout.name != null">
+            and whereabout.name like '%${whereabout.name}%'
+        </if>
+        <if test="whereabout.phoneNumber != null">
+            and whereabout.phone_number like '%${whereabout.phoneNumber}%'
+        </if>
+        <if test="whereabout.email != null">
+            and whereabout.email like '%${whereabout.email}%'
+        </if>
+        <if test="whereabout.grade != null">
+            and whereabout.grade like '%${whereabout.grade}%'
+        </if>
+        <if test="whereabout.sex != null">
+            and whereabout.sex like '%${whereabout.sex}%'
+        </if>
+        <if test="whereabout.profession != null">
+            and whereabout.profession like '%${whereabout.profession}%'
+        </if>
+        <if test="whereabout.department != null">
+            and whereabout.department like '%${whereabout.department}%'
+        </if>
+        <if test="whereabout.workPlace != null">
+            and whereabout.work_place like '%${whereabout.workPlace}%'
+        </if>
+        <if test="pager.offset!=null and pager.limit!=null">
+            limit #{pager.offset},#{pager.limit};
         </if>
     </select>
 
