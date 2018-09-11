@@ -157,28 +157,29 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>springloaded</artifactId>
-            <version>1.2.7.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.8.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.8.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.9.6</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>8.1.11.v20130520</version>
+        </dependency><!-- jetty -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>8.1.11.v20130520</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -308,13 +309,15 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>${jetty.version}</version>
+                    <version>9.4.8.v20171121</version>
                     <configuration>
-                        <scanIntervalSeconds>5</scanIntervalSeconds>
-                        <useTestClasspath>true</useTestClasspath>
-                        <webAppConfig>
+                        <scanIntervalSeconds>0</scanIntervalSeconds>
+                        <httpConnector>
+                            <port>8080</port>
+                        </httpConnector>
+                        <webApp>
                             <contextPath>/</contextPath>
-                        </webAppConfig>
+                        </webApp>
                     </configuration>
                 </plugin>
                 <!-- tomcat 插件 -->
@@ -325,7 +328,7 @@
                     <configuration>
                         <port>8080</port>
                         <path>/</path>
-                        <server>tomcat-development-server</server>
+                        <server>tomcat-developjment-server</server>
                         <useTestClasspath>true</useTestClasspath>
                     </configuration>
                 </plugin>
@@ -362,18 +365,23 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-    </build>
 
-    <reporting>
         <plugins>
-            <!-- checkstyle -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.8.v20171121</version>
+                <configuration>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                </configuration>
             </plugin>
         </plugins>
-    </reporting>
+    </build>
 
     <!--<distributionManagement>-->
     <!--<snapshotRepository>-->

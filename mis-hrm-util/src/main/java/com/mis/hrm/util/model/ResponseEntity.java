@@ -1,4 +1,4 @@
-package com.mis.hrm.login.entity;
+package com.mis.hrm.util.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

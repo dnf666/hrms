@@ -10,7 +10,8 @@ public class ValidationUtil {
     public static void checkBindingResult(BindingResult result){
         if (result.hasErrors()){
             List<ObjectError> errors = result.getAllErrors();
-            throw new ParameterException(errors.get(0).getDefaultMessage());
+            String s = errors.get(0).getDefaultMessage();
+            throw new ParameterException(s);
         }
     }
 }

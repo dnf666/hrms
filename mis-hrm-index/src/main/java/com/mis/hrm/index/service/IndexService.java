@@ -1,6 +1,8 @@
 package com.mis.hrm.index.service;
 
+import com.mis.hrm.index.entity.Index;
 import com.mis.hrm.util.BaseService;
+import com.mis.hrm.util.BaseServiceByMay;
 import com.mis.hrm.util.model.Demo;
 
 /**
@@ -8,5 +10,5 @@ import com.mis.hrm.util.model.Demo;
  *
  * @author dailf
  */
-public interface IndexService extends BaseService<Demo> {
+public interface IndexService extends BaseServiceByMay<Index> {
 }

@@ -1,7 +1,7 @@
 package com.mis.hrm.index.dao;
 
-import com.mis.hrm.util.BaseMapper;
-import com.mis.hrm.util.model.Demo;
+import com.mis.hrm.index.entity.Index;
+import com.mis.hrm.util.BaseMapperByMay;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @author dailf
  */
 @Repository
-public interface IndexMapper extends BaseMapper<Demo> {
+public interface IndexMapper extends BaseMapperByMay<Index> {
 }

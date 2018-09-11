@@ -1,0 +1,1 @@
+INSERT INTO index values ('1234','1234','1234');
