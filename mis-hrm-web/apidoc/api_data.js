@@ -56,7 +56,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_ADD",
     "name": "PostBooklendinfo"
   },
@@ -96,7 +96,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_DELETE",
     "name": "DeleteBooklendinfoCompanyidBookrecord"
   },
@@ -116,7 +116,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList"
   },
@@ -149,7 +149,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList1"
   },
@@ -182,7 +182,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList2"
   },
@@ -222,7 +222,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList3"
   },
@@ -262,7 +262,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_QUERY",
     "name": "GetBooklendList4"
   },
@@ -330,7 +330,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookLendController.java",
     "groupTitle": "BOOKLEND_UPDATE",
     "name": "PutBooklendinfo"
   },
@@ -391,7 +391,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_ADD",
     "name": "PostBook"
   },
@@ -424,7 +424,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_DELETE",
     "name": "DeleteBookBookid"
   },
@@ -457,7 +457,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList1"
   },
@@ -497,7 +497,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList2"
   },
@@ -537,7 +537,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList3"
   },
@@ -570,7 +570,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_QUERY",
     "name": "GetBookList4"
   },
@@ -638,15 +638,235 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/book/controller/BookController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/book/controller/BookController.java",
     "groupTitle": "BOOK_UPDATE",
     "name": "PutBook"
+  },
+  {
+    "type": "DELETE",
+    "url": "/company/deleteCompany.do",
+    "title": "删除公司",
+    "description": "<p>删除公司</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "DeleteCompanyDeletecompanyDo"
+  },
+  {
+    "type": "GET",
+    "url": "/company/getCompany.do",
+    "title": "通过邮箱得到指定公司信息",
+    "description": "<p>通过邮箱得到指定公司信息</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"statu\": \"200\",\n  \"msg\": \"\"\n  \"object\": {\n      \"email\":\"string\",\n      \"name\":\"公司名称\",\n      \"applicantName\":\"申请人姓名\",\n      \"organizationSize\":\"组织规模\",\n      \"mainCategory\";\"主分类\",\n      \"viceCategory\":\"副分类\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "GetCompanyGetcompanyDo"
+  },
+  {
+    "type": "GET",
+    "url": "/company/login.do",
+    "title": "登陆公司",
+    "description": "<p>登陆公司</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "GetCompanyLoginDo"
+  },
+  {
+    "type": "POST",
+    "url": "/company",
+    "title": "注册公司",
+    "description": "<p>注册公司</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>公司名称</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "applicantName",
+            "description": "<p>申请人姓名</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "organizationSize",
+            "description": "<p>组织规模</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "mainCategory",
+            "description": "<p>主分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "viceCategory",
+            "description": "<p>副分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "PostCompany"
+  },
+  {
+    "type": "PUT",
+    "url": "/company/updateCompany.do",
+    "title": "修改公司信息",
+    "description": "<p>修改公司信息</p>",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Company": [
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>公司名称</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "applicantName",
+            "description": "<p>申请人姓名</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "organizationSize",
+            "description": "<p>组织规模</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "mainCategory",
+            "description": "<p>主分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "viceCategory",
+            "description": "<p>副分类</p>"
+          },
+          {
+            "group": "Company",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/login/controller/CompanyController.java",
+    "groupTitle": "Company",
+    "name": "PutCompanyUpdatecompanyDo"
   },
   {
     "type": "GET",
     "url": "{tableTitle}/download",
     "title": "模板下载",
-    "description": "<p>目前可填的tableTitle还是只有member和whereabout 嘤</p>",
+    "description": "<p>tableTitle填member或whereabout；body里的是Excel模板的字节流</p>",
     "group": "EXCEL",
     "parameter": {
       "fields": {
@@ -657,13 +877,6 @@ define({ "api": [
             "optional": false,
             "field": "tableTitle",
             "description": "<p>数据库表名</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "filePath",
-            "description": "<p>Excel文件的具体路径</p>"
           }
         ]
       }
@@ -672,18 +885,51 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"msg\": \"success\",\n  \"code\": 1,\n  \"object\": {\n      \"headers\": {\n           \"Content-Type\": [\n               \"application/octet-stream\"\n           ],\n           \"Content-Disposition\": [\n               \"form-data; name=\\\"attachment\\\"; filename=\\\"model-member-1536216152560.xlsx\\\"\"\n           ]\n      },\n      \"body\": \"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\",\n      \"statusCode\": \"CREATED\",\n      \"statusCodeValue\": 201\n  }\n}",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
     "groupTitle": "EXCEL",
     "name": "GetTabletitleDownload"
   },
   {
     "type": "GET",
+    "url": "{tableTitle}/toExcel",
+    "title": "将数据从数据库导入到Excel",
+    "description": "<p>tableTitle填member或whereabout；body里的是Excel文件的字节流</p>",
+    "group": "EXCEL",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tableTitle",
+            "description": "<p>数据库表名</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\nHTTP/1.1 200 OK\n{\n  \"msg\": \"success\",\n  \"code\": 1,\n  \"object\": {\n      \"headers\": {\n           \"Content-Type\": [\n               \"application/octet-stream\"\n           ],\n           \"Content-Disposition\": [\n               \"form-data; name=\\\"attachment\\\"; filename=\\\"model-member-1536216152560.xlsx\\\"\"\n           ]\n      },\n      \"body\": \"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\",\n      \"statusCode\": \"CREATED\",\n      \"statusCodeValue\": 201\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "groupTitle": "EXCEL",
+    "name": "GetTabletitleToexcel"
+  },
+  {
+    "type": "POST",
     "url": "{tableTitle}/fromExcel",
     "title": "将数据从Excel导出到数据库",
     "description": "<p>其实这个tableTitle可以瞎填，有它只是为了保持格式一致，但最好还是写member或whereabout啦</p>",
@@ -693,10 +939,10 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "MultipartFile",
             "optional": false,
-            "field": "filePath",
-            "description": "<p>Excel文件的具体路径</p>"
+            "field": "file",
+            "description": "<p>用户上传的Excel文件</p>"
           }
         ]
       }
@@ -711,32 +957,25 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
     "groupTitle": "EXCEL",
-    "name": "GetTabletitleFromexcel"
+    "name": "PostTabletitleFromexcel"
   },
   {
     "type": "GET",
-    "url": "{tableTitle}/toExcel",
-    "title": "将数据从数据库导入到Excel",
-    "description": "<p>目前可填的tableTitle只有member和whereabout啦</p>",
-    "group": "EXCEL",
+    "url": "/index/getIndex.do",
+    "title": "获取主页信息",
+    "description": "<p>通过公司email获取其主页需要展示的内容</p>",
+    "group": "Index",
     "parameter": {
       "fields": {
-        "Parameter": [
+        "Index": [
           {
-            "group": "Parameter",
+            "group": "Index",
             "type": "String",
             "optional": false,
-            "field": "tableTitle",
-            "description": "<p>数据库表名</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "filePath",
-            "description": "<p>Excel文件的具体路径</p>"
+            "field": "companyId",
+            "description": "<p>公司邮箱</p>"
           }
         ]
       }
@@ -745,15 +984,70 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": null\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"statu\": \"200\",\n  \"msg\": \"\"\n  \"object\": {\n      \"companyId\":\"string\",\n      \"outline\":\"公司简介\",\n      \"photoPath\":\"公司头像地址\"\n  }\n}",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/excel/apidoc/ExcelApiDoc.java",
-    "groupTitle": "EXCEL",
-    "name": "GetTabletitleToexcel"
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/index/controller/IndexController.java",
+    "groupTitle": "Index",
+    "name": "GetIndexGetindexDo"
+  },
+  {
+    "type": "Patch",
+    "url": "/index/updateOutline.do",
+    "title": "修改公司简介",
+    "description": "<p>修改公司简介</p>",
+    "group": "Index",
+    "parameter": {
+      "fields": {
+        "Index": [
+          {
+            "group": "Index",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>邮箱</p>"
+          },
+          {
+            "group": "Index",
+            "type": "String",
+            "optional": false,
+            "field": "outline",
+            "description": "<p>公司简介</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/index/controller/IndexController.java",
+    "groupTitle": "Index",
+    "name": "PatchIndexUpdateoutlineDo"
+  },
+  {
+    "type": "PUT",
+    "url": "/company/updatePhoto.do",
+    "title": "修改公司头像",
+    "description": "<p>修改公司头像</p>",
+    "group": "Index",
+    "parameter": {
+      "fields": {
+        "Index": [
+          {
+            "group": "Index",
+            "type": "String",
+            "optional": false,
+            "field": "companyId",
+            "description": "<p>公司邮箱</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/index/controller/IndexController.java",
+    "groupTitle": "Index",
+    "name": "PutCompanyUpdatephotoDo"
   },
   {
     "type": "POST",
@@ -839,7 +1133,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_ADD",
     "name": "PostMember"
   },
@@ -872,7 +1166,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_DELETE",
     "name": "DeleteMember"
   },
@@ -912,7 +1206,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
     "name": "GetMemberAll"
   },
@@ -932,7 +1226,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
     "name": "GetMemberCount"
   },
@@ -979,7 +1273,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_QUERY",
     "name": "PostMemberFilter"
   },
@@ -1068,7 +1362,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/member/apidoc/MemberApiDoc.java",
     "groupTitle": "MEMBER_UPDATE",
     "name": "PutMember"
   },
@@ -1129,7 +1423,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_ADD",
     "name": "PostProject"
   },
@@ -1169,7 +1463,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_DELETE",
     "name": "DeleteProjectCompanyidProjectid"
   },
@@ -1216,7 +1510,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_QUERY",
     "name": "GetProject"
   },
@@ -1277,7 +1571,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/project/controller/ProjectController.java",
     "groupTitle": "PROJECT_UPDATE",
     "name": "PutProject"
   },
@@ -1372,7 +1666,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_ADD",
     "name": "PostWork"
   },
@@ -1405,7 +1699,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_DELETE",
     "name": "DeleteWork"
   },
@@ -1445,7 +1739,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
     "name": "GetWorkAll"
   },
@@ -1465,7 +1759,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
     "name": "GetWorkCount"
   },
@@ -1512,7 +1806,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_QUERY",
     "name": "PostWorkFilter"
   },
@@ -1608,7 +1902,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
+    "filename": "E:/project/hrms/mis-hrm-web/src/main/java/com/mis/hrm/web/work/apidoc/WorkApiDoc.java",
     "groupTitle": "WORK_UPDATE",
     "name": "PutWork"
   }
