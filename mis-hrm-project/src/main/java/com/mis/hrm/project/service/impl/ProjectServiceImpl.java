@@ -80,4 +80,9 @@ public class ProjectServiceImpl implements ProjectService {
         }
         return projectMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public int getProjectCount() {
+        return projectMapper.getProjectCount();
+    }
 }

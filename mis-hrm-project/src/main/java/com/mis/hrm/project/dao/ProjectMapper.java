@@ -4,5 +4,5 @@ import com.mis.hrm.project.po.Project;
 import com.mis.hrm.util.BaseMapper;
 
 public interface ProjectMapper extends BaseMapper<Project> {
-
+    int getProjectCount();
 }

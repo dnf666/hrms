@@ -2,6 +2,7 @@ package com.mis.hrm.web.project.controller;
 
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
+import com.mis.hrm.util.ToMap;
 import com.mis.hrm.web.util.ControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -119,6 +120,13 @@ public class ProjectController {
     public Map getProjectBycompanyIdAndProjectId(Project project){
         Map<String, Object> result;
         result = ControllerUtil.getResult(projectService::selectByPrimaryKey, project);
+        return result;
+    }
+
+    @GetMapping("project/count")
+    public Map getProjectCount(){
+        Map<String, Object> result;
+        result = ToMap.toSuccessMap(projectService.getProjectCount());
         return result;
     }
 }
