@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/aop/spring-aop.xsd
          http://www.springframework.org/schema/beans
-         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <context:component-scan base-package="com.mis.hrm.index.*"/>
-    <!--仅会查找在同一个Application中的bean注解-->
-    <context:annotation-config/>
     <bean id="indexLog" class="com.mis.hrm.index.interceptor.LogInterceptor">
         <constructor-arg type="java.lang.String" value="index"/>
         <constructor-arg type="java.lang.String" value=""/>
@@ -23,6 +19,4 @@
             <aop:around pointcut-ref="indexLogAround" method="around"/>
         </aop:aspect>
     </aop:config>
-
-
 </beans>

@@ -8,5 +8,5 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <import resource="classpath:spring/spring-web.xml"/>
+    <import resource="classpath*:spring/spring-web.xml"/>
 </beans>

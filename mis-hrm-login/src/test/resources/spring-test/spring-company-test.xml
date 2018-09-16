@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.mis.hrm.login.*"/>
+    <!--仅会查找在同一个Application中的bean注解-->
+    <context:annotation-config/>
+    <mvc:annotation-driven/>
+
+    <jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:script location="classpath:h2/schema.sql" encoding="UTF-8"/>
+        <jdbc:script location="classpath:h2/data_prepared.sql" encoding="UTF-8"/>
+    </jdbc:embedded-database>
+
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--迭代查找指定路径下的mapper文件，-->
+        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+        <property name="configurationProperties">
+            <props>
+                <!--缓存机制-->
+                <prop key="cacheEnable">true</prop>
+                <!--在变量为null的时候也调用setter方法-->
+                <prop key="callSetterOnNulls">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean name="daoManager" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--这项在这个项目中其实可以不写，因为MapperScannerConfigurer将会自动创建MapperFactoryBean之后自动装配，但是你
+        如果使用了一个以上的DateSource就会装配失败， 就要以下面的方式指定sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.mis.hrm.login.dao"/>
+    </bean>
+
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="10485760000"/>
+        <property name="maxInMemorySize" value="40960000"/>
+    </bean>
+</beans>

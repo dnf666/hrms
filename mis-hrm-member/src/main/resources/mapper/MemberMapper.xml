@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mis.hrm.member.dao.MemberMapper" >
+    <resultMap id="BaseResultMap" type="com.mis.hrm.member.model.Member">
+        <id column="company_id" property="companyId" jdbcType="VARCHAR"/>
+        <id column="num" property="num" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="profession" property="profession" jdbcType="VARCHAR"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.mis.hrm.member.model.Member">
+        insert into member(company_id, num, name, phone_number, email, grade, sex, profession, department)
+        values (#{companyId},#{num},#{name},#{phoneNumber},#{email},#{grade},#{sex},#{profession},#{department});
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="com.mis.hrm.member.model.Member">
+        delete from member where company_id = #{companyId} and num = #{num};
+    </delete>
+
+    <update id="updateByPrimaryKey" parameterType="com.mis.hrm.member.model.Member">
+        update member
+        <set>
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="num != null">num = #{num},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="phoneNumber != null">phone_number = #{phoneNumber},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="grade != null">grade = #{grade},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="profession != null">profession = #{profession},</if>
+            <if test="department != null">department = #{department},</if>
+        </set>
+        where company_id = #{companyId} and num = #{num};
+    </update>
+
+    <select id="selectByPrimaryKey" resultType="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department
+        from member
+        where company_id = #{companyId} and num = #{num};
+    </select>
+
+    <delete id="deleteByNums" parameterType="java.util.List">
+        delete from member where num in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="countMembers" resultType="java.lang.Long">
+        select count(num) from member;
+    </select>
+
+    <select id="getAllMembers" resultType="List" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department
+        from member
+        <if test="offset!=null and limit!=null">
+            limit #{offset},#{limit}
+        </if>
+    </select>
+
+    <select id="filter" parameterType="com.mis.hrm.member.model.Member" resultType="List" resultMap="BaseResultMap">
+        select company_id, num, name, phone_number, email, grade, sex, profession, department
+        from member where 1 = 1
+        <if test="member.companyId != null">
+            and member.company_id like '%${member.companyId}%'
+        </if>
+        <if test="member.num != null">
+            and member.num like '%${member.num}%'
+        </if>
+        <if test="member.name != null">
+            and member.name like '%${member.name}%'
+        </if>
+        <if test="member.phoneNumber != null">
+            and member.phone_number like '%${member.phoneNumber}%'
+        </if>
+        <if test="member.email != null">
+            and member.email like '%${member.email}%'
+        </if>
+        <if test="member.grade != null">
+            and member.grade like '%${member.grade}%'
+        </if>
+        <if test="member.sex != null">
+            and member.sex like '%${member.sex}%'
+        </if>
+        <if test="member.profession != null">
+            and member.profession like '%${member.profession}%'
+        </if>
+        <if test="member.department != null">
+            and member.department like '%${member.department}%'
+        </if>
+        <if test="pager.offset!=null and pager.limit!=null">
+            limit #{pager.offset},#{pager.limit};
+        </if>
+    </select>
+</mapper>
