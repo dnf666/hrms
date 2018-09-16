@@ -8,25 +8,8 @@
         <typeAlias type="com.mis.hrm.book.po.Book" alias="book"/>
         <typeAlias type="com.mis.hrm.book.po.BookLendInfo" alias="bookLendInfo"/>
     </typeAliases>
-
-    <!--把对应的xml文件加载进来-->
     <mappers>
-        <!--通过扫描包的方式加载文件-->
-        <!--此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。-->
-        <!--<package name="com.mis.hrm.book.dao"/>-->
 
-        <!--也可以通过下面的方式导入-->
-
-        <!--url方式(全路径，不推荐)-->
-        <!--<mapper url="file:///home/liudong/code/hrms/mis-hrm-book/src/main/resources/mappers/BookMapper.xml"/>-->
-
-        <!--使用mapper接口 (接口类名)-->
-        <!--此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。-->
-        <!--<mapper class="com.mis.hrm.book.dao.BookMapper"/>-->
-
-        <!--resource方式　（classpath 相对路径）-->
-        <!--<mapper resource="mappers/BookMapper.xml"/>-->
-        <!--<mapper resource="mappers/BookLendInfoMapper.xml"/>-->
 
     </mappers>
 </configuration>
