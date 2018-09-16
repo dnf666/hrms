@@ -11,12 +11,12 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        company_id, book_name, category, num, version, book_id
+        company_id,book_id, book_name, category, num, version
     </sql>
 
     <insert id="insert" parameterType="book">
-        insert into library (company_id, book_name, category, num, version, book_id)
-          VALUES (#{companyId},#{bookName},#{category},#{quantity},#{version},CONCAT(#{companyId},#{category},#{bookName},current_time))
+        insert into library (company_id,book_id, book_name, category, num, version)
+          VALUES (#{companyId},#{bookId},#{bookName},#{category},#{quantity},#{version})
     </insert>
 
     <select id="selectByPrimaryKey" parameterType="book" resultMap="bookResultMap">

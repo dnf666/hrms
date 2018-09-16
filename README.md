@@ -28,4 +28,7 @@ mis-hrm
 spring+springmvc+mybatis
 
 
-注意：后端copy项目马上切换分支到dev分支。禁止向master提交代码
+注意：
+1.后端每天开发前必须先pull master 的代码。
+2.无论是修复bug还是添加功能 均创建一个新分支。命名格式 ddmmyy_操作_对象 如 150918_delete_druid
+3. 当你的代码测试通过后，可以提交到master分支(提交前再次pull master分支的代码)。我会merge 你们的分支。 

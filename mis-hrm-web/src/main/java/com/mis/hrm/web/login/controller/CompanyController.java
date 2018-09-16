@@ -16,6 +16,7 @@ import static com.mis.hrm.util.validation.ValidationUtil.checkBindingResult;
  */
 @RestController
 @RequestMapping("company")
+//todo 异常返回格式不爽
 public class CompanyController {
 
     @Autowired

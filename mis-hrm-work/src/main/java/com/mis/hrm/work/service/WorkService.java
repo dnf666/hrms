@@ -8,15 +8,29 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface WorkService extends BaseService<Whereabout> {
-    //批量删除
+    /**
+     *    批量删除
+     */
     int deleteByNums(List<String> nums);
 
-    //统计人员总数
+    /**
+     * 统计人数
+     * @return
+     */
     Long countWorkers();
 
-    //分页获取已毕业成员的信息
+    /**
+     * 分页获取已毕业成员的信息
+     * @param pager
+     * @return
+     */
     List<Whereabout> getAllGraduates(Pager<Whereabout> pager);
 
-    //过滤
+    /**
+     * 过滤
+     * @param pager
+     * @param whereabout
+     * @return
+     */
     List<Whereabout> filter(@Param("pager") Pager<Whereabout> pager,@Param("whereabout") Whereabout whereabout);
 }

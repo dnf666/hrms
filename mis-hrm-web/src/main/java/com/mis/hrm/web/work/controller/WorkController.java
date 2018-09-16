@@ -24,7 +24,7 @@ public class WorkController {
             map = ToMap.toSuccessMap(workService.insert(whereabout));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (RuntimeException e){
+        } catch (Exception e){
             map = ToMap.toFalseMap(e.getMessage());
         }
         return map;
@@ -37,7 +37,7 @@ public class WorkController {
             map = ToMap.toSuccessMap(workService.deleteByNums(nums));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (RuntimeException e){
+        } catch (Exception e){
             map = ToMap.toFalseMap(e.getMessage());
         }
         return map;
@@ -50,7 +50,7 @@ public class WorkController {
             map = ToMap.toSuccessMap(workService.updateByPrimaryKey(whereabout));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        } catch (RuntimeException e){
+        } catch (Exception e){
             map = ToMap.toFalseMap(e.getMessage());
         }
         return map;
@@ -73,8 +73,8 @@ public class WorkController {
     @PostMapping("/filter")
     public Map workFilter(@RequestBody Whereabout whereabout,
                             @RequestParam Integer page,
-                            @RequestParam Integer size,
-                            Pager<Whereabout> pager){
+                            @RequestParam Integer size){
+        Pager<Whereabout> pager = new Pager<>();
         pager.setPageSize(size);
         pager.setCurrentPage(page);
         Map<String,Object> map;

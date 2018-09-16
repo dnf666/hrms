@@ -15,6 +15,8 @@ import java.io.IOException;
  */
 @RestController
 @RequestMapping("index")
+//todo 异常没有抓取。返回格式要改
+//todo 如何删除没用的图片
 public class IndexController {
 
     @Autowired
@@ -51,6 +53,7 @@ public class IndexController {
      * @apiParam (Index) {String} outline 公司简介
      *
      */
+
     @PatchMapping("updateOutline")
     public ResponseEntity updateOutline(Index index){
         indexServiceImpl.updateByPrimaryKey(index);
@@ -64,6 +67,7 @@ public class IndexController {
      * @apiParam (Index) {String} companyId 公司邮箱
      *
      */
+
     @PostMapping("updatePhoto")
     public ResponseEntity updatePhoto(Index index, @RequestParam("photo") MultipartFile file,
                                       HttpServletRequest request) throws IOException {
