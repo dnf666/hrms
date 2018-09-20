@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,7 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public int insert(Book record) {
+        System.out.println(record.toString() + "-------insert");
         Optional<Book> bookOptional;
         try {
             bookOptional = Optional.of(record);
@@ -67,6 +69,8 @@ public class BookServiceImpl implements BookService {
         if (!bookOptional.filter(Book::baseRequied).isPresent()) {
             throw new InfoNotFullyException("插入book的基本信息未满足");
         }
+        record.setBookId(LocalDateTime.now().getNano()+"");
+        System.out.println(record);
         return bookMapper.insert(record);
     }
 

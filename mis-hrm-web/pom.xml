@@ -56,6 +56,11 @@
         <artifactId>mis-hrm-work</artifactId>
         <version>1.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+        <groupId>com.thetransactioncompany</groupId>
+        <artifactId>cors-filter</artifactId>
+        <version>2.5</version>
+    </dependency>
 </dependencies>
 
     <build>
