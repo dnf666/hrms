@@ -14,13 +14,28 @@
     </delete>
 
     <insert id="insert" parameterType="com.mis.hrm.project.po.Project">
-        insert into project (company_id, project_name, project_url, online_time,project_id)
-        values (#{companyId},#{projectName},#{projectUrl},#{onlineTime},#{projectId})
+        insert into project (company_id, project_name, project_url, online_time)
+        values (#{companyId},#{projectName},#{projectUrl},#{onlineTime})
     </insert>
 
     <select id="selectByPrimaryKey" parameterType="com.mis.hrm.project.po.Project" resultMap="projectMapper">
         select company_id, project_id, project_name, project_url, online_time
-          from project where company_id = #{companyId} and project_id = #{projectId}
+          from project where 1=1
+        <if test="companyId != null">
+            and company_id = #{companyId}
+        </if>
+        <if test="projectId != null">
+            and project_id = #{projectId}
+        </if>
+        <if test="projectName != null">
+            and project_name = #{projectName}
+        </if>
+        <if test="projectUrl != null">
+            and project_url = #{projectUrl}
+        </if>
+        <if test="onlineTime != null">
+            and online_time = #{onlineTime}
+        </if>
     </select>
 
     <update id="updateByPrimaryKey" parameterType="com.mis.hrm.project.po.Project">
@@ -38,7 +53,28 @@
         </set>
         where company_id = #{companyId} and project_id = #{projectId}
     </update>
-    <select id="getProjectCount" resultType="java.lang.Integer">
-        select count(*) from project;
+    <select id="getProjectCount" parameterType="com.mis.hrm.project.po.Project" resultType="java.lang.Integer">
+        select count(*) from project where company_id = #{companyId};
+    </select>
+
+    <select id="selectByPrimaryKeyAndPage" resultMap="projectMapper">
+        select company_id, project_id, project_name, project_url, online_time
+        from project where 1=1
+        <if test="project.companyId != null">
+            and company_id = #{project.companyId}
+        </if>
+        <if test="project.projectId != null">
+            and project_id = #{project.projectId}
+        </if>
+        <if test="project.projectName != null">
+            and project_name = #{project.projectName}
+        </if>
+        <if test="project.projectUrl != null">
+            and project_url = #{project.projectUrl}
+        </if>
+        <if test="project.onlineTime != null">
+            and online_time = #{project.onlineTime}
+        </if>
+        limit #{offset},#{size}
     </select>
 </mapper>

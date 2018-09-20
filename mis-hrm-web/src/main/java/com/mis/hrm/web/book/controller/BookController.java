@@ -1,9 +1,12 @@
 package com.mis.hrm.web.book.controller;
 
 
+import com.google.common.base.Strings;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 
+import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.web.util.ControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
+@RequestMapping("book")
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -197,6 +201,16 @@ public class BookController {
     @PostMapping("book")
     public Map addBookInfo(Book book){
         Map<String, Object> result;
+        if (Strings.isNullOrEmpty(book.getCompanyId())
+                || Strings.isNullOrEmpty(book.getBookName())
+                || Strings.isNullOrEmpty(book.getVersion())){
+            return ToMap.toFalseMap(ErrorCode.NOT_BLANK.getDescription());
+        }
+        String companyId = book.getCompanyId();
+        String bookName = book.getBookName();
+        String version = book.getVersion();
+        String bookId = companyId+bookName+version;
+        book.setBookId(bookId);
         result = ControllerUtil.getResult(bookService::insert, book);
         return result;
     }
@@ -214,11 +228,18 @@ public class BookController {
      *         "object": null
      *       }
      */
-    @DeleteMapping("book/{bookId}")
+    @DeleteMapping("{bookId}")
     public Map deleteBookInfoByBookId(@PathVariable("bookId") String bookId){
         Map<String, Object> result;
         Book book = Book.builder().bookId(bookId).build();
         result = ControllerUtil.getResult(bookService::deleteByPrimaryKey, book);
         return result;
+    }
+    @GetMapping("option")
+    public Map searchBook(Book book){
+        if (Strings.isNullOrEmpty(book.getCompanyId())){
+            return ToMap.toFalseMap(ErrorCode.NOT_BLANK.getDescription());
+        }
+        return ControllerUtil.getResult(bookService::selectBookByOptions,book);
     }
 }

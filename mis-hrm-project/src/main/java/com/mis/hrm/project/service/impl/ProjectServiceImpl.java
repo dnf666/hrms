@@ -3,6 +3,7 @@ package com.mis.hrm.project.service.impl;
 import com.mis.hrm.project.dao.ProjectMapper;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
+import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -82,7 +84,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int getProjectCount() {
-        return projectMapper.getProjectCount();
+    public int getProjectCount(Project project) {
+        return projectMapper.getProjectCount(project);
+    }
+
+    @Override
+    public List<Project> selectByPrimaryKeyAndPage(Project project, Pager<Project> pager) {
+       int offset = pager.getOffset();
+       int size = pager.getPageSize();
+        return projectMapper.selectByPrimaryKeyAndPage(project,offset,size);
     }
 }

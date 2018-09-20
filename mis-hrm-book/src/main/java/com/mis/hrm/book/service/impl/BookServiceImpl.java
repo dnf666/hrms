@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -113,6 +114,11 @@ public class BookServiceImpl implements BookService {
             throw new InfoNotFullyException("bookId为空");
         }
         return bookMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Book> selectBookByOptions(Book book) {
+        return bookMapper.selectBookByOptions(book);
     }
 
     @Override
