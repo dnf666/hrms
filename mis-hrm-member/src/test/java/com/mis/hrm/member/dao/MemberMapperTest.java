@@ -86,7 +86,7 @@ public class MemberMapperTest {
 
     @Test
     public void testCountMembers(){
-        Assert.assertEquals((Long)(long)5,memberMapper.countMembers());
+        Assert.assertEquals((Long)(long)5,memberMapper.countMembers(new Member()));
     }
 
     @Test

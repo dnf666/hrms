@@ -4,6 +4,7 @@ import com.mis.hrm.book.dao.BookLendInfoMapper;
 import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.book.service.BookLendService;
 import com.mis.hrm.util.ConstantValue;
+import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.slf4j.Logger;
@@ -136,5 +137,14 @@ public class BookLendServiceImpl implements BookLendService {
             throw new InfoNotFullyException("companyId or bookrecorder is null");
         }
         return bookLendInfoMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<BookLendInfo> selectByPrimaryKeyAndPage(BookLendInfo key, Pager<BookLendInfo> pager) {
+        int offset = pager.getOffset();
+        int size = pager.getPageSize();
+        int total = bookLendInfoMapper.getCountByKeys(key);
+        pager.setRecordSize(total);
+        return bookLendInfoMapper.selectByPrimaryKeyAndPage(key,offset,size);
     }
 }

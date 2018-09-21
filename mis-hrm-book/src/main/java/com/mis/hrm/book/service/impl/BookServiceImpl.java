@@ -4,6 +4,7 @@ import com.mis.hrm.book.dao.BookMapper;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 import com.mis.hrm.util.ConstantValue;
+import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.slf4j.Logger;
@@ -176,5 +177,14 @@ public class BookServiceImpl implements BookService {
             throw new InfoNotFullyException("companyId or bookname is null");
         }
         return isOk ? bookMapper.selectBooksByCompanyIdAndBookName(book) : null;
+    }
+
+    @Override
+    public List<Book> selectByPrimaryKeyAndPage(Book book, Pager<Book> pager) {
+        int offset = pager.getOffset();
+        int size = pager.getPageSize();
+        int total = bookMapper.getCountByKeys(book);
+        pager.setRecordSize(total);
+        return bookMapper.selectByPrimaryKeyAndPage(book,offset,size);
     }
 }

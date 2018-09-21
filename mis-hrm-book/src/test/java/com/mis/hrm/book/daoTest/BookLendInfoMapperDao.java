@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,7 +29,7 @@ public class BookLendInfoMapperDao {
                 .bookRecord("aaaaa")
                 .borrower("liudong")
                 .companyId("信管工作室")
-                .lendTime(LocalDateTime.now().toString())
+                .lendTime(new Date().toString())
                 .build();
     }
 

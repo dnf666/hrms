@@ -30,9 +30,6 @@
     <update id="updateByPrimaryKey" parameterType="bookLendInfo">
         update booklend
         <set>
-            <if test="companyId != null">
-                company_id = #{companyId},
-            </if>
             <if test="bookName != null">
                 book_name = #{bookName},
             </if>
@@ -40,7 +37,10 @@
                 lend_time = #{lendTime},
             </if>
             <if test="returnTime != null">
-                return_time = #{returnTime}
+                return_time = #{returnTime},
+            </if>
+            <if test="borrower != null">
+                borrower = #{borrower}
             </if>
         </set>
         where company_id = #{companyId} and book_record = #{bookRecord};
@@ -66,5 +66,51 @@
 
     <select id="selectAll" resultMap="bookLendInfoResult">
         select <include refid="Base_Column_List"/> from booklend;
+    </select>
+
+    <select id="getCountByKeys" parameterType="com.mis.hrm.book.po.BookLendInfo" resultType="java.lang.Integer">
+        select count(*)
+        from booklend where 1=1
+        <if test="companyId != null">
+            and company_id = #{companyId}
+        </if>
+        <if test="bookRecord != null">
+            and book_record = #{bookRecord}
+        </if>
+        <if test="bookName != null">
+            and book_name = #{bookName}
+        </if>
+        <if test="lendTime != null">
+            and lend_time = #{lendTime}
+        </if>
+        <if test="returnTime!= null">
+            and return_time = #{returnTime}
+        </if>
+        <if test="borrower!= null">
+            and borrower = #{borrower}
+        </if>
+    </select>
+    <select id="selectByPrimaryKeyAndPage" resultMap="bookLendInfoResult">
+        select <include refid="Base_Column_List"/>
+        from booklend where 1=1
+        <if test="key.companyId != null">
+            and company_id like '%${key.companyId}%'
+        </if>
+        <if test="key.bookRecord != null">
+            and book_record like '%${key.bookRecord}%'
+        </if>
+        <if test="key.bookName != null">
+            and book_name like '%${key.bookName}'
+        </if>
+        <if test="key.lendTime != null">
+            and lend_time like '%${key.lendTime}'
+        </if>
+        <if test="key.returnTime!= null">
+            and return_time like '%${key.returnTime}'
+        </if>
+        <if test="key.borrower!= null">
+            and borrower like '%$key.borrower}'
+        </if>
+        limit #{offset},#{size}
     </select>
 </mapper>

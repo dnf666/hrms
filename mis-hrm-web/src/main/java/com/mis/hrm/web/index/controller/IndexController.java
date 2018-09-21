@@ -13,6 +13,7 @@ import java.io.IOException;
 /**
  * @author May
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("index")
 //todo 异常没有抓取。返回格式要改

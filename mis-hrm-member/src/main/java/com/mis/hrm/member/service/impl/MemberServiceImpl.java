@@ -90,6 +90,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public List<Member> selectByPrimaryKeyAndPage(Member key, Pager<Member> pager) {
+        return null;
+    }
+
+    @Override
     public int deleteByNums(List<String> nums) {
         if(!nums.equals(new ArrayList<>())){
             int stateNum = memberMapper.deleteByNums(nums);
@@ -107,8 +112,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Long countMembers() {
-        return memberMapper.countMembers();
+    public Integer countMembers(Member member) {
+        return memberMapper.countMembers(member);
     }
 
     @Override
@@ -118,6 +123,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<Member> filter(Pager<Member> pager, Member member) throws RuntimeException{
+       Integer total = memberMapper.countMembersByKeys(member);
+       pager.setPageTotal(total);
         if (ObjectNotEmpty.notEmpty(member)) {
             return memberMapper.filter(pager,member);
         } else {

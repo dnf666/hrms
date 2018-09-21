@@ -111,10 +111,10 @@ public class WorkServiceImplTest {
 
     @Test
     public void getAllGraduates() {
-        Assert.assertEquals(2,workService.getAllGraduates(pager).size());
+        Assert.assertEquals(2,workService.getAllGraduates(pager,"111").size());
 
         pager.setCurrentPage(3);
-        Assert.assertEquals(1,workService.getAllGraduates(pager).size());
+        Assert.assertEquals(1,workService.getAllGraduates(pager,"111").size());
     }
 
     @Test

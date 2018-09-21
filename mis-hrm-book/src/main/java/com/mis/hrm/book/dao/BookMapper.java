@@ -35,4 +35,6 @@ public interface BookMapper extends BaseMapper<Book> {
     List<Book> selectBooksByCompanyIdAndBookName(Book book);
 
     List<Book> selectBookByOptions(Book book);
+
+
 }

@@ -1,8 +1,12 @@
 package com.mis.hrm.web.book.controller;
 
+import com.google.common.base.Strings;
 import com.mis.hrm.book.po.BookLendInfo;
 import com.mis.hrm.book.service.BookLendService;
+import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.constant.PageConstant;
+import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.web.util.ControllerUtil;
 import org.slf4j.Logger;
@@ -10,8 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("bookLendInfo")
 public class BookLendController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -299,6 +306,24 @@ public class BookLendController {
         Map<String, Object> result;
         result = ControllerUtil.getResult(bookLendService::updateByPrimaryKey, bookLendInfo);
         return result;
+    }
+    @GetMapping("option")
+    public Map searchBook(BookLendInfo bookLendInfo,Integer currentPage,Integer size){
+        if (currentPage == null) {
+            currentPage = PageConstant.DEFUALT_PAGE;
+        }
+        if (size == null) {
+            size = PageConstant.DEFUALT_SIZE;
+        }
+        Pager<BookLendInfo> pager = new Pager<>();
+        pager.setCurrentPage(currentPage);
+        pager.setPageSize(size);
+        if (Strings.isNullOrEmpty(bookLendInfo.getCompanyId())){
+            return ToMap.toFalseMap(ErrorCode.NOT_BLANK.getDescription());
+        }
+        List<BookLendInfo> bookList = bookLendService.selectByPrimaryKeyAndPage(bookLendInfo, pager);
+        pager.setData(bookList);
+        return ToMap.toSuccessMap(pager);
     }
 }
 

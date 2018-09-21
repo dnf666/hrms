@@ -12,5 +12,4 @@ import java.util.List;
 public interface ProjectMapper extends BaseMapper<Project> {
     int getProjectCount(Project project);
 
-    List<Project> selectByPrimaryKeyAndPage(@Param("project") Project project, @Param("offset") int offset,@Param("size") int size);
 }

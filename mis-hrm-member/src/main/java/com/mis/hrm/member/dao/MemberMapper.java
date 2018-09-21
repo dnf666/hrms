@@ -15,11 +15,13 @@ public interface MemberMapper extends BaseMapper<Member> {
     int deleteByNums(List<String> nums);
 
     //统计成员总数
-    Long countMembers();
+    Integer countMembers(Member member);
 
     //分页查看所有成员
     List<Member> getAllMembers(Pager<Member> pager);
 
     //过滤
     List<Member> filter(@Param("pager") Pager<Member> pager, @Param("member") Member member);
+
+    Integer countMembersByKeys(Member member);
 }

@@ -14,6 +14,7 @@ import static com.mis.hrm.util.validation.ValidationUtil.checkBindingResult;
 /**
  * @author May
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("company")
 //todo 异常返回格式不爽

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class getJsonFormat {
     @Test
@@ -27,7 +28,7 @@ public class getJsonFormat {
                 .companyId("信管工作室")
                 .bookRecord("不晓得是撒子啊")
                 .bookName("暗时间")
-                .lendTime(LocalDate.now().toString())
+                .lendTime(new Date().toString())
                 .returnTime(LocalDate.now().toString())
                 .borrower("优秀的人").build();
         String bookInfoJson = JSON.toJSONString(bookLendInfo);
