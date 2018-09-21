@@ -38,6 +38,6 @@ public class BookControllerTest {
     @Test
     public void selectOptions(){
         Book demo = Book.builder().companyId("1204695257@qq.com").build();
-        System.out.println(bookController.searchBook(demo));
+//        System.out.println(bookController.searchBook(demo));
     }
 }

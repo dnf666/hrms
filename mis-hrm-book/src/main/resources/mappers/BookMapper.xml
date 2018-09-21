@@ -69,25 +69,43 @@
         from library where company_id = #{companyId} and book_name = #{bookName};
     </select>
 
-    <select id="selectBookByOptions" parameterType="book" resultMap="bookResultMap">
-        select
-        <include refid="Base_Column_List"/>
+    <select id="getCountByKeys" parameterType="com.mis.hrm.book.po.Book" resultType="java.lang.Integer">
+        select count(*)
         from library where 1=1
         <if test="companyId != null">
             and company_id = #{companyId}
         </if>
         <if test="bookId != null">
-           and book_id = #{bookId}
+            and book_id = #{bookId}
+        </if>
+        <if test="bookName != null">
+            and book_name = #{bookName}
         </if>
         <if test="category != null">
             and category = #{category}
         </if>
-        <if test="quantity != null">
-           and num = #{quantity}
-        </if>
-        <if test="version != null">
-           and version = #{version}
+        <if test=" version!= null">
+            and version = #{version}
         </if>
     </select>
-
+    <select id="selectByPrimaryKeyAndPage" resultMap="bookResultMap">
+        select <include refid="Base_Column_List"/>
+        from library where 1=1
+        <if test="key.companyId != null">
+            and company_id = #{key.companyId}
+        </if>
+        <if test="key.bookId != null">
+            and book_id = #{key.bookId}
+        </if>
+        <if test="key.bookName != null">
+            and book_name = #{key.bookName}
+        </if>
+        <if test="key.category != null">
+            and category = #{key.category}
+        </if>
+        <if test=" key.version!= null">
+            and version = #{key.version}
+        </if>
+        limit #{offset},#{size}
+    </select>
 </mapper>

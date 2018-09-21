@@ -106,7 +106,7 @@ public class MemberServiceImplTest {
 
     @Test
     public void testCountMembers() {
-        Assert.assertEquals((Long) (long) 5, memberService.countMembers());
+        Assert.assertEquals((Long) (long) 5, memberService.countMembers(new Member()));
     }
 
     @Test

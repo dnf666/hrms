@@ -2,6 +2,8 @@ package com.mis.hrm.util;
 
 import com.mis.hrm.util.exception.InfoNotFullyException;
 
+import java.util.List;
+
 /**
  * created by dailf on 2018/7/13
  *
@@ -15,4 +17,6 @@ public interface BaseService<T> {
     T selectByPrimaryKey(T key) throws InfoNotFullyException;
 
     int updateByPrimaryKey(T record) throws InfoNotFullyException;
+    List<T> selectByPrimaryKeyAndPage(T key, Pager<T> pager);
+
 }

@@ -1,7 +1,6 @@
 package com.mis.hrm.web.project.controller;
 
 import com.google.common.base.Strings;
-import com.mis.hrm.book.po.Book;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
 import com.mis.hrm.util.Pager;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("project")
 public class ProjectController {

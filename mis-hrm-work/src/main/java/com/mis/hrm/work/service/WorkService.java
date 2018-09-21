@@ -24,7 +24,7 @@ public interface WorkService extends BaseService<Whereabout> {
      * @param pager
      * @return
      */
-    List<Whereabout> getAllGraduates(Pager<Whereabout> pager);
+    List<Whereabout> getAllGraduates(Pager<Whereabout> pager,String companyId);
 
     /**
      * 过滤

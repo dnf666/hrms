@@ -5,14 +5,18 @@ import com.google.common.base.Strings;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 
+import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.constant.PageConstant;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.web.util.ControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("book")
 public class BookController {
@@ -236,10 +240,21 @@ public class BookController {
         return result;
     }
     @GetMapping("option")
-    public Map searchBook(Book book){
+    public Map searchBook(Book book,Integer currentPage,Integer size){
+        if (currentPage == null) {
+            currentPage = PageConstant.DEFUALT_PAGE;
+        }
+        if (size == null) {
+            size = PageConstant.DEFUALT_SIZE;
+        }
+        Pager<Book> pager = new Pager<>();
+        pager.setCurrentPage(currentPage);
+        pager.setPageSize(size);
         if (Strings.isNullOrEmpty(book.getCompanyId())){
             return ToMap.toFalseMap(ErrorCode.NOT_BLANK.getDescription());
         }
-        return ControllerUtil.getResult(bookService::selectBookByOptions,book);
+        List<Book> bookList = bookService.selectByPrimaryKeyAndPage(book, pager);
+        pager.setData(bookList);
+        return ToMap.toSuccessMap(pager);
     }
 }

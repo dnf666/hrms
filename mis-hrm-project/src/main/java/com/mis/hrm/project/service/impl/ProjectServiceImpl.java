@@ -92,6 +92,8 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> selectByPrimaryKeyAndPage(Project project, Pager<Project> pager) {
        int offset = pager.getOffset();
        int size = pager.getPageSize();
+       int total = projectMapper.getCountByKeys(project);
+       pager.setRecordSize(total);
         return projectMapper.selectByPrimaryKeyAndPage(project,offset,size);
     }
 }

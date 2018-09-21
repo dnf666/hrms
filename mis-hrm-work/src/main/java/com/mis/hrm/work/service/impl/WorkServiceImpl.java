@@ -87,6 +87,11 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
+    public List<Whereabout> selectByPrimaryKeyAndPage(Whereabout key, Pager<Whereabout> pager) {
+        return null;
+    }
+
+    @Override
     public int deleteByNums(List<String> nums) {
         if(!nums.equals(new ArrayList<>())){
             int stateNum = workMapper.deleteByNums(nums);
@@ -109,8 +114,8 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public List<Whereabout> getAllGraduates(Pager<Whereabout> pager) {
-        return workMapper.getAllGraduates(pager);
+    public List<Whereabout> getAllGraduates(Pager<Whereabout> pager,String conpanyId) {
+        return workMapper.getAllGraduates(pager,conpanyId);
     }
 
     @Override

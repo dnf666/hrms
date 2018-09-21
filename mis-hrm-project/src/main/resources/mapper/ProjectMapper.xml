@@ -24,7 +24,7 @@
         <if test="companyId != null">
             and company_id = #{companyId}
         </if>
-        <if test="projectId != null">
+        <if test="projectId != 0">
             and project_id = #{projectId}
         </if>
         <if test="projectName != null">
@@ -56,24 +56,42 @@
     <select id="getProjectCount" parameterType="com.mis.hrm.project.po.Project" resultType="java.lang.Integer">
         select count(*) from project where company_id = #{companyId};
     </select>
-
+    <select id="getCountByKeys" parameterType="com.mis.hrm.project.po.Project" resultType="java.lang.Integer">
+        select count(*)
+        from project where 1=1
+        <if test="companyId != null">
+            and company_id like '%${companyId}%'
+        </if>
+        <if test="projectId != 0">
+            and project_id like '%${projectId}%'
+        </if>
+        <if test="projectName != null">
+            and project_name like '%${projectName}%'
+        </if>
+        <if test="projectUrl != null">
+            and project_url like '%${projectUrl}%'
+        </if>
+        <if test="onlineTime != null">
+            and online_time like '%${onlineTime}%'
+        </if>
+    </select>
     <select id="selectByPrimaryKeyAndPage" resultMap="projectMapper">
         select company_id, project_id, project_name, project_url, online_time
         from project where 1=1
-        <if test="project.companyId != null">
-            and company_id = #{project.companyId}
+        <if test="key.companyId != null">
+            and company_id like '%${key.companyId}%'
         </if>
-        <if test="project.projectId != null">
-            and project_id = #{project.projectId}
+        <if test="key.projectId != 0">
+            and project_id like '%${key.projectId}%'
         </if>
-        <if test="project.projectName != null">
-            and project_name = #{project.projectName}
+        <if test="key.projectName != null">
+            and project_name like '%${key.projectName}%'
         </if>
-        <if test="project.projectUrl != null">
-            and project_url = #{project.projectUrl}
+        <if test="key.projectUrl != null">
+            and project_url like '%${key.projectUrl}%'
         </if>
-        <if test="project.onlineTime != null">
-            and online_time = #{project.onlineTime}
+        <if test="key.onlineTime != null">
+            and online_time like '%${key.onlineTime}%'
         </if>
         limit #{offset},#{size}
     </select>

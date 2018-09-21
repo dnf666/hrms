@@ -2,6 +2,7 @@ package com.mis.hrm.book.service;
 
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.util.BaseService;
+import com.mis.hrm.util.Pager;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,5 @@ public interface BookService extends BaseService<Book> {
     List<Book> selectBooksByComapnyIdAndCategory(Book book);
 
     List<Book> selectBooksByCompanyIdAndBookName(Book book);
+
 }
