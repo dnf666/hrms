@@ -32,10 +32,10 @@ public class MemberController {
     }
 
     @DeleteMapping("member")
-    public Map deleteByNums(@RequestBody List<String> nums) {
+    public Map deleteByNums(@RequestBody List<String> nums,String companyId) {
         Map<String, Object> map;
         try {
-            map = ToMap.toSuccessMap(memberService.deleteByNums(nums));
+            map = ToMap.toSuccessMap(memberService.deleteByNums(nums,companyId));
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {
@@ -62,14 +62,14 @@ public class MemberController {
         return ToMap.toSuccessMap(memberService.countMembers(member));
     }
 
-    @GetMapping("/all")
-    public Map getAllMembers(@RequestParam Integer page,
-                             @RequestParam Integer size,
-                             Pager<Member> pager) {
-        pager.setCurrentPage(page);
-        pager.setPageSize(size);
-        return ToMap.toSuccessMap(memberService.getAllMembers(pager));
-    }
+//    @GetMapping("/all")
+//    public Map getAllMembers(@RequestParam Integer page,
+//                             @RequestParam Integer size,
+//                             Pager<Member> pager) {
+//        pager.setCurrentPage(page);
+//        pager.setPageSize(size);
+//        return ToMap.toSuccessMap(memberService.getAllMembers(pager));
+//    }
 
     @PostMapping("/filter")
     public Map memberFilter(@RequestBody Member member,

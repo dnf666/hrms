@@ -16,8 +16,6 @@ import java.io.IOException;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("index")
-//todo 异常没有抓取。返回格式要改
-//todo 如何删除没用的图片
 public class IndexController {
 
     @Autowired

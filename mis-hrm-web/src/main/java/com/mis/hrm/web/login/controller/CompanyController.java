@@ -17,7 +17,6 @@ import static com.mis.hrm.util.validation.ValidationUtil.checkBindingResult;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("company")
-//todo 异常返回格式不爽
 public class CompanyController {
 
     @Autowired

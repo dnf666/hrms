@@ -17,7 +17,7 @@ public class Member {
     //专业
     private String profession;
     //部门
-    public String department;
+    private String department;
 
     public Member(String companyId,String num){
         this.companyId = companyId;
