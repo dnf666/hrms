@@ -95,9 +95,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int deleteByNums(List<String> nums) {
+    public int deleteByNums(List<String> nums,String companyId) {
         if(!nums.equals(new ArrayList<>())){
-            int stateNum = memberMapper.deleteByNums(nums);
+            int stateNum = memberMapper.deleteByNums(nums,companyId);
             if(stateNum > 0){
                 logger.info("成功删除" + stateNum + "名成员信息");
                 return stateNum;

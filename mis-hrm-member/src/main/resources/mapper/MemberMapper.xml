@@ -63,7 +63,7 @@
         </if>
     </select>
 
-    <select id="filter" parameterType="com.mis.hrm.member.model.Member" resultType="List" resultMap="BaseResultMap">
+    <select id="filter" parameterType="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
         select company_id, num, name, phone_number, email, grade, sex, profession, department
         from member where 1 = 1
         <if test="member.companyId != null">
@@ -100,32 +100,32 @@
     <select id="countMembersByKeys" parameterType="com.mis.hrm.member.model.Member" resultType="java.lang.Integer">
         select count(*)
         from member where 1 = 1
-        <if test="member.companyId != null">
-            and member.company_id like '%${member.companyId}%'
+        <if test="companyId != null">
+            and member.company_id like '%${companyId}%'
         </if>
-        <if test="member.num != null">
-            and member.num like '%${member.num}%'
+        <if test="num != null">
+            and member.num like '%${num}%'
         </if>
-        <if test="member.name != null">
-            and member.name like '%${member.name}%'
+        <if test="name != null">
+            and member.name like '%${name}%'
         </if>
-        <if test="member.phoneNumber != null">
-            and member.phone_number like '%${member.phoneNumber}%'
+        <if test="phoneNumber != null">
+            and member.phone_number like '%${phoneNumber}%'
         </if>
-        <if test="member.email != null">
-            and member.email like '%${member.email}%'
+        <if test="email != null">
+            and member.email like '%${email}%'
         </if>
-        <if test="member.grade != null">
-            and member.grade like '%${member.grade}%'
+        <if test="grade != null">
+            and member.grade like '%${grade}%'
         </if>
-        <if test="member.sex != null">
-            and member.sex like '%${member.sex}%'
+        <if test="sex != null">
+            and member.sex like '%${sex}%'
         </if>
-        <if test="member.profession != null">
-            and member.profession like '%${member.profession}%'
+        <if test="profession != null">
+            and member.profession like '%${profession}%'
         </if>
-        <if test="member.department != null">
-            and member.department like '%${member.department}%'
+        <if test="department != null">
+            and member.department like '%${department}%'
         </if>
     </select>
 

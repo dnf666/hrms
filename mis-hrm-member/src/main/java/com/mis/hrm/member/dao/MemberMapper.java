@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface MemberMapper extends BaseMapper<Member> {
     //批量删除
-    int deleteByNums(List<String> nums);
+    int deleteByNums(List<String> nums,String companyId);
 
     //统计成员总数
     Integer countMembers(Member member);
