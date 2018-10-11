@@ -92,9 +92,9 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public int deleteByNums(List<String> nums) {
+    public int deleteByNums(List<String> nums,String companyId) {
         if(!nums.equals(new ArrayList<>())){
-            int stateNum = workMapper.deleteByNums(nums);
+            int stateNum = workMapper.deleteByNums(nums,companyId);
             if(stateNum > 0){
                 logger.info("成功删除" + stateNum + "名成员信息");
                 return stateNum;
@@ -120,6 +120,8 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public List<Whereabout> filter(Pager<Whereabout> pager, Whereabout whereabout) throws RuntimeException{
+        Integer total = workMapper.getCountByKeys(whereabout);
+        pager.setPageTotal(total);
         if (ObjectNotEmpty.notEmpty(whereabout)) {
             return workMapper.filter(pager,whereabout);
         } else {

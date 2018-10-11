@@ -69,7 +69,7 @@ public class CompanyController {
      * @apiParam (Company) {String} password 密码
      *
      */
-    @PutMapping("updateCompany")
+    @PutMapping("company")
     public ResponseEntity updateCompany(Company company) {
         companyService.updateByPrimaryKey(company);
         return new ResponseEntity<>(200, "", "");
@@ -82,7 +82,7 @@ public class CompanyController {
      * @apiParam (Company) {String} email 邮箱
      *
      */
-    @GetMapping("deleteCompany")
+    @DeleteMapping("company")
     public ResponseEntity deleteCompany(Company company) {
         companyService.deleteByPrimaryKey(company);
         return new ResponseEntity<>(200, "", "");
@@ -109,7 +109,7 @@ public class CompanyController {
      *       }
      *
      */
-    @GetMapping("getCompany")
+    @GetMapping("company")
     public ResponseEntity getCompany(Company company) {
         Company getCompany = companyService.selectByPrimaryKey(company);
         return new ResponseEntity<>(200, "", getCompany);

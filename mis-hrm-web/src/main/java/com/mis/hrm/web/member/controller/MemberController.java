@@ -1,13 +1,16 @@
 package com.mis.hrm.web.member.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,11 +34,23 @@ public class MemberController {
         return map;
     }
 
-    @DeleteMapping("member")
-    public Map deleteByNums(@RequestBody List<String> nums,String companyId) {
+    @PostMapping("delMember")
+    public Map deleteByNums(@RequestBody String nums, String companyId) {
+        if (nums == null || nums.length() ==0){
+            return ToMap.toFalseMap(ErrorCode.NOT_BLANK);
+        }
         Map<String, Object> map;
+        List<String> numList = new ArrayList<>();
+        JSONArray jsonArray = (JSONArray) JSONArray.parse(nums);
+        for (Object b : jsonArray){
+            if (b instanceof String){
+                numList.add((String) b);
+            }else{
+               return ToMap.toFalseMap("学号必须是字符串");
+            }
+        }
         try {
-            map = ToMap.toSuccessMap(memberService.deleteByNums(nums,companyId));
+            map = ToMap.toSuccessMap(memberService.deleteByNums(numList, companyId));
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {
@@ -62,19 +77,12 @@ public class MemberController {
         return ToMap.toSuccessMap(memberService.countMembers(member));
     }
 
-//    @GetMapping("/all")
-//    public Map getAllMembers(@RequestParam Integer page,
-//                             @RequestParam Integer size,
-//                             Pager<Member> pager) {
-//        pager.setCurrentPage(page);
-//        pager.setPageSize(size);
-//        return ToMap.toSuccessMap(memberService.getAllMembers(pager));
-//    }
+
 
     @PostMapping("/filter")
     public Map memberFilter(@RequestBody Member member,
-                            @RequestParam Integer page,
-                            @RequestParam Integer size
+                            int page,
+                            int size
     ) {
         Pager<Member> pager = new Pager<>();
         pager.setCurrentPage(page);

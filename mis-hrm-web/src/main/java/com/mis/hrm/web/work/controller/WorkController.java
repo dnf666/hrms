@@ -31,11 +31,11 @@ public class WorkController {
         return map;
     }
 
-    @DeleteMapping("work")
-    public Map deleteByNums(@RequestBody List<String> nums) {
+    @PostMapping("delWork")
+    public Map deleteByNums(@RequestBody List<String> nums , String companyId) {
         Map<String,Object> map;
         try {
-            map = ToMap.toSuccessMap(workService.deleteByNums(nums));
+            map = ToMap.toSuccessMap(workService.deleteByNums(nums,companyId));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (Exception e){
@@ -86,8 +86,10 @@ public class WorkController {
         pager.setPageSize(size);
         pager.setCurrentPage(page);
         Map<String,Object> map;
+        List<Whereabout> list = workService.filter(pager, whereabout);
+        pager.setData(list);
         try {
-            map = ToMap.toSuccessMap(workService.filter(pager, whereabout));
+            map = ToMap.toSuccessMap(pager);
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         }

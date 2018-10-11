@@ -203,7 +203,7 @@ public class BookController {
      *       }
      */
     @PostMapping("book")
-    public Map addBookInfo(Book book){
+    public Map addBookInfo(@RequestBody Book book){
         Map<String, Object> result;
         if (Strings.isNullOrEmpty(book.getCompanyId())
                 || Strings.isNullOrEmpty(book.getBookName())
@@ -232,15 +232,15 @@ public class BookController {
      *         "object": null
      *       }
      */
-    @DeleteMapping("{bookId}")
-    public Map deleteBookInfoByBookId(@PathVariable("bookId") String bookId){
+    @DeleteMapping("{companyId}/{bookId}")
+    public Map deleteBookInfoByBookId(@PathVariable("companyId") String companyId,@PathVariable("bookId") String bookId){
         Map<String, Object> result;
-        Book book = Book.builder().bookId(bookId).build();
+        Book book = Book.builder().bookId(bookId).companyId(companyId).build();
         result = ControllerUtil.getResult(bookService::deleteByPrimaryKey, book);
         return result;
     }
-    @GetMapping("option")
-    public Map searchBook(Book book,Integer currentPage,Integer size){
+    @PostMapping("filter")
+    public Map searchBook(@RequestBody Book book,Integer currentPage,Integer size){
         if (currentPage == null) {
             currentPage = PageConstant.DEFUALT_PAGE;
         }

@@ -97,11 +97,11 @@ public class WorkServiceImplTest {
     @Test(expected = RuntimeException.class)
 //    @Ignore
     public void testDeleteByNums() {
-        Assert.assertEquals(3,workService.deleteByNums(
-                Arrays.asList("2017210001","2017210002","2017210003")
-        ));
+//        Assert.assertEquals(3,workService.deleteByNums(
+//                Arrays.asList("2017210001","2017210002","2017210003")
+//        ));
 
-        Assert.assertEquals(0,workService.deleteByNums(new ArrayList<>()));
+//        Assert.assertEquals(0,workService.deleteByNums(new ArrayList<>()));
     }
 
     @Test

@@ -82,7 +82,7 @@ public class WorkMapperTest {
                 "2017210001","2017210002","2017210003"
         );
 
-        Assert.assertEquals(3,workMapper.deleteByNums(numList));
+//        Assert.assertEquals(3,workMapper.deleteByNums(numList));
     }
 
     @Test
