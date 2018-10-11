@@ -11,7 +11,7 @@ public interface WorkService extends BaseService<Whereabout> {
     /**
      *    批量删除
      */
-    int deleteByNums(List<String> nums);
+    int deleteByNums(List<String> nums, String companyId);
 
     /**
      * 统计人数

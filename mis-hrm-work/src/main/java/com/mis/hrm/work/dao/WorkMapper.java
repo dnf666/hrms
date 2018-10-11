@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface WorkMapper extends BaseMapper<Whereabout> {
     //批量删除
-    int deleteByNums(List<String> nums);
+    int deleteByNums(List<String> nums,String companyId);
 
     //统计人员总数
     Long countWorkers();

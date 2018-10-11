@@ -136,8 +136,8 @@ public class ProjectController {
         return result;
     }
 
-    @GetMapping("option")
-    public Map searchProject(Project project, Integer currentPage, Integer size) {
+    @PostMapping("option")
+    public Map searchProject(@RequestBody Project project, Integer currentPage, Integer size) {
         if (Strings.isNullOrEmpty(project.getCompanyId())) {
             return ToMap.toFalseMap(ErrorCode.NOT_BLANK.getDescription());
         }
