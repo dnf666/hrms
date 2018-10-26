@@ -7,9 +7,12 @@ import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import com.mis.hrm.work.model.Whereabout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,17 +39,17 @@ public class MemberController {
 
     @PostMapping("delMember")
     public Map deleteByNums(@RequestBody String nums, String companyId) {
-        if (nums == null || nums.length() ==0){
+        if (nums == null || nums.length() == 0) {
             return ToMap.toFalseMap(ErrorCode.NOT_BLANK);
         }
         Map<String, Object> map;
         List<String> numList = new ArrayList<>();
         JSONArray jsonArray = (JSONArray) JSONArray.parse(nums);
-        for (Object b : jsonArray){
-            if (b instanceof String){
+        for (Object b : jsonArray) {
+            if (b instanceof String) {
                 numList.add((String) b);
-            }else{
-               return ToMap.toFalseMap("学号必须是字符串");
+            } else {
+                return ToMap.toFalseMap("学号必须是字符串");
             }
         }
         try {
@@ -77,8 +80,6 @@ public class MemberController {
         return ToMap.toSuccessMap(memberService.countMembers(member));
     }
 
-
-
     @PostMapping("/filter")
     public Map memberFilter(@RequestBody Member member,
                             int page,
@@ -96,5 +97,26 @@ public class MemberController {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         }
         return map;
+    }
+
+    @PostMapping("exit")
+    public Map exitToWhere(@RequestBody Whereabout whereabout) {
+        Map<String, Object> map;
+        try {
+            int result = memberService.exitToWhere(whereabout);
+            map = ToMap.toSuccessMap(result);
+        } catch (InfoNotFullyException infoNotFullyException) {
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        }
+        return map;
+    }
+    @PostMapping("Excel")
+    public Map importMemberFromExcel(MultipartFile file){
+        try {
+            memberService.importMemberFromExcel(file);
+        }catch(IOException e){
+            return null;
+        }
+        return null;
     }
 }

@@ -105,7 +105,7 @@ public class DemoExcelImpl implements DemoExcel {
      * 将数据从Excel导出到数据库
      * @param multipartFile
      */
-    public void exportExcel(MultipartFile multipartFile){
+    public void exportExcel(String tableTitle,MultipartFile multipartFile){
         List<String> head;
 
         try {

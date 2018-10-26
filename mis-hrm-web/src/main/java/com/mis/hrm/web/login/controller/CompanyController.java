@@ -2,6 +2,7 @@ package com.mis.hrm.web.login.controller;
 
 import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.service.imp.CompanyServiceImp;
+import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -53,7 +54,7 @@ public class CompanyController {
     @PostMapping("login")
     public ResponseEntity login(Company company) {
         companyService.checkCompany(company);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), "");
     }
 
     /**
@@ -72,22 +73,8 @@ public class CompanyController {
     @PutMapping("company")
     public ResponseEntity updateCompany(Company company) {
         companyService.updateByPrimaryKey(company);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), "");
     }
-
-    /**
-     * @api {DELETE} /company/deleteCompany.do 删除公司
-     * @apiDescription 删除公司
-     * @apiGroup Company
-     * @apiParam (Company) {String} email 邮箱
-     *
-     */
-    @DeleteMapping("company")
-    public ResponseEntity deleteCompany(Company company) {
-        companyService.deleteByPrimaryKey(company);
-        return new ResponseEntity<>(200, "", "");
-    }
-
     /**
      * @api {GET} /company/getCompany.do 通过邮箱得到指定公司信息
      * @apiDescription 通过邮箱得到指定公司信息
@@ -112,7 +99,12 @@ public class CompanyController {
     @GetMapping("company")
     public ResponseEntity getCompany(Company company) {
         Company getCompany = companyService.selectByPrimaryKey(company);
-        return new ResponseEntity<>(200, "", getCompany);
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), getCompany);
+    }
+    @GetMapping("test")
+    public String test(){
+        System.out.println("123312");
+        return "111";
     }
 
 }

@@ -46,8 +46,8 @@ public class ExcelController {
      */
     @PostMapping("/{tableTitle}/fromExcel")
     public Map exportExcel(@PathVariable String tableTitle,
-                           @RequestParam MultipartFile file){
-        demoExcel.exportExcel(file);
+                           MultipartFile file){
+        demoExcel.exportExcel(tableTitle,file);
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
     }
 

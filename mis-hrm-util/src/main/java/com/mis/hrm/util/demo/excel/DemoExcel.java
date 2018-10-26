@@ -15,5 +15,5 @@ public interface DemoExcel {
      * 将数据从Excel导出到数据库
      * @param multipartFile 用户上传的文件
      */
-    void exportExcel(MultipartFile multipartFile);
+    void exportExcel(String tableTitle,MultipartFile multipartFile);
 }

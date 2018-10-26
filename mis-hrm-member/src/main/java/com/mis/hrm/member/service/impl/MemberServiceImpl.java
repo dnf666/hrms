@@ -3,29 +3,51 @@ package com.mis.hrm.member.service.impl;
 import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
+import com.mis.hrm.util.ExcelUtil;
 import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import com.mis.hrm.work.dao.WorkMapper;
+import com.mis.hrm.work.model.Whereabout;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = {})
 public class MemberServiceImpl implements MemberService {
-
+//    static {
+//        Map<String,String> map = new HashMap<>();
+//        map.put("公司","company_id");
+//        map.put("学号","num");
+//        map.put("姓名","name");
+//        map.put("电话","phone_number");
+//        map.put("邮件","email");
+//        map.put("年级","grade");
+//        map.put("性别","sex");
+//        map.put("专业","");
+//    }
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private MemberMapper memberMapper;
-
+    @Resource
+    private WorkMapper workMapper;
     @Override
     public int deleteByPrimaryKey(Member key) throws RuntimeException{
         if(StringUtil.notEmpty(key.getCompanyId()) && StringUtil.notEmpty(key.getNum())){
@@ -131,5 +153,32 @@ public class MemberServiceImpl implements MemberService {
             logger.info("未填写过滤条件");
             throw new InfoNotFullyException("未填写过滤条件");
         }
+    }
+
+    @Override
+    public int exitToWhere(Whereabout whereabout) {
+        String companyId = whereabout.getCompanyId();
+        String num = whereabout.getNum();
+        Member member = Member.builder().companyId(companyId).num(num).build();
+        int result = memberMapper.deleteByPrimaryKey(member);
+        logger.info("deletemember result {}",result);
+        int res = workMapper.insert(whereabout);
+        logger.info("insertworker result {}",res);
+        return res;
+    }
+
+    @Override
+    public void importMemberFromExcel(MultipartFile file) throws IOException {
+        Sheet sheet = ExcelUtil.getSheet(file);
+      List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
+      Member member = new Member();
+      for (int i = 0;i<rows.size();i++){
+          List<Cell> cells = ExcelUtil.getCellFromRow(rows.get(i));
+          for (int j = 0; j < cells.size(); j++) {
+              Cell cell = cells.get(j);
+          }
+
+      }
+
     }
 }

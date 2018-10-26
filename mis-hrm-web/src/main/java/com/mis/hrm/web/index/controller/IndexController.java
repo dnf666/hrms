@@ -75,7 +75,7 @@ public class IndexController {
      */
 
     @PostMapping("photo")
-    public ResponseEntity updatePhoto(Index index, @RequestParam("photo") MultipartFile file,
+    public ResponseEntity updatePhoto(Index index, MultipartFile file,
                                       HttpServletRequest request) throws IOException {
         indexServiceImpl.updatePhoto(index, file, request);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
