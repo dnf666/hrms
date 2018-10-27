@@ -104,5 +104,10 @@
             limit #{pager.offset},#{pager.limit};
         </if>
     </select>
-
+    <insert id="insertMany" parameterType="java.util.ArrayList">
+        insert into whereabout VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.companyId},#{item.num},#{item.name},#{item.phoneNumber},#{item.email},#{item.grade},#{item.sex},#{item.profession},#{item.department},#{item.workPlace})
+        </foreach>
+    </insert>
 </mapper>

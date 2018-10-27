@@ -7,6 +7,8 @@ import com.mis.hrm.util.ExcelUtil;
 import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
+import com.mis.hrm.util.enums.ErrorCode;
+import com.mis.hrm.util.enums.Sex;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.work.dao.WorkMapper;
 import com.mis.hrm.work.model.Whereabout;
@@ -31,17 +33,7 @@ import java.util.Map;
 @Service
 @Transactional(rollbackFor = {})
 public class MemberServiceImpl implements MemberService {
-//    static {
-//        Map<String,String> map = new HashMap<>();
-//        map.put("公司","company_id");
-//        map.put("学号","num");
-//        map.put("姓名","name");
-//        map.put("电话","phone_number");
-//        map.put("邮件","email");
-//        map.put("年级","grade");
-//        map.put("性别","sex");
-//        map.put("专业","");
-//    }
+    private static final int MEMBER_PARAMTER_COUNT = 8;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
@@ -171,14 +163,32 @@ public class MemberServiceImpl implements MemberService {
     public void importMemberFromExcel(MultipartFile file) throws IOException {
         Sheet sheet = ExcelUtil.getSheet(file);
       List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
-      Member member = new Member();
-      for (int i = 0;i<rows.size();i++){
+      List<Member> list = new ArrayList<>();
+      for (int i = 1;i<rows.size();i++){
           List<Cell> cells = ExcelUtil.getCellFromRow(rows.get(i));
-          for (int j = 0; j < cells.size(); j++) {
-              Cell cell = cells.get(j);
+          if (cells.size()!= MEMBER_PARAMTER_COUNT){
+              throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
           }
-
+          //todo 没想到更好的方法。这段代码复用性太差。败笔啊
+          String num =ExcelUtil.getStringByIndex(cells,0);
+          String name = ExcelUtil.getStringByIndex(cells,1);
+          String phoneNumber = ExcelUtil.getStringByIndex(cells,2);
+          String email = ExcelUtil.getStringByIndex(cells,3);
+          String grade = ExcelUtil.getStringByIndex(cells,4);
+          String sex = ExcelUtil.getStringByIndex(cells,5);
+          if (!Sex.judgeSex(sex)){
+              throw new IOException("性别不合法");
+          }
+          String profession = ExcelUtil.getStringByIndex(cells,6);
+          String department = ExcelUtil.getStringByIndex(cells,7);
+          //todo companyId没传进来
+          Member member = Member.builder().companyId("").num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).build();
+          logger.info("member {}",member.toString());
+          list.add(member);
       }
+        memberMapper.insertMany(list);
 
     }
+
+
 }

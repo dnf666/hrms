@@ -10,11 +10,11 @@
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.mis.hrm.member.*"/>
+    <context:component-scan base-package="com.mis.hrm.work.*"/>
     <!--仅会查找在同一个Application中的bean注解-->
     <context:annotation-config/>
-    <bean id="memberLog" class="com.mis.hrm.member.interceptor.LogInterceptor">
-        <constructor-arg type="java.lang.String" value="member"/>
+    <bean id="workLog" class="com.mis.hrm.work.interceptor.LogInterceptor">
+        <constructor-arg type="java.lang.String" value="work"/>
         <constructor-arg type="java.lang.String" value=""/>
     </bean>
 
@@ -71,17 +71,17 @@
         <!--<property name="mapperLocations" value="classpath:mapper/*.xml"/>-->
     <!--</bean>-->
 
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.mis.hrm.member.dao"/>-->
-        <!--&lt;!&ndash;指定使用哪一个selsessionfactory&ndash;&gt;-->
-        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
-    <!--</bean>-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.mis.hrm.work.dao"/>
+        <!--指定使用哪一个selsessionfactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
 
     <aop:config>
-        <aop:aspect id="logMonitor" ref="memberLog" order="1">
-            <aop:pointcut id="memberLogAround"
-                          expression="(execution(* com.mis.hrm.member.*.*.*(..)))"/>
-            <aop:around pointcut-ref="memberLogAround" method="around"/>
+        <aop:aspect id="logMonitor" ref="workLog" order="1">
+            <aop:pointcut id="workLogAround"
+                          expression="(execution(* com.mis.hrm.work.*.*.*(..)))"/>
+            <aop:around pointcut-ref="workLogAround" method="around"/>
         </aop:aspect>
     </aop:config>
 </beans>

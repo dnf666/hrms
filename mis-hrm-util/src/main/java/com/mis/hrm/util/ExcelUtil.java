@@ -1,5 +1,6 @@
 package com.mis.hrm.util;
 
+import com.google.common.base.Strings;
 import com.mis.hrm.util.enums.ErrorCode;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -59,4 +60,13 @@ public class ExcelUtil {
         return cells;
     }
 
+    public static String getStringByIndex(List<Cell> cells ,int i) throws IOException{
+        Cell cell = cells.get(i);
+        cell.setCellType(Cell.CELL_TYPE_STRING);
+        String value = cell.getStringCellValue();
+        if (Strings.isNullOrEmpty(value)){
+            throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
+        }
+        return value;
+    }
 }

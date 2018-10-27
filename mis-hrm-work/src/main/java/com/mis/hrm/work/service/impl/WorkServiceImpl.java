@@ -1,23 +1,32 @@
 package com.mis.hrm.work.service.impl;
 
+import com.mis.hrm.util.ExcelUtil;
 import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
+import com.mis.hrm.util.enums.ErrorCode;
+import com.mis.hrm.util.enums.Sex;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.work.dao.WorkMapper;
 import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class WorkServiceImpl implements WorkService {
 
+    private static final int WORK_PARAMTER_COUNT = 9;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
@@ -128,5 +137,36 @@ public class WorkServiceImpl implements WorkService {
             logger.info("未填写过滤条件");
             throw new InfoNotFullyException("未填写过滤条件");
         }
+    }
+
+    @Override
+    public void importWorkerFromExcel(MultipartFile file) throws IOException {
+        Sheet sheet = ExcelUtil.getSheet(file);
+        List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
+        List<Whereabout> list = new ArrayList<>();
+        for (int i = 1;i<rows.size();i++){
+            List<Cell> cells = ExcelUtil.getCellFromRow(rows.get(i));
+            if (cells.size()!= WORK_PARAMTER_COUNT){
+                throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
+            }
+            //todo 没想到更好的方法。这段代码复用性太差。败笔啊
+            String num =ExcelUtil.getStringByIndex(cells,0);
+            String name = ExcelUtil.getStringByIndex(cells,1);
+            String phoneNumber = ExcelUtil.getStringByIndex(cells,2);
+            String email = ExcelUtil.getStringByIndex(cells,3);
+            String grade = ExcelUtil.getStringByIndex(cells,4);
+            String sex = ExcelUtil.getStringByIndex(cells,5);
+            if (!Sex.judgeSex(sex)){
+                throw new IOException("性别不合法");
+            }
+            String profession = ExcelUtil.getStringByIndex(cells,6);
+            String department = ExcelUtil.getStringByIndex(cells,7);
+            String workPlace = ExcelUtil.getStringByIndex(cells,8);
+            //todo companyId没传进来
+            Whereabout whereabout = Whereabout.builder().companyId("").num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).workPlace(workPlace).build();
+            logger.info("whereAbout {}",whereabout.toString());
+            list.add(whereabout);
+        }
+        workMapper.insertMany(list);
     }
 }

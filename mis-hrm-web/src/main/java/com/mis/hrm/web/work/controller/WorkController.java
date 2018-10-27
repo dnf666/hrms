@@ -8,7 +8,9 @@ import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -94,6 +96,15 @@ public class WorkController {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         }
         return map;
+    }
+    @PostMapping("Excel")
+    public Map importMemberFromExcel(MultipartFile file){
+        try {
+            workService.importWorkerFromExcel(file);
+        }catch(IOException e){
+            return null;
+        }
+        return null;
     }
 
 }

@@ -1,10 +1,12 @@
 package com.mis.hrm.member.service.impl;
 
 
+import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import org.apache.xmlbeans.impl.jam.mutable.MMember;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -19,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("classpath:spring/spring-member.xml")
+@ContextConfiguration("classpath:spring/spring-*.xml")
 public class MemberServiceImplTest {
     @Autowired
     private MemberService memberService;
@@ -28,7 +30,8 @@ public class MemberServiceImplTest {
     private Member blankMember;
 
     private Pager<Member> pager;
-
+    @Autowired
+    private MemberMapper memberMapper;
     @Before
     public void setUp() throws Exception {
         member = Member.builder()
@@ -128,5 +131,32 @@ public class MemberServiceImplTest {
     @Test(expected = InfoNotFullyException.class)
     public void testNullFilter() {
         memberService.filter(pager, blankMember);
+    }
+    @Test
+    public void testInsertMany(){
+        Member member1 = Member.builder()
+                .companyId("信管工作室2")
+                .num("2014211009")
+                .name("刘北")
+                .phoneNumber("1111")
+                .email("1111@126.com")
+                .grade("2014级")
+                .sex("男")
+                .profession("信息管理与信息系统")
+                .department("后台").build();
+        Member member2 = Member.builder()
+                .companyId("信管工作室1")
+                .num("2014211009")
+                .name("刘北")
+                .phoneNumber("1111")
+                .email("1111@126.com")
+                .grade("2014级")
+                .sex("男")
+                .profession("信息管理与信息系统")
+                .department("后台").build();
+        List<Member> list = new ArrayList<>();
+        list.add(member1);
+        list.add(member2);
+        memberMapper.insertMany(list);
     }
 }

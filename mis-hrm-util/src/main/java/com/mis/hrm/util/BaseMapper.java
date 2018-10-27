@@ -22,4 +22,5 @@ public interface BaseMapper<T> {
 
     int getCountByKeys(T key);
 
+    int insertMany(List<T> list);
 }

@@ -9,6 +9,9 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public enum ErrorCode {
+    /**
+     * 错误码
+     */
     UNKNOW_ERROR(-1, "未知错误"),
     SUCCESS(0, "成功"),
     NOT_BLANK(100, "参数不能为空"),
