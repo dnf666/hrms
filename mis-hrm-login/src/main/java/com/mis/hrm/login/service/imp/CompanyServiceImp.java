@@ -3,17 +3,22 @@ package com.mis.hrm.login.service.imp;
 import com.mis.hrm.index.dao.IndexMapper;
 import com.mis.hrm.index.entity.Index;
 import com.mis.hrm.login.dao.CompanyMapper;
+import com.mis.hrm.login.dao.TypeMapper;
 import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.exception.AuthorizationException;
 import com.mis.hrm.login.service.CompanyService;
 import com.mis.hrm.util.exception.ParameterException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 import static com.mis.hrm.util.EncryptionUtil.mac;
 import static com.mis.hrm.util.ServiceUtil.checkSqlExecution;
+
+import javax.annotation.Resource;
 
 /**
  * @author May
@@ -27,7 +32,8 @@ public class CompanyServiceImp implements CompanyService {
 
     @Autowired
     private IndexMapper indexMapper;
-
+    @Resource
+    private TypeMapper typeMapper;
     @Override
     public void deleteByPrimaryKey(Company key) {
         checkSqlExecution(companyMapper.deleteByPrimaryKey(key));
@@ -87,5 +93,15 @@ public class CompanyServiceImp implements CompanyService {
         if (company.getPassword().equals(encryptionPassword)){
             throw new AuthorizationException("密码错误");
         }
+    }
+
+    @Override
+    public List<String> getMajorType() {
+        return typeMapper.getMajorType();
+    }
+
+    @Override
+    public List<String> getViceType(String majorType) {
+        return typeMapper.getViceType(majorType);
     }
 }

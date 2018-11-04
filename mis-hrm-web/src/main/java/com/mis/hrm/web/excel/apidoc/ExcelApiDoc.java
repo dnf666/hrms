@@ -21,7 +21,7 @@ public class ExcelApiDoc {
      *         "code": 1,
      *         "object": {
      *             "headers": {
-     *                  "Content-Type": [
+     *                  "Content-CompanyType": [
      *                      "application/octet-stream"
      *                  ],
      *                  "Content-Disposition": [
@@ -67,7 +67,7 @@ public class ExcelApiDoc {
      *         "code": 1,
      *         "object": {
      *             "headers": {
-     *                  "Content-Type": [
+     *                  "Content-CompanyType": [
      *                      "application/octet-stream"
      *                  ],
      *                  "Content-Disposition": [

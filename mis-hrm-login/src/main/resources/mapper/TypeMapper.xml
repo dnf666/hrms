@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mis.hrm.login.dao.TypeMapper">
+    <resultMap id="companyType" type="com.mis.hrm.login.entity.CompanyType">
+        <id column="major_type" property="majorType"/>
+        <id column="vice_type" property="viceType"/>
+    </resultMap>
+
+    <sql id="type_column">
+        major_type,vice_type
+    </sql>
+
+
+    <select id="getMajorType"  resultType="java.lang.String">
+        select distinct major_type from companytype;
+    </select>
+
+    <select id="getViceType" parameterType="java.lang.String" resultType="java.lang.String">
+        select vice_type from companytype
+        where  major_type= #{majorType}
+    </select>
+
+</mapper>

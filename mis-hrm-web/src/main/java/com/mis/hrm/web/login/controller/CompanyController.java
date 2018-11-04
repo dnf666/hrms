@@ -2,6 +2,7 @@ package com.mis.hrm.web.login.controller;
 
 import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.service.imp.CompanyServiceImp;
+import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import static com.mis.hrm.util.validation.ValidationUtil.checkBindingResult;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author May
@@ -39,7 +44,7 @@ public class CompanyController {
     public ResponseEntity register(@Valid Company company, BindingResult result) {
         checkBindingResult(result);
         companyService.insert(company);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
     }
 
     /**
@@ -53,7 +58,7 @@ public class CompanyController {
     @PostMapping("login")
     public ResponseEntity login(Company company) {
         companyService.checkCompany(company);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
     }
 
     /**
@@ -72,7 +77,7 @@ public class CompanyController {
     @PutMapping("updateCompany")
     public ResponseEntity updateCompany(Company company) {
         companyService.updateByPrimaryKey(company);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
     }
 
     /**
@@ -85,7 +90,7 @@ public class CompanyController {
     @GetMapping("deleteCompany")
     public ResponseEntity deleteCompany(Company company) {
         companyService.deleteByPrimaryKey(company);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
     }
 
     /**
@@ -112,7 +117,18 @@ public class CompanyController {
     @GetMapping("getCompany")
     public ResponseEntity getCompany(Company company) {
         Company getCompany = companyService.selectByPrimaryKey(company);
-        return new ResponseEntity<>(200, "", getCompany);
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", getCompany);
+    }
+    @GetMapping("type")
+    public ResponseEntity getType() {
+     List<String> list = companyService.getMajorType();
+        Map<String,List<String>> map = new HashMap<>();
+        for (int i = 0; i < list.size(); i++) {
+            String majorType = list.get(i);
+            List<String> viceTypeList = companyService.getViceType(majorType);
+            map.put(majorType,viceTypeList);
+        }
+     return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(),"获取类型成功",map);
     }
 
 }
