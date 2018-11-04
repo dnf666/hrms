@@ -105,7 +105,7 @@ DROP TABLE IF EXISTS `library`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `library` (
   `company_id` varchar(30) NOT NULL,
-  `book_id` int(11) NOT NULL,
+  `book_id` varchar(100) NOT NULL,
   `book_name` varchar(50) NOT NULL,
   `category` varchar(10) NOT NULL,
   `num` int(11) NOT NULL,
@@ -163,7 +163,7 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
   `company_id` varchar(30) NOT NULL,
-  `project_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` varchar (100) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(50) NOT NULL,
   `project_url` varchar(100) NOT NULL,
   `online_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

@@ -27,8 +27,6 @@
     <update id="updateByPrimaryKey" parameterType="com.mis.hrm.member.model.Member">
         update member
         <set>
-            <if test="companyId != null">company_id = #{companyId},</if>
-            <if test="num != null">num = #{num},</if>
             <if test="name != null">name = #{name},</if>
             <if test="phoneNumber != null">phone_number = #{phoneNumber},</if>
             <if test="email != null">email = #{email},</if>
@@ -47,25 +45,25 @@
     </select>
 
     <delete id="deleteByNums" parameterType="java.util.List">
-        delete from member where num in
+        delete from member where company_id =#{companyId} num in
         <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </delete>
 
-    <select id="countMembers" resultType="java.lang.Long">
-        select count(num) from member;
+    <select id="countMembers" parameterType="com.mis.hrm.member.model.Member" resultType="java.lang.Integer">
+        select count(num) from member where company_id = #{companyId};
     </select>
 
-    <select id="getAllMembers" resultType="List" resultMap="BaseResultMap">
+    <select id="getAllMembers" parameterType ="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
         select company_id, num, name, phone_number, email, grade, sex, profession, department
-        from member
+        from member where company_id = #{companyId}
         <if test="offset!=null and limit!=null">
             limit #{offset},#{limit}
         </if>
     </select>
 
-    <select id="filter" parameterType="com.mis.hrm.member.model.Member" resultType="List" resultMap="BaseResultMap">
+    <select id="filter" parameterType="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
         select company_id, num, name, phone_number, email, grade, sex, profession, department
         from member where 1 = 1
         <if test="member.companyId != null">
@@ -99,4 +97,36 @@
             limit #{pager.offset},#{pager.limit};
         </if>
     </select>
+    <select id="countMembersByKeys" parameterType="com.mis.hrm.member.model.Member" resultType="java.lang.Integer">
+        select count(*)
+        from member where 1 = 1
+        <if test="companyId != null">
+            and member.company_id like '%${companyId}%'
+        </if>
+        <if test="num != null">
+            and member.num like '%${num}%'
+        </if>
+        <if test="name != null">
+            and member.name like '%${name}%'
+        </if>
+        <if test="phoneNumber != null">
+            and member.phone_number like '%${phoneNumber}%'
+        </if>
+        <if test="email != null">
+            and member.email like '%${email}%'
+        </if>
+        <if test="grade != null">
+            and member.grade like '%${grade}%'
+        </if>
+        <if test="sex != null">
+            and member.sex like '%${sex}%'
+        </if>
+        <if test="profession != null">
+            and member.profession like '%${profession}%'
+        </if>
+        <if test="department != null">
+            and member.department like '%${department}%'
+        </if>
+    </select>
+
 </mapper>

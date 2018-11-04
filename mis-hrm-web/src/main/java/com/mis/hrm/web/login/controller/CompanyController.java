@@ -19,9 +19,9 @@ import java.util.Map;
 /**
  * @author May
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("company")
-//todo 异常返回格式不爽
 public class CompanyController {
 
     @Autowired
@@ -74,7 +74,7 @@ public class CompanyController {
      * @apiParam (Company) {String} password 密码
      *
      */
-    @PutMapping("updateCompany")
+    @PutMapping("company")
     public ResponseEntity updateCompany(Company company) {
         companyService.updateByPrimaryKey(company);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
@@ -87,7 +87,7 @@ public class CompanyController {
      * @apiParam (Company) {String} email 邮箱
      *
      */
-    @GetMapping("deleteCompany")
+    @DeleteMapping("company")
     public ResponseEntity deleteCompany(Company company) {
         companyService.deleteByPrimaryKey(company);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
@@ -114,7 +114,7 @@ public class CompanyController {
      *       }
      *
      */
-    @GetMapping("getCompany")
+    @GetMapping("company")
     public ResponseEntity getCompany(Company company) {
         Company getCompany = companyService.selectByPrimaryKey(company);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", getCompany);

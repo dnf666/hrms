@@ -2,6 +2,7 @@ package com.mis.hrm.web.work.controller;
 
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
+import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.work.model.Whereabout;
 import com.mis.hrm.work.service.WorkService;
@@ -10,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/work")
 public class WorkController {
     @Autowired
     private WorkService workService;
 
-    @PostMapping
+    @PostMapping("work")
     public Map insertOneWorker(@RequestBody Whereabout whereabout) {
         Map<String,Object> map;
         try {
@@ -30,11 +31,11 @@ public class WorkController {
         return map;
     }
 
-    @DeleteMapping
-    public Map deleteByNums(@RequestBody List<String> nums) {
+    @PostMapping("delWork")
+    public Map deleteByNums(@RequestBody List<String> nums , String companyId) {
         Map<String,Object> map;
         try {
-            map = ToMap.toSuccessMap(workService.deleteByNums(nums));
+            map = ToMap.toSuccessMap(workService.deleteByNums(nums,companyId));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (Exception e){
@@ -43,7 +44,7 @@ public class WorkController {
         return map;
     }
 
-    @PutMapping
+    @PutMapping("work")
     public Map updateOneWorker(@RequestBody Whereabout whereabout) {
         Map<String,Object> map;
         try {
@@ -56,18 +57,25 @@ public class WorkController {
         return map;
     }
 
-    @GetMapping("/count")
-    public Map countWorkers(){
+    @GetMapping("count")
+    public Map countWorkers(Whereabout whereabout)
+    {
+        if (whereabout == null){
+            return ToMap.toFalseMap(ErrorCode.NOT_BLANK.getDescription());
+        }
         return ToMap.toSuccessMap(workService.countWorkers());
     }
 
     @GetMapping("/all")
     public Map getAllWorkers(@RequestParam Integer page,
                              @RequestParam Integer size,
-                             Pager<Whereabout> pager){
+                             @RequestParam String companyId){
+        Pager<Whereabout> pager = new Pager<>();
         pager.setCurrentPage(page);
         pager.setPageSize(size);
-        return ToMap.toSuccessMap(workService.getAllGraduates(pager));
+        List<Whereabout> whereaboutList = workService.getAllGraduates(pager,companyId);
+        pager.setData(whereaboutList);
+        return ToMap.toSuccessMap(workService.getAllGraduates(pager,companyId));
     }
 
     @PostMapping("/filter")
@@ -78,8 +86,10 @@ public class WorkController {
         pager.setPageSize(size);
         pager.setCurrentPage(page);
         Map<String,Object> map;
+        List<Whereabout> list = workService.filter(pager, whereabout);
+        pager.setData(list);
         try {
-            map = ToMap.toSuccessMap(workService.filter(pager, whereabout));
+            map = ToMap.toSuccessMap(pager);
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         }

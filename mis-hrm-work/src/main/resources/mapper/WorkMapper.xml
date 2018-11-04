@@ -55,8 +55,8 @@
         </foreach>
     </delete>
 
-    <select id="countWorkers" resultType="java.lang.Long">
-        select count(*) from whereabout;
+    <select id="getCountByKeys" parameterType="com.mis.hrm.work.model.Whereabout" resultType="java.lang.Integer">
+        select count(*) from whereabout where company_id = #{companyId};
     </select>
 
     <select id="getAllGraduates" resultType="List" resultMap="BaseResultMap">

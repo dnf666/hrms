@@ -2,8 +2,10 @@ package com.mis.hrm.web.index.controller;
 
 import com.mis.hrm.index.entity.Index;
 import com.mis.hrm.index.service.impl.IndexServiceImpl;
+import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,10 +15,9 @@ import java.io.IOException;
 /**
  * @author May
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("index")
-//todo 异常没有抓取。返回格式要改
-//todo 如何删除没用的图片
 public class IndexController {
 
     @Autowired
@@ -34,17 +35,22 @@ public class IndexController {
      *         "msg": ""
      *         "object": {
      *             "companyId":"string",
-     *             "outline":"公司简介",
+     *             "outline":"公司简介"
      *             "photoPath":"公司头像地址"
      *         }
      *       }
      */
-    @GetMapping("getIndex")
+    @GetMapping("index")
     public ResponseEntity getIndex(Index index){
         Index selectIndex = indexServiceImpl.selectByPrimaryKey(index);
-        return new ResponseEntity<>(200, "", selectIndex);
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", selectIndex);
     }
+    @PutMapping("index")
+     public ResponseEntity updateIndex(Index index){
+        indexServiceImpl.updateByPrimaryKey(index);
+         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "修改成功", "");
 
+     }
     /**
      * @api {Patch} /index/updateOutline.do 修改公司简介
      * @apiDescription 修改公司简介
@@ -54,10 +60,10 @@ public class IndexController {
      *
      */
 
-    @PatchMapping("updateOutline")
-    public ResponseEntity updateOutline(Index index){
+    @PostMapping("outline")
+    public ResponseEntity updateOutline(@RequestBody Index index){
         indexServiceImpl.updateByPrimaryKey(index);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
     }
 
     /**
@@ -68,10 +74,10 @@ public class IndexController {
      *
      */
 
-    @PostMapping("updatePhoto")
+    @PostMapping("photo")
     public ResponseEntity updatePhoto(Index index, @RequestParam("photo") MultipartFile file,
                                       HttpServletRequest request) throws IOException {
         indexServiceImpl.updatePhoto(index, file, request);
-        return new ResponseEntity<>(200, "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
     }
 }

@@ -22,6 +22,8 @@ import javax.annotation.Resource;
 public class BookControllerTest {
     @Resource
     private BookService bookService;
+    @Resource
+    private BookController bookController;
     @Test
     public void insert() throws InfoNotFullyException {
         Book demo = Book.builder().build();
@@ -32,5 +34,10 @@ public class BookControllerTest {
     public void select(){
         Book demo = Book.builder().build();
         log.info(demo.toString());
+    }
+    @Test
+    public void selectOptions(){
+        Book demo = Book.builder().companyId("1204695257@qq.com").build();
+//        System.out.println(bookController.searchBook(demo));
     }
 }

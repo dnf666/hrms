@@ -1,5 +1,9 @@
 package com.mis.hrm.util;
 
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
  * created by dailf on 2018/7/13
  *
@@ -13,4 +17,9 @@ public interface BaseMapper<T> {
     T selectByPrimaryKey(T key);
 
     int updateByPrimaryKey(T record);
+
+    List<T> selectByPrimaryKeyAndPage(@Param("key") T key, @Param("offset") int offset, @Param("size") int size);
+
+    int getCountByKeys(T key);
+
 }
