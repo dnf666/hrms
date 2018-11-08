@@ -71,21 +71,7 @@ public class CompanyController {
     @PutMapping("company")
     public ResponseEntity updateCompany(Company company) {
         companyService.updateByPrimaryKey(company);
-        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), "");
-    }
-
-    /**
-     * @api {DELETE} /company/deleteCompany.do 删除公司
-     * @apiDescription 删除公司
-     * @apiGroup Company
-     * @apiParam (Company) {String} email 邮箱
-     *
-     */
-    @DeleteMapping("company")
-    public ResponseEntity deleteCompany(Company company) {
-        companyService.deleteByPrimaryKey(company);
-        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
     }
 
     /**
