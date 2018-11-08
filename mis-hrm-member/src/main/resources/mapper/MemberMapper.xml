@@ -44,11 +44,13 @@
         where company_id = #{companyId} and num = #{num};
     </select>
 
-    <delete id="deleteByNums" parameterType="java.util.ArrayList">
-        delete from member where company_id =#{companyId} num in
-        <foreach collection="array" index="index" item="item" open="(" close=")" separator=",">
-            #{item}
-        </foreach>
+    <delete id="deleteByNums">
+        delete from member where company_id =#{companyId} and num in(
+            <foreach collection="nums" item="arr"
+                     separator=",">
+                #{arr}
+            </foreach>
+        )
     </delete>
 
     <select id="countMembers" parameterType="com.mis.hrm.member.model.Member" resultType="java.lang.Integer">

@@ -1,5 +1,6 @@
 package com.mis.hrm.web.member.controller;
 
+import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
@@ -67,4 +68,9 @@ public class MemberControllerTest {
         MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(input));
         memberController.importMemberFromExcel(multipartFile);
     }
-}
+    @Test
+    public void deleteMany() {
+        Member member = Member.builder().num("1,2").build();
+        memberController.deleteByNums(member,"1204695257@qq.com");
+    }
+    }

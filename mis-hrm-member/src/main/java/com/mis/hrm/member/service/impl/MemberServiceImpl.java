@@ -110,17 +110,17 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public int deleteByNums(List<String> nums,String companyId) {
-        if(!nums.equals(new ArrayList<>())){
+        if(nums.size()!=0){
             int stateNum = memberMapper.deleteByNums(nums,companyId);
             if(stateNum > 0){
                 logger.info("成功删除" + stateNum + "名成员信息");
                 return stateNum;
             } else {
-                logger.info("成员信息删除失败");
+                logger.debug("成员信息删除失败");
                 throw new RuntimeException("成员信息删除失败");
             }
         } else {
-            logger.info("学号为空");
+            logger.debug("学号为空");
             throw new InfoNotFullyException("学号为空");
         }
     }

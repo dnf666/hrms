@@ -5,6 +5,7 @@ import com.mis.hrm.util.BaseMapper;
 import com.mis.hrm.util.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Repository
 public interface MemberMapper extends BaseMapper<Member> {
     //批量删除
-    int deleteByNums(List<String> nums,String companyId);
+    int deleteByNums(@Param("nums") List<String> nums,@Param("companyId") String companyId);
 
     //统计成员总数
     Integer countMembers(Member member);
