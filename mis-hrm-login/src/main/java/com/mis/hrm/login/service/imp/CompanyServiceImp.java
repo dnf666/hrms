@@ -76,10 +76,11 @@ public class CompanyServiceImp implements CompanyService {
         checkSqlExecution(companyMapper.updateByPrimaryKey(record));
     }
 
-    public void checkCompany(Company company){
+    public Company checkCompany(Company company){
         Company getCompany = selectByPrimaryKey(company);
         checkCompanyNotNull(getCompany);
         checkPassword(company, getCompany);
+        return getCompany;
     }
 
     private void checkCompanyNotNull(Company getCompany){
@@ -89,8 +90,8 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     private void checkPassword(Company company, Company getCompany){
-        String encryptionPassword = mac(getCompany.getPassword(), KEY);
-        if (company.getPassword().equals(encryptionPassword)){
+        String encryptionPassword = mac(company.getPassword(), KEY);
+        if (getCompany.getPassword().equals(encryptionPassword)){
             throw new AuthorizationException("密码错误");
         }
     }

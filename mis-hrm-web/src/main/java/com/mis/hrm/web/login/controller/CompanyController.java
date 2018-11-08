@@ -5,13 +5,7 @@ import com.mis.hrm.login.service.imp.CompanyServiceImp;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-
-import static com.mis.hrm.util.validation.ValidationUtil.checkBindingResult;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,10 +35,10 @@ public class CompanyController {
      *
      */
     @PostMapping(value = "register")
-    public ResponseEntity register(@Valid Company company, BindingResult result) {
-        checkBindingResult(result);
+    public ResponseEntity register(@RequestBody Company company) {
+//        checkBindingResult(result);
         companyService.insert(company);
-        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "register success", "");
     }
 
     /**
@@ -56,9 +50,9 @@ public class CompanyController {
      *
      */
     @PostMapping("login")
-    public ResponseEntity login(Company company) {
-        companyService.checkCompany(company);
-        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
+    public ResponseEntity login(@RequestBody Company company) {
+        Company company1 = companyService.checkCompany(company);
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "登录成功", company1);
     }
 
     /**

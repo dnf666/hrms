@@ -63,7 +63,7 @@ public class IndexController {
     @PostMapping("outline")
     public ResponseEntity updateOutline(@RequestBody Index index){
         indexServiceImpl.updateByPrimaryKey(index);
-        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "update outline success", "");
     }
 
     /**
@@ -75,7 +75,7 @@ public class IndexController {
      */
 
     @PostMapping("photo")
-    public ResponseEntity updatePhoto(Index index, @RequestParam("photo") MultipartFile file,
+    public ResponseEntity updatePhoto(Index index, @RequestParam("file") MultipartFile file,
                                       HttpServletRequest request) throws IOException {
         indexServiceImpl.updatePhoto(index, file, request);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");

@@ -35,19 +35,16 @@ public class MemberController {
     }
 
     @PostMapping("delMember")
-    public Map deleteByNums(@RequestBody String nums, String companyId) {
-        if (nums == null || nums.length() ==0){
+    public Map deleteByNums(@RequestBody Member member, String companyId) {
+        if (member.getNum() == null || member.getNum().length() ==0){
             return ToMap.toFalseMap(ErrorCode.NOT_BLANK);
         }
+        String nums = member.getNum();
+        String[] numArray = nums.split(",");
         Map<String, Object> map;
         List<String> numList = new ArrayList<>();
-        JSONArray jsonArray = (JSONArray) JSONArray.parse(nums);
-        for (Object b : jsonArray){
-            if (b instanceof String){
-                numList.add((String) b);
-            }else{
-               return ToMap.toFalseMap("学号必须是字符串");
-            }
+        for (String b : numArray){
+                numList.add(b);
         }
         try {
             map = ToMap.toSuccessMap(memberService.deleteByNums(numList, companyId));

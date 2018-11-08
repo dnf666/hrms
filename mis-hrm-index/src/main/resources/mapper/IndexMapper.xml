@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mis.hrm.index.dao.IndexMapper">
     <resultMap id="index" type="com.mis.hrm.index.entity.Index">
-        <result property="companyId" column="company_id"/>
+        <id property="companyId" column="company_id"/>
         <result property="outline" column="outline"/>
         <result property="photoPath" column="photo_path"/>
     </resultMap>
