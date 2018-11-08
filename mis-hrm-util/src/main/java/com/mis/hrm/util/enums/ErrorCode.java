@@ -561,7 +561,8 @@ public enum ErrorCode {
     APP_SDK_MODE_NOT_EXISTS(22, "app_sdk_mode 不存在"),
     SERVICE_SCOPE_NOT_MATCH(23, "service do not has this scope"),
     EXIST_SAME_ORDER(24, "存在相同的工单"),
-    NOT_EXIST_ORDER(25, "该工单不存在");
+    NOT_EXIST_ORDER(25, "该工单不存在"),
+    MESSAGE_NOT_COMPLETE(26, "信息不全");
 
     int code;
     String description;

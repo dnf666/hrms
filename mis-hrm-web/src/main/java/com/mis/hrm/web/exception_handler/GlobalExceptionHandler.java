@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
 /**
  * @author May
  */
@@ -21,7 +19,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ParameterException.class)
-    public ResponseEntity handleParameterException(ParameterException e) throws UnsupportedEncodingException {
+    public ResponseEntity handleParameterException(ParameterException e) {
         return new ResponseEntity<>(400, e.getMessage(), "");
     }
 

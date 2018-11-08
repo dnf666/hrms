@@ -72,6 +72,7 @@ public class CompanyController {
     public ResponseEntity updateCompany(Company company) {
         companyService.updateByPrimaryKey(company);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", "");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), "");
     }
 
     /**
