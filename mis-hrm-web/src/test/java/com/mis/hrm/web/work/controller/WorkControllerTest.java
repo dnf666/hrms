@@ -1,18 +1,13 @@
-package com.mis.hrm.web.member.controller;
+package com.mis.hrm.web.work.controller;
 
-import com.mis.hrm.member.service.MemberService;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.io.IOUtils;
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,17 +22,12 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/spring-web.xml")
-public class MemberControllerTest {
+public class WorkControllerTest {
     @Resource
-    private MemberController memberController;
-    @Resource
-    private MemberService memberService;
-    @Before
-    public void setUp() throws Exception {
-    }
+    private WorkController workController;
 
     @Test
-    public void insertOneMember() {
+    public void insertOneWorker() {
     }
 
     @Test
@@ -45,19 +35,19 @@ public class MemberControllerTest {
     }
 
     @Test
-    public void updateOneMember() {
+    public void updateOneWorker() {
     }
 
     @Test
-    public void countMembers() {
+    public void countWorkers() {
     }
 
     @Test
-    public void memberFilter() {
+    public void getAllWorkers() {
     }
 
     @Test
-    public void exitToWhere() {
+    public void workFilter() {
     }
 
     @Test
@@ -65,6 +55,6 @@ public class MemberControllerTest {
         File file = new File("/Users/demo/Desktop/member.xlsx");
         FileInputStream input = new FileInputStream(file);
         MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(input));
-        memberController.importMemberFromExcel(multipartFile);
+        workController.importMemberFromExcel(multipartFile);
     }
 }

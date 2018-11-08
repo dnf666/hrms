@@ -128,5 +128,11 @@
             and member.department like '%${department}%'
         </if>
     </select>
-
+    <!--将所有信息插入PP表里面，传入参数为list,通过<foreach>来遍历list-->
+    <insert id="insertMany" parameterType="java.util.ArrayList">
+        insert into member VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.companyId},#{item.num},#{item.name},#{item.phoneNumber},#{item.email},#{item.grade},#{item.sex},#{item.profession},#{item.department})
+        </foreach>
+    </insert>
 </mapper>
