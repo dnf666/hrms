@@ -39,7 +39,7 @@ public class ProjectController {
      * }
      */
     @PostMapping("project")
-    public Map insertProject(Project project) {
+    public Map insertProject(@RequestBody Project project) {
         Map<String, Object> result;
         result = ControllerUtil.getResult(projectService::insert, project);
         return result;
@@ -59,10 +59,8 @@ public class ProjectController {
      * "object": null
      * }
      */
-    @DeleteMapping("{companyId}/{projectId}")
-    public Map deleteProjectByCompanyIdAndProjectId(@PathVariable("companyId") String companyId,
-                                                    @PathVariable("projectId") int projectId) {
-        Project project = Project.builder().companyId(companyId).projectId(projectId).build();
+    @PostMapping("delProject")
+    public Map deleteProjectByCompanyIdAndProjectId(@RequestBody Project project) {
         Map<String, Object> result;
         result = ControllerUtil.getResult(projectService::deleteByPrimaryKey, project);
         return result;
@@ -91,7 +89,7 @@ public class ProjectController {
      * }
      */
     @PutMapping("project")
-    public Map updateProjectBycompanyIdAndProjectId(Project project) {
+    public Map updateProjectBycompanyIdAndProjectId(@RequestBody Project project) {
         Map<String, Object> result;
         result = ControllerUtil.getResult(projectService::updateByPrimaryKey, project);
         return result;

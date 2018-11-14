@@ -14,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Project implements Serializable {
     private String companyId;
-    private int projectId;
+    private Integer projectId;
     private String projectName;
     private String projectUrl;
     private String onlineTime;
