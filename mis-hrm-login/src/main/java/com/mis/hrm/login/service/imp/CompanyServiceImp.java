@@ -7,6 +7,7 @@ import com.mis.hrm.login.dao.TypeMapper;
 import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.exception.AuthorizationException;
 import com.mis.hrm.login.service.CompanyService;
+import static com.mis.hrm.util.EncryptionUtil.md5;
 import com.mis.hrm.util.exception.ParameterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,7 +63,7 @@ public class CompanyServiceImp implements CompanyService {
 
     private void getEncodePasswordCompany(Company company){
         Objects.requireNonNull(company);
-        String encryptionPassword = mac(company.getPassword(), KEY);
+        String encryptionPassword = md5(company.getPassword());
         company.setPassword(encryptionPassword);
     }
 
@@ -90,11 +91,11 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     private void checkPassword(Company company, Company getCompany){
-        String encryptionPassword = mac(company.getPassword(), KEY);
-        if (getCompany.getPassword().equals(encryptionPassword)){
+        String encryptionPassword = md5(company.getPassword());
+        if (!getCompany.getPassword().equals(encryptionPassword)){
             throw new AuthorizationException("密码错误");
         }
-    }
+     }
 
     @Override
     public List<String> getMajorType() {
