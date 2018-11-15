@@ -15,7 +15,7 @@ public class Book implements Serializable {
     private String bookId;
     private String bookName;
     private String category;
-    private int quantity;
+    private Integer quantity;
     private String version;
 
     public boolean baseRequied() {

@@ -232,10 +232,9 @@ public class BookController {
      *         "object": null
      *       }
      */
-    @DeleteMapping("{companyId}/{bookId}")
-    public Map deleteBookInfoByBookId(@PathVariable("companyId") String companyId,@PathVariable("bookId") String bookId){
+    @PostMapping("delBook")
+    public Map deleteBookInfoByBookId(@RequestBody Book book){
         Map<String, Object> result;
-        Book book = Book.builder().bookId(bookId).companyId(companyId).build();
         result = ControllerUtil.getResult(bookService::deleteByPrimaryKey, book);
         return result;
     }
