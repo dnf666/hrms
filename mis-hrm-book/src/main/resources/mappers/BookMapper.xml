@@ -95,16 +95,16 @@
             and company_id = #{key.companyId}
         </if>
         <if test="key.bookId != null">
-            and book_id = #{key.bookId}
+            and book_id like '%${key.bookId}%'
         </if>
         <if test="key.bookName != null">
-            and book_name = #{key.bookName}
+            and book_name like '%${key.bookName}%'
         </if>
         <if test="key.category != null">
-            and category = #{key.category}
+            and category like '%${key.category}%'
         </if>
         <if test=" key.version!= null">
-            and version = #{key.version}
+            and version like '%${key.version}%'
         </if>
         limit #{offset},#{size}
     </select>
