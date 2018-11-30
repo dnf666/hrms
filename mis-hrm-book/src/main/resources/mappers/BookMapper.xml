@@ -32,9 +32,6 @@
     <update id="updateByPrimaryKey" parameterType="book">
         update library
           <set>
-              <if test="companyId != null">
-                  company_id = #{companyId},
-              </if>
               <if test="bookName != null">
                   book_name = #{bookName},
               </if>
@@ -48,7 +45,7 @@
                   version = #{version}
               </if>
           </set>
-        where book_id = #{bookId}
+        where book_id = #{bookId} and company_id = #{companyId}
     </update>
 
     <select id="selectBooksByCompanyId" parameterType="book" resultMap="bookResultMap">

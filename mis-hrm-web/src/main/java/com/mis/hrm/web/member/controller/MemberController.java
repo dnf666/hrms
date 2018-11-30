@@ -1,6 +1,5 @@
 package com.mis.hrm.web.member.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.util.Pager;

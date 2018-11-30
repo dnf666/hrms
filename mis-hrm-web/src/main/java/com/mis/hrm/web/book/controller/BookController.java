@@ -48,7 +48,7 @@ public class BookController {
      *       }
      */
     @PutMapping("book")
-    public Map updateBookByBookId(Book book){
+    public Map updateBookByBookId(@RequestBody Book book){
         Map<String, Object> result;
         result = ControllerUtil.getResult(bookService::updateByPrimaryKey, book);
         return result;
