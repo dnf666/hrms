@@ -14,11 +14,9 @@ public class Member {
     private String email;
     private String grade;
     private String sex;
-    //专业
     private String profession;
-    //部门
     private String department;
-
+    private String whereAbout;
     public Member(String companyId,String num){
         this.companyId = companyId;
         this.num = num;

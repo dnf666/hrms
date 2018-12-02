@@ -13,11 +13,15 @@
         <result column="sex" property="sex" jdbcType="VARCHAR"/>
         <result column="profession" property="profession" jdbcType="VARCHAR"/>
         <result column="department" property="department" jdbcType="VARCHAR"/>
+        <result column="whereabout" property="whereAbout" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="all">
+        company_id, num, name, phone_number, email, grade, sex, profession, department,whereabout
+    </sql>
     <insert id="insert" parameterType="com.mis.hrm.member.model.Member">
-        insert into member(company_id, num, name, phone_number, email, grade, sex, profession, department)
-        values (#{companyId},#{num},#{name},#{phoneNumber},#{email},#{grade},#{sex},#{profession},#{department});
+        insert into member(company_id, num, name, phone_number, email, grade, sex, profession, department,whereabout)
+        values (#{companyId},#{num},#{name},#{phoneNumber},#{email},#{grade},#{sex},#{profession},#{department},#{whereAbout});
     </insert>
 
     <delete id="deleteByPrimaryKey" parameterType="com.mis.hrm.member.model.Member">
@@ -34,12 +38,13 @@
             <if test="sex != null">sex = #{sex},</if>
             <if test="profession != null">profession = #{profession},</if>
             <if test="department != null">department = #{department},</if>
+            <if test="whereAbout != null">whereabout = #{whereAbout},</if>
         </set>
         where company_id = #{companyId} and num = #{num};
     </update>
 
     <select id="selectByPrimaryKey" resultType="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
-        select company_id, num, name, phone_number, email, grade, sex, profession, department
+        select <include refid="all"/>
         from member
         where company_id = #{companyId} and num = #{num};
     </select>
@@ -58,7 +63,7 @@
     </select>
 
     <select id="getAllMembers" parameterType ="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
-        select company_id, num, name, phone_number, email, grade, sex, profession, department
+        select <include refid="all"/>
         from member where company_id = #{companyId}
         <if test="offset!=null and limit!=null">
             limit #{offset},#{limit}
@@ -66,7 +71,7 @@
     </select>
 
     <select id="filter" parameterType="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
-        select company_id, num, name, phone_number, email, grade, sex, profession, department
+        select <include refid="all"/>
         from member where 1 = 1
         <if test="member.companyId != null">
             and member.company_id like '%${member.companyId}%'
@@ -94,6 +99,9 @@
         </if>
         <if test="member.department != null">
             and member.department like '%${member.department}%'
+        </if>
+        <if test="member.whereAbout != null">
+            and member.whereabout like '%${member.whereAbout}%'
         </if>
         <if test="pager.offset!=null and pager.limit!=null">
             limit #{pager.offset},#{pager.limit};
@@ -129,12 +137,15 @@
         <if test="department != null">
             and member.department like '%${department}%'
         </if>
+        <if test="whereAbout != null">
+            and member.whereabout like '%${whereAbout}%'
+        </if>
     </select>
     <!--将所有信息插入PP表里面，传入参数为list,通过<foreach>来遍历list-->
     <insert id="insertMany" parameterType="java.util.ArrayList">
         insert into member VALUES
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.companyId},#{item.num},#{item.name},#{item.phoneNumber},#{item.email},#{item.grade},#{item.sex},#{item.profession},#{item.department})
+            (#{item.companyId},#{item.num},#{item.name},#{item.phoneNumber},#{item.email},#{item.grade},#{item.sex},#{item.profession},#{item.department},#{iterm.whereAbout})
         </foreach>
     </insert>
 </mapper>

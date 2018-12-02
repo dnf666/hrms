@@ -19,7 +19,9 @@ public interface MemberService extends BaseService<Member> {
     //分页查看所有成员
     List<Member> getAllMembers(Pager<Member> pager);
 
-    //过滤
+    /**
+     *  过滤
+     */
     List<Member> filter(Pager<Member> pager, Member member);
 
     int exitToWhere(Whereabout whereabout);

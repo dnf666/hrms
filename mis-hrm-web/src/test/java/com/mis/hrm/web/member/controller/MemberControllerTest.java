@@ -39,6 +39,8 @@ public class MemberControllerTest {
 
     @Test
     public void insertOneMember() {
+        Member member = Member.builder().companyId("120").sex("1").num("num1").name("name").phoneNumber("15023324935").email("1204695257@qq.com").grade("2015").profession("xinguan").department("java").whereAbout("whereabout").build();
+        memberController.insertOneMember(member);
     }
 
     @Test
@@ -51,6 +53,8 @@ public class MemberControllerTest {
 
     @Test
     public void countMembers() {
+        Member member = Member.builder().companyId("120").build();
+        System.out.println(memberController.countMembers(member));
     }
 
     @Test

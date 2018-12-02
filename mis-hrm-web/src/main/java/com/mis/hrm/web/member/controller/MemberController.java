@@ -94,8 +94,8 @@ public class MemberController {
         }
         return map;
     }
-
     @PostMapping("exit")
+    @Deprecated
     public Map exitToWhere(@RequestBody Whereabout whereabout) {
         Map<String, Object> map;
         try {
