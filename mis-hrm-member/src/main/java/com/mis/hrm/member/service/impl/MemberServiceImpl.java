@@ -116,7 +116,7 @@ public class MemberServiceImpl implements MemberService {
                 logger.info("成功删除" + stateNum + "名成员信息");
                 return stateNum;
             } else {
-                logger.debug("成员信息删除失败");
+                logger.debug("成员信息删除失败1111111111111");
                 throw new RuntimeException("成员信息删除失败");
             }
         } else {
