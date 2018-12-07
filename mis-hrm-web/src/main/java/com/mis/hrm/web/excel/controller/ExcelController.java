@@ -24,7 +24,7 @@ public class ExcelController {
      */
     @GetMapping("/{tableTitle}/toExcel")
     public Map importExcel(@PathVariable String tableTitle){
-        byte[] bytes = demoExcel.importExcel(tableTitle,"excel");
+        byte[] bytes = demoExcel.importExcel(tableTitle, "excel");
 
         //设置文件名（表名-时间戳.xlsx）
         String fileName = tableTitle + "-" + System.currentTimeMillis() + ".xlsx";
