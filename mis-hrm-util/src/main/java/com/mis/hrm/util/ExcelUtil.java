@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,13 +61,31 @@ public class ExcelUtil {
         return cells;
     }
 
-    public static String getStringByIndex(List<Cell> cells ,int i) throws IOException{
-        Cell cell = cells.get(i);
-        cell.setCellType(Cell.CELL_TYPE_STRING);
-        String value = cell.getStringCellValue();
-        if (Strings.isNullOrEmpty(value)){
-            throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
+    public static String getValueByIndex(List<Cell> cells ,int i) throws IOException{
+        Cell hssfCell = cells.get(i);
+        if (hssfCell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
+            // 返回布尔类型的值
+            return String.valueOf(hssfCell.getBooleanCellValue());
+        } else if (hssfCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+            // 返回数值类型的值
+            Object inputValue = null;
+            Long longVal = Math.round(hssfCell.getNumericCellValue());
+            Double doubleVal = hssfCell.getNumericCellValue();
+            if(Double.parseDouble(longVal + ".0") == doubleVal){
+                inputValue = longVal;
+            }
+            else{
+                inputValue = doubleVal;
+            }
+            DecimalFormat df = new DecimalFormat("#");
+            return String.valueOf(df.format(inputValue));
+        } else {
+            // 返回字符串类型的值
+            String value = hssfCell.getStringCellValue();
+            if (Strings.isNullOrEmpty(value)){
+                throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
+            }
+            return String.valueOf(hssfCell.getStringCellValue());
         }
-        return value;
     }
 }

@@ -141,32 +141,32 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public void importWorkerFromExcel(MultipartFile file) throws IOException {
-        Sheet sheet = ExcelUtil.getSheet(file);
-        List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
-        List<Whereabout> list = new ArrayList<>();
-        for (int i = 1;i<rows.size();i++){
-            List<Cell> cells = ExcelUtil.getCellFromRow(rows.get(i));
-            if (cells.size()!= WORK_PARAMTER_COUNT){
-                throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
-            }
-            //todo 没想到更好的方法。这段代码复用性太差。败笔啊
-            String num =ExcelUtil.getStringByIndex(cells,0);
-            String name = ExcelUtil.getStringByIndex(cells,1);
-            String phoneNumber = ExcelUtil.getStringByIndex(cells,2);
-            String email = ExcelUtil.getStringByIndex(cells,3);
-            String grade = ExcelUtil.getStringByIndex(cells,4);
-            String sex = ExcelUtil.getStringByIndex(cells,5);
-            if (!Sex.judgeSex(sex)){
-                throw new IOException("性别不合法");
-            }
-            String profession = ExcelUtil.getStringByIndex(cells,6);
-            String department = ExcelUtil.getStringByIndex(cells,7);
-            String workPlace = ExcelUtil.getStringByIndex(cells,8);
-            //todo companyId没传进来
-            Whereabout whereabout = Whereabout.builder().companyId("").num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).workPlace(workPlace).build();
-            logger.info("whereAbout {}",whereabout.toString());
-            list.add(whereabout);
-        }
-        workMapper.insertMany(list);
+//        Sheet sheet = ExcelUtil.getSheet(file);
+//        List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
+//        List<Whereabout> list = new ArrayList<>();
+//        for (int i = 1;i<rows.size();i++){
+//            List<Cell> cells = ExcelUtil.getCellFromRow(rows.get(i));
+//            if (cells.size()!= WORK_PARAMTER_COUNT){
+//                throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
+//            }
+//            //todo 没想到更好的方法。这段代码复用性太差。败笔啊
+//            String num =ExcelUtil.getStringByIndex(cells,0);
+//            String name = ExcelUtil.getStringByIndex(cells,1);
+//            String phoneNumber = ExcelUtil.getStringByIndex(cells,2);
+//            String email = ExcelUtil.getStringByIndex(cells,3);
+//            String grade = ExcelUtil.getStringByIndex(cells,4);
+//            String sex = ExcelUtil.getStringByIndex(cells,5);
+//            if (!Sex.judgeSex(sex)){
+//                throw new IOException("性别不合法");
+//            }
+//            String profession = ExcelUtil.getStringByIndex(cells,6);
+//            String department = ExcelUtil.getStringByIndex(cells,7);
+//            String workPlace = ExcelUtil.getStringByIndex(cells,8);
+//            //todo companyId没传进来
+//            Whereabout whereabout = Whereabout.builder().companyId("").num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).workPlace(workPlace).build();
+//            logger.info("whereAbout {}",whereabout.toString());
+//            list.add(whereabout);
+//        }
+//        workMapper.insertMany(list);
     }
 }

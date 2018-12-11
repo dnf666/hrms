@@ -3,6 +3,7 @@ package com.mis.hrm.member.service.impl;
 import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
+import com.mis.hrm.util.ArithUtils;
 import com.mis.hrm.util.ExcelUtil;
 import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
@@ -33,7 +34,7 @@ import java.util.Map;
 @Service
 @Transactional(rollbackFor = {})
 public class MemberServiceImpl implements MemberService {
-    private static final int MEMBER_PARAMTER_COUNT = 8;
+    private static final int MEMBER_PARAMTER_COUNT = 9;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
@@ -170,19 +171,20 @@ public class MemberServiceImpl implements MemberService {
               throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
           }
           //todo 没想到更好的方法。这段代码复用性太差。败笔啊
-          String num =ExcelUtil.getStringByIndex(cells,0);
-          String name = ExcelUtil.getStringByIndex(cells,1);
-          String phoneNumber = ExcelUtil.getStringByIndex(cells,2);
-          String email = ExcelUtil.getStringByIndex(cells,3);
-          String grade = ExcelUtil.getStringByIndex(cells,4);
-          String sex = ExcelUtil.getStringByIndex(cells,5);
+          String num =ExcelUtil.getValueByIndex(cells,0);
+          String name = ExcelUtil.getValueByIndex(cells,1);
+          String phoneNumber = ExcelUtil.getValueByIndex(cells,2);
+          String email = ExcelUtil.getValueByIndex(cells,3);
+          String grade = ExcelUtil.getValueByIndex(cells,4);
+          String sex = ExcelUtil.getValueByIndex(cells,5);
           if (!Sex.judgeSex(sex)){
               throw new IOException("性别不合法");
           }
-          String profession = ExcelUtil.getStringByIndex(cells,6);
-          String department = ExcelUtil.getStringByIndex(cells,7);
+          String profession = ExcelUtil.getValueByIndex(cells,6);
+          String department = ExcelUtil.getValueByIndex(cells,7);
+          String whereAbout = ExcelUtil.getValueByIndex(cells,8);
           //todo companyId没传进来
-          Member member = Member.builder().companyId("").num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).build();
+          Member member = Member.builder().companyId("").num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).whereAbout(whereAbout).build();
           logger.info("member {}",member.toString());
           list.add(member);
       }
