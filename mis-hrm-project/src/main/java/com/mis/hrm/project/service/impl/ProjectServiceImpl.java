@@ -89,6 +89,24 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public Integer deleteByProjectIds(List<Integer> numList, String companyId) {
+        if(numList.size()!=0){
+            int stateNum = projectMapper.deleteByProjectIds(numList,companyId);
+            if(stateNum > 0){
+                logger.info("成功删除" + stateNum + "信息");
+                return stateNum;
+            } else {
+                logger.error("项目删除失败");
+                throw new RuntimeException("项目删除失败");
+            }
+        } else {
+            logger.debug("学号为空");
+            throw new InfoNotFullyException("学号为空");
+        }
+
+    }
+
+    @Override
     public List<Project> selectByPrimaryKeyAndPage(Project project, Pager<Project> pager) {
        int offset = pager.getOffset();
        int size = pager.getPageSize();

@@ -9,4 +9,5 @@ import java.util.List;
 public interface ProjectService extends BaseService<Project> {
     int getProjectCount(Project project);
 
+    Integer deleteByProjectIds(List<Integer> numList, String companyId);
 }

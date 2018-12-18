@@ -1,5 +1,7 @@
 package com.mis.hrm.web.project.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
@@ -7,10 +9,12 @@ import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.constant.PageConstant;
 import com.mis.hrm.util.enums.ErrorCode;
+import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.web.util.ControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -94,39 +98,21 @@ public class ProjectController {
         result = ControllerUtil.getResult(projectService::updateByPrimaryKey, project);
         return result;
     }
+    @PostMapping("delProjects")
+    public Map deleteByProjectIds(@RequestBody JSONObject jsonObject, @RequestParam("companyId") String companyId) {
+        JSONArray jsonArray = JSONArray.parseArray(jsonObject.get("projectIds").toString());
+        Map<String, Object> map;
+        List<Integer> numList = jsonArray.toJavaList(Integer.class);
+        try {
+            map = ToMap.toSuccessMap(projectService.deleteByProjectIds(numList, companyId));
+        } catch (InfoNotFullyException infoNotFullyException) {
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+        } catch (RuntimeException e) {
+            map = ToMap.toFalseMap(e.getMessage());
+        }
+        return map;
+    }
 
-    /**
-     * @api {GET} project 通过companyId & projectId得到项目的信息
-     * @apiDescription 通过companyId & projectId得到项目的信息
-     * @apiGroup PROJECT-QUERY
-     * @apiParam {String} companyId 公司id
-     * @apiParam {String} projectId　项目id
-     * @apiParam {String} projectName 项目名称
-     * @apiSuccessExample {json} Success-Response:
-     * HTTP/1.1 200 OK
-     * {
-     * "code": "1",
-     * "msg": "success"
-     * "object":[{
-     * "companyId": "lalalala",
-     * "onlineTime": "2018-08-08",
-     * "projectId": 12,
-     * "projectUrl": "不晓得"
-     * },{
-     * "companyId": "lalalala",
-     * "onlineTime": "2018-08-08",
-     * "projectId": 12,
-     * "projectUrl": "不晓得"
-     * }
-     * }
-     * ]
-     */
-//    @GetMapping("project")
-//    public Map getProjectBycompanyIdAndProjectId(Project project){
-//        Map<String, Object> result;
-//        result = ControllerUtil.getResult(projectService::selectByPrimaryKey, project);
-//        return result;
-//    }
     @GetMapping("count")
     public Map getProjectCount(Project project) {
         Map<String, Object> result;

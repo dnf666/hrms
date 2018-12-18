@@ -95,4 +95,12 @@
         </if>
         limit #{offset},#{size}
     </select>
+    <delete id="deleteByProjectIds">
+        delete from project where company_id =#{companyId} and project_id in(
+        <foreach collection="numList" item="arr"
+                 separator=",">
+            #{arr}
+        </foreach>
+        )
+    </delete>
 </mapper>

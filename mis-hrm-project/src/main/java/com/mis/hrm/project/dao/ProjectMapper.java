@@ -12,4 +12,5 @@ import java.util.List;
 public interface ProjectMapper extends BaseMapper<Project> {
     int getProjectCount(Project project);
 
+    int deleteByProjectIds(@Param("numList")List<Integer> numList, @Param("companyId") String companyId);
 }
