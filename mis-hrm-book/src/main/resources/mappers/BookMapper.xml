@@ -48,24 +48,6 @@
         where book_id = #{bookId} and company_id = #{companyId}
     </update>
 
-    <select id="selectBooksByCompanyId" parameterType="book" resultMap="bookResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from library where company_id = #{companyId};
-    </select>
-
-    <select id="selectBooksByComapnyIdAndCategory" parameterType="book" resultMap="bookResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from library where company_id = #{companyId} and category = #{category};
-    </select>
-
-    <select id="selectBooksByCompanyIdAndBookName" parameterType="book" resultMap="bookResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from library where company_id = #{companyId} and book_name = #{bookName};
-    </select>
-
     <select id="getCountByKeys" parameterType="com.mis.hrm.book.po.Book" resultType="java.lang.Integer">
         select count(*)
         from library where 1=1
@@ -105,4 +87,11 @@
         </if>
         limit #{offset},#{size}
     </select>
+    <!--将所有信息插入PP表里面，传入参数为list,通过<foreach>来遍历list-->
+    <insert id="insertMany" parameterType="java.util.ArrayList">
+        insert into library VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.companyId},#{item.bookId},#{item.bookName},#{item.category},#{item.num},#{item.version})
+        </foreach>
+    </insert>
 </mapper>

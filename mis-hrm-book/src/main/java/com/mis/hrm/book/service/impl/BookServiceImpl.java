@@ -4,19 +4,29 @@ import com.mis.hrm.book.dao.BookMapper;
 import com.mis.hrm.book.po.Book;
 import com.mis.hrm.book.service.BookService;
 import com.mis.hrm.util.ConstantValue;
+import com.mis.hrm.util.ExcelUtil;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
+import com.mis.hrm.util.enums.ErrorCode;
+import com.mis.hrm.util.enums.Sex;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
+    private static final int Book_PARAMTER_COUNT = 4;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource
     private BookMapper bookMapper;
@@ -117,73 +127,42 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> selectBookByOptions(Book book) {
-        return bookMapper.selectBookByOptions(book);
-    }
-
-    @Override
-    public List<Book> selectBooksByCompanyId(Book book) {
-        Optional<Book> bookOptional;
-        try {
-            bookOptional = Optional.of(book);
-        } catch (NullPointerException e) {
-            logger.error("selectBooksByCompanyId:book为空");
-            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
-        }
-        boolean isOk = bookOptional
-                .filter(t -> StringUtil.notEmpty(t.getCompanyId()))
-                .isPresent();
-        if (!isOk) {
-            logger.error("companyId is null,查找失败");
-            throw new InfoNotFullyException("companyId为空");
-        }
-        return bookMapper.selectBooksByCompanyId(book);
-    }
-
-    @Override
-    public List<Book> selectBooksByComapnyIdAndCategory(Book book) {
-        Optional<Book> bookOptional;
-        try {
-            bookOptional = Optional.of(book);
-        } catch (NullPointerException e) {
-            logger.error("selectBooksByComapnyIdAndCategory:book为空");
-            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
-        }
-        boolean isOk = bookOptional
-                .filter(t -> StringUtil.notEmpty(t.getCompanyId(), t.getCategory()))
-                .isPresent();
-        if (!isOk) {
-            logger.error("companyId or category is null,查找失败");
-            throw new InfoNotFullyException("companyId or category is null");
-        }
-        return bookMapper.selectBooksByComapnyIdAndCategory(book);
-    }
-
-    @Override
-    public List<Book> selectBooksByCompanyIdAndBookName(Book book) {
-        Optional<Book> bookOptional;
-        try {
-            bookOptional = Optional.of(book);
-        } catch (NullPointerException e) {
-            logger.error("selectBooksByCompanyIdAndBookName:book为空");
-            throw new NullPointerException(ConstantValue.GET_NULL_OBJECT);
-        }
-        boolean isOk = bookOptional
-                .filter(t -> StringUtil.notEmpty(book.getCompanyId(), book.getBookName()))
-                .isPresent();
-        if (!isOk) {
-            logger.error("companyId or bookname is null,查找失败");
-            throw new InfoNotFullyException("companyId or bookname is null");
-        }
-        return isOk ? bookMapper.selectBooksByCompanyIdAndBookName(book) : null;
-    }
-
-    @Override
     public List<Book> selectByPrimaryKeyAndPage(Book book, Pager<Book> pager) {
         int offset = pager.getOffset();
         int size = pager.getPageSize();
         int total = bookMapper.getCountByKeys(book);
         pager.setRecordSize(total);
         return bookMapper.selectByPrimaryKeyAndPage(book,offset,size);
+    }
+
+    @Override
+    public int importBookFromExcel(MultipartFile file,String companyId) throws IOException {
+        Sheet sheet = ExcelUtil.getSheet(file);
+        List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
+        List<Book> list = new ArrayList<>();
+        for (int i = 1;i<rows.size();i++){
+            List<Cell> cells = ExcelUtil.getCellFromRow(rows.get(i));
+            if (cells.size()!= Book_PARAMTER_COUNT){
+                throw new IOException(ErrorCode.MESSAGE_NOT_COMPLETE.getDescription());
+            }
+            //todo 没想到更好的方法。这段代码复用性太差。败笔啊
+            String bookName =ExcelUtil.getValueByIndex(cells,0);
+            String type = ExcelUtil.getValueByIndex(cells,1);
+            Integer nums;
+            try {
+                String num  = ExcelUtil.getValueByIndex(cells,2);
+                nums = Integer.parseInt(num);
+            }catch (NumberFormatException e){
+                throw new NumberFormatException("数量不是数字");
+            }
+            String version  = ExcelUtil.getValueByIndex(cells,3);
+            String bookId = companyId+bookName+version;
+            //todo companyId没传进来
+            Book book = Book.builder().companyId(companyId).bookId(bookId).bookName(bookName).category(type).quantity(nums).version(version).build();
+            logger.info("book {}",book.toString());
+            list.add(book);
+        }
+         return bookMapper.insertMany(list);
+
     }
 }

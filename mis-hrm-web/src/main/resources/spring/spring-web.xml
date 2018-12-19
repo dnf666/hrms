@@ -14,7 +14,6 @@
     <import resource="classpath:spring/spring-index.xml"/>
     <import resource="classpath:spring/spring-login.xml"/>
     <import resource="classpath*:spring/spring-project.xml"/>
-    <import resource="classpath:spring/spring-work.xml"/>
     <import resource="classpath:spring/spring-member.xml"/>
     <!--可以扫描基于类的注解，通常使用了这个就不使用<context:annotation-com.mis.hrm.member.config/>-->
     <context:component-scan base-package="com.mis.hrm.*.*"/>

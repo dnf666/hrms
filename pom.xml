@@ -16,7 +16,6 @@
         <module>mis-hrm-member</module>
         <module>mis-hrm-manage</module>
         <module>mis-hrm-index</module>
-        <module>mis-hrm-work</module>
         <module>mis-hrm-util</module>
     </modules>
 

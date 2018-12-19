@@ -6,7 +6,6 @@ import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
-import com.mis.hrm.work.model.Whereabout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -94,18 +93,7 @@ public class MemberController {
         }
         return map;
     }
-    @PostMapping("exit")
-    @Deprecated
-    public Map exitToWhere(@RequestBody Whereabout whereabout) {
-        Map<String, Object> map;
-        try {
-            int result = memberService.exitToWhere(whereabout);
-            map = ToMap.toSuccessMap(result);
-        } catch (InfoNotFullyException infoNotFullyException) {
-            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
-        }
-        return map;
-    }
+
     @PostMapping("Excel")
     public Map importMemberFromExcel(MultipartFile file){
         try {

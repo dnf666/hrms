@@ -3,7 +3,6 @@ package com.mis.hrm.member.service;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.util.BaseService;
 import com.mis.hrm.util.Pager;
-import com.mis.hrm.work.model.Whereabout;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -16,15 +15,10 @@ public interface MemberService extends BaseService<Member> {
     //统计成员总数
     Integer countMembers(Member member);
 
-    //分页查看所有成员
-    List<Member> getAllMembers(Pager<Member> pager);
-
     /**
      *  过滤
      */
     List<Member> filter(Pager<Member> pager, Member member);
-
-    int exitToWhere(Whereabout whereabout);
 
     void importMemberFromExcel(MultipartFile file) throws IOException;
 }
