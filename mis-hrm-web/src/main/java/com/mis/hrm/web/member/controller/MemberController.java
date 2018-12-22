@@ -6,7 +6,13 @@ import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,15 +43,15 @@ public class MemberController {
 
     @PostMapping("delMember")
     public Map deleteByNums(@RequestBody Member member, String companyId) {
-        if (member.getNum() == null || member.getNum().length() ==0){
+        if (member.getNum() == null || member.getNum().length() == 0) {
             return ToMap.toFalseMap(ErrorCode.NOT_BLANK);
         }
         String nums = member.getNum();
         String[] numArray = nums.split(",");
         Map<String, Object> map;
         List<String> numList = new ArrayList<>();
-        for (String b : numArray){
-                numList.add(b);
+        for (String b : numArray) {
+            numList.add(b);
         }
         try {
             map = ToMap.toSuccessMap(memberService.deleteByNums(numList, companyId));
@@ -95,12 +101,24 @@ public class MemberController {
     }
 
     @PostMapping("Excel")
-    public Map importMemberFromExcel(MultipartFile file){
+    public Map importMemberFromExcel(MultipartFile file) {
         try {
             memberService.importMemberFromExcel(file);
-        }catch(IOException e){
+        } catch (IOException e) {
             return null;
         }
         return null;
+    }
+
+    @PostMapping("/createExcel")
+    public ResponseEntity<byte[]> createExcel(@RequestBody Member member) {
+        List<Member> lists = memberService.selectByMultiKey(member);
+       HSSFWorkbook workbook = memberService.exportExcel(lists);
+        byte[] bytes = workbook.getBytes();
+        HttpHeaders header = new HttpHeaders();
+        header.setContentDispositionFormData("attachment", "member.xls");
+        header.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        return new ResponseEntity<byte[]>(bytes, header, HttpStatus.CREATED);
+
     }
 }

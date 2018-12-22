@@ -148,4 +148,38 @@
             (#{item.companyId},#{item.num},#{item.name},#{item.phoneNumber},#{item.email},#{item.grade},#{item.sex},#{item.profession},#{item.department},#{item.whereAbout})
         </foreach>
     </insert>
+    <select id="selectByMultiKey" parameterType="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
+        select <include refid="all"/>
+        from member where 1 = 1
+        <if test="member.companyId != null">
+            and member.company_id like '%${member.companyId}%'
+        </if>
+        <if test="member.num != null">
+            and member.num like '%${member.num}%'
+        </if>
+        <if test="member.name != null">
+            and member.name like '%${member.name}%'
+        </if>
+        <if test="member.phoneNumber != null">
+            and member.phone_number like '%${member.phoneNumber}%'
+        </if>
+        <if test="member.email != null">
+            and member.email like '%${member.email}%'
+        </if>
+        <if test="member.grade != null">
+            and member.grade like '%${member.grade}%'
+        </if>
+        <if test="member.sex != null">
+            and member.sex like '%${member.sex}%'
+        </if>
+        <if test="member.profession != null">
+            and member.profession like '%${member.profession}%'
+        </if>
+        <if test="member.department != null">
+            and member.department like '%${member.department}%'
+        </if>
+        <if test="member.whereAbout != null">
+            and member.whereabout like '%${member.whereAbout}%'
+        </if>
+    </select>
 </mapper>

@@ -25,4 +25,6 @@ public interface MemberMapper extends BaseMapper<Member> {
     List<Member> filter(@Param("pager") Pager<Member> pager, @Param("member") Member member);
 
     Integer countMembersByKeys(Member member);
+
+    List<Member> selectByMultiKey(@Param("member") Member member);
 }

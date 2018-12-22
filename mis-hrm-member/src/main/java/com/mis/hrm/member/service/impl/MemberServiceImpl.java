@@ -10,9 +10,13 @@ import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.enums.Sex;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -165,6 +169,43 @@ public class MemberServiceImpl implements MemberService {
         }
         memberMapper.insertMany(list);
 
+    }
+
+    @Override
+    public List<Member> selectByMultiKey(Member member) {
+        return memberMapper.selectByMultiKey(member);
+    }
+
+    @Override
+    public HSSFWorkbook exportExcel(List<Member> lists) {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        Sheet sheet = workbook.createSheet();
+        sheet.addMergedRegion(new CellRangeAddress(0, lists.size() + 1, 0, 9));
+        Row row0 = sheet.createRow(0);
+        row0.createCell(0).setCellValue("学号");
+        row0.createCell(1).setCellValue("姓名");
+        row0.createCell(2).setCellValue("电话");
+        row0.createCell(3).setCellValue("邮箱");
+        row0.createCell(4).setCellValue("年级");
+        row0.createCell(5).setCellValue("性别");
+        row0.createCell(6).setCellValue("专业");
+        row0.createCell(7).setCellValue("部门");
+        row0.createCell(8).setCellValue("签约");
+        for (int i = 0; i < lists.size(); i++) {
+            Row row3 = sheet.createRow(i + 1);
+            Member member1 = lists.get(i);
+            row3.createCell(0).setCellValue(member1.getNum());
+            row3.createCell(1).setCellValue(member1.getName());
+            row3.createCell(2).setCellValue(member1.getPhoneNumber());
+            row3.createCell(3).setCellValue(member1.getEmail());
+            row3.createCell(4).setCellValue(member1.getGrade());
+            row3.createCell(5).setCellValue(member1.getSex());
+            row3.createCell(6).setCellValue(member1.getProfession());
+            row3.createCell(7).setCellValue(member1.getDepartment());
+            row3.createCell(8).setCellValue(member1.getWhereAbout());
+        }
+        logger.info("excel生成完毕");
+        return workbook;
     }
 
 }
