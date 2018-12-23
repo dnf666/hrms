@@ -10,9 +10,11 @@ import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.enums.Sex;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -164,5 +166,34 @@ public class BookServiceImpl implements BookService {
         }
          return bookMapper.insertMany(list);
 
+    }
+
+    @Override
+    public List<Book> selectByMultiKey(Book book) {
+        return bookMapper.selectByMultiKey(book);
+
+    }
+
+    @Override
+    public HSSFWorkbook exportExcel(List<Book> lists) {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        Sheet sheet = workbook.createSheet();
+        sheet.addMergedRegion(new CellRangeAddress(0, lists.size() + 1, 0, 5));
+        Row row0 = sheet.createRow(0);
+        //todo 如果从零开始就会把版本这一列消掉。。。这是问题
+        row0.createCell(1).setCellValue("书名");
+        row0.createCell(2).setCellValue("类别");
+        row0.createCell(3).setCellValue("数量");
+        row0.createCell(4).setCellValue("版本");
+        for (int i = 0; i < lists.size(); i++) {
+            Row row3 = sheet.createRow(i + 1);
+            Book book1 = lists.get(i);
+            row3.createCell(1).setCellValue(book1.getBookName());
+            row3.createCell(2).setCellValue(book1.getCategory());
+            row3.createCell(3).setCellValue(book1.getQuantity());
+            row3.createCell(4).setCellValue(book1.getVersion());
+        }
+        logger.info("excel生成完毕");
+        return workbook;
     }
 }

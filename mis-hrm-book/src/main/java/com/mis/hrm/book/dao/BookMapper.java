@@ -14,4 +14,5 @@ import java.util.List;
 @Repository
 public interface BookMapper extends BaseMapper<Book> {
 
+    List<Book> selectByMultiKey(Book book);
 }

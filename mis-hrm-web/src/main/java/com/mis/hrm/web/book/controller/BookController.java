@@ -9,7 +9,12 @@ import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.constant.PageConstant;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.web.util.ControllerUtil;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -78,5 +83,15 @@ public class BookController {
         }
         return null;
     }
+    @PostMapping("/createExcel")
+    public ResponseEntity<byte[]> createExcel(@RequestBody Book book) {
+        List<Book> lists = bookService.selectByMultiKey(book);
+        HSSFWorkbook workbook = bookService.exportExcel(lists);
+        byte[] bytes = workbook.getBytes();
+        HttpHeaders header = new HttpHeaders();
+        header.setContentDispositionFormData("attachment", "book.xls");
+        header.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        return new ResponseEntity<byte[]>(bytes, header, HttpStatus.CREATED);
 
+    }
 }

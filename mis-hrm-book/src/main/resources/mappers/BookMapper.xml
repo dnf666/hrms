@@ -94,4 +94,27 @@
             (#{item.companyId},#{item.bookId},#{item.bookName},#{item.category},#{item.num},#{item.version})
         </foreach>
     </insert>
+    <select id="selectByMultiKey" parameterType="com.mis.hrm.book.po.Book" resultMap="bookResultMap">
+        select <include refid="Base_Column_List"/>
+        from library where 1 = 1
+        <if test="companyId != null">
+            and library.company_id = #{companyId}
+        </if>
+        <if test="bookId != null">
+            and library.book_id like '%${bookId}%'
+        </if>
+        <if test="bookName != null">
+            and library.book_name like '%${bookName}%'
+        </if>
+        <if test="category != null">
+            and library.category like '%${category}%'
+        </if>
+        <if test="quantity != null">
+            and library.num = #{quantity}
+        </if>
+        <if test="version != null">
+            and library.version like '%${version}%'
+        </if>
+
+    </select>
 </mapper>
