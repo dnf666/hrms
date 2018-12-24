@@ -6,6 +6,7 @@ import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
+import org.apache.ibatis.annotations.Param;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,14 +101,19 @@ public class MemberController {
         return map;
     }
 
-    @PostMapping("Excel")
-    public Map importMemberFromExcel(MultipartFile file) {
-        try {
-            memberService.importMemberFromExcel(file);
-        } catch (IOException e) {
-            return null;
+    @PostMapping("excel")
+    public Map importMemberFromExcel(@RequestParam("file") MultipartFile file,@RequestParam("companyId") String companyId) {
+        String fileName = file.getOriginalFilename();
+        if (fileName.endsWith(".xlsx") || fileName.endsWith(".xls")) {
+            try {
+                memberService.importMemberFromExcel(file, companyId);
+            } catch (IOException e) {
+               return ToMap.toFalseMap("io异常");
+            }
+        }else {
+            return ToMap.toFalseMap("文件格式不匹配");
         }
-        return null;
+        return ToMap.toSuccessMap(null);
     }
 
     @PostMapping("/createExcel")

@@ -74,14 +74,19 @@ public class BookController {
         return ToMap.toSuccessMap(pager);
     }
 
-    @PostMapping("Excel")
-    public Map importBookFromExcel(MultipartFile file, String companyId) {
-        try {
-            bookService.importBookFromExcel(file, companyId);
-        } catch (IOException e) {
-            return null;
+    @PostMapping("excel")
+    public Map importBookFromExcel(@RequestParam("file") MultipartFile file, @RequestParam("companyId") String companyId) {
+        String fileName = file.getOriginalFilename();
+        if (fileName.endsWith(".xlsx") || fileName.endsWith(".xls")) {
+            try {
+                bookService.importBookFromExcel(file, companyId);
+            } catch (IOException e) {
+                return ToMap.toFalseMap("io异常");
+            }
+        }else {
+            return ToMap.toFalseMap("文件格式不匹配");
         }
-        return null;
+        return ToMap.toSuccessMap(null);
     }
     @PostMapping("/createExcel")
     public ResponseEntity<byte[]> createExcel(@RequestBody Book book) {

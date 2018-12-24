@@ -23,7 +23,7 @@ public interface MemberService extends BaseService<Member> {
      */
     List<Member> filter(Pager<Member> pager, Member member);
 
-    void importMemberFromExcel(MultipartFile file) throws IOException;
+    void importMemberFromExcel(MultipartFile file,String companyId) throws IOException;
 
     List<Member> selectByMultiKey(Member member);
 

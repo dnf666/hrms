@@ -27,14 +27,15 @@ public class MemberControllerTest {
     private MemberController memberController;
     @Test
     public void insertExcel() throws FileNotFoundException {
-        File file = new File("/Users/demo/Desktop/member.xlsx");
+        File file = new File("/Users/demo/Desktop/book.xlsx");
         FileInputStream input = new FileInputStream(file);
         MultipartFile multipartFile = null;
         try {
             multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(input));
+            System.out.println(multipartFile.getOriginalFilename());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        memberController.importMemberFromExcel(multipartFile);
+//        memberController.importMemberFromExcel(multipartFile);
     }
 }

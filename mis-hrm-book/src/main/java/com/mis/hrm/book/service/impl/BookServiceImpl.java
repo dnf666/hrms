@@ -158,9 +158,7 @@ public class BookServiceImpl implements BookService {
                 throw new NumberFormatException("数量不是数字");
             }
             String version  = ExcelUtil.getValueByIndex(cells,3);
-            String bookId = companyId+bookName+version;
-            //todo companyId没传进来
-            Book book = Book.builder().companyId(companyId).bookId(bookId).bookName(bookName).category(type).quantity(nums).version(version).build();
+            Book book = Book.builder().companyId(companyId).bookName(bookName).category(type).quantity(nums).version(version).build();
             logger.info("book {}",book.toString());
             list.add(book);
         }

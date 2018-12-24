@@ -130,7 +130,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> filter(Pager<Member> pager, Member member) throws RuntimeException {
         Integer total = memberMapper.countMembersByKeys(member);
-        pager.setPageTotal(total);
+        pager.setRecordSize(total);
         if (ObjectNotEmpty.notEmpty(member)) {
             return memberMapper.filter(pager, member);
         } else {
@@ -140,7 +140,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void importMemberFromExcel(MultipartFile file) throws IOException {
+    public void importMemberFromExcel(MultipartFile file,String companyId) throws IOException {
         Sheet sheet = ExcelUtil.getSheet(file);
         List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
         List<Member> list = new ArrayList<>();
@@ -162,8 +162,7 @@ public class MemberServiceImpl implements MemberService {
             String profession = ExcelUtil.getValueByIndex(cells, 6);
             String department = ExcelUtil.getValueByIndex(cells, 7);
             String whereAbout = ExcelUtil.getValueByIndex(cells, 8);
-            //todo companyId没传进来
-            Member member = Member.builder().companyId("").num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).whereAbout(whereAbout).build();
+            Member member = Member.builder().companyId(companyId).num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).whereAbout(whereAbout).build();
             logger.info("member {}", member.toString());
             list.add(member);
         }

@@ -91,7 +91,7 @@
     <insert id="insertMany" parameterType="java.util.ArrayList">
         insert into library VALUES
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.companyId},#{item.bookId},#{item.bookName},#{item.category},#{item.num},#{item.version})
+            (#{item.companyId},#{item.bookId},#{item.bookName},#{item.category},#{item.quantity},#{item.version})
         </foreach>
     </insert>
     <select id="selectByMultiKey" parameterType="com.mis.hrm.book.po.Book" resultMap="bookResultMap">

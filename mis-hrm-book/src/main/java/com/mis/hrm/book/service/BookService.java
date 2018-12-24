@@ -14,7 +14,7 @@ import java.util.List;
  * @author dailf
  */
 public interface BookService extends BaseService<Book> {
-    int importBookFromExcel(MultipartFile file,String compnyId) throws IOException;
+    int importBookFromExcel(MultipartFile file,String companyId) throws IOException;
 
     List<Book> selectByMultiKey(Book book);
 

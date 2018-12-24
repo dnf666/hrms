@@ -2,9 +2,11 @@ package com.mis.hrm.util;
 
 import com.google.common.base.Strings;
 import com.mis.hrm.util.enums.ErrorCode;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,7 +35,8 @@ public class ExcelUtil {
     }
 
     public static Sheet getSheet(MultipartFile multipartFile) throws IOException {
-        XSSFWorkbook workbook = new XSSFWorkbook(multipartFile.getInputStream());
+        String fileName = multipartFile.getOriginalFilename();
+        Workbook workbook = new XSSFWorkbook(multipartFile.getInputStream());
         //获取第一个sheet表
         return workbook.getSheetAt(0);
     }
