@@ -20,6 +20,7 @@ import java.io.IOException;
 @RequestMapping("index")
 public class IndexController {
 
+    private static final int CHARACTER_COUNT_LIMIT = 100;
     @Autowired
     private IndexServiceImpl indexServiceImpl;
 
@@ -29,39 +30,43 @@ public class IndexController {
      * @apiGroup Index
      * @apiParam (Index) {String} companyId 公司邮箱
      * @apiSuccessExample Success-Response:
-     *       HTTP/1.1 200 OK
-     *       {
-     *         "statu": "200",
-     *         "msg": ""
-     *         "object": {
-     *             "companyId":"string",
-     *             "outline":"公司简介"
-     *             "photoPath":"公司头像地址"
-     *         }
-     *       }
+     * HTTP/1.1 200 OK
+     * {
+     * "statu": "200",
+     * "msg": ""
+     * "object": {
+     * "companyId":"string",
+     * "outline":"公司简介"
+     * "photoPath":"公司头像地址"
+     * }
+     * }
      */
     @GetMapping("index")
-    public ResponseEntity getIndex(Index index){
+    public ResponseEntity getIndex(Index index) {
         Index selectIndex = indexServiceImpl.selectByPrimaryKey(index);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "", selectIndex);
     }
-    @PutMapping("index")
-     public ResponseEntity updateIndex(Index index){
-        indexServiceImpl.updateByPrimaryKey(index);
-         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "修改成功", "");
 
-     }
+    @PutMapping("index")
+    public ResponseEntity updateIndex(Index index) {
+        indexServiceImpl.updateByPrimaryKey(index);
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "修改成功", "");
+
+    }
+
     /**
      * @api {Patch} /index/updateOutline.do 修改公司简介
      * @apiDescription 修改公司简介
      * @apiGroup Index
      * @apiParam (Index) {String} companyId 邮箱
      * @apiParam (Index) {String} outline 公司简介
-     *
      */
 
     @PostMapping("outline")
-    public ResponseEntity updateOutline(@RequestBody Index index){
+    public ResponseEntity updateOutline(@RequestBody Index index) {
+        if (index.getOutline().length() > CHARACTER_COUNT_LIMIT) {
+            return new ResponseEntity<>(ErrorCode.HOT_LENGTH_LIMITED.getCode(), ErrorCode.HOT_LENGTH_LIMITED.getDescription(), "");
+        }
         indexServiceImpl.updateByPrimaryKey(index);
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "update outline success", "");
     }
@@ -71,7 +76,6 @@ public class IndexController {
      * @apiDescription 修改公司头像
      * @apiGroup Index
      * @apiParam (Index) {String} companyId 公司邮箱
-     *
      */
 
     @PostMapping("photo")

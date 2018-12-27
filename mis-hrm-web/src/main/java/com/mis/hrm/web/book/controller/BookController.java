@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,9 +51,19 @@ public class BookController {
 
     @PostMapping("delBook")
     public Map deleteBookInfoByBookId(@RequestBody Book book) {
-        Map<String, Object> result;
-        result = ControllerUtil.getResult(bookService::deleteByPrimaryKey, book);
-        return result;
+        if (book.getBookId() == null || book.getBookId().length() == 0) {
+            return ToMap.toFalseMap(ErrorCode.NOT_BLANK);
+        }
+        String ids = book.getBookId();
+        String companyId = book.getCompanyId();
+        String[] idArray = ids.split(",");
+        List<Integer> idList = new ArrayList<>();
+        for (String b : idArray) {
+            Integer b1 = Integer.parseInt(b);
+            idList.add(b1);
+        }
+        int result = bookService.deleteByids(idList,companyId);
+        return ToMap.toSuccessMap(result);
     }
 
     @PostMapping("filter")

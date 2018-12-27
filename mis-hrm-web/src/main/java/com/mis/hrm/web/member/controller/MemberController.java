@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -84,9 +85,12 @@ public class MemberController {
 
     @PostMapping("/filter")
     public Map memberFilter(@RequestBody Member member,
+                            HttpSession session,
                             int page,
                             int size
     ) {
+        String companyId = (String) session.getAttribute("companyId");
+        System.out.println(companyId);
         Pager<Member> pager = new Pager<>();
         pager.setCurrentPage(page);
         pager.setPageSize(size);

@@ -115,6 +115,13 @@
         <if test="version != null">
             and library.version like '%${version}%'
         </if>
-
     </select>
+    <delete id="deleteByIds">
+        delete from library where company_id =#{companyId} and book_id in(
+        <foreach collection="ids" item="arr"
+                 separator=",">
+            #{arr}
+        </foreach>
+        )
+    </delete>
 </mapper>

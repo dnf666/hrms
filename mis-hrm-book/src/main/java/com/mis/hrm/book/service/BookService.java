@@ -14,6 +14,8 @@ import java.util.List;
  * @author dailf
  */
 public interface BookService extends BaseService<Book> {
+    int deleteByids(List<Integer> ids,String companyId);
+
     int importBookFromExcel(MultipartFile file,String companyId) throws IOException;
 
     List<Book> selectByMultiKey(Book book);

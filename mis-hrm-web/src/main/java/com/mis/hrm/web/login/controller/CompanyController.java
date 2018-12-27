@@ -6,9 +6,14 @@ import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author May
@@ -52,6 +57,8 @@ public class CompanyController {
     @PostMapping("login")
     public ResponseEntity login(@RequestBody Company company) {
         Company company1 = companyService.checkCompany(company);
+        HttpSession session = getSession();
+        session.setAttribute("companyId",company1.getEmail());
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "登录成功", company1);
     }
 
@@ -111,5 +118,16 @@ public class CompanyController {
         }
      return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(),"获取类型成功",map);
     }
+    public static HttpSession getSession() {
+        HttpSession session = null;
+        try {
+            session = getRequest().getSession();
+        } catch (Exception e) {}
+        return session;
+    }
 
+    public static HttpServletRequest getRequest() {
+        ServletRequestAttributes attrs =(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        return attrs.getRequest();
+    }
 }

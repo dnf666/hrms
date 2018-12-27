@@ -138,6 +138,23 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public int deleteByids(List<Integer> ids, String companyId) {
+        if (ids.size() != 0) {
+            int stateNum = bookMapper.deleteByIds(ids, companyId);
+            if (stateNum > 0) {
+                logger.info("成功删除" + stateNum + "本书");
+                return stateNum;
+            } else {
+                logger.debug("图书删除失败");
+                throw new RuntimeException("图书删除失败");
+            }
+        } else {
+            logger.debug("编号为空");
+            throw new InfoNotFullyException("编号为空");
+        }
+    }
+
+    @Override
     public int importBookFromExcel(MultipartFile file,String companyId) throws IOException {
         Sheet sheet = ExcelUtil.getSheet(file);
         List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
