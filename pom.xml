@@ -181,206 +181,206 @@
 
     </dependencies>
 
-    <!--<build>-->
-        <!--<pluginManagement>-->
-            <!--<plugins>-->
-                <!--&lt;!&ndash; compiler插件, 设定JDK版本 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                    <!--<version>3.0</version>-->
-                    <!--<configuration>-->
-                        <!--<source>${jdk.version}</source>-->
-                        <!--<target>${jdk.version}</target>-->
-                        <!--<showWarnings>false</showWarnings>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-javadoc-plugin</artifactId>-->
-                    <!--<version>2.10.4</version>-->
-                <!--</plugin>-->
-                <!--&lt;!&ndash; enforcer插件, 设定环境与依赖的规则 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-enforcer-plugin</artifactId>-->
-                    <!--<version>1.4.1</version>-->
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<id>enforce-banned-dependencies</id>-->
-                            <!--<goals>-->
-                                <!--<goal>enforce</goal>-->
-                            <!--</goals>-->
-                            <!--<configuration>-->
-                                <!--<rules>-->
-                                    <!--<bannedDependencies>-->
-                                        <!--<searchTransitive>true</searchTransitive>-->
-                                        <!--&lt;!&ndash; 避免引入过期的jar包 &ndash;&gt;-->
-                                        <!--<excludes>-->
-                                            <!--<exclude>aspectj:aspectj*</exclude>-->
-                                            <!--<exclude>org.springframework:2.*</exclude>-->
-                                            <!--<exclude>org.springframework:3.0.*</exclude>-->
-                                        <!--</excludes>-->
-                                    <!--</bannedDependencies>-->
-                                <!--</rules>-->
-                                <!--<fail>true</fail>-->
-                            <!--</configuration>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                <!--</plugin>-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-source-plugin</artifactId>-->
-                    <!--<version>2.4</version>-->
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<id>attach-sources</id>-->
-                            <!--<goals>-->
-                                <!--<goal>jar</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                <!--</plugin>-->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- compiler插件, 设定JDK版本 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.0</version>
+                    <configuration>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                        <showWarnings>false</showWarnings>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.4</version>
+                </plugin>
+                <!-- enforcer插件, 设定环境与依赖的规则 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4.1</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-banned-dependencies</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <bannedDependencies>
+                                        <searchTransitive>true</searchTransitive>
+                                        <!-- 避免引入过期的jar包 -->
+                                        <excludes>
+                                            <exclude>aspectj:aspectj*</exclude>
+                                            <exclude>org.springframework:2.*</exclude>
+                                            <exclude>org.springframework:3.0.*</exclude>
+                                        </excludes>
+                                    </bannedDependencies>
+                                </rules>
+                                <fail>true</fail>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
-                <!--&lt;!&ndash; resource插件 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-resources-plugin</artifactId>-->
-                    <!--<version>2.7</version>-->
-                <!--</plugin>-->
+                <!-- resource插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
 
-                <!--&lt;!&ndash; install插件 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-install-plugin</artifactId>-->
-                    <!--<version>2.5.2</version>-->
-                <!--</plugin>-->
+                <!-- install插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
 
-                <!--&lt;!&ndash; clean插件 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-clean-plugin</artifactId>-->
-                    <!--<version>2.6.1</version>-->
-                <!--</plugin>-->
+                <!-- clean插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.6.1</version>
+                </plugin>
 
-                <!--&lt;!&ndash; dependency插件 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-dependency-plugin</artifactId>-->
-                    <!--<version>2.10</version>-->
-                <!--</plugin>-->
+                <!-- dependency插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
 
-                <!--<plugin>-->
-                    <!--<groupId>org.sonarsource.scanner.maven</groupId>-->
-                    <!--<artifactId>sonar-maven-plugin</artifactId>-->
-                    <!--<version>3.2</version>-->
-                <!--</plugin>-->
-                <!--<plugin>-->
-                    <!--<groupId>org.jacoco</groupId>-->
-                    <!--<artifactId>jacoco-maven-plugin</artifactId>-->
-                    <!--<version>0.7.8</version>-->
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<id>JaCoCo Agent</id>-->
-                            <!--<phase>test-compile</phase>-->
-                            <!--<goals>-->
-                                <!--<goal>prepare-agent</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                        <!--<execution>-->
-                            <!--<id>JaCoCo Report</id>-->
-                            <!--<phase>test</phase>-->
-                            <!--<goals>-->
-                                <!--<goal>report</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                <!--</plugin>-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-war-plugin</artifactId>-->
-                    <!--<version>2.6</version>-->
-                    <!--<configuration>-->
-                        <!--<warName>${war.name}</warName>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
-                <!--&lt;!&ndash; jetty插件, 设定context path与spring profile &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.eclipse.jetty</groupId>-->
-                    <!--<artifactId>jetty-maven-plugin</artifactId>-->
-                    <!--<version>9.4.8.v20171121</version>-->
-                    <!--<configuration>-->
-                        <!--<scanIntervalSeconds>0</scanIntervalSeconds>-->
-                        <!--<httpConnector>-->
-                            <!--<port>8080</port>-->
-                        <!--</httpConnector>-->
-                        <!--<webApp>-->
-                            <!--<contextPath>/</contextPath>-->
-                        <!--</webApp>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
-                <!--&lt;!&ndash; tomcat 插件 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.tomcat.maven</groupId>-->
-                    <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-                    <!--<version>2.2</version>-->
-                    <!--<configuration>-->
-                        <!--<port>8080</port>-->
-                        <!--<path>/</path>-->
-                        <!--<server>tomcat-developjment-server</server>-->
-                        <!--<useTestClasspath>true</useTestClasspath>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
-                <!--&lt;!&ndash; Mandatory plugins for using Spock &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--&lt;!&ndash; The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin, visit https://github.com/groovy/GMavenPlus/wiki &ndash;&gt;-->
-                    <!--<groupId>org.codehaus.gmavenplus</groupId>-->
-                    <!--<artifactId>gmavenplus-plugin</artifactId>-->
-                    <!--<version>1.5</version>-->
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<goals>-->
-                                <!--<goal>addTestSources</goal>-->
-                                <!--<goal>compile</goal>-->
-                                <!--<goal>testCompile</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                <!--</plugin>-->
-                <!--&lt;!&ndash; Optional plugins for using Spock &ndash;&gt;-->
-                <!--&lt;!&ndash; Optional plugins for using Spock &ndash;&gt;-->
-                <!--&lt;!&ndash; Only required if names of spec classes don't match default Surefire patterns (`*Test` etc.) &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-surefire-plugin</artifactId>-->
-                    <!--<version>2.19.1</version>-->
-                    <!--<configuration>-->
-                        <!--<useFile>false</useFile>-->
-                        <!--<includes>-->
-                            <!--<include>**/*Spec.java</include>-->
-                            <!--<include>**/*Test.java</include>-->
-                        <!--</includes>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
-            <!--</plugins>-->
-        <!--</pluginManagement>-->
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.8</version>
+                    <executions>
+                        <execution>
+                            <id>JaCoCo Agent</id>
+                            <phase>test-compile</phase>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>JaCoCo Report</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <warName>${war.name}</warName>
+                    </configuration>
+                </plugin>
+                <!-- jetty插件, 设定context path与spring profile -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.4.8.v20171121</version>
+                    <configuration>
+                        <scanIntervalSeconds>0</scanIntervalSeconds>
+                        <httpConnector>
+                            <port>8080</port>
+                        </httpConnector>
+                        <webApp>
+                            <contextPath>/</contextPath>
+                        </webApp>
+                    </configuration>
+                </plugin>
+                <!-- tomcat 插件 -->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <port>8080</port>
+                        <path>/</path>
+                        <server>tomcat-developjment-server</server>
+                        <useTestClasspath>true</useTestClasspath>
+                    </configuration>
+                </plugin>
+                <!-- Mandatory plugins for using Spock -->
+                <plugin>
+                    <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin, visit https://github.com/groovy/GMavenPlus/wiki -->
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>1.5</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>addTestSources</goal>
+                                <goal>compile</goal>
+                                <goal>testCompile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Optional plugins for using Spock -->
+                <!-- Optional plugins for using Spock -->
+                <!-- Only required if names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19.1</version>
+                    <configuration>
+                        <useFile>false</useFile>
+                        <includes>
+                            <include>**/*Spec.java</include>
+                            <include>**/*Test.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.eclipse.jetty</groupId>-->
-                <!--<artifactId>jetty-maven-plugin</artifactId>-->
-                <!--<version>9.4.8.v20171121</version>-->
-                <!--<configuration>-->
-                    <!--<httpConnector>-->
-                        <!--<port>8080</port>-->
-                    <!--</httpConnector>-->
-                    <!--<webApp>-->
-                        <!--<contextPath>/</contextPath>-->
-                    <!--</webApp>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.8.v20171121</version>
+                <configuration>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <!--<distributionManagement>-->
     <!--<snapshotRepository>-->
