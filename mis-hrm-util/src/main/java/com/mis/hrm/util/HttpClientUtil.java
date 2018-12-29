@@ -44,7 +44,7 @@ public class HttpClientUtil {
      * @param url　接口地址
      * @return 状态码
      */
-    public static int sendGet(String url){
+    public static Integer sendGet(String url){
         try {
             url = getUsableUrl(url);
         } catch (StringIsNullException e) {

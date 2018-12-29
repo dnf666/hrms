@@ -18,7 +18,7 @@ public class Project implements Serializable {
     private String projectName;
     private String projectUrl;
     private String onlineTime;
-
+    private String status;
     /**
      *
      * @return 满足基本条件　？　true:false

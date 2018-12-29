@@ -3,6 +3,7 @@ package com.mis.hrm.web.project.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
+import com.mis.hrm.project.po.Heart;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
 import com.mis.hrm.util.Pager;
@@ -11,6 +12,7 @@ import com.mis.hrm.util.constant.PageConstant;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.web.util.ControllerUtil;
+import org.eclipse.jetty.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,23 +27,6 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    /**
-     * @api {POST} project 插入一项目的信息
-     * @apiDescription 插入一个项目的信息
-     * @apiGroup PROJECT-ADD
-     * @apiParam {String} companyId 公司id
-     * @apiParam {String} projectId　项目id
-     * @apiParam {String} projectName 项目名称
-     * @apiParam {String} projectUrl　项目地址
-     * @apiParam {String} onlineTime　在线时间
-     * @apiSuccessExample {json} Success-Response:
-     * HTTP/1.1 200 OK
-     * {
-     * "code": "1",
-     * "msg": "success"
-     * "object": null
-     * }
-     */
     @PostMapping("project")
     public Map insertProject(@RequestBody Project project) {
         Map<String, Object> result;
@@ -49,20 +34,6 @@ public class ProjectController {
         return result;
     }
 
-    /**
-     * @api {DELETE} project/{companyId}/{projectId} 通过companyId & projectId
-     * @apiDescription 通过companyId & projectId删除一个项目的信息
-     * @apiGroup PROJECT-DELETE
-     * @apiParam {String} companyId 公司id
-     * @apiParam {String} projectId　项目id
-     * @apiSuccessExample {json} Success-Response:
-     * HTTP/1.1 200 OK
-     * {
-     * "code": "1",
-     * "msg": "success"
-     * "object": null
-     * }
-     */
     @PostMapping("delProject")
     public Map deleteProjectByCompanyIdAndProjectId(@RequestBody Project project) {
         Map<String, Object> result;
@@ -70,28 +41,6 @@ public class ProjectController {
         return result;
     }
 
-    /**
-     * @api {PUT} project 通过companyId & projectI更新项目的信息
-     * @apiDescription 通过companyId & projectId更新项目的信息，同时返回更新后的信息
-     * @apiGroup PROJECT-UPDATE
-     * @apiParam {String} companyId 公司id
-     * @apiParam {String} projectId　项目id
-     * @apiParam {String} projectName 项目名称
-     * @apiParam {String} projectUrl　项目地址
-     * @apiParam {String} onlineTime　在线时间
-     * @apiSuccessExample {json} Success-Response:
-     * HTTP/1.1 200 OK
-     * {
-     * "code": "1",
-     * "msg": "success"
-     * "object":{
-     * "companyId": "lalalala",
-     * "onlineTime": "2018-08-08",
-     * "projectId": 12,
-     * "projectUrl": "不晓得"
-     * }
-     * }
-     */
     @PutMapping("project")
     public Map updateProjectBycompanyIdAndProjectId(@RequestBody Project project) {
         Map<String, Object> result;
@@ -137,5 +86,14 @@ public class ProjectController {
         List<Project> projectList = projectService.selectByPrimaryKeyAndPage(project, pager);
         pager.setData(projectList);
         return ToMap.toSuccessMap(pager);
+    }
+    @PostMapping("heart")
+    public Map heartCheck(@RequestBody String projectUrls){
+        JSONObject jsonObject = (JSONObject) JSONObject.parse(projectUrls);
+        String urls = jsonObject.get("projectUrls").toString();
+        JSONArray jsonArray = (JSONArray) JSONArray.parse(urls);
+        List<String> urlList = jsonArray.toJavaList(String.class);
+        List<Heart> list = projectService.heartCheck(urlList);
+        return ToMap.toSuccessMap(list);
     }
 }

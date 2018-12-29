@@ -1,8 +1,10 @@
 package com.mis.hrm.project.service.impl;
 
 import com.mis.hrm.project.dao.ProjectMapper;
+import com.mis.hrm.project.po.Heart;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
+import com.mis.hrm.util.HttpClientUtil;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,15 +22,16 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectMapper projectMapper;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public int deleteByPrimaryKey(Project key) throws InfoNotFullyException {
         try {
             Optional<Project> projectOptional = Optional.of(key);
-        } catch (NullPointerException n){
+        } catch (NullPointerException n) {
             logger.error("项目为空，删除失败");
             throw new NullPointerException("删除的prject对象为空");
         }
-        if (!StringUtil.notEmpty(key.getCompanyId())){
+        if (!StringUtil.notEmpty(key.getCompanyId())) {
             logger.error("公司id不存在，删除失败");
             throw new InfoNotFullyException("公司id为空");
         }
@@ -39,14 +43,14 @@ public class ProjectServiceImpl implements ProjectService {
         Optional<Project> projectOptional;
         try {
             projectOptional = Optional.of(record);
-        } catch (NullPointerException n){
+        } catch (NullPointerException n) {
             logger.error("项目为空，删除失败");
             throw new NullPointerException("删除的prject对象为空");
         }
         boolean isOk = projectOptional
                 .filter(t -> t.baseRequired())
                 .isPresent();
-        if (!isOk){
+        if (!isOk) {
             logger.error("无法满足插入的基本条件");
             throw new InfoNotFullyException("插入的数据项条件缺失");
         }
@@ -57,11 +61,11 @@ public class ProjectServiceImpl implements ProjectService {
     public Project selectByPrimaryKey(Project key) throws InfoNotFullyException {
         try {
             Optional<Project> projectOptional = Optional.of(key);
-        } catch (NullPointerException n){
+        } catch (NullPointerException n) {
             logger.error("项目为空，查找失败");
             throw new NullPointerException("传入的prject对象为空");
         }
-        if (!StringUtil.notEmpty(key.getCompanyId())){
+        if (!StringUtil.notEmpty(key.getCompanyId())) {
             logger.error("公司id不存在，查询失败");
             throw new InfoNotFullyException("公司id为空");
         }
@@ -72,11 +76,11 @@ public class ProjectServiceImpl implements ProjectService {
     public int updateByPrimaryKey(Project record) throws InfoNotFullyException {
         try {
             Optional<Project> projectOptional = Optional.of(record);
-        } catch (NullPointerException n){
+        } catch (NullPointerException n) {
             logger.error("项目为空，更新失败");
             throw new NullPointerException("传入的prject对象为空");
         }
-        if (!StringUtil.notEmpty(record.getCompanyId())){
+        if (!StringUtil.notEmpty(record.getCompanyId())) {
             logger.error("公司id不存在，更新失败");
             throw new InfoNotFullyException("公司id为空");
         }
@@ -90,9 +94,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Integer deleteByProjectIds(List<Integer> numList, String companyId) {
-        if(numList.size()!=0){
-            int stateNum = projectMapper.deleteByProjectIds(numList,companyId);
-            if(stateNum > 0){
+        if (numList.size() != 0) {
+            int stateNum = projectMapper.deleteByProjectIds(numList, companyId);
+            if (stateNum > 0) {
                 logger.info("成功删除" + stateNum + "信息");
                 return stateNum;
             } else {
@@ -107,11 +111,57 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Heart> heartCheck(List<String> urlList) {
+        List<Heart> list = new ArrayList<>();
+        for (String url : urlList
+        ) {
+            Heart heart = Heart.builder().url(url).build();
+            if (url.startsWith("http://")) {
+                String status = HttpClientUtil.sendGet(url).toString();
+                heart.setStatus(status);
+                list.add(heart);
+            } else {
+                if (url.startsWith("https://")) {
+                    String status = HttpClientUtil.sendGet(url).toString();
+                    heart.setStatus(status);
+                    list.add(heart);
+                } else {
+                    StringBuilder newUrl = new StringBuilder("http://");
+                    newUrl.append(url);
+                    String status = HttpClientUtil.sendGet(newUrl.toString()).toString();
+                    heart.setStatus(status);
+                    list.add(heart);
+                }
+            }
+        }
+            return list;
+    }
+
+    @Override
     public List<Project> selectByPrimaryKeyAndPage(Project project, Pager<Project> pager) {
-       int offset = pager.getOffset();
-       int size = pager.getPageSize();
-       int total = projectMapper.getCountByKeys(project);
-       pager.setRecordSize(total);
-        return projectMapper.selectByPrimaryKeyAndPage(project,offset,size);
+        int offset = pager.getOffset();
+        int size = pager.getPageSize();
+        int total = projectMapper.getCountByKeys(project);
+        pager.setRecordSize(total);
+        List<Project> list = projectMapper.selectByPrimaryKeyAndPage(project, offset, size);
+        for (Project p: list
+             ) {
+            String url = p.getProjectUrl();
+            if (url.startsWith("http://")) {
+                String status = HttpClientUtil.sendGet(url).toString();
+                p.setStatus(status);
+            } else {
+                if (url.startsWith("https://")) {
+                    String status = HttpClientUtil.sendGet(url).toString();
+                    p.setStatus(status);
+                } else {
+                    StringBuilder newUrl = new StringBuilder("http://");
+                    newUrl.append(url);
+                    String status = HttpClientUtil.sendGet(newUrl.toString()).toString();
+                    p.setStatus(status);
+                }
+            }
+        }
+        return list;
     }
 }
