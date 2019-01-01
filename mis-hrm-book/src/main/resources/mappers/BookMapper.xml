@@ -55,16 +55,19 @@
             and company_id = #{companyId}
         </if>
         <if test="bookId != null">
-            and book_id = #{bookId}
+            and book_id like '%${bookId}%'
         </if>
         <if test="bookName != null">
-            and book_name = #{bookName}
+            and book_name like '%${bookName}%'
         </if>
         <if test="category != null">
-            and category = #{category}
+            and category like '%${category}%'
+        </if>
+        <if test="quantity != null">
+            and library.num = #{quantity}
         </if>
         <if test=" version!= null">
-            and version = #{version}
+            and version like '%${version}%'
         </if>
     </select>
     <select id="selectByPrimaryKeyAndPage" resultMap="bookResultMap">
@@ -81,6 +84,9 @@
         </if>
         <if test="key.category != null">
             and category like '%${key.category}%'
+        </if>
+        <if test="quantity != null">
+            and library.num = #{quantity}
         </if>
         <if test=" key.version!= null">
             and version like '%${key.version}%'

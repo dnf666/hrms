@@ -111,56 +111,17 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Heart> heartCheck(List<String> urlList) {
-        List<Heart> list = new ArrayList<>();
-        for (String url : urlList
-        ) {
-            Heart heart = Heart.builder().url(url).build();
-            if (url.startsWith("http://")) {
-                String status = HttpClientUtil.sendGet(url).toString();
-                heart.setStatus(status);
-                list.add(heart);
-            } else {
-                if (url.startsWith("https://")) {
-                    String status = HttpClientUtil.sendGet(url).toString();
-                    heart.setStatus(status);
-                    list.add(heart);
-                } else {
-                    StringBuilder newUrl = new StringBuilder("http://");
-                    newUrl.append(url);
-                    String status = HttpClientUtil.sendGet(newUrl.toString()).toString();
-                    heart.setStatus(status);
-                    list.add(heart);
-                }
-            }
-        }
-            return list;
-    }
-
-    @Override
     public List<Project> selectByPrimaryKeyAndPage(Project project, Pager<Project> pager) {
         int offset = pager.getOffset();
         int size = pager.getPageSize();
         int total = projectMapper.getCountByKeys(project);
         pager.setRecordSize(total);
         List<Project> list = projectMapper.selectByPrimaryKeyAndPage(project, offset, size);
-        for (Project p: list
-             ) {
+        for (Project p : list
+        ) {
             String url = p.getProjectUrl();
-            if (url.startsWith("http://")) {
-                String status = HttpClientUtil.sendGet(url).toString();
-                p.setStatus(status);
-            } else {
-                if (url.startsWith("https://")) {
-                    String status = HttpClientUtil.sendGet(url).toString();
-                    p.setStatus(status);
-                } else {
-                    StringBuilder newUrl = new StringBuilder("http://");
-                    newUrl.append(url);
-                    String status = HttpClientUtil.sendGet(newUrl.toString()).toString();
-                    p.setStatus(status);
-                }
-            }
+            String status = HttpClientUtil.sendGet(url).toString();
+            p.setStatus(status);
         }
         return list;
     }

@@ -6,7 +6,6 @@ import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
-import org.apache.ibatis.annotations.Param;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
 
+/**
+ * @author demo
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/member")
@@ -51,10 +52,7 @@ public class MemberController {
         String nums = member.getNum();
         String[] numArray = nums.split(",");
         Map<String, Object> map;
-        List<String> numList = new ArrayList<>();
-        for (String b : numArray) {
-            numList.add(b);
-        }
+        List<String> numList = Arrays.asList(numArray);
         try {
             map = ToMap.toSuccessMap(memberService.deleteByNums(numList, companyId));
         } catch (InfoNotFullyException infoNotFullyException) {
@@ -85,12 +83,9 @@ public class MemberController {
 
     @PostMapping("/filter")
     public Map memberFilter(@RequestBody Member member,
-                            HttpSession session,
                             int page,
                             int size
     ) {
-        String companyId = (String) session.getAttribute("companyId");
-        System.out.println(companyId);
         Pager<Member> pager = new Pager<>();
         pager.setCurrentPage(page);
         pager.setPageSize(size);
@@ -108,6 +103,7 @@ public class MemberController {
     @PostMapping("excel")
     public Map importMemberFromExcel(@RequestParam("file") MultipartFile file,@RequestParam("companyId") String companyId) {
         String fileName = file.getOriginalFilename();
+        assert fileName != null;
         if (fileName.endsWith(".xlsx") || fileName.endsWith(".xls")) {
             try {
                 memberService.importMemberFromExcel(file, companyId);

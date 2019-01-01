@@ -26,11 +26,8 @@ import javax.annotation.Resource;
  */
 @Service
 public class CompanyServiceImp implements CompanyService {
-    private static String KEY = "may";
-
     @Autowired
     private CompanyMapper companyMapper;
-
     @Autowired
     private IndexMapper indexMapper;
     @Resource

@@ -87,13 +87,4 @@ public class ProjectController {
         pager.setData(projectList);
         return ToMap.toSuccessMap(pager);
     }
-    @PostMapping("heart")
-    public Map heartCheck(@RequestBody String projectUrls){
-        JSONObject jsonObject = (JSONObject) JSONObject.parse(projectUrls);
-        String urls = jsonObject.get("projectUrls").toString();
-        JSONArray jsonArray = (JSONArray) JSONArray.parse(urls);
-        List<String> urlList = jsonArray.toJavaList(String.class);
-        List<Heart> list = projectService.heartCheck(urlList);
-        return ToMap.toSuccessMap(list);
-    }
 }

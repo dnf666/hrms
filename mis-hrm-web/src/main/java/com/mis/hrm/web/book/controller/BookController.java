@@ -23,10 +23,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author demo
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("book")
 public class BookController {
+
     @Autowired
     private BookService bookService;
 
@@ -110,4 +114,5 @@ public class BookController {
         return new ResponseEntity<byte[]>(bytes, header, HttpStatus.CREATED);
 
     }
+
 }

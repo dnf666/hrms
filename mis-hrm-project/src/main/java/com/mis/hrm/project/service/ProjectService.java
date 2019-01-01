@@ -12,5 +12,4 @@ public interface ProjectService extends BaseService<Project> {
 
     Integer deleteByProjectIds(List<Integer> numList, String companyId);
 
-    List<Heart> heartCheck(List<String> urlList);
 }

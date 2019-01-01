@@ -32,13 +32,13 @@ public class HttpClientUtil {
     private static final char FULL_WIDTH_SPACE = '　';
     //    半角字符的空格
     private static final char HALF_WIDTH_SPACE = ' ';
-    //　　　设置三秒的等待时间
-    private static final int THREE_SECONDS = 3000;
+    //　　　设置一秒的等待时间
+    private static final int ONE_SECONDS = 1000;
 
     //    对所有请求限定相同的规则。
     private static final RequestConfig requestConfig = RequestConfig.custom()
-            .setSocketTimeout(THREE_SECONDS)
-            .setConnectionRequestTimeout(THREE_SECONDS).build();
+            .setSocketTimeout(ONE_SECONDS)
+            .setConnectionRequestTimeout(ONE_SECONDS).setConnectTimeout(3000).build();
     /**
      * 发送一个ｇｅｔ请求，并返回状态码
      * @param url　接口地址
@@ -176,15 +176,7 @@ public class HttpClientUtil {
      * @return
      */
     private static String removeSpace(String s){
-        StringBuilder result = new StringBuilder(s);
-
-        for (int i = 0; i < result.length(); i++) {
-            if ((result.charAt(i) == FULL_WIDTH_SPACE || result.charAt(i) == HALF_WIDTH_SPACE)){
-                result.delete(i, i+1);
-                i--;
-            }
-        }
-        return result.toString();
+       return s.trim();
     }
 }
 
