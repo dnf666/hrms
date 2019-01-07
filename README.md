@@ -1,6 +1,12 @@
 ## 工程目的
 基于web的人力资源管理
-
+## 技术选型
+    前端：vue
+    服务器：nginx tomcat 
+    框架：springmvc spring mybatis
+    数据库：mysql
+    cicd：teamcity nexus gitlab
+    配置中心：携程apollo 
 ## 工程结构
 Maven工程结构
 
@@ -12,7 +18,6 @@ mis-hrm
   └─mis-hrm-project
   └─mis-hrm-index
   └─mis-hrm-manage
-  └─mis-hrm-work   
 ```
 模块说明
 - mis-hrm-login 注册登录 
@@ -21,7 +26,6 @@ mis-hrm
 - mis-hrm-project 项目管理
 - mis-hrm-index 管理系统主页
 - mis-hrm-manage 管理员设置
-- mis-hrm-work  人员去向
 
 所有的工具类都写在mis-hrm-util。最好做成通用类
 所有开发都在dev分支上开发
