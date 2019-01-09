@@ -8,17 +8,13 @@ import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.exception.AuthorizationException;
 import com.mis.hrm.login.service.CompanyService;
 import static com.mis.hrm.util.EncryptionUtil.md5;
+import static com.mis.hrm.util.ServiceUtil.checkSqlExecution;
 import com.mis.hrm.util.exception.ParameterException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-
-import static com.mis.hrm.util.EncryptionUtil.mac;
-import static com.mis.hrm.util.ServiceUtil.checkSqlExecution;
-
 import javax.annotation.Resource;
 
 /**
