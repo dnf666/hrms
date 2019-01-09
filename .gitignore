@@ -9,3 +9,4 @@ rebel.xml
 logs/
 gitPullCommitPush.sh
 .metadata
+**/target

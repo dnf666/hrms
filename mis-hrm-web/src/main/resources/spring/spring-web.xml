@@ -87,5 +87,20 @@
         <property name="maxUploadSize" value="10485760000"/>
         <property name="maxInMemorySize" value="40960000"/>
     </bean>
-
+    <!-- 使用qq邮箱 -->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <!--         <property name="host" value="smtp.qq.com"/> -->
+        <property name="host" value="smtp.exmail.qq.com"/>
+        <property name="port" value="587"/>
+        <!--         <property name="username" value="xxxxx@qq.com"/> -->
+        <property name="username" value="xxxx@xxxxx.com"/>
+        <!-- qq邮箱的授权码，如果是企业邮箱，则使用登录密码 -->
+        <!--         <property name="password" value="xxxxxxxxxxxxxxx"/> -->
+        <property name="password" value="xxxxxxxxxxxxxxx"/>
+        <property name="javaMailProperties">
+            <props >
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

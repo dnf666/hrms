@@ -28,6 +28,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author dailinfu
+ */
 @Service
 @Transactional(rollbackFor = {})
 public class MemberServiceImpl implements MemberService {
