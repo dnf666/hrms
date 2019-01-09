@@ -2,6 +2,7 @@ package com.mis.hrm.web.member.controller;
 
 import org.apache.commons.io.IOUtils;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockMultipartFile;
@@ -26,6 +27,7 @@ public class MemberControllerTest {
     @Resource
     private MemberController memberController;
     @Test
+    @Ignore
     public void insertExcel() throws FileNotFoundException {
         File file = new File("/Users/demo/Desktop/book.xlsx");
         FileInputStream input = new FileInputStream(file);
