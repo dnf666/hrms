@@ -3,7 +3,6 @@ package com.mis.hrm.web.project.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
-import com.mis.hrm.project.po.Heart;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
 import com.mis.hrm.util.Pager;
@@ -12,11 +11,17 @@ import com.mis.hrm.util.constant.PageConstant;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import com.mis.hrm.web.util.ControllerUtil;
-import org.eclipse.jetty.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -86,5 +91,19 @@ public class ProjectController {
         List<Project> projectList = projectService.selectByPrimaryKeyAndPage(project, pager);
         pager.setData(projectList);
         return ToMap.toSuccessMap(pager);
+    }
+    @PostMapping("info")
+    public Map infoMember(@RequestBody JSONObject jsonObject,@RequestParam("companyId") String companyId,@RequestParam("projectId") Integer projectId){
+        String memberEmails = jsonObject.get("memberEmails").toString();
+        String emailArray[] = memberEmails.split(",");
+        List<String> emailList = Arrays.asList(emailArray);
+        try {
+         boolean result = projectService.infoMember(emailList,companyId,projectId);
+         return ToMap.toSuccessMap(result);
+        }catch (Exception e){
+           return ToMap.toFalseMap(e.getMessage());
+        }
+
+
     }
 }

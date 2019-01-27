@@ -1,10 +1,10 @@
 package com.mis.hrm.project.service.impl;
 
 import com.mis.hrm.project.dao.ProjectMapper;
-import com.mis.hrm.project.po.Heart;
 import com.mis.hrm.project.po.Project;
 import com.mis.hrm.project.service.ProjectService;
 import com.mis.hrm.util.HttpClientUtil;
+import com.mis.hrm.util.MailUtil;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.exception.InfoNotFullyException;
@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,6 +107,34 @@ public class ProjectServiceImpl implements ProjectService {
             throw new InfoNotFullyException("学号为空");
         }
 
+    }
+
+    @Override
+    public boolean infoMember(List<String> emailList, String companyId, Integer projectId) throws Exception {
+        if (emailList == null || emailList.size() == 0) {
+            logger.error("成员列表为空");
+            throw new Exception("成员列表为空");
+        }
+        if (companyId == null || projectId == null) {
+            logger.error("公司id或项目id为空");
+            throw new Exception("公司id或项目id为空");
+        }
+        Project project = Project.builder().companyId(companyId).projectId(projectId).build();
+        Project project1 = projectMapper.selectByPrimaryKey(project);
+        if (project1 != null) {
+            logger.info("项目存在");
+            String projectName = project1.getProjectName();
+            String projectUrl = project1.getProjectUrl();
+            for (String email : emailList) {
+                boolean result = MailUtil.projectWarning(email, projectName,projectUrl);
+                if (result == false) {
+                    logger.error("发送给{}的邮件失败", email);
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
