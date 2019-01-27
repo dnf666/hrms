@@ -32,6 +32,11 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    /**
+     * 添加项目
+     * @param project 属性
+     * @return 添加结果
+     */
     @PostMapping("project")
     public Map insertProject(@RequestBody Project project) {
         Map<String, Object> result;
@@ -39,6 +44,11 @@ public class ProjectController {
         return result;
     }
 
+    /**
+     * 删除项目 用的post让自己很无语
+     * @param project 属性
+     * @return 删除结果
+     */
     @PostMapping("delProject")
     public Map deleteProjectByCompanyIdAndProjectId(@RequestBody Project project) {
         Map<String, Object> result;
@@ -46,12 +56,24 @@ public class ProjectController {
         return result;
     }
 
+    /**
+     * 修改项目
+     * @param project 属性
+     * @return 修改结果
+     */
     @PutMapping("project")
     public Map updateProjectBycompanyIdAndProjectId(@RequestBody Project project) {
         Map<String, Object> result;
         result = ControllerUtil.getResult(projectService::updateByPrimaryKey, project);
         return result;
     }
+
+    /**
+     * 批量删除项目
+     * @param jsonObject 项目的id集合
+     * @param companyId 公司id
+     * @return 删除结果
+     */
     @PostMapping("delProjects")
     public Map deleteByProjectIds(@RequestBody JSONObject jsonObject, @RequestParam("companyId") String companyId) {
         JSONArray jsonArray = JSONArray.parseArray(jsonObject.get("projectIds").toString());
@@ -67,6 +89,11 @@ public class ProjectController {
         return map;
     }
 
+    /**
+     * 统计数量
+     * @param project
+     * @return 计数
+     */
     @GetMapping("count")
     public Map getProjectCount(Project project) {
         Map<String, Object> result;
@@ -74,6 +101,13 @@ public class ProjectController {
         return result;
     }
 
+    /**
+     * 分页查询项目
+     * @param project 条件
+     * @param currentPage 当前页
+     * @param size 大小
+     * @return 查询结果
+     */
     @PostMapping("option")
     public Map searchProject(@RequestBody Project project, Integer currentPage, Integer size) {
         if (Strings.isNullOrEmpty(project.getCompanyId())) {
@@ -92,6 +126,14 @@ public class ProjectController {
         pager.setData(projectList);
         return ToMap.toSuccessMap(pager);
     }
+
+    /**
+     * 报警通知
+     * @param jsonObject 需要通知的人
+     * @param companyId 公司id
+     * @param projectId 项目id
+     * @return 是否发送成功
+     */
     @PostMapping("info")
     public Map infoMember(@RequestBody JSONObject jsonObject,@RequestParam("companyId") String companyId,@RequestParam("projectId") Integer projectId){
         String memberEmails = jsonObject.get("memberEmails").toString();
