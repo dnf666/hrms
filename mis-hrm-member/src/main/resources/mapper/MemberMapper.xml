@@ -48,7 +48,11 @@
         from member
         where company_id = #{companyId} and num = #{num};
     </select>
-
+    <select id="selectByCompanyId" parameterType="com.mis.hrm.member.model.Member" resultMap="BaseResultMap">
+        select <include refid="all"/>
+        from member
+        where company_id = #{companyId};
+    </select>
     <delete id="deleteByNums">
         delete from member where company_id =#{companyId} and num in(
             <foreach collection="nums" item="arr"

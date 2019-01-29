@@ -75,7 +75,10 @@ public class MemberController {
         }
         return map;
     }
-
+    @GetMapping("member")
+    public Map getAllMember(Member member){
+        return ToMap.toSuccessMap(memberService.selectByCompanyId(member));
+    }
     @GetMapping("/count")
     public Map countMembers(Member member) {
         return ToMap.toSuccessMap(memberService.countMembers(member));

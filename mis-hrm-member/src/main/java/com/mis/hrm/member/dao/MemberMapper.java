@@ -5,7 +5,6 @@ import com.mis.hrm.util.BaseMapper;
 import com.mis.hrm.util.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -27,4 +26,6 @@ public interface MemberMapper extends BaseMapper<Member> {
     Integer countMembersByKeys(Member member);
 
     List<Member> selectByMultiKey(@Param("member") Member member);
+
+    List<Member> selectByCompanyId(Member member);
 }

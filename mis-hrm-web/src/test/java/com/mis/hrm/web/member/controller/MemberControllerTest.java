@@ -1,7 +1,7 @@
 package com.mis.hrm.web.member.controller;
 
+import com.mis.hrm.member.model.Member;
 import org.apache.commons.io.IOUtils;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,5 +39,10 @@ public class MemberControllerTest {
             e.printStackTrace();
         }
 //        memberController.importMemberFromExcel(multipartFile);
+    }
+    @Test
+    public void selectByCompanyId(){
+        Member member = Member.builder().companyId("12345@qq.com").build();
+        System.out.println(memberController.getAllMember(member));
     }
 }
