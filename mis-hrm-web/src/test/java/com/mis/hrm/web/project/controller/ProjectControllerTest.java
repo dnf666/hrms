@@ -47,5 +47,6 @@ public class ProjectControllerTest {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("memberEmails","1204695257@qq.com,1589056125@qq.com");
         projectController.infoMember(jsonObject,"1204695257@qq.com",27);
+
     }
 }

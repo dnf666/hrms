@@ -80,7 +80,7 @@ public class ProjectController {
         Map<String, Object> map;
         List<Integer> numList = jsonArray.toJavaList(Integer.class);
         try {
-            map = ToMap.toSuccessMap(projectService.deleteByProjectIds(numList, companyId));
+             map = ToMap.toSuccessMap(projectService.deleteByProjectIds(numList, companyId));
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {

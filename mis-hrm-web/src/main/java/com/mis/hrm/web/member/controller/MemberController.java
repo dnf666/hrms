@@ -8,6 +8,8 @@ import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,12 +32,18 @@ import java.util.Map;
 public class MemberController {
     @Autowired
     private MemberService memberService;
-
+    private  Logger logger = LoggerFactory.getLogger(this.getClass());
+    /**
+     * 添加成员
+     * @param member 成员信息
+     * @return 结果
+     */
     @PostMapping("member")
     public Map insertOneMember(@RequestBody Member member) {
         Map<String, Object> map;
         try {
             map = ToMap.toSuccessMap(memberService.insert(member));
+            logger.info("添加成员成功");
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {
@@ -55,6 +63,7 @@ public class MemberController {
         List<String> numList = Arrays.asList(numArray);
         try {
             map = ToMap.toSuccessMap(memberService.deleteByNums(numList, companyId));
+            logger.info("删除成员成功");
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {
@@ -68,6 +77,7 @@ public class MemberController {
         Map<String, Object> map;
         try {
             map = ToMap.toSuccessMap(memberService.updateByPrimaryKey(member));
+            logger.info("更改成员成功");
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {
@@ -78,6 +88,7 @@ public class MemberController {
     @GetMapping("member")
     public Map getAllMember(Member member){
         return ToMap.toSuccessMap(memberService.selectByCompanyId(member));
+
     }
     @GetMapping("/count")
     public Map countMembers(Member member) {

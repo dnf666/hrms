@@ -52,5 +52,10 @@ public interface MemberService extends BaseService<Member> {
      */
     HSSFWorkbook exportExcel(List<Member> lists);
 
+    /**
+     * 根据公司id查公司成员
+     * @param member 公司id
+     * @return 成员集合
+     */
     List<Member> selectByCompanyId(Member member);
 }
