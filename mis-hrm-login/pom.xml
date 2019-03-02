@@ -44,7 +44,11 @@
             <artifactId>javax.el</artifactId>
             <version>2.2.4</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.mis</groupId>
+            <artifactId>mis-hrm-manage</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

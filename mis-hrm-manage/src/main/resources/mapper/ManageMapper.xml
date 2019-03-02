@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mis.hrm.manage.dao.ManageMapper">
+    <resultMap id="management" type="com.mis.hrm.manage.model.Management">
+        <id property="companyId" column="company_id"/>
+        <id property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="permission" column="permission"/>
+    </resultMap>
+
+    <sql id="Manage_column">
+        company_id,email,password,permission
+    </sql>
+
+    <insert id="insert" parameterType="com.mis.hrm.manage.model.Management">
+        INSERT INTO `manage`
+        values (#{companyId},#{email},#{password},#{permission})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.mis.hrm.manage.model.Management">
+        update manage
+        <set>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="permission != null">
+                permission = #{permission},
+            </if>
+        </set>
+        where company_id = #{companyId} and email = #{email}
+    </update>
+
+    <select id="selectByPrimaryKey" resultType="com.mis.hrm.manage.model.Management" resultMap="management">
+        select <include refid="Manage_column"/>
+        from manage
+        where company_id = #{companyId} and email = #{email};
+    </select>
+    <select id="selectByEmail" parameterType="java.lang.String" resultMap="management">
+        select <include refid="Manage_column"/>
+        from manage
+        where email = #{email};
+    </select>
+    <select id="selectByUniqueCompanyId" parameterType="java.lang.String" resultMap="management">
+        select distinct company_id,
+        from manage
+        where email = #{email};
+    </select>
+</mapper>

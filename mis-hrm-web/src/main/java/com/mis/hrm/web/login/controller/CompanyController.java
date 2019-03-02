@@ -2,6 +2,7 @@ package com.mis.hrm.web.login.controller;
 
 import com.mis.hrm.login.entity.Company;
 import com.mis.hrm.login.service.imp.CompanyServiceImp;
+import com.mis.hrm.manage.model.Management;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.slf4j.Logger;
@@ -38,14 +39,14 @@ private static final Logger LOGGER = LoggerFactory.getLogger(CompanyController.c
 
     /**
      * 登录
-     * @param company id和密码
+     * @param management id和密码
      * @return 登录结果
      */
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody Company company) {
-        Company company1 = companyService.checkCompany(company);
-        LOGGER.info("login success {}",company);
-        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "登录成功", company1);
+    public ResponseEntity login(@RequestBody Management management) {
+        Management management1 = companyService.checkCompany(management);
+        LOGGER.info("login success {}",management1);
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), "登录成功", management1);
     }
 
     /**
@@ -76,6 +77,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(CompanyController.c
      * 暂时没用。取得公司类型
      * @return 公司类型
      */
+    @Deprecated
     @GetMapping("type")
     public ResponseEntity getType() {
      List<String> list = companyService.getMajorType();

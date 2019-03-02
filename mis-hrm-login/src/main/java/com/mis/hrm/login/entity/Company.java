@@ -1,6 +1,7 @@
 package com.mis.hrm.login.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Company {
     @NotBlank(message = "{email.notBlank}")
     @Email(message = "{email}")
