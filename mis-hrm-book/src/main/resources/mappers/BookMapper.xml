@@ -86,7 +86,7 @@
             and category like '%${key.category}%'
         </if>
         <if test="key.quantity != null">
-            and library.num = #{quantity}
+            and library.num = #{key.quantity}
         </if>
         <if test=" key.version!= null">
             and version like '%${key.version}%'

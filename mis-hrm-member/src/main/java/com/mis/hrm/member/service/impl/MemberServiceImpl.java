@@ -1,5 +1,7 @@
 package com.mis.hrm.member.service.impl;
 
+import com.mis.hrm.manage.model.Management;
+import com.mis.hrm.manage.service.ManageService;
 import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
@@ -37,12 +39,15 @@ public class MemberServiceImpl implements MemberService {
 
     @Resource
     private MemberMapper memberMapper;
+    @Resource
+    private ManageService manageService;
 
     @Override
     public int deleteByPrimaryKey(Member key) throws RuntimeException {
         if (StringUtil.notEmpty(key.getCompanyId()) && StringUtil.notEmpty(key.getNum())) {
             int stateNum = memberMapper.deleteByPrimaryKey(key);
             if (stateNum > 0) {
+
                 logger.info("成员信息删除成功");
                 return stateNum;
             } else {
@@ -61,6 +66,7 @@ public class MemberServiceImpl implements MemberService {
             int stateNum = memberMapper.insert(record);
             if (stateNum > 0) {
                 logger.info("成员信息添加成功");
+
                 return stateNum;
             } else {
                 logger.info("成员信息添加失败");
@@ -140,8 +146,9 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    //这段代码日后必出bug
     @Override
-    public void importMemberFromExcel(MultipartFile file,String companyId) throws IOException {
+    public void importMemberFromExcel(MultipartFile file, String companyId) throws IOException {
         Sheet sheet = ExcelUtil.getSheet(file);
         List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
         List<Member> list = new ArrayList<>();
@@ -164,6 +171,10 @@ public class MemberServiceImpl implements MemberService {
             String department = ExcelUtil.getValueByIndex(cells, 7);
             String whereAbout = ExcelUtil.getValueByIndex(cells, 8);
             Member member = Member.builder().companyId(companyId).num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).whereAbout(whereAbout).build();
+            Management management = new Management();
+            management.setCompanyId(companyId);
+            management.setEmail(email);
+            manageService.insert(management);
             logger.info("member {}", member.toString());
             list.add(member);
         }

@@ -51,10 +51,19 @@ public class ManageController {
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), result);
 
     }
+
     @GetMapping("manage")
-    public ResponseEntity findManagementByCompanyIdAndEmail(Management management){
+    public ResponseEntity findManagementByCompanyIdAndEmail(Management management) {
         Management management1 = manageService.selectByPrimaryKey(management);
         logger.info("find success");
         return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), management1);
+    }
+
+    @PostMapping("permission")
+    public ResponseEntity setPermission(@RequestBody Management management) {
+        int result = manageService.updateByPrimaryKey(management);
+        logger.info("update success");
+        return new ResponseEntity<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getDescription(), result);
+
     }
 }

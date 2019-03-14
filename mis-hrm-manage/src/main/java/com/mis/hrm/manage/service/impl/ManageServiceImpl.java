@@ -32,6 +32,7 @@ public class ManageServiceImpl implements ManageService {
 
     /**
      * 初始密码 并添加登录权限
+     *
      * @param record 记录
      * @return 成功
      * @throws InfoNotFullyException
@@ -47,22 +48,23 @@ public class ManageServiceImpl implements ManageService {
     public Management selectByPrimaryKey(Management key) throws InfoNotFullyException {
         String originPassword = key.getPassword();
         String encrpt = EncryptionUtil.md5(originPassword);
-        Management management2 =  manageMapper.selectByPrimaryKey(key);
+        Management management2 = manageMapper.selectByPrimaryKey(key);
         String originPassword2 = management2.getPassword();
-        if (!encrpt.equals(originPassword2)){
+        if (!encrpt.equals(originPassword2)) {
             throw new InfoNotFullyException("密码错误");
-        }else{
+        } else {
             return management2;
         }
     }
 
     @Override
     public int updateByPrimaryKey(Management record) throws InfoNotFullyException {
-        String password = record.getPassword();
-        String encrypt = EncryptionUtil.md5(password);
-        record.setPassword(encrypt);
-        manageMapper.updateByPrimaryKey(record);
-        return 0;
+        if (record.getPassword() != null) {
+            String password = record.getPassword();
+            String encrypt = EncryptionUtil.md5(password);
+            record.setPassword(encrypt);
+        }
+        return manageMapper.updateByPrimaryKey(record);
     }
 
     @Override

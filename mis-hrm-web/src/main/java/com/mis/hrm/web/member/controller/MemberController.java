@@ -1,5 +1,7 @@
 package com.mis.hrm.web.member.controller;
 
+import com.mis.hrm.manage.model.Management;
+import com.mis.hrm.manage.service.ManageService;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
 import com.mis.hrm.util.Pager;
@@ -7,7 +9,6 @@ import com.mis.hrm.util.ToMap;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,21 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Resource;
 
 /**
  * @author demo
@@ -32,6 +41,8 @@ import java.util.Map;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+    @Resource
+    private ManageService manageService;
     private  Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 添加成员
@@ -42,8 +53,16 @@ public class MemberController {
     public Map insertOneMember(@RequestBody Member member) {
         Map<String, Object> map;
         try {
-            map = ToMap.toSuccessMap(memberService.insert(member));
+            memberService.insert(member);
             logger.info("添加成员成功");
+            String companyId = member.getCompanyId();
+            String email = member.getEmail();
+            Management management = new Management();
+            management.setCompanyId(companyId);
+            management.setEmail(email);
+           int result = manageService.insert(management);
+            logger.info("添加管理成功");
+            map = ToMap.toSuccessMap(result);
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {

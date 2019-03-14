@@ -16,33 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `booklend`
---
-
-DROP TABLE IF EXISTS `booklend`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `booklend` (
-  `company_id` varchar(30) NOT NULL,
-  `book_record` varchar(50) NOT NULL,
-  `book_name` varchar(50) NOT NULL,
-  `lend_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `return_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `borrower` varchar(20) NOT NULL,
-  PRIMARY KEY (`company_id`,`book_record`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `booklend`
---
-
-LOCK TABLES `booklend` WRITE;
-/*!40000 ALTER TABLE `booklend` DISABLE KEYS */;
-/*!40000 ALTER TABLE `booklend` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `company`
 --
 
@@ -67,8 +40,31 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES ('1111@qq.com','极客工作室','李文浩','50','java','it','fd7a0a8f7a615d10173e0402210fe5b6'),('1204695257@qq.com','信管','d戴林甫','50-100','互联网','it','123456');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `companytype`
+--
+
+DROP TABLE IF EXISTS `companytype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `companytype` (
+  `major_type` varchar(100) NOT NULL,
+  `vice_type` varchar(100) NOT NULL,
+  PRIMARY KEY (`vice_type`,`major_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `companytype`
+--
+
+LOCK TABLES `companytype` WRITE;
+/*!40000 ALTER TABLE `companytype` DISABLE KEYS */;
+INSERT INTO `companytype` VALUES ('IT服务','影音'),('IT服务','游戏'),('IT服务','生活服务'),('IT服务','电子商务'),('IT服务','社交网络'),('其他','金融');
+/*!40000 ALTER TABLE `companytype` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -92,7 +88,6 @@ CREATE TABLE `index` (
 
 LOCK TABLES `index` WRITE;
 /*!40000 ALTER TABLE `index` DISABLE KEYS */;
-INSERT INTO `index` VALUES ('1111@qq.com',NULL,NULL),('1204695257@qq.com','dada','/photo/1537083729002.jpg');
 /*!40000 ALTER TABLE `index` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,13 +100,13 @@ DROP TABLE IF EXISTS `library`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `library` (
   `company_id` varchar(30) NOT NULL,
-  `book_id` varchar(100) NOT NULL,
+  `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `book_name` varchar(50) NOT NULL,
   `category` varchar(10) NOT NULL,
   `num` int(11) NOT NULL,
   `version` varchar(20) NOT NULL,
-  PRIMARY KEY (`company_id`,`book_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`book_id`,`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,8 +115,32 @@ CREATE TABLE `library` (
 
 LOCK TABLES `library` WRITE;
 /*!40000 ALTER TABLE `library` DISABLE KEYS */;
-INSERT INTO `library` VALUES ('1204695257@qq.com',3,'java设计模式','java',0,'2.0'),('1204695257@qq.com',4,'java虚拟机2','java2',0,'2.0.1');
 /*!40000 ALTER TABLE `library` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `manage`
+--
+
+DROP TABLE IF EXISTS `manage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `manage` (
+  `company_id` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `permission` int(2) NOT NULL,
+  PRIMARY KEY (`company_id`,`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `manage`
+--
+
+LOCK TABLES `manage` WRITE;
+/*!40000 ALTER TABLE `manage` DISABLE KEYS */;
+/*!40000 ALTER TABLE `manage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -141,6 +160,7 @@ CREATE TABLE `member` (
   `sex` varchar(2) NOT NULL,
   `profession` varchar(20) NOT NULL,
   `department` varchar(50) NOT NULL,
+  `whereabout` varchar(100) NOT NULL DEFAULT '学习中',
   PRIMARY KEY (`company_id`,`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -163,12 +183,12 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
   `company_id` varchar(30) NOT NULL,
-  `project_id` varchar (100) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(50) NOT NULL,
   `project_url` varchar(100) NOT NULL,
-  `online_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `online_time` varchar(100) NOT NULL,
   PRIMARY KEY (`project_id`,`company_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,39 +197,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES ('1204695257@qq.com',1,'erpm','www.baidu.com','2018-09-16 03:09:32');
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `whereabout`
---
-
-DROP TABLE IF EXISTS `whereabout`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `whereabout` (
-  `company_id` varchar(30) NOT NULL,
-  `num` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `phone_number` varchar(50) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `grade` int(11) NOT NULL,
-  `sex` varchar(2) NOT NULL,
-  `profession` varchar(20) NOT NULL,
-  `department` varchar(50) NOT NULL,
-  `work_place` varchar(100) NOT NULL,
-  PRIMARY KEY (`company_id`,`num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `whereabout`
---
-
-LOCK TABLES `whereabout` WRITE;
-/*!40000 ALTER TABLE `whereabout` DISABLE KEYS */;
-/*!40000 ALTER TABLE `whereabout` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -221,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-16 17:05:36
+-- Dump completed on 2019-03-11 11:01:29

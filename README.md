@@ -25,7 +25,7 @@ mis-hrm
 - mis-hrm-book 图书管理
 - mis-hrm-project 项目管理
 - mis-hrm-index 管理系统主页
-- mis-hrm-manage 管理员设置
+- mis-hrm-manage 权限设置
 
 所有的工具类都写在mis-hrm-util。最好做成通用类
 所有开发都在dev分支上开发

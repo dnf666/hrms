@@ -20,6 +20,7 @@ public class MailUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MailUtil.class);
     private static final String QQ_MAIL_SERVER = "smtp.qq.com";
+    //1204695257@qq.com的专用认证码。如果使用其他邮箱，这里要改
     private static final String DAILINFU_AUTHORIZATION = "wmnoidyjbzhkgjje";
 
     /**

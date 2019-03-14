@@ -87,7 +87,7 @@ public class CompanyServiceImp implements CompanyService {
             if (result == null) {
                 throw new AuthorizationException("不存在该用户");
             }
-            if (result.getPassword().equals(ecrypt)) {
+            if (!result.getPassword().equals(ecrypt)) {
                 throw new AuthorizationException("密码错误");
             }
             return result;
