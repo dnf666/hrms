@@ -39,7 +39,8 @@ public class ManageServiceImpl implements ManageService {
      */
     @Override
     public int insert(Management record) throws InfoNotFullyException {
-        String encrypt = EncryptionUtil.md5("123456");
+        Integer base_password = 123456;
+        String encrypt = EncryptionUtil.md5(base_password.toString());
         record.setPassword(encrypt);
         return manageMapper.insert(record);
     }
