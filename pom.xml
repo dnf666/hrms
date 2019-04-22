@@ -6,7 +6,6 @@
     <artifactId>mis-hrm</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <modules>
         <module>mis-hrm-web</module>
         <module>mis-hrm-login</module>

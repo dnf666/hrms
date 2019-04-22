@@ -5,7 +5,6 @@ import com.mis.hrm.index.service.impl.IndexServiceImpl;
 import com.mis.hrm.util.enums.ErrorCode;
 import com.mis.hrm.util.model.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
