@@ -48,6 +48,6 @@ public interface BaseService<T> {
      * @param pager 分页
      * @return 结果
      */
-    List<T> selectByPrimaryKeyAndPage(T key, Pager<T> pager);
+    List<T> selectByPrimaryKeyAndPage(T key, Pager<T> pager) throws Exception;
 
 }

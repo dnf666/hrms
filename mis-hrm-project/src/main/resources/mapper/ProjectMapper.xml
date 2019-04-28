@@ -4,9 +4,10 @@
     <resultMap id="projectMapper" type="com.mis.hrm.project.po.Project">
         <result property="companyId" column="company_id"/>
         <result property="projectId" column="project_id"/>
-        <result property="projectName" column="project_name"/>
-        <result property="projectUrl" column="project_url"/>
-        <result property="onlineTime" column="online_time"/>
+        <result property="name" column="name"/>
+        <result property="ip" column="ip"/>
+        <result property="ports" column="ports"/>
+        <result property="location" column="location"/>
     </resultMap>
 
     <delete id="deleteByPrimaryKey" parameterType="com.mis.hrm.project.po.Project">
@@ -14,12 +15,12 @@
     </delete>
 
     <insert id="insert" parameterType="com.mis.hrm.project.po.Project">
-        insert into project (company_id, project_name, project_url, online_time)
-        values (#{companyId},#{projectName},#{projectUrl},#{onlineTime})
+        insert into project (company_id, name, ip, ports,location)
+        values (#{companyId},#{name},#{ip},#{ports},#{location})
     </insert>
 
     <select id="selectByPrimaryKey" parameterType="com.mis.hrm.project.po.Project" resultMap="projectMapper">
-        select company_id, project_id, project_name, project_url, online_time
+        select company_id, project_id, name, ip, ports
           from project where 1=1
         <if test="companyId != null">
             and company_id = #{companyId}
@@ -27,28 +28,31 @@
         <if test="projectId != 0">
             and project_id = #{projectId}
         </if>
-        <if test="projectName != null">
-            and project_name = #{projectName}
+        <if test="name != null">
+            and name = #{name}
         </if>
-        <if test="projectUrl != null">
-            and project_url = #{projectUrl}
+        <if test="ip != null">
+            and ip = #{ip}
         </if>
-        <if test="onlineTime != null">
-            and online_time = #{onlineTime}
+        <if test="ports != null">
+            and ports = #{ports}
         </if>
     </select>
 
     <update id="updateByPrimaryKey" parameterType="com.mis.hrm.project.po.Project">
         update project
         <set>
-            <if test="projectName != null">
-                project_name = #{projectName},
+            <if test="name != null">
+                name = #{name},
             </if>
-            <if test="projectUrl != null">
-                project_url = #{projectUrl},
+            <if test="ip != null">
+                ip = #{ip},
             </if>
-            <if test="onlineTime != null">
-                online_time = #{onlineTime}
+            <if test="ports != null">
+                ports = #{ports}
+            </if>
+            <if test="location != null">
+                location = #{location}
             </if>
         </set>
         where company_id = #{companyId} and project_id = #{projectId}
@@ -65,18 +69,18 @@
         <if test="projectId != 0">
             and project_id like '%${projectId}%'
         </if>
-        <if test="projectName != null">
-            and project_name like '%${projectName}%'
+        <if test="name != null">
+            and name like '%${name}%'
         </if>
-        <if test="projectUrl != null">
-            and project_url like '%${projectUrl}%'
+        <if test="ip != null">
+            and ip like '%${ip}%'
         </if>
-        <if test="onlineTime != null">
-            and online_time like '%${onlineTime}%'
+        <if test="ports != null">
+            and ports like '%${ports}%'
         </if>
     </select>
     <select id="selectByPrimaryKeyAndPage" resultMap="projectMapper">
-        select company_id, project_id, project_name, project_url, online_time
+        select company_id, project_id, name, ip, ports
         from project where 1=1
         <if test="key.companyId != null">
             and company_id like '%${key.companyId}%'
@@ -84,14 +88,14 @@
         <if test="key.projectId != 0">
             and project_id like '%${key.projectId}%'
         </if>
-        <if test="key.projectName != null">
-            and project_name like '%${key.projectName}%'
+        <if test="key.name != null">
+            and name like '%${key.name}%'
         </if>
-        <if test="key.projectUrl != null">
-            and project_url like '%${key.projectUrl}%'
+        <if test="key.ip != null">
+            and ip like '%${key.ip}%'
         </if>
-        <if test="key.onlineTime != null">
-            and online_time like '%${key.onlineTime}%'
+        <if test="key.ports != null">
+            and ports like '%${key.ports}%'
         </if>
         limit #{offset},#{size}
     </select>

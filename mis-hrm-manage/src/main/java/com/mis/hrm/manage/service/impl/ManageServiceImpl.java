@@ -69,7 +69,7 @@ public class ManageServiceImpl implements ManageService {
     }
 
     @Override
-    public List<Management> selectByPrimaryKeyAndPage(Management key, Pager<Management> pager) {
+    public List<Management> selectByPrimaryKeyAndPage(Management key, Pager<Management> pager) throws Exception{
         return null;
     }
 }

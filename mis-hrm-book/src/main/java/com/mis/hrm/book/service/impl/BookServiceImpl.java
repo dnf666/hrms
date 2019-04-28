@@ -8,7 +8,6 @@ import com.mis.hrm.util.ExcelUtil;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.StringUtil;
 import com.mis.hrm.util.enums.ErrorCode;
-import com.mis.hrm.util.enums.Sex;
 import com.mis.hrm.util.exception.InfoNotFullyException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -20,11 +19,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.Resource;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -129,7 +128,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> selectByPrimaryKeyAndPage(Book book, Pager<Book> pager) {
+    public List<Book> selectByPrimaryKeyAndPage(Book book, Pager<Book> pager) throws Exception{
         int offset = pager.getOffset();
         int size = pager.getPageSize();
         int total = bookMapper.getCountByKeys(book);

@@ -15,15 +15,14 @@ import java.io.Serializable;
 public class Project implements Serializable {
     private String companyId;
     private Integer projectId;
-    private String projectName;
-    private String projectUrl;
-    private String onlineTime;
-    private String status;
+    private String name;
+    private String ip;
+    private String ports;
+    private String location;
     /**
-     *
      * @return 满足基本条件　？　true:false
      */
-    public boolean baseRequired(){
-        return StringUtil.notEmpty(companyId, projectName, projectUrl, onlineTime);
+    public boolean baseRequired() {
+        return StringUtil.notEmpty(companyId, name, ip, ports);
     }
 }

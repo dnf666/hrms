@@ -66,7 +66,7 @@ public class BookController {
             Integer b1 = Integer.parseInt(b);
             idList.add(b1);
         }
-        int result = bookService.deleteByids(idList,companyId);
+        int result = bookService.deleteByids(idList, companyId);
         return ToMap.toSuccessMap(result);
     }
 
@@ -84,9 +84,14 @@ public class BookController {
         if (Strings.isNullOrEmpty(book.getCompanyId())) {
             return ToMap.toFalseMap(ErrorCode.NOT_BLANK.getDescription());
         }
-        List<Book> bookList = bookService.selectByPrimaryKeyAndPage(book, pager);
-        pager.setData(bookList);
-        return ToMap.toSuccessMap(pager);
+        try {
+            List<Book> bookList = bookService.selectByPrimaryKeyAndPage(book, pager);
+            pager.setData(bookList);
+            return ToMap.toSuccessMap(pager);
+        } catch (Exception e) {
+            return ToMap.toFalseMap(e.getMessage());
+        }
+
     }
 
     @PostMapping("excel")
@@ -98,11 +103,12 @@ public class BookController {
             } catch (IOException e) {
                 return ToMap.toFalseMap("io异常");
             }
-        }else {
+        } else {
             return ToMap.toFalseMap("文件格式不匹配");
         }
         return ToMap.toSuccessMap(null);
     }
+
     @PostMapping("/createExcel")
     public ResponseEntity<byte[]> createExcel(@RequestBody Book book) {
         List<Book> lists = bookService.selectByMultiKey(book);

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
 import com.mis.hrm.project.po.Project;
+import com.mis.hrm.project.po.Webapp;
 import com.mis.hrm.project.service.ProjectService;
 import com.mis.hrm.util.Pager;
 import com.mis.hrm.util.ToMap;
@@ -34,6 +35,7 @@ public class ProjectController {
 
     /**
      * 添加项目
+     *
      * @param project 属性
      * @return 添加结果
      */
@@ -46,6 +48,7 @@ public class ProjectController {
 
     /**
      * 删除项目 用的post让自己很无语
+     *
      * @param project 属性
      * @return 删除结果
      */
@@ -58,6 +61,7 @@ public class ProjectController {
 
     /**
      * 修改项目
+     *
      * @param project 属性
      * @return 修改结果
      */
@@ -70,6 +74,7 @@ public class ProjectController {
 
     /**
      * 批量删除项目
+     *
      * @param jsonObject 项目的id集合
      * @param companyId 公司id
      * @return 删除结果
@@ -80,7 +85,7 @@ public class ProjectController {
         Map<String, Object> map;
         List<Integer> numList = jsonArray.toJavaList(Integer.class);
         try {
-             map = ToMap.toSuccessMap(projectService.deleteByProjectIds(numList, companyId));
+            map = ToMap.toSuccessMap(projectService.deleteByProjectIds(numList, companyId));
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e) {
@@ -91,6 +96,7 @@ public class ProjectController {
 
     /**
      * 统计数量
+     *
      * @param project
      * @return 计数
      */
@@ -103,6 +109,7 @@ public class ProjectController {
 
     /**
      * 分页查询项目
+     *
      * @param project 条件
      * @param currentPage 当前页
      * @param size 大小
@@ -122,30 +129,67 @@ public class ProjectController {
         Pager<Project> pager = new Pager<>();
         pager.setCurrentPage(currentPage);
         pager.setPageSize(size);
-        List<Project> projectList = projectService.selectByPrimaryKeyAndPage(project, pager);
-        pager.setData(projectList);
-        return ToMap.toSuccessMap(pager);
+        try {
+            List<Project> projectList = projectService.selectByPrimaryKeyAndPage(project, pager);
+            pager.setData(projectList);
+            return ToMap.toSuccessMap(pager);
+        } catch (Exception e) {
+            return ToMap.toFalseMap(e.getMessage());
+        }
     }
 
     /**
-     * 报警通知
+     * 报警通知 已弃用
+     *
      * @param jsonObject 需要通知的人
      * @param companyId 公司id
      * @param projectId 项目id
      * @return 是否发送成功
      */
     @PostMapping("info")
-    public Map infoMember(@RequestBody JSONObject jsonObject,@RequestParam("companyId") String companyId,@RequestParam("projectId") Integer projectId){
+    public Map infoMember(@RequestBody JSONObject jsonObject, @RequestParam("companyId") String companyId, @RequestParam("projectId") Integer projectId) {
         String memberEmails = jsonObject.get("memberEmails").toString();
         String emailArray[] = memberEmails.split(",");
         List<String> emailList = Arrays.asList(emailArray);
         try {
-         boolean result = projectService.infoMember(emailList,companyId,projectId);
-         return ToMap.toSuccessMap(result);
-        }catch (Exception e){
-           return ToMap.toFalseMap(e.getMessage());
+            boolean result = projectService.infoMember(emailList, companyId, projectId);
+            return ToMap.toSuccessMap(result);
+        } catch (Exception e) {
+            return ToMap.toFalseMap(e.getMessage());
         }
+    }
 
+    @PostMapping("list")
+    public Map listProjectInTomcat(@RequestBody Project project) {
+
+        if (Strings.isNullOrEmpty(project.getCompanyId())) {
+            return ToMap.toFalseMap("信息不全");
+        }
+        try {
+            List<Webapp> list = projectService.listProjectInTomcat(project);
+            return ToMap.toSuccessMap(list);
+        } catch (Exception e) {
+            return ToMap.toFalseMap(e.getMessage());
+        }
+    }
+
+    /**
+     * 对tomcat内的项目进行操作
+     * @param project
+     * @param operation
+     * @return
+     */
+    @PostMapping("operate")
+    public Map operateProject(@RequestBody Project project, String operation) {
+        if (Strings.isNullOrEmpty(operation)) {
+            return ToMap.toFalseMap("操作为空");
+        }
+        try {
+            boolean result = projectService.operateProject(project, operation);
+            return ToMap.toSuccessMap(result);
+        } catch (Exception e) {
+            return ToMap.toFalseMap(e.getMessage());
+        }
 
     }
 }
