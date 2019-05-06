@@ -39,9 +39,18 @@
         from manage
         where email = #{email};
     </select>
+    <insert id="insertMany" parameterType="java.util.ArrayList">
+        insert into manage VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.companyId},#{item.email},#{item.password},#{item.permission})
+        </foreach>
+    </insert>
     <select id="selectByUniqueCompanyId" parameterType="java.lang.String" resultMap="management">
         select distinct company_id,
         from manage
         where email = #{email};
     </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.mis.hrm.manage.model.Management">
+        delete from manage where company_id = #{companyId} and email = #{email};
+    </delete>
 </mapper>

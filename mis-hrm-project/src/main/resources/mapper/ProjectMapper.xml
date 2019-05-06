@@ -20,7 +20,7 @@
     </insert>
 
     <select id="selectByPrimaryKey" parameterType="com.mis.hrm.project.po.Project" resultMap="projectMapper">
-        select company_id, project_id, name, ip, ports
+        select company_id, project_id, name, ip, ports,location
           from project where 1=1
         <if test="companyId != null">
             and company_id = #{companyId}
@@ -49,7 +49,7 @@
                 ip = #{ip},
             </if>
             <if test="ports != null">
-                ports = #{ports}
+                ports = #{ports},
             </if>
             <if test="location != null">
                 location = #{location}
@@ -80,7 +80,7 @@
         </if>
     </select>
     <select id="selectByPrimaryKeyAndPage" resultMap="projectMapper">
-        select company_id, project_id, name, ip, ports
+        select company_id, project_id, name, ip, ports,location
         from project where 1=1
         <if test="key.companyId != null">
             and company_id like '%${key.companyId}%'

@@ -1,10 +1,12 @@
 package com.mis.hrm.member.service.impl;
 
+import com.mis.hrm.manage.dao.ManageMapper;
 import com.mis.hrm.manage.model.Management;
 import com.mis.hrm.manage.service.ManageService;
 import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
+import com.mis.hrm.util.EncryptionUtil;
 import com.mis.hrm.util.ExcelUtil;
 import com.mis.hrm.util.ObjectNotEmpty;
 import com.mis.hrm.util.Pager;
@@ -41,6 +43,8 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
     @Resource
     private ManageService manageService;
+    @Resource
+    private ManageMapper manageMapper;
 
     @Override
     public int deleteByPrimaryKey(Member key) throws RuntimeException {
@@ -113,9 +117,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int deleteByNums(List<String> nums, String companyId) {
+    public int deleteByNums(List<String> nums, List<String> emails, String companyId) {
         if (nums.size() != 0) {
             int stateNum = memberMapper.deleteByNums(nums, companyId);
+            for (String email : emails) {
+                Management management = Management.builder().companyId(companyId).email(email).build();
+                manageMapper.deleteByPrimaryKey(management);
+            }
             if (stateNum > 0) {
                 logger.info("成功删除" + stateNum + "名成员信息");
                 return stateNum;
@@ -152,6 +160,8 @@ public class MemberServiceImpl implements MemberService {
         Sheet sheet = ExcelUtil.getSheet(file);
         List<Row> rows = ExcelUtil.getRowFromSheet(sheet);
         List<Member> list = new ArrayList<>();
+        List<Management> list1 = new ArrayList<>();
+
         for (int i = 1; i < rows.size(); i++) {
             List<Cell> cells = ExcelUtil.getCellFromRow(rows.get(i));
             if (cells.size() != MEMBER_PARAMTER_COUNT) {
@@ -171,13 +181,21 @@ public class MemberServiceImpl implements MemberService {
             String department = ExcelUtil.getValueByIndex(cells, 7);
             String whereAbout = ExcelUtil.getValueByIndex(cells, 8);
             Member member = Member.builder().companyId(companyId).num(num).name(name).phoneNumber(phoneNumber).email(email).grade(grade).sex(sex).profession(profession).department(department).whereAbout(whereAbout).build();
+            Member member1 = memberMapper.selectByPrimaryKey(member);
+            if (member1 != null) {
+                throw new IOException("数据库已存在学号为" + member1.getNum() + "的成员");
+            }
             Management management = new Management();
             management.setCompanyId(companyId);
             management.setEmail(email);
-            manageService.insert(management);
+            Integer base_password = 123456;
+            String encrypt = EncryptionUtil.md5(base_password.toString());
+            management.setPassword(encrypt);
             logger.info("member {}", member.toString());
             list.add(member);
+            list1.add(management);
         }
+        manageMapper.insertMany(list1);
         memberMapper.insertMany(list);
 
     }

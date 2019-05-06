@@ -77,11 +77,12 @@ public class MemberController {
             return ToMap.toFalseMap(ErrorCode.NOT_BLANK);
         }
         String nums = member.getNum();
-        String[] numArray = nums.split(",");
+        String emails = member.getEmail();
+        List<String> numList = stringToList(nums);
+        List<String> emailList = stringToList(emails);
         Map<String, Object> map;
-        List<String> numList = Arrays.asList(numArray);
         try {
-            map = ToMap.toSuccessMap(memberService.deleteByNums(numList, companyId));
+            map = ToMap.toSuccessMap(memberService.deleteByNums(numList,emailList, companyId));
             logger.info("删除成员成功");
         } catch (InfoNotFullyException infoNotFullyException) {
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
@@ -89,6 +90,11 @@ public class MemberController {
             map = ToMap.toFalseMap(e.getMessage());
         }
         return map;
+    }
+
+    private List<String> stringToList(String nums) {
+        String[] numArray = nums.split(",");
+        return Arrays.asList(numArray);
     }
 
     @PutMapping("member")

@@ -16,7 +16,7 @@ public interface MemberService extends BaseService<Member> {
      * @param companyId 公司id
      * @return 删除的数目
      */
-    int deleteByNums(List<String> nums,String companyId);
+    int deleteByNums(List<String> nums,List<String> emails,String companyId);
 
     /**
      * 根据条件统计成员
