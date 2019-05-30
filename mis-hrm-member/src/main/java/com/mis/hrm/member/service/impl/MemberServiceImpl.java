@@ -67,6 +67,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int insert(Member record) throws RuntimeException {
         if (StringUtil.notEmpty(record.getCompanyId()) && StringUtil.notEmpty(record.getNum())) {
+            Member member = memberMapper.selectByPrimaryKey(record);
+            if (member != null){
+                throw new RuntimeException("禁止重复添加成员");
+            }
             int stateNum = memberMapper.insert(record);
             if (stateNum > 0) {
                 logger.info("成员信息添加成功");
