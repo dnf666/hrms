@@ -2,7 +2,6 @@ package com.mis.hrm.member.service.impl;
 
 import com.mis.hrm.manage.dao.ManageMapper;
 import com.mis.hrm.manage.model.Management;
-import com.mis.hrm.manage.service.ManageService;
 import com.mis.hrm.member.dao.MemberMapper;
 import com.mis.hrm.member.model.Member;
 import com.mis.hrm.member.service.MemberService;
@@ -41,8 +40,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Resource
     private MemberMapper memberMapper;
-    @Resource
-    private ManageService manageService;
     @Resource
     private ManageMapper manageMapper;
 

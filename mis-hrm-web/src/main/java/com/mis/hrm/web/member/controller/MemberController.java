@@ -147,7 +147,7 @@ public class MemberController {
             try {
                 memberService.importMemberFromExcel(file, companyId);
             } catch (IOException e) {
-               return ToMap.toFalseMap("io异常");
+               return ToMap.toFalseMap(e.getMessage());
             }
         }else {
             return ToMap.toFalseMap("文件格式不匹配");
