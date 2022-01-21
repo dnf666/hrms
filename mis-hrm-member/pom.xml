@@ -11,7 +11,7 @@
 	<artifactId>mis-hrm-member</artifactId>
 	<name>mis-hrm-member</name>
 	<properties>
-		<h2.version>1.4.196</h2.version>
+		<h2.version>2.1.210</h2.version>
 		<skip_maven_deploy>true</skip_maven_deploy>
 		<druid.version>1.0.31</druid.version>
 	</properties>
